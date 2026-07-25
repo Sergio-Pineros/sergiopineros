@@ -1,23 +1,25 @@
 # Sergio Piñeros — Portfolio
 
-Single-page portfolio built with Next.js, Tailwind CSS v4, and GSAP ScrollTrigger.
+Single-page portfolio modeled after [sanvithi.com](https://sanvithi.com/), built with Next.js, Tailwind CSS v4, and GSAP.
 
 ## Stack
 
 - **Next.js 15** (App Router)
 - **Tailwind CSS v4**
-- **GSAP + ScrollTrigger** for scroll animations
-- **3-color palette:** Ivory `#F4F1EB`, Charcoal `#1A1917`, Clay `#9C7B6A`
+- **GSAP ScrollTrigger** for scroll animations
+- **Fonts:** Averia Serif Libre + Inclusive Sans + Caveat (all SIL OFL, free commercial use)
 
 ## Structure
 
 ```
 app/
-  layout.tsx      # Fonts + metadata
-  page.tsx        # Entry point
-  globals.css     # Grid system, tokens, utilities
+  layout.tsx, page.tsx, globals.css
 components/
-  Portfolio.tsx   # Full single-page experience
+  Portfolio.tsx          # Full page (nav, hero, projects, footer)
+  AssetPlaceholder.tsx   # Dashed placeholders until assets arrive
+lib/
+  projects.ts            # Copy, project data, themes
+ASSETS.md                # Complete asset checklist per section
 ```
 
 ## Development
@@ -27,20 +29,12 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+## Assets
+
+See **[ASSETS.md](./ASSETS.md)** for the full checklist of images needed per section (hero stickers, project screenshots, footer, etc.).
 
 ## Deploy
-
-Deploy to Vercel:
 
 ```bash
 npx vercel
 ```
-
-Or connect the repo to Vercel for automatic deployments.
-
-## Customization
-
-- Replace shape placeholders with real project imagery in `components/Portfolio.tsx`
-- Update copy, email, and links in the footer section
-- Adjust colors in `app/globals.css` under `:root` and `@theme`

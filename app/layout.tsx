@@ -1,28 +1,36 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import { Averia_Serif_Libre, Inclusive_Sans, Caveat } from "next/font/google";
 import "./globals.css";
 
-const display = Cormorant_Garamond({
+const serif = Averia_Serif_Libre({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-  variable: "--font-display-loaded",
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-averia-serif-libre",
   display: "swap",
 });
 
-const body = DM_Sans({
+const sans = Inclusive_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-body-loaded",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-inclusive-sans",
+  display: "swap",
+});
+
+const display = Caveat({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-caveat",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Sergio Piñeros — Brand & Product Design",
+  title: "Sergio Piñeros, brand & product designer",
   description:
     "Founder & Creative Director at Sergio Atelier. Brand identity, product design, AI systems, and visual storytelling.",
   openGraph: {
     title: "Sergio Piñeros",
-    description: "Silent luxury in brand, product, and systems design.",
+    description: "Designer who creates meaningful experiences through brand, product, and systems design.",
     type: "website",
   },
 };
@@ -31,7 +39,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${display.variable} ${body.variable}`}>
+    <html lang="en" className={`${serif.variable} ${sans.variable} ${display.variable}`}>
       <body>{children}</body>
     </html>
   );
