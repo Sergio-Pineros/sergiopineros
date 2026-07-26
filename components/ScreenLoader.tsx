@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
 
 const LOADER_KEY = "sergio-portfolio-loaded";
 
@@ -24,59 +23,76 @@ export default function ScreenLoader({ onComplete }: { onComplete: () => void })
 
     document.body.style.overflow = "hidden";
 
-    const counter = { value: 0 };
-    const tl = gsap.timeline({
-      onComplete: () => {
-        sessionStorage.setItem(LOADER_KEY, "1");
-        document.body.style.overflow = "";
-        setVisible(false);
-        onComplete();
-      },
-    });
+    let frame = 0;
+    let cancelled = false;
+    let exitTimer = 0;
+    let fallbackTimer = 0;
+    const start = performance.now();
+    const duration = 1650;
 
-    tl.fromTo(
-      wordmarkRef.current,
-      { opacity: 0, y: 24 },
-      { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }
+    wordmarkRef.current?.animate(
+      [
+        { opacity: 0, transform: "translateY(24px)" },
+        { opacity: 1, transform: "translateY(0)" },
+      ],
+      { duration: 560, easing: "cubic-bezier(.22,1,.36,1)", fill: "forwards" }
     );
 
-    tl.to(
-      counter,
-      {
-        value: 100,
-        duration: 1.8,
-        ease: "power2.inOut",
-        onUpdate: () => {
-          if (counterRef.current) {
-            counterRef.current.textContent = `${Math.round(counter.value)}`;
-          }
-          if (barRef.current) {
-            barRef.current.style.width = `${counter.value}%`;
-          }
-        },
-      },
-      0.1
-    );
+    const complete = () => {
+      if (cancelled) return;
+      sessionStorage.setItem(LOADER_KEY, "1");
+      document.body.style.overflow = "";
+      setVisible(false);
+      onComplete();
+    };
 
-    tl.to(wordmarkRef.current, {
-      opacity: 0,
-      y: -20,
-      duration: 0.35,
-      ease: "power2.in",
-    });
+    const finish = () => {
+      wordmarkRef.current?.animate(
+        [
+          { opacity: 1, transform: "translateY(0)" },
+          { opacity: 0, transform: "translateY(-18px)" },
+        ],
+        { duration: 280, easing: "ease-in", fill: "forwards" }
+      );
 
-    tl.to(
-      overlayRef.current,
-      {
-        yPercent: -100,
-        duration: 0.85,
-        ease: "power4.inOut",
-      },
-      "-=0.1"
-    );
+      overlayRef.current?.animate(
+        [
+          { transform: "translateY(0)" },
+          { transform: "translateY(-100%)" },
+        ],
+        { duration: 820, easing: "cubic-bezier(.76,0,.24,1)", fill: "forwards" }
+      );
+
+      // Timer is the source of truth so background-tab animation throttling
+      // can never trap the visitor behind the loader.
+      exitTimer = window.setTimeout(complete, 900);
+    };
+
+    const update = (now: number) => {
+      const linear = Math.min((now - start) / duration, 1);
+      const eased = linear < 0.5
+        ? 2 * linear * linear
+        : 1 - Math.pow(-2 * linear + 2, 2) / 2;
+      const value = Math.round(eased * 100);
+
+      if (counterRef.current) counterRef.current.textContent = String(value);
+      if (barRef.current) barRef.current.style.width = `${eased * 100}%`;
+
+      if (linear < 1) {
+        frame = requestAnimationFrame(update);
+      } else {
+        finish();
+      }
+    };
+
+    frame = requestAnimationFrame(update);
+    fallbackTimer = window.setTimeout(complete, 3600);
 
     return () => {
-      tl.kill();
+      cancelled = true;
+      cancelAnimationFrame(frame);
+      window.clearTimeout(exitTimer);
+      window.clearTimeout(fallbackTimer);
       document.body.style.overflow = "";
     };
   }, [onComplete]);

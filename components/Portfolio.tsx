@@ -8,9 +8,40 @@ import AssetPlaceholder from "@/components/AssetPlaceholder";
 import ScreenLoader from "@/components/ScreenLoader";
 import CustomCursor from "@/components/CustomCursor";
 import { getHoverConfig } from "@/lib/animations";
-import { HERO_TABS, HERO_HEADLINE, PROJECTS, type Project } from "@/lib/projects";
+import { HERO_TABS, PROJECTS, type Project } from "@/lib/projects";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
+
+const HERO_PANELS: Record<
+  (typeof HERO_TABS)[number]["id"],
+  { headline: string; script: string }
+> = {
+  who: {
+    headline:
+      "Designer who creates meaningful experiences through brand, product, and systems design.",
+    script: "who i am",
+  },
+  build: {
+    headline:
+      "I build identities, digital products, and automations that move ambitious businesses forward.",
+    script: "what i make",
+  },
+  believe: {
+    headline:
+      "I believe the best work feels inevitable: clear in thought, precise in form, and human at heart.",
+    script: "what guides me",
+  },
+  write: {
+    headline:
+      "I write about creativity, philosophy, mindset, and the slow discipline of developing taste.",
+    script: "notes to self",
+  },
+  upto: {
+    headline:
+      "I am looking for the next team where brand craft and emerging technology can shape each other.",
+    script: "what comes next",
+  },
+};
 
 function ProjectCard({ project }: { project: Project }) {
   const cardRef = useRef<HTMLAnchorElement | HTMLDivElement>(null);
@@ -47,12 +78,30 @@ function ProjectCard({ project }: { project: Project }) {
   }, [project]);
 
   const hoverOut = useCallback(() => {
-    gsap.to([screenshotRef.current, tabRef.current, ...tagRefs.current.filter(Boolean)], {
-      clearProps: "top,left,right,width,height,rotation",
-      duration: 0.45,
-      ease: "power2.inOut",
+    const tl = gsap.timeline({ defaults: { duration: 0.48, ease: "power2.inOut" } });
+
+    if (screenshotRef.current) {
+      tl.to(screenshotRef.current, { width: "50%", top: "38%" }, 0);
+    }
+    if (tabRef.current) {
+      tl.to(tabRef.current, { height: "43%" }, 0);
+    }
+
+    tagRefs.current.forEach((tag, i) => {
+      const initial = project.tags[i];
+      if (!tag || !initial) return;
+      tl.to(
+        tag,
+        {
+          top: initial.top,
+          left: initial.left ?? "auto",
+          right: initial.right ?? "auto",
+          rotation: initial.rotation,
+        },
+        0
+      );
     });
-  }, []);
+  }, [project]);
 
   const folder = (
     <div
@@ -91,7 +140,6 @@ function ProjectCard({ project }: { project: Project }) {
       <div
         ref={tabRef}
         className="project-card__tab"
-        style={{ background: project.theme.tagBg }}
       />
     </div>
   );
@@ -146,6 +194,7 @@ export default function Portfolio() {
   const rootRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
+  const scriptRef = useRef<HTMLSpanElement>(null);
   const [activeTab, setActiveTab] = useState<(typeof HERO_TABS)[number]["id"]>("who");
   const [menuOpen, setMenuOpen] = useState(false);
   const [loaded, setLoaded] = useState(false);
@@ -153,11 +202,11 @@ export default function Portfolio() {
 
   const handleTabClick = (id: (typeof HERO_TABS)[number]["id"]) => {
     setActiveTab(id);
-    if (headlineRef.current) {
+    if (headlineRef.current && scriptRef.current) {
       gsap.fromTo(
-        headlineRef.current,
-        { opacity: 0, y: 16 },
-        { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }
+        [headlineRef.current, scriptRef.current],
+        { y: 14 },
+        { y: 0, duration: 0.5, stagger: 0.06, ease: "power3.out" }
       );
     }
   };
@@ -171,14 +220,12 @@ export default function Portfolio() {
 
       gsap.from(".site-nav", {
         y: -20,
-        opacity: 0,
         duration: 0.6,
         ease: "power3.out",
         delay: 0.1,
       });
 
       gsap.from(".hero-tab", {
-        opacity: 0.001,
         y: 8,
         duration: 0.4,
         stagger: 0.05,
@@ -187,24 +234,21 @@ export default function Portfolio() {
       });
 
       gsap.from(headlineRef.current, {
-        opacity: 0,
         y: 40,
         duration: 0.9,
         ease: "power3.out",
         delay: 0.35,
       });
 
-      gsap.from(".hero-sticker", {
-        opacity: 0.001,
+      gsap.from(scriptRef.current, {
         scale: 0.92,
+        rotation: -4,
         duration: 2,
-        stagger: 0.12,
         ease: "power2.out",
         delay: 0.45,
       });
 
       gsap.from(".scroll-cue", {
-        opacity: 0,
         y: 10,
         duration: 0.6,
         ease: "power2.out",
@@ -214,7 +258,6 @@ export default function Portfolio() {
       gsap.utils.toArray<HTMLElement>(".fade-up").forEach((el) => {
         gsap.from(el, {
           y: 40,
-          opacity: 0,
           duration: 0.8,
           ease: "power3.out",
           scrollTrigger: {
@@ -228,7 +271,6 @@ export default function Portfolio() {
       gsap.utils.toArray<HTMLElement>(".project-row").forEach((row) => {
         gsap.from(row.querySelector(".project-card"), {
           y: 30,
-          opacity: 0,
           duration: 0.9,
           ease: "power3.out",
           scrollTrigger: {
@@ -241,7 +283,6 @@ export default function Portfolio() {
 
       gsap.from(".coming-soon-block__text", {
         y: 30,
-        opacity: 0,
         duration: 0.8,
         ease: "power3.out",
         scrollTrigger: {
@@ -252,7 +293,6 @@ export default function Portfolio() {
 
       gsap.from(".footer__wordmark", {
         y: 20,
-        opacity: 0,
         duration: 0.8,
         ease: "power3.out",
         scrollTrigger: {
@@ -272,9 +312,9 @@ export default function Portfolio() {
       <div ref={rootRef} className={loaded ? "site-visible" : "site-hidden"}>
         <header className="site-nav">
           <div className="site-nav__inner">
-            <div className="nav-pill-group">
-              <a href="#hero" className="nav-link">
-                Sergio Piñeros
+            <div className="nav-shell">
+              <a href="#hero" className="nav-logo">
+                sergio
               </a>
 
               <button
@@ -287,19 +327,25 @@ export default function Portfolio() {
               </button>
 
               <div className="nav-links-desktop">
+                <a href="#projects" className="nav-link nav-link--active">
+                  <span aria-hidden="true">✦</span> work
+                </a>
                 <a
                   href="https://sergioatelier.co/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="nav-link"
                 >
-                  studio
+                  <span aria-hidden="true">◉</span> play
                 </a>
-                <a href="#contact" className="nav-link">
-                  contact
+                <a
+                  href="mailto:hello@sergioatelier.co?subject=Resume%20request"
+                  className="nav-link"
+                >
+                  <span aria-hidden="true">▤</span> résumé
                 </a>
-                <a href="#projects" className="nav-link nav-link--active">
-                  work
+                <a href="#hero" className="nav-link">
+                  <span aria-hidden="true">⌁</span> story
                 </a>
               </div>
             </div>
@@ -341,27 +387,6 @@ export default function Portfolio() {
 
         <main>
           <section id="hero" ref={heroRef} className="hero">
-            <div className="hero-sticker hero-sticker--1">
-              <div className="sticker-placeholder">
-                <span className="sticker-placeholder__text">Sticker 1</span>
-              </div>
-            </div>
-            <div className="hero-sticker hero-sticker--2">
-              <div className="sticker-placeholder">
-                <span className="sticker-placeholder__text">Sticker 2</span>
-              </div>
-            </div>
-            <div className="hero-sticker hero-sticker--3">
-              <div className="sticker-placeholder">
-                <span className="sticker-placeholder__text">Sticker 3</span>
-              </div>
-            </div>
-            <div className="hero-sticker hero-sticker--4">
-              <div className="sticker-placeholder">
-                <span className="sticker-placeholder__text">Sticker 4</span>
-              </div>
-            </div>
-
             <div className="hero-tabs" role="tablist" aria-label="About Sergio">
               {HERO_TABS.map((tab) => (
                 <button
@@ -377,12 +402,14 @@ export default function Portfolio() {
               ))}
             </div>
 
-            <h1 ref={headlineRef} className="hero-headline">
-              <span className="hero-headline__line">{HERO_HEADLINE.line1} </span>
-              <span className="hero-headline__accent">{HERO_HEADLINE.accent1}</span>
-              <span className="hero-headline__line"> {HERO_HEADLINE.line2} </span>
-              <span className="hero-headline__accent">{HERO_HEADLINE.accent2}</span>
-            </h1>
+            <div className="hero-statement">
+              <h1 ref={headlineRef} className="hero-headline">
+                {HERO_PANELS[activeTab].headline}
+              </h1>
+              <span ref={scriptRef} className="hero-script" aria-hidden="true">
+                {HERO_PANELS[activeTab].script}
+              </span>
+            </div>
 
             <div className="scroll-cue">
               <span className="scroll-cue__text">scroll to see work</span>
@@ -413,31 +440,27 @@ export default function Portfolio() {
               <span className="footer__wordmark">Sergio Piñeros</span>
             </div>
 
-            <p className="footer__body">
-              Brand & visual designer bridging craft and systems thinking. English & Spanish. Open
-              to visual and brand design roles at AI infrastructure companies — remote worldwide.
-            </p>
-
             <div className="footer__actions">
               <a href="mailto:hello@sergioatelier.co" className="footer__pill">
-                email
+                ✉ email
               </a>
               <a
-                href="https://sergioatelier.co/"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="mailto:hello@sergioatelier.co?subject=Resume%20request"
                 className="footer__pill"
               >
-                studio
+                ▤ résumé
               </a>
-              <a href="#projects" className="footer__pill">
-                work
+              <a href="https://www.linkedin.com/" className="footer__pill footer__pill--icon">
+                in
+              </a>
+              <a href="#hero" className="footer__pill footer__pill--icon">
+                ×
               </a>
             </div>
 
             <p className="footer__copy">
-              Sergio Piñeros © {new Date().getFullYear()} · Brand · Product · Systems · All rights
-              reserved ✦
+              © Sergio Piñeros {new Date().getFullYear()}. All rights (and wrongs) reserved ✦
+              human-directed work ✦ created between Colombia and the internet
             </p>
           </footer>
         </main>

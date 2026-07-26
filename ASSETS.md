@@ -17,16 +17,11 @@ This site is modeled after [sanvithi.com](https://sanvithi.com/). Replace each p
 
 ## Hero Section
 
-| Slot | Location | What to provide | Specs |
-|------|----------|-----------------|-------|
-| **Sticker 1** | Top-left collage | Playful brand element — logo sticker, stamp, or hand-drawn mark | PNG with transparent bg, ~400×280px |
-| **Sticker 2** | Top-right collage | Second decorative element — could be a Savron tag, camera, pen tool | PNG transparent, ~300×300px |
-| **Sticker 3** | Bottom-left collage | Third sticker — newsletter, writing, or "2019" badge | PNG transparent, ~450×220px |
-| **Sticker 4** | Bottom-right collage | Fourth sticker — AI/automation icon or studio mark | PNG transparent, ~350×280px |
+No hero asset is required. The blue handwritten layer is rendered as live text
+and changes with each tab, matching the reference site's central composition.
 
-**Notes:** Stickers use `mix-blend-mode: multiply` like sanvithi.com. Use light/white-background PNGs for best effect. Save to `public/stickers/sticker-1.png` etc.
-
-**Hero tab copy** is already written — no assets needed unless you want custom icons per tab.
+Optional future upgrade: provide five transparent handwritten PNG or SVG marks,
+one for each hero tab, if you want to replace the live handwritten font.
 
 ---
 

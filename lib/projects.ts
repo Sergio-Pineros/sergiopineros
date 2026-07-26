@@ -35,14 +35,6 @@ export const HERO_TABS = [
   { id: "upto", label: "WHAT I'M UP TO" },
 ] as const;
 
-/** Static sanvithi-style headline — key phrases render in brand blue */
-export const HERO_HEADLINE = {
-  line1: "Designer who creates",
-  accent1: "meaningful experiences",
-  line2: "through",
-  accent2: "brand, product, and systems design.",
-} as const;
-
 export const PROJECTS: Project[] = [
   {
     slug: "savron",
