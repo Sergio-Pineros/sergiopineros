@@ -80,7 +80,7 @@ body.custom-cursor-active button {
 
 .screen-loader__wordmark {
   font-family: var(--font-serif);
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(2.5rem, 5vw, 4.25rem);
   letter-spacing: -0.04em;
   color: var(--color-near-black);
   text-align: center;
@@ -89,9 +89,9 @@ body.custom-cursor-active button {
 
 .screen-loader__bottom {
   position: absolute;
-  bottom: 48px;
-  left: 48px;
-  right: 48px;
+  bottom: clamp(28px, 5vw, 56px);
+  left: clamp(24px, 5vw, 64px);
+  right: clamp(24px, 5vw, 64px);
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -115,7 +115,7 @@ body.custom-cursor-active button {
 
 .screen-loader__counter {
   font-family: var(--font-serif);
-  font-size: clamp(3rem, 8vw, 5rem);
+  font-size: clamp(3.5rem, 8vw, 6rem);
   letter-spacing: -0.04em;
   line-height: 1;
   color: var(--color-near-black);
@@ -182,11 +182,11 @@ a {
 
 .site-nav__inner {
   position: absolute;
-  top: 8px;
+  top: 12px;
   left: 50%;
   transform: translateX(-50%);
   pointer-events: auto;
-  width: min(510px, calc(100vw - 32px));
+  width: min(650px, calc(100vw - 32px));
 }
 
 .nav-shell {
@@ -200,15 +200,15 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 28px;
-  padding: 4px 10px;
+  height: 38px;
+  padding: 7px 15px;
   border: 1px solid #ededed;
   border-radius: var(--radius-pill);
   background: rgba(255, 255, 255, 0.88);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
   color: var(--color-charcoal);
   font-family: var(--font-serif);
-  font-size: 11px;
+  font-size: 14px;
   text-decoration: none;
   backdrop-filter: blur(8px);
 }
@@ -216,15 +216,15 @@ a {
 .nav-link {
   display: flex;
   align-items: center;
-  gap: 4px;
-  height: 28px;
-  padding: 4px 9px;
+  gap: 6px;
+  height: 38px;
+  padding: 7px 14px;
   border: 1px solid rgb(237, 237, 237);
   border-radius: var(--radius-pill);
   background: rgb(255, 255, 255);
   backdrop-filter: blur(3px);
   font-family: var(--font-serif);
-  font-size: 11px;
+  font-size: 14px;
   color: var(--color-charcoal);
   text-decoration: none;
   cursor: pointer;
@@ -246,7 +246,7 @@ a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 34px;
+  gap: 44px;
   min-height: 100dvh;
   padding: 132px 20px 76px;
   position: relative;
@@ -262,7 +262,7 @@ a {
 .hero-tabs {
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 6px;
   max-width: 100%;
   overflow-x: auto;
   scrollbar-width: none;
@@ -276,20 +276,20 @@ a {
 
 @media (min-width: 1024px) {
   .hero-tabs {
-    gap: 5px;
+    gap: 10px;
     overflow-x: visible;
     justify-content: center;
   }
 }
 
 .hero-tab {
-  padding: 8px 15px;
+  padding: 10px 14px;
   white-space: nowrap;
   cursor: pointer;
   font-family: var(--font-sans);
   font-weight: 600;
-  font-size: 10px;
-  letter-spacing: 0.7px;
+  font-size: 12px;
+  letter-spacing: 0.55px;
   line-height: 1;
   color: rgb(128, 128, 128);
   background: transparent;
@@ -304,7 +304,7 @@ a {
 .hero-statement {
   position: relative;
   width: min(820px, 92vw);
-  min-height: 205px;
+  min-height: 245px;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -315,8 +315,8 @@ a {
   text-align: center;
   font-family: var(--font-serif);
   font-size: clamp(2.35rem, 4.25vw, 3.625rem);
-  letter-spacing: -0.05em;
-  line-height: 0.84;
+  letter-spacing: -0.045em;
+  line-height: 0.91;
   color: var(--color-near-black);
   margin: 0;
   font-weight: 400;
@@ -334,16 +334,16 @@ a {
 .hero-script {
   position: absolute;
   left: 49%;
-  top: 45%;
+  top: 53%;
   z-index: 2;
   color: var(--color-brand-blue);
   font-family: var(--font-display);
-  font-size: clamp(5.5rem, 14vw, 10.5rem);
+  font-size: clamp(5.5rem, 13vw, 9.75rem);
   font-weight: 500;
   letter-spacing: -0.06em;
   line-height: 0.7;
   white-space: nowrap;
-  transform: translateX(-18%) rotate(-5deg);
+  transform: translateX(-14%) rotate(-5deg);
   pointer-events: none;
   user-select: none;
   text-shadow: 0 0 0.5px var(--color-brand-blue);
@@ -351,11 +351,11 @@ a {
 
 @media (max-width: 1023px) {
   .hero-statement {
-    min-height: 220px;
+    min-height: 250px;
   }
 
   .hero-script {
-    top: 54%;
+    top: 58%;
     left: 41%;
     font-size: clamp(5rem, 25vw, 8rem);
   }
@@ -486,7 +486,7 @@ a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 24px;
+  gap: 46px;
   width: 100%;
   min-height: 100svh;
   padding: 110px 20px 70px;
@@ -497,7 +497,7 @@ a {
     flex-direction: row;
     min-height: 100vh;
     padding: 120px 200px;
-    gap: 0;
+    gap: 32px;
   }
 
   .project-row--reverse {
@@ -535,7 +535,7 @@ a {
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-end;
-  gap: 16px;
+  gap: 22px;
   width: min(600px, 100%);
   max-width: 600px;
 }
@@ -552,17 +552,17 @@ a {
   font-style: italic;
   font-size: clamp(1.75rem, 3vw, 2.25rem);
   letter-spacing: -0.04em;
-  line-height: 1;
+  line-height: 1.08;
   color: var(--color-near-black);
   margin: 0;
 }
 
 .project-tags-line {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 500;
   color: var(--color-near-black);
-  line-height: 1.4;
+  line-height: 1.55;
 }
 
 /* ─── PROJECT CARD ─── */
@@ -761,7 +761,7 @@ a {
 .footer__actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 10px;
   justify-content: center;
   margin-top: auto;
 }
@@ -769,15 +769,15 @@ a {
 .footer__pill {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  height: 30px;
-  padding: 5px 11px;
+  gap: 7px;
+  height: 42px;
+  padding: 8px 16px;
   border: 1px solid rgb(237, 237, 237);
   border-radius: var(--radius-pill);
   background: white;
   font-family: var(--font-sans);
-  font-size: 12px;
-  font-weight: 400;
+  font-size: 16px;
+  font-weight: 500;
   color: var(--color-charcoal);
   text-decoration: none;
   transition: transform 0.2s var(--spring-snappy), background 0.2s ease;
@@ -789,7 +789,7 @@ a {
 }
 
 .footer__pill--icon {
-  width: 30px;
+  width: 42px;
   padding: 0;
   justify-content: center;
 }

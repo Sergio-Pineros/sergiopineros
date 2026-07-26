@@ -2,8 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const LOADER_KEY = "sergio-portfolio-loaded";
-
 export default function ScreenLoader({ onComplete }: { onComplete: () => void }) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const counterRef = useRef<HTMLSpanElement>(null);
@@ -13,9 +11,8 @@ export default function ScreenLoader({ onComplete }: { onComplete: () => void })
 
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const hasLoaded = sessionStorage.getItem(LOADER_KEY);
 
-    if (reduced || hasLoaded) {
+    if (reduced) {
       setVisible(false);
       onComplete();
       return;
@@ -28,7 +25,7 @@ export default function ScreenLoader({ onComplete }: { onComplete: () => void })
     let exitTimer = 0;
     let fallbackTimer = 0;
     const start = performance.now();
-    const duration = 1650;
+    const duration = 1450;
 
     wordmarkRef.current?.animate(
       [
@@ -40,7 +37,6 @@ export default function ScreenLoader({ onComplete }: { onComplete: () => void })
 
     const complete = () => {
       if (cancelled) return;
-      sessionStorage.setItem(LOADER_KEY, "1");
       document.body.style.overflow = "";
       setVisible(false);
       onComplete();
@@ -86,7 +82,7 @@ export default function ScreenLoader({ onComplete }: { onComplete: () => void })
     };
 
     frame = requestAnimationFrame(update);
-    fallbackTimer = window.setTimeout(complete, 3600);
+    fallbackTimer = window.setTimeout(complete, 2900);
 
     return () => {
       cancelled = true;
