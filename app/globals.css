@@ -48,6 +48,113 @@ body {
   overflow-x: hidden;
 }
 
+body.custom-cursor-active {
+  cursor: none;
+}
+
+body.custom-cursor-active a,
+body.custom-cursor-active button {
+  cursor: none;
+}
+
+.site-hidden {
+  visibility: hidden;
+}
+
+.site-visible {
+  visibility: visible;
+}
+
+/* ─── SCREEN LOADER ─── */
+.screen-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+}
+
+.screen-loader__wordmark {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  letter-spacing: -0.04em;
+  color: var(--color-near-black);
+  text-align: center;
+  padding: 0 24px;
+}
+
+.screen-loader__bottom {
+  position: absolute;
+  bottom: 48px;
+  left: 48px;
+  right: 48px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.screen-loader__track {
+  flex: 1;
+  height: 2px;
+  background: rgb(237, 237, 237);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.screen-loader__bar {
+  width: 0%;
+  height: 100%;
+  background: var(--color-brand-blue);
+  border-radius: 2px;
+}
+
+.screen-loader__counter {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 8vw, 5rem);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--color-near-black);
+  display: flex;
+  align-items: flex-start;
+}
+
+.screen-loader__percent {
+  font-size: 0.45em;
+  margin-top: 0.15em;
+  margin-left: 2px;
+}
+
+/* ─── CUSTOM CURSOR ─── */
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-brand-blue);
+}
+
+.cursor-ring {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid color-mix(in srgb, var(--color-brand-blue) 50%, transparent);
+}
+
 ::selection {
   background: color-mix(in srgb, var(--color-clay) 30%, transparent);
 }
@@ -173,7 +280,7 @@ a {
   color: rgb(128, 128, 128);
   background: transparent;
   border: none;
-  transition: color 0.2s ease;
+  transition: color 0.25s ease;
 }
 
 .hero-tab--active {
@@ -184,11 +291,27 @@ a {
   max-width: 878px;
   text-align: center;
   font-family: var(--font-serif);
-  font-size: clamp(2.25rem, 5vw, 3.625rem);
+  font-size: clamp(2.5rem, 5vw, 3.625rem);
   letter-spacing: -0.05em;
-  line-height: 0.9;
+  line-height: 0.85;
   color: var(--color-near-black);
   margin: 0;
+  font-weight: 400;
+}
+
+.hero-headline__line {
+  color: var(--color-near-black);
+}
+
+.hero-headline__accent {
+  color: var(--color-brand-blue);
+}
+
+@media (max-width: 1023px) {
+  .hero-headline {
+    line-height: 0.95;
+    font-size: clamp(2rem, 8vw, 2.5rem);
+  }
 }
 
 .hero-sticker {
@@ -469,14 +592,7 @@ a {
   overflow: hidden;
   z-index: 2;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  transition: width 0.55s var(--ease-out), top 0.55s var(--ease-out);
   will-change: width, top;
-}
-
-.project-card:hover .project-card__screenshot,
-.project-card:focus-visible .project-card__screenshot {
-  width: 85%;
-  top: 28%;
 }
 
 .project-card__tab {
@@ -488,12 +604,7 @@ a {
   overflow: hidden;
   z-index: 1;
   border-radius: 0 0 var(--radius-folder) var(--radius-folder);
-  transition: height 0.55s var(--ease-out);
-}
-
-.project-card:hover .project-card__tab,
-.project-card:focus-visible .project-card__tab {
-  height: 20%;
+  will-change: height;
 }
 
 .tag-pill {
@@ -510,8 +621,6 @@ a {
   font-size: 14px;
   white-space: nowrap;
   z-index: 3;
-  transition: transform 0.55s var(--ease-out), top 0.55s var(--ease-out),
-    right 0.55s var(--ease-out), left 0.55s var(--ease-out);
   will-change: transform, top, right, left;
 }
 
@@ -523,9 +632,19 @@ a {
   }
 }
 
-.project-card:hover .tag-pill,
-.project-card:focus-visible .tag-pill {
-  transform: scale(1.05);
+.mobile-menu-item {
+  animation: menu-item-in 0.45s var(--ease-out) both;
+}
+
+@keyframes menu-item-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ─── COMING SOON ─── */

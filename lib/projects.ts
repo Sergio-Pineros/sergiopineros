@@ -35,13 +35,13 @@ export const HERO_TABS = [
   { id: "upto", label: "WHAT I'M UP TO" },
 ] as const;
 
-export const HERO_COPY: Record<(typeof HERO_TABS)[number]["id"], string> = {
-  who: "Founder & Creative Director who bridges brand craft, product logic, and AI-powered systems.",
-  build: "Luxury brand identities, interactive funnels, custom CRMs, and workflow automations for clients since 2019.",
-  believe: "Design should feel inevitable — minimal, intentional, and quiet enough to let the work speak.",
-  write: "Essays on creativity, philosophy, mindset, and the discipline of taste.",
-  upto: "Applying for visual & brand design roles at AI infrastructure companies. Open to remote worldwide.",
-};
+/** Static sanvithi-style headline — key phrases render in brand blue */
+export const HERO_HEADLINE = {
+  line1: "Designer who creates",
+  accent1: "meaningful experiences",
+  line2: "through",
+  accent2: "brand, product, and systems design.",
+} as const;
 
 export const PROJECTS: Project[] = [
   {
