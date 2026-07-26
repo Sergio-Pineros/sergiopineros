@@ -25,14 +25,14 @@ export default function ScreenLoader({ onComplete }: { onComplete: () => void })
     let exitTimer = 0;
     let fallbackTimer = 0;
     const start = performance.now();
-    const duration = 1450;
+    const duration = 1600;
 
     wordmarkRef.current?.animate(
       [
-        { opacity: 0, transform: "translateY(24px)" },
+        { opacity: 0, transform: "translateY(28px)" },
         { opacity: 1, transform: "translateY(0)" },
       ],
-      { duration: 560, easing: "cubic-bezier(.22,1,.36,1)", fill: "forwards" }
+      { duration: 700, easing: "cubic-bezier(0.22, 1, 0.36, 1)", fill: "forwards" }
     );
 
     const complete = () => {
@@ -46,9 +46,9 @@ export default function ScreenLoader({ onComplete }: { onComplete: () => void })
       wordmarkRef.current?.animate(
         [
           { opacity: 1, transform: "translateY(0)" },
-          { opacity: 0, transform: "translateY(-18px)" },
+          { opacity: 0, transform: "translateY(-16px)" },
         ],
-        { duration: 280, easing: "ease-in", fill: "forwards" }
+        { duration: 320, easing: "ease-in", fill: "forwards" }
       );
 
       overlayRef.current?.animate(
@@ -56,19 +56,16 @@ export default function ScreenLoader({ onComplete }: { onComplete: () => void })
           { transform: "translateY(0)" },
           { transform: "translateY(-100%)" },
         ],
-        { duration: 820, easing: "cubic-bezier(.76,0,.24,1)", fill: "forwards" }
+        { duration: 900, easing: "cubic-bezier(0.76, 0, 0.24, 1)", fill: "forwards" }
       );
 
-      // Timer is the source of truth so background-tab animation throttling
-      // can never trap the visitor behind the loader.
-      exitTimer = window.setTimeout(complete, 900);
+      exitTimer = window.setTimeout(complete, 950);
     };
 
     const update = (now: number) => {
       const linear = Math.min((now - start) / duration, 1);
-      const eased = linear < 0.5
-        ? 2 * linear * linear
-        : 1 - Math.pow(-2 * linear + 2, 2) / 2;
+      const eased =
+        linear < 0.5 ? 2 * linear * linear : 1 - Math.pow(-2 * linear + 2, 2) / 2;
       const value = Math.round(eased * 100);
 
       if (counterRef.current) counterRef.current.textContent = String(value);
@@ -82,7 +79,7 @@ export default function ScreenLoader({ onComplete }: { onComplete: () => void })
     };
 
     frame = requestAnimationFrame(update);
-    fallbackTimer = window.setTimeout(complete, 2900);
+    fallbackTimer = window.setTimeout(complete, 3200);
 
     return () => {
       cancelled = true;
@@ -97,10 +94,6 @@ export default function ScreenLoader({ onComplete }: { onComplete: () => void })
 
   return (
     <div ref={overlayRef} className="screen-loader" aria-hidden="true">
-      <div className="screen-loader__meta">
-        <span>Portfolio / 2026</span>
-        <span>Brand · Product · Systems</span>
-      </div>
       <div ref={wordmarkRef} className="screen-loader__wordmark">
         serg
       </div>

@@ -7,40 +7,26 @@ import { useGSAP } from "@gsap/react";
 import AssetPlaceholder from "@/components/AssetPlaceholder";
 import ScreenLoader from "@/components/ScreenLoader";
 import CustomCursor from "@/components/CustomCursor";
+import {
+  NavIconPlay,
+  NavIconResume,
+  NavIconStory,
+  NavIconWork,
+} from "@/components/NavIcons";
 import { getHoverConfig } from "@/lib/animations";
 import { HERO_TABS, PROJECTS, type Project } from "@/lib/projects";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-const HERO_PANELS: Record<
-  (typeof HERO_TABS)[number]["id"],
-  { headline: string; script: string }
-> = {
-  who: {
-    headline:
-      "Designer who creates meaningful experiences through brand, product, and systems design.",
-    script: "who i am",
-  },
-  build: {
-    headline:
-      "I build identities, digital products, and automations that move ambitious businesses forward.",
-    script: "what i make",
-  },
-  believe: {
-    headline:
-      "I believe the best work feels inevitable: clear in thought, precise in form, and human at heart.",
-    script: "what guides me",
-  },
-  write: {
-    headline:
-      "I write about creativity, philosophy, mindset, and the slow discipline of developing taste.",
-    script: "notes to self",
-  },
-  upto: {
-    headline:
-      "I am looking for the next team where brand craft and emerging technology can shape each other.",
-    script: "what comes next",
-  },
+const HERO_HEADLINE =
+  "Designer who creates meaningful experiences through brand, product, and systems design.";
+
+const HERO_SCRIPTS: Record<(typeof HERO_TABS)[number]["id"], string> = {
+  who: "who i am",
+  build: "what i build",
+  believe: "what i believe",
+  write: "what i write",
+  upto: "what i'm up to",
 };
 
 function ProjectCard({ project }: { project: Project }) {
@@ -81,10 +67,10 @@ function ProjectCard({ project }: { project: Project }) {
     const tl = gsap.timeline({ defaults: { duration: 0.48, ease: "power2.inOut" } });
 
     if (screenshotRef.current) {
-      tl.to(screenshotRef.current, { width: "50%", top: "38%" }, 0);
+      tl.to(screenshotRef.current, { width: "50%", top: "42%" }, 0);
     }
     if (tabRef.current) {
-      tl.to(tabRef.current, { height: "43%" }, 0);
+      tl.to(tabRef.current, { height: "70%" }, 0);
     }
 
     tagRefs.current.forEach((tag, i) => {
@@ -137,10 +123,7 @@ function ProjectCard({ project }: { project: Project }) {
         <AssetPlaceholder project={project} />
       </div>
 
-      <div
-        ref={tabRef}
-        className="project-card__tab"
-      />
+      <div ref={tabRef} className="project-card__tab" />
     </div>
   );
 
@@ -201,12 +184,14 @@ export default function Portfolio() {
   const handleLoaderComplete = useCallback(() => setLoaded(true), []);
 
   const handleTabClick = (id: (typeof HERO_TABS)[number]["id"]) => {
+    if (id === activeTab) return;
     setActiveTab(id);
-    if (headlineRef.current && scriptRef.current) {
+
+    if (scriptRef.current) {
       gsap.fromTo(
-        [headlineRef.current, scriptRef.current],
-        { y: 14 },
-        { y: 0, duration: 0.5, stagger: 0.06, ease: "power3.out" }
+        scriptRef.current,
+        { opacity: 0, y: 12, rotation: -8 },
+        { opacity: 1, y: 0, rotation: -5, duration: 0.55, ease: "power3.out" }
       );
     }
   };
@@ -220,44 +205,50 @@ export default function Portfolio() {
 
       gsap.from(".site-nav", {
         y: -20,
+        opacity: 0,
         duration: 0.6,
         ease: "power3.out",
-        delay: 0.1,
+        delay: 0.05,
       });
 
       gsap.from(".hero-tab", {
         y: 8,
+        opacity: 0,
         duration: 0.4,
         stagger: 0.05,
         ease: "back.out(1.2)",
-        delay: 0.2,
+        delay: 0.15,
       });
 
       gsap.from(headlineRef.current, {
         y: 40,
+        opacity: 0,
         duration: 0.9,
         ease: "power3.out",
-        delay: 0.35,
+        delay: 0.3,
       });
 
       gsap.from(scriptRef.current, {
         scale: 0.92,
+        opacity: 0,
         rotation: -4,
-        duration: 2,
+        duration: 1.8,
         ease: "power2.out",
-        delay: 0.45,
+        delay: 0.4,
       });
 
       gsap.from(".scroll-cue", {
         y: 10,
+        opacity: 0,
         duration: 0.6,
         ease: "power2.out",
-        delay: 0.9,
+        delay: 0.85,
       });
 
       gsap.utils.toArray<HTMLElement>(".fade-up").forEach((el) => {
         gsap.from(el, {
           y: 40,
+          opacity: 0,
           duration: 0.8,
           ease: "power3.out",
           scrollTrigger: {
@@ -271,6 +262,7 @@ export default function Portfolio() {
       gsap.utils.toArray<HTMLElement>(".project-row").forEach((row) => {
         gsap.from(row.querySelector(".project-card"), {
           y: 30,
+          opacity: 0,
           duration: 0.9,
           ease: "power3.out",
           scrollTrigger: {
@@ -283,6 +275,7 @@ export default function Portfolio() {
 
       gsap.from(".coming-soon-block__text", {
         y: 30,
+        opacity: 0,
         duration: 0.8,
         ease: "power3.out",
         scrollTrigger: {
@@ -293,6 +286,7 @@ export default function Portfolio() {
 
       gsap.from(".footer__wordmark", {
         y: 20,
+        opacity: 0,
         duration: 0.8,
         ease: "power3.out",
         scrollTrigger: {
@@ -311,44 +305,42 @@ export default function Portfolio() {
 
       <div ref={rootRef} className={loaded ? "site-visible" : "site-hidden"}>
         <header className="site-nav">
-          <div className="site-nav__inner">
-            <div className="nav-shell">
-              <a href="#hero" className="nav-logo">
-                serg
+          <div className="site-nav__bar">
+            <a href="#hero" className="nav-logo">
+              serg
+            </a>
+
+            <button
+              type="button"
+              className="mobile-menu-btn"
+              aria-label="Open menu"
+              onClick={() => setMenuOpen(true)}
+            >
+              ☰
+            </button>
+
+            <nav className="nav-pill-group" aria-label="Primary">
+              <a href="#projects" className="nav-link nav-link--active">
+                <NavIconWork /> work
               </a>
-
-              <button
-                type="button"
-                className="mobile-menu-btn"
-                aria-label="Open menu"
-                onClick={() => setMenuOpen(true)}
+              <a
+                href="https://sergioatelier.co/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nav-link"
               >
-                ☰
-              </button>
-
-              <div className="nav-links-desktop">
-                <a href="#projects" className="nav-link nav-link--active">
-                  <span aria-hidden="true">✦</span> work
-                </a>
-                <a
-                  href="https://sergioatelier.co/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="nav-link"
-                >
-                  <span aria-hidden="true">◉</span> play
-                </a>
-                <a
-                  href="mailto:hello@sergioatelier.co?subject=Resume%20request"
-                  className="nav-link"
-                >
-                  <span aria-hidden="true">▤</span> résumé
-                </a>
-                <a href="#hero" className="nav-link">
-                  <span aria-hidden="true">⌁</span> story
-                </a>
-              </div>
-            </div>
+                <NavIconPlay /> play
+              </a>
+              <a
+                href="mailto:hello@sergioatelier.co?subject=Resume%20request"
+                className="nav-link"
+              >
+                <NavIconResume /> résumé
+              </a>
+              <a href="#hero" className="nav-link">
+                <NavIconStory /> story
+              </a>
+            </nav>
           </div>
         </header>
 
@@ -356,30 +348,26 @@ export default function Portfolio() {
           <div className="mobile-menu-overlay" role="dialog" aria-modal="true">
             <button
               type="button"
-              className="mobile-menu-btn"
-              style={{ position: "absolute", top: 16, right: 16 }}
+              className="mobile-menu-btn mobile-menu-btn--close"
               aria-label="Close menu"
               onClick={() => setMenuOpen(false)}
             >
               ✕
             </button>
-            {["work", "studio", "contact", "email"].map((item, i) => (
+            {[
+              { label: "work", href: "#projects" },
+              { label: "play", href: "https://sergioatelier.co/" },
+              { label: "résumé", href: "mailto:hello@sergioatelier.co?subject=Resume%20request" },
+              { label: "story", href: "#hero" },
+            ].map((item, i) => (
               <a
-                key={item}
-                href={
-                  item === "work"
-                    ? "#projects"
-                    : item === "studio"
-                      ? "https://sergioatelier.co/"
-                      : item === "contact"
-                        ? "#contact"
-                        : "mailto:hello@sergioatelier.co"
-                }
+                key={item.label}
+                href={item.href}
                 className="mobile-menu-overlay__link mobile-menu-item"
                 style={{ animationDelay: `${i * 0.05}s` }}
                 onClick={() => setMenuOpen(false)}
               >
-                {item}
+                {item.label}
               </a>
             ))}
           </div>
@@ -387,33 +375,35 @@ export default function Portfolio() {
 
         <main>
           <section id="hero" ref={heroRef} className="hero">
-            <div className="hero-tabs" role="tablist" aria-label="About Sergio">
-              {HERO_TABS.map((tab) => (
-                <button
-                  key={tab.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={activeTab === tab.id}
-                  className={`hero-tab ${activeTab === tab.id ? "hero-tab--active" : ""}`}
-                  onClick={() => handleTabClick(tab.id)}
-                >
-                  {tab.label}
-                </button>
-              ))}
+            <div className="hero-tabs-wrap">
+              <div className="hero-tabs" role="tablist" aria-label="About Sergio">
+                {HERO_TABS.map((tab) => (
+                  <button
+                    key={tab.id}
+                    type="button"
+                    role="tab"
+                    aria-selected={activeTab === tab.id}
+                    className={`hero-tab ${activeTab === tab.id ? "hero-tab--active" : ""}`}
+                    onClick={() => handleTabClick(tab.id)}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
             </div>
 
             <div className="hero-statement">
               <h1 ref={headlineRef} className="hero-headline">
-                {HERO_PANELS[activeTab].headline}
+                {HERO_HEADLINE}
               </h1>
               <span ref={scriptRef} className="hero-script" aria-hidden="true">
-                {HERO_PANELS[activeTab].script}
+                {HERO_SCRIPTS[activeTab]}
               </span>
             </div>
 
             <div className="scroll-cue">
               <span className="scroll-cue__text">scroll to see work</span>
-              <div className="scroll-cue__arrow" />
+              <div className="scroll-cue__mouse" />
             </div>
           </section>
 
@@ -439,6 +429,12 @@ export default function Portfolio() {
             <div className="footer__logo-wrap">
               <span className="footer__wordmark">Sergio Piñeros</span>
             </div>
+
+            <p className="footer__body">
+              hey there — thanks for stopping by. i build brand systems, product experiences, and
+              the automations behind them. if you&apos;re building something ambitious, let&apos;s
+              talk.
+            </p>
 
             <div className="footer__actions">
               <a href="mailto:hello@sergioatelier.co" className="footer__pill">
