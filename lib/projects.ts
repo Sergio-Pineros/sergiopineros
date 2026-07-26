@@ -35,6 +35,60 @@ export const HERO_TABS = [
   { id: "upto", label: "WHAT I'M UP TO" },
 ] as const;
 
+export type HeroTabId = (typeof HERO_TABS)[number]["id"];
+
+export type HeroPanel = {
+  headline: string;
+  script: string;
+  scriptTop?: string;
+  scriptLeft?: string;
+  scriptRotate?: number;
+};
+
+/** Per-tab hero copy — headline and handwritten script swap on tab click (sanvithi.com pattern) */
+export const HERO_PANELS: Record<HeroTabId, HeroPanel> = {
+  who: {
+    headline:
+      "Designer who creates meaningful experiences through brand, product, and systems design.",
+    script: "who i am",
+    scriptTop: "52%",
+    scriptLeft: "50%",
+    scriptRotate: -5,
+  },
+  build: {
+    headline:
+      "I build identities, digital products, and automations that move ambitious businesses forward.",
+    script: "what i build",
+    scriptTop: "48%",
+    scriptLeft: "46%",
+    scriptRotate: -4,
+  },
+  believe: {
+    headline:
+      "I believe the best work feels inevitable: clear in thought, precise in form, and human at heart.",
+    script: "what i believe",
+    scriptTop: "54%",
+    scriptLeft: "52%",
+    scriptRotate: -6,
+  },
+  write: {
+    headline:
+      "I write about creativity, philosophy, mindset, and the slow discipline of developing taste.",
+    script: "what i write",
+    scriptTop: "50%",
+    scriptLeft: "44%",
+    scriptRotate: -3,
+  },
+  upto: {
+    headline:
+      "I am looking for the next team where brand craft and emerging technology can shape each other.",
+    script: "what i'm up to",
+    scriptTop: "56%",
+    scriptLeft: "48%",
+    scriptRotate: -5,
+  },
+};
+
 export const PROJECTS: Project[] = [
   {
     slug: "savron",

@@ -375,10 +375,94 @@ button:focus-visible {
 .hero-statement {
   position: relative;
   width: min(878px, 100%);
-  min-height: 220px;
+  min-height: 260px;
   display: flex;
   align-items: flex-start;
   justify-content: center;
+}
+
+.hero-script {
+  position: absolute;
+  z-index: 2;
+  color: var(--color-brand-blue);
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 12vw, 9rem);
+  font-weight: 500;
+  letter-spacing: -0.06em;
+  line-height: 0.72;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  transition:
+    top 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    left 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero-statement[data-tab="who"] .hero-script {
+  top: 52%;
+  left: 50%;
+  transform: translateX(-20%) rotate(-5deg);
+}
+
+.hero-statement[data-tab="build"] .hero-script {
+  top: 48%;
+  left: 46%;
+  transform: translateX(-16%) rotate(-4deg);
+}
+
+.hero-statement[data-tab="believe"] .hero-script {
+  top: 54%;
+  left: 52%;
+  transform: translateX(-22%) rotate(-6deg);
+}
+
+.hero-statement[data-tab="write"] .hero-script {
+  top: 50%;
+  left: 44%;
+  transform: translateX(-14%) rotate(-3deg);
+}
+
+.hero-statement[data-tab="upto"] .hero-script {
+  top: 56%;
+  left: 48%;
+  transform: translateX(-18%) rotate(-5deg);
+}
+
+@media (max-width: 1023px) {
+  .hero-statement {
+    min-height: 280px;
+  }
+
+  .hero-statement[data-tab="who"] .hero-script {
+    top: 56%;
+    left: 38%;
+    font-size: clamp(4.5rem, 22vw, 7rem);
+  }
+
+  .hero-statement[data-tab="build"] .hero-script {
+    top: 52%;
+    left: 34%;
+    font-size: clamp(4.5rem, 22vw, 7rem);
+  }
+
+  .hero-statement[data-tab="believe"] .hero-script {
+    top: 58%;
+    left: 36%;
+    font-size: clamp(4rem, 20vw, 6.5rem);
+  }
+
+  .hero-statement[data-tab="write"] .hero-script {
+    top: 54%;
+    left: 32%;
+    font-size: clamp(4.5rem, 22vw, 7rem);
+  }
+
+  .hero-statement[data-tab="upto"] .hero-script {
+    top: 60%;
+    left: 35%;
+    font-size: clamp(4rem, 20vw, 6.5rem);
+  }
 }
 
 .hero-headline {
@@ -412,35 +496,6 @@ button:focus-visible {
 
   .hero-statement {
     align-items: flex-start;
-  }
-}
-
-.hero-script {
-  position: absolute;
-  left: 50%;
-  top: 52%;
-  z-index: 2;
-  color: var(--color-brand-blue);
-  font-family: var(--font-display);
-  font-size: clamp(5rem, 12vw, 9rem);
-  font-weight: 500;
-  letter-spacing: -0.06em;
-  line-height: 0.72;
-  white-space: nowrap;
-  transform: translateX(-20%) rotate(-5deg);
-  pointer-events: none;
-  user-select: none;
-}
-
-@media (max-width: 1023px) {
-  .hero-statement {
-    min-height: 240px;
-  }
-
-  .hero-script {
-    top: 56%;
-    left: 38%;
-    font-size: clamp(4.5rem, 22vw, 7rem);
   }
 }
 

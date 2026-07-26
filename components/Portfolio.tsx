@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useCallback } from "react";
+import { flushSync } from "react-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -14,20 +15,9 @@ import {
   NavIconWork,
 } from "@/components/NavIcons";
 import { getHoverConfig } from "@/lib/animations";
-import { HERO_TABS, PROJECTS, type Project } from "@/lib/projects";
+import { HERO_TABS, HERO_PANELS, PROJECTS, type Project } from "@/lib/projects";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
-
-const HERO_HEADLINE =
-  "Designer who creates meaningful experiences through brand, product, and systems design.";
-
-const HERO_SCRIPTS: Record<(typeof HERO_TABS)[number]["id"], string> = {
-  who: "who i am",
-  build: "what i build",
-  believe: "what i believe",
-  write: "what i write",
-  upto: "what i'm up to",
-};
 
 function ProjectCard({ project }: { project: Project }) {
   const cardRef = useRef<HTMLAnchorElement | HTMLDivElement>(null);
@@ -182,18 +172,25 @@ export default function Portfolio() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const handleLoaderComplete = useCallback(() => setLoaded(true), []);
+  const activePanel = HERO_PANELS[activeTab];
 
   const handleTabClick = (id: (typeof HERO_TABS)[number]["id"]) => {
-    if (id === activeTab) return;
-    setActiveTab(id);
+    if (id === activeTab || !headlineRef.current || !scriptRef.current) return;
 
-    if (scriptRef.current) {
-      gsap.fromTo(
-        scriptRef.current,
-        { opacity: 0, y: 12, rotation: -8 },
-        { opacity: 1, y: 0, rotation: -5, duration: 0.55, ease: "power3.out" }
+    const headline = headlineRef.current;
+    const script = scriptRef.current;
+
+    gsap
+      .timeline({ defaults: { ease: "power2.in" } })
+      .to([headline, script], { opacity: 0, y: 14, duration: 0.28 })
+      .call(() => {
+        flushSync(() => setActiveTab(id));
+      })
+      .fromTo(
+        [headline, script],
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.55, stagger: 0.07, ease: "power3.out" }
       );
-    }
   };
 
   useGSAP(
@@ -392,12 +389,12 @@ export default function Portfolio() {
               </div>
             </div>
 
-            <div className="hero-statement">
+            <div className="hero-statement" data-tab={activeTab}>
               <h1 ref={headlineRef} className="hero-headline">
-                {HERO_HEADLINE}
+                {activePanel.headline}
               </h1>
               <span ref={scriptRef} className="hero-script" aria-hidden="true">
-                {HERO_SCRIPTS[activeTab]}
+                {activePanel.script}
               </span>
             </div>
 
