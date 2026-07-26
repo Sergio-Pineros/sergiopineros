@@ -792,24 +792,17 @@ button:focus-visible {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 40px;
-  padding: 10px 14px;
+  height: 48px;
+  padding: 12px 16px;
   border: 1px solid;
   border-radius: var(--radius-tag);
   color: #fff;
   font-family: var(--font-serif);
-  font-size: 14px;
+  font-size: 15px;
   white-space: nowrap;
   z-index: 3;
-  will-change: transform, top, right, left;
-}
-
-@media (min-width: 1024px) {
-  .tag-pill {
-    height: 48px;
-    padding: 12px 16px;
-    font-size: 15px;
-  }
+  transform-origin: 50% 50%;
+  will-change: transform, top, left, right;
 }
 
 .mobile-menu-item {

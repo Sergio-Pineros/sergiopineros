@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useLayoutEffect } from "react";
 import { flushSync } from "react-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -14,10 +14,36 @@ import {
   NavIconStory,
   NavIconWork,
 } from "@/components/NavIcons";
-import { getHoverConfig } from "@/lib/animations";
+import { getHoverConfig, tagToPosition, type TagPosition } from "@/lib/animations";
 import { HERO_TABS, HERO_PANELS, PROJECTS, type Project } from "@/lib/projects";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
+
+function applyTagPosition(
+  tag: HTMLElement,
+  pos: TagPosition,
+  options: { duration: number; delay?: number; ease: string }
+) {
+  const vars: gsap.TweenVars = {
+    top: pos.top,
+    rotation: pos.rotation,
+    duration: options.duration,
+    delay: options.delay ?? 0,
+    ease: options.ease,
+    overwrite: "auto",
+    force3D: true,
+  };
+
+  if (pos.left !== undefined) {
+    vars.left = pos.left;
+    vars.right = "auto";
+  } else if (pos.right !== undefined) {
+    vars.right = pos.right;
+    vars.left = "auto";
+  }
+
+  gsap.to(tag, vars);
+}
 
 function ProjectCard({ project }: { project: Project }) {
   const cardRef = useRef<HTMLAnchorElement | HTMLDivElement>(null);
@@ -26,56 +52,71 @@ function ProjectCard({ project }: { project: Project }) {
   const tabRef = useRef<HTMLDivElement>(null);
   const tagRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
+  useLayoutEffect(() => {
+    tagRefs.current.forEach((tag, i) => {
+      const initial = project.tags[i];
+      if (!tag || !initial) return;
+      gsap.set(tag, {
+        rotation: initial.rotation,
+        transformOrigin: "50% 50%",
+        force3D: true,
+      });
+    });
+  }, [project]);
+
   const hoverIn = useCallback(() => {
     const cfg = getHoverConfig(project);
-    const tl = gsap.timeline({ defaults: { duration: 0.55, ease: "power3.out" } });
 
-    if (screenshotRef.current) {
-      tl.to(screenshotRef.current, { width: cfg.screenshot.width, top: cfg.screenshot.top }, 0);
-    }
-    if (tabRef.current) {
-      tl.to(tabRef.current, { height: cfg.tabHeight }, 0);
-    }
+    gsap.to(screenshotRef.current, {
+      width: cfg.screenshot.width,
+      top: cfg.screenshot.top,
+      duration: 0.68,
+      ease: "power3.inOut",
+      overwrite: "auto",
+    });
+
+    gsap.to(tabRef.current, {
+      height: cfg.tabHeight,
+      duration: 0.68,
+      ease: "power3.inOut",
+      overwrite: "auto",
+    });
 
     tagRefs.current.forEach((tag, i) => {
       const target = cfg.tags[i];
       if (!tag || !target) return;
-      tl.to(
-        tag,
-        {
-          top: target.top,
-          left: target.left ?? "auto",
-          right: target.right ?? "auto",
-          rotation: target.rotation ?? parseFloat(tag.dataset.rotation || "0"),
-        },
-        0
-      );
+      applyTagPosition(tag, target, {
+        duration: 0.72,
+        delay: i * 0.04,
+        ease: "power2.out",
+      });
     });
   }, [project]);
 
   const hoverOut = useCallback(() => {
-    const tl = gsap.timeline({ defaults: { duration: 0.48, ease: "power2.inOut" } });
+    gsap.to(screenshotRef.current, {
+      width: "50%",
+      top: "126px",
+      duration: 0.58,
+      ease: "power3.inOut",
+      overwrite: "auto",
+    });
 
-    if (screenshotRef.current) {
-      tl.to(screenshotRef.current, { width: "50%", top: "126px" }, 0);
-    }
-    if (tabRef.current) {
-      tl.to(tabRef.current, { height: "70%" }, 0);
-    }
+    gsap.to(tabRef.current, {
+      height: "70%",
+      duration: 0.58,
+      ease: "power3.inOut",
+      overwrite: "auto",
+    });
 
     tagRefs.current.forEach((tag, i) => {
       const initial = project.tags[i];
       if (!tag || !initial) return;
-      tl.to(
-        tag,
-        {
-          top: initial.top,
-          left: initial.left ?? "auto",
-          right: initial.right ?? "auto",
-          rotation: initial.rotation,
-        },
-        0
-      );
+      applyTagPosition(tag, tagToPosition(initial), {
+        duration: 0.58,
+        delay: i * 0.025,
+        ease: "power2.inOut",
+      });
     });
   }, [project]);
 
@@ -95,12 +136,10 @@ function ProjectCard({ project }: { project: Project }) {
             tagRefs.current[i] = el;
           }}
           className="tag-pill"
-          data-rotation={tag.rotation}
           style={{
             top: tag.top,
             left: tag.left,
             right: tag.right,
-            transform: `rotate(${tag.rotation}deg)`,
             background: project.theme.tagBg,
             borderColor: project.theme.tagBorder,
           }}
@@ -157,7 +196,7 @@ function ProjectRow({ project }: { project: Project }) {
       </div>
       <div className="project-row__text-col fade-up">
         <p className="project-description">{project.description}</p>
-        <p className="project-tags-line">{project.tagsLine.replace(/ ∙ /g, " · ")}</p>
+        <p className="project-tags-line">{project.tagsLine}</p>
       </div>
     </article>
   );
@@ -411,7 +450,7 @@ export default function Portfolio() {
 
             <div className="coming-soon-block">
               <p className="coming-soon-block__text">
-                I&apos;m supporting founders in building design-first products — case studies coming
+                I&apos;m supporting founders in building design-first products. Case studies coming
                 soon.
               </p>
             </div>
@@ -447,12 +486,11 @@ export default function Portfolio() {
             </div>
 
             <p className="footer__body">
-              hey there — thanks for stopping by.
+              hey there, thanks for stopping by.
               <br />
               i build brand systems, product experiences, and the automations behind them.
               <br />
-              since you&apos;re reading this, let&apos;s talk if you&apos;re building something
-              ambitious.
+              if you&apos;re building something ambitious, let&apos;s talk.
             </p>
 
             <p className="footer__copy">
