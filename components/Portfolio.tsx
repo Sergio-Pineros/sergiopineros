@@ -67,7 +67,7 @@ function ProjectCard({ project }: { project: Project }) {
     const tl = gsap.timeline({ defaults: { duration: 0.48, ease: "power2.inOut" } });
 
     if (screenshotRef.current) {
-      tl.to(screenshotRef.current, { width: "50%", top: "42%" }, 0);
+      tl.to(screenshotRef.current, { width: "50%", top: "126px" }, 0);
     }
     if (tabRef.current) {
       tl.to(tabRef.current, { height: "70%" }, 0);
@@ -413,10 +413,9 @@ export default function Portfolio() {
             ))}
 
             <div className="coming-soon-block">
-              <p className="coming-soon-block__text">more work coming soon</p>
-              <p className="coming-soon-block__sub">
-                I&apos;m supporting founders in building design-first products — case studies on the
-                way.
+              <p className="coming-soon-block__text">
+                I&apos;m supporting founders in building design-first products — case studies coming
+                soon.
               </p>
             </div>
 
@@ -426,37 +425,44 @@ export default function Portfolio() {
           </section>
 
           <footer id="contact" className="footer">
-            <div className="footer__logo-wrap">
-              <span className="footer__wordmark">Sergio Piñeros</span>
+            <div className="footer__hero">
+              <div className="footer__logo-wrap">
+                <span className="footer__wordmark">Sergio Piñeros</span>
+              </div>
+
+              <div className="footer__actions">
+                <a href="mailto:hello@sergioatelier.co" className="footer__pill">
+                  ✉ email
+                </a>
+                <a
+                  href="mailto:hello@sergioatelier.co?subject=Resume%20request"
+                  className="footer__pill"
+                >
+                  ▤ résumé
+                </a>
+                <a href="https://www.linkedin.com/" className="footer__pill footer__pill--icon">
+                  in
+                </a>
+                <a href="#hero" className="footer__pill footer__pill--icon">
+                  ×
+                </a>
+              </div>
             </div>
 
             <p className="footer__body">
-              hey there — thanks for stopping by. i build brand systems, product experiences, and
-              the automations behind them. if you&apos;re building something ambitious, let&apos;s
-              talk.
+              hey there — thanks for stopping by.
+              <br />
+              i build brand systems, product experiences, and the automations behind them.
+              <br />
+              since you&apos;re reading this, let&apos;s talk if you&apos;re building something
+              ambitious.
             </p>
 
-            <div className="footer__actions">
-              <a href="mailto:hello@sergioatelier.co" className="footer__pill">
-                ✉ email
-              </a>
-              <a
-                href="mailto:hello@sergioatelier.co?subject=Resume%20request"
-                className="footer__pill"
-              >
-                ▤ résumé
-              </a>
-              <a href="https://www.linkedin.com/" className="footer__pill footer__pill--icon">
-                in
-              </a>
-              <a href="#hero" className="footer__pill footer__pill--icon">
-                ×
-              </a>
-            </div>
-
             <p className="footer__copy">
-              © Sergio Piñeros {new Date().getFullYear()}. All rights (and wrongs) reserved ✦
-              human-directed work ✦ created between Colombia and the internet
+              © Sergio Piñeros {new Date().getFullYear()}.
+              <br />
+              All rights &amp; wrongs reserved ✦ human-directed work ✦ created between Colombia and
+              the internet
             </p>
           </footer>
         </main>
