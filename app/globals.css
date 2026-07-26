@@ -29,8 +29,8 @@
   --radius-nav-group: 100px;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --spring-snappy: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --section-pad: clamp(80px, 10vw, 160px);
-  --section-pad-x: clamp(20px, 14vw, 280px);
+  --section-pad: clamp(40px, 5vh, 72px);
+  --section-pad-x: clamp(20px, 8vw, 200px);
 }
 
 * {
@@ -210,8 +210,8 @@ button:focus-visible {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  height: 36px;
-  padding: 8px 14px;
+  height: 40px;
+  padding: 4px 14px;
   border: 1.5px solid color-mix(in srgb, var(--color-ink) 8%, transparent);
   border-radius: var(--radius-pill);
   background: color-mix(in srgb, var(--color-surface) 88%, transparent);
@@ -226,20 +226,22 @@ button:focus-visible {
 
 @media (min-width: 1024px) {
   .nav-logo {
-    height: 44px;
-    padding: 10px 18px;
+    height: 48px;
+    padding: 6px 18px;
   }
 }
 
 .nav-logo__mark {
   display: block;
   width: auto;
-  height: 18px;
+  height: 28px;
+  max-height: calc(100% - 2px);
+  object-fit: contain;
 }
 
 @media (min-width: 1024px) {
   .nav-logo__mark {
-    height: 22px;
+    height: 34px;
   }
 }
 
@@ -316,9 +318,9 @@ button:focus-visible {
 .hero {
   display: grid;
   place-items: center;
-  gap: clamp(48px, 8vh, 72px);
+  gap: clamp(28px, 5vh, 48px);
   min-height: 100vh;
-  padding: calc(var(--section-pad) + 20px) 20px var(--section-pad);
+  padding: calc(clamp(88px, 11vh, 120px) + 12px) 20px clamp(48px, 6vh, 72px);
   position: relative;
   overflow: clip;
   background:
@@ -328,7 +330,7 @@ button:focus-visible {
 
 @media (min-width: 1024px) {
   .hero {
-    padding: calc(var(--section-pad) + 32px) var(--section-pad-x) var(--section-pad);
+    padding: calc(clamp(96px, 12vh, 128px) + 16px) var(--section-pad-x) clamp(56px, 7vh, 80px);
   }
 }
 
@@ -645,7 +647,7 @@ button:focus-visible {
   display: flex;
   flex-direction: column;
   gap: 0;
-  padding-bottom: var(--section-pad);
+  padding-bottom: clamp(48px, 6vh, 80px);
 }
 
 .project-row {
@@ -653,17 +655,17 @@ button:focus-visible {
   grid-template-columns: 1fr;
   align-items: center;
   justify-items: center;
-  gap: clamp(32px, 5vw, 56px);
+  gap: clamp(20px, 3vw, 32px);
   width: 100%;
-  min-height: 100vh;
-  padding: var(--section-pad) 20px;
+  min-height: auto;
+  padding: clamp(48px, 6vh, 80px) 20px;
 }
 
 @media (min-width: 1200px) {
   .project-row {
     grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-    padding: var(--section-pad) var(--section-pad-x);
-    gap: clamp(48px, 6vw, 96px);
+    padding: clamp(56px, 7vh, 96px) var(--section-pad-x);
+    gap: clamp(32px, 4vw, 56px);
   }
 
   .project-row--reverse {
@@ -835,7 +837,7 @@ button:focus-visible {
 
 /* ─── COMING SOON ─── */
 .coming-soon-block {
-  padding: var(--section-pad) 20px;
+  padding: clamp(48px, 6vh, 80px) 20px;
   text-align: center;
   background:
     radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--color-brand) 10%, transparent), transparent 68%);
@@ -843,7 +845,7 @@ button:focus-visible {
 
 @media (min-width: 1024px) {
   .coming-soon-block {
-    padding: var(--section-pad) var(--section-pad-x);
+    padding: clamp(56px, 7vh, 96px) var(--section-pad-x);
   }
 }
 
@@ -869,69 +871,51 @@ button:focus-visible {
 /* ─── FOOTER ─── */
 .footer {
   width: 100%;
-  background: linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--color-surface) 88%, transparent) 36%);
-  padding: var(--section-pad) 20px 24px;
+  background: linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--color-surface) 88%, transparent) 28%);
+  padding: clamp(64px, 8vh, 112px) 20px clamp(32px, 4vh, 48px);
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 12px;
+  gap: clamp(24px, 3vh, 36px);
 }
 
 @media (min-width: 1024px) {
   .footer {
-    padding: calc(var(--section-pad) * 1.5) var(--section-pad-x) 24px;
+    padding: clamp(80px, 10vh, 140px) var(--section-pad-x) clamp(40px, 5vh, 56px);
+    gap: clamp(28px, 3.5vh, 40px);
   }
-}
-
-.footer__hero {
-  position: relative;
-  width: 100%;
-  max-width: min(952px, 100%);
-  margin: 0 auto;
 }
 
 .footer__logo-wrap {
   width: 100%;
-  aspect-ratio: 952 / 314;
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
-  overflow: hidden;
+  justify-content: flex-start;
+  overflow: visible;
 }
 
 .footer__logotype {
   width: 100%;
-  height: 100%;
+  min-height: clamp(96px, 18vw, 220px);
   background-color: var(--color-logotype);
-  -webkit-mask: url("/horizontal.svg") center / contain no-repeat;
-  mask: url("/horizontal.svg") center / contain no-repeat;
-  transition: background-color 0.4s ease, opacity 0.4s ease;
+  -webkit-mask: url("/horizontal.svg") left center / 100% auto no-repeat;
+  mask: url("/horizontal.svg") left center / 100% auto no-repeat;
+  transition: background-color 0.45s ease, transform 0.45s var(--ease-out);
+  transform-origin: left center;
+  will-change: transform, opacity;
 }
 
-.footer__hero:hover .footer__logotype {
-  background-color: color-mix(in srgb, var(--color-brand) 55%, var(--color-logotype));
+.footer:hover .footer__logotype {
+  background-color: color-mix(in srgb, var(--color-brand) 42%, var(--color-logotype));
+  transform: scale(1.01);
 }
 
 .footer__actions {
-  position: absolute;
-  top: 20px;
-  left: 0;
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
   z-index: 2;
-}
-
-.footer__body {
-  width: 100%;
-  max-width: min(952px, 100%);
-  margin: 0 auto;
-  text-align: left;
-  font-family: var(--font-sans);
-  font-size: 18px;
-  line-height: 1.65;
-  color: var(--color-ink-soft);
 }
 
 .footer__pill {
@@ -965,17 +949,6 @@ button:focus-visible {
   font-size: 18px;
 }
 
-.footer__copy {
-  width: 100%;
-  max-width: min(952px, 100%);
-  margin: 0 auto;
-  text-align: left;
-  font-family: var(--font-sans);
-  font-size: 18px;
-  line-height: 1.65;
-  color: var(--color-mid-gray);
-}
-
 @media (max-width: 700px) {
   .screen-loader__bottom {
     align-items: center;
@@ -995,24 +968,11 @@ button:focus-visible {
   }
 
   .footer__actions {
-    position: static;
-    margin-top: 16px;
-    justify-content: flex-start;
-  }
-
-  .footer__hero {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .footer__logo-wrap {
-    aspect-ratio: auto;
-    min-height: 120px;
+    gap: 10px;
   }
 
   .footer__logotype {
-    min-height: 72px;
+    min-height: clamp(72px, 22vw, 120px);
   }
 
   .footer__pill {
@@ -1023,11 +983,6 @@ button:focus-visible {
 
   .footer__pill--icon {
     width: 42px;
-  }
-
-  .footer__body,
-  .footer__copy {
-    font-size: 15px;
   }
 }
 

@@ -322,9 +322,21 @@ export default function Portfolio() {
       });
 
       gsap.from(".footer__logotype", {
-        y: 20,
+        y: 28,
         opacity: 0,
-        duration: 0.8,
+        duration: 0.9,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".footer",
+          start: "top 88%",
+        },
+      });
+
+      gsap.from(".footer__pill", {
+        y: 16,
+        opacity: 0,
+        duration: 0.65,
+        stagger: 0.07,
         ease: "power3.out",
         scrollTrigger: {
           trigger: ".footer",
@@ -347,8 +359,8 @@ export default function Portfolio() {
               <Image
                 src="/horizontal.svg"
                 alt=""
-                width={120}
-                height={32}
+                width={180}
+                height={44}
                 className="nav-logo__mark"
                 priority
               />
@@ -469,44 +481,27 @@ export default function Portfolio() {
           </section>
 
           <footer id="contact" className="footer">
-            <div className="footer__hero">
-              <div className="footer__logo-wrap">
-                <div className="footer__logotype" role="img" aria-label="Sergio Piñeros" />
-              </div>
-
-              <div className="footer__actions">
-                <a href="mailto:hello@sergioatelier.co" className="footer__pill">
-                  ✉ email
-                </a>
-                <a
-                  href="mailto:hello@sergioatelier.co?subject=Resume%20request"
-                  className="footer__pill"
-                >
-                  ▤ résumé
-                </a>
-                <a href="https://www.linkedin.com/" className="footer__pill footer__pill--icon">
-                  in
-                </a>
-                <a href="#hero" className="footer__pill footer__pill--icon">
-                  ×
-                </a>
-              </div>
+            <div className="footer__logo-wrap">
+              <div className="footer__logotype" role="img" aria-label="Sergio Piñeros" />
             </div>
 
-            <p className="footer__body">
-              hey there, thanks for stopping by.
-              <br />
-              i build brand systems, product experiences, and the automations behind them.
-              <br />
-              if you&apos;re building something ambitious, let&apos;s talk.
-            </p>
-
-            <p className="footer__copy">
-              © Sergio Piñeros {new Date().getFullYear()}.
-              <br />
-              All rights &amp; wrongs reserved ✦ human-directed work ✦ created between Colombia and
-              the internet
-            </p>
+            <nav className="footer__actions" aria-label="Footer">
+              <a href="mailto:hello@sergioatelier.co" className="footer__pill">
+                ✉ email
+              </a>
+              <a
+                href="mailto:hello@sergioatelier.co?subject=Resume%20request"
+                className="footer__pill"
+              >
+                ▤ résumé
+              </a>
+              <a href="https://www.linkedin.com/" className="footer__pill footer__pill--icon">
+                in
+              </a>
+              <a href="#hero" className="footer__pill footer__pill--icon">
+                ×
+              </a>
+            </nav>
           </footer>
         </main>
       </div>
