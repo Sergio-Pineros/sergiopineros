@@ -314,7 +314,7 @@ export default function Portfolio() {
           <div className="site-nav__inner">
             <div className="nav-shell">
               <a href="#hero" className="nav-logo">
-                sergio
+                serg
               </a>
 
               <button

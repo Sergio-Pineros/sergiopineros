@@ -97,8 +97,12 @@ export default function ScreenLoader({ onComplete }: { onComplete: () => void })
 
   return (
     <div ref={overlayRef} className="screen-loader" aria-hidden="true">
+      <div className="screen-loader__meta">
+        <span>Portfolio / 2026</span>
+        <span>Brand · Product · Systems</span>
+      </div>
       <div ref={wordmarkRef} className="screen-loader__wordmark">
-        Sergio Piñeros
+        serg
       </div>
       <div className="screen-loader__bottom">
         <div className="screen-loader__track">
