@@ -5,6 +5,7 @@ import { flushSync } from "react-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import Image from "next/image";
 import AssetPlaceholder from "@/components/AssetPlaceholder";
 import ScreenLoader from "@/components/ScreenLoader";
 import CustomCursor from "@/components/CustomCursor";
@@ -320,7 +321,7 @@ export default function Portfolio() {
         },
       });
 
-      gsap.from(".footer__wordmark", {
+      gsap.from(".footer__logotype", {
         y: 20,
         opacity: 0,
         duration: 0.8,
@@ -342,8 +343,15 @@ export default function Portfolio() {
       <div ref={rootRef} className={loaded ? "site-visible" : "site-hidden"}>
         <header className="site-nav">
           <div className="site-nav__bar">
-            <a href="#hero" className="nav-logo">
-              serg
+            <a href="#hero" className="nav-logo" aria-label="Sergio Piñeros home">
+              <Image
+                src="/horizontal.svg"
+                alt=""
+                width={120}
+                height={32}
+                className="nav-logo__mark"
+                priority
+              />
             </a>
 
             <button
@@ -463,7 +471,7 @@ export default function Portfolio() {
           <footer id="contact" className="footer">
             <div className="footer__hero">
               <div className="footer__logo-wrap">
-                <span className="footer__wordmark">Sergio Piñeros</span>
+                <div className="footer__logotype" role="img" aria-label="Sergio Piñeros" />
               </div>
 
               <div className="footer__actions">

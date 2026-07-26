@@ -1,26 +1,19 @@
 import type { Metadata } from "next";
-import { Averia_Serif_Libre, Inclusive_Sans, Caveat } from "next/font/google";
+import { Baskervville, Inter } from "next/font/google";
 import "./globals.css";
 
-const serif = Averia_Serif_Libre({
+const serif = Baskervville({
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["400"],
   style: ["normal", "italic"],
-  variable: "--font-averia-serif-libre",
+  variable: "--font-baskervville",
   display: "swap",
 });
 
-const sans = Inclusive_Sans({
+const sans = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-inclusive-sans",
-  display: "swap",
-});
-
-const display = Caveat({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-caveat",
+  weight: ["400", "500", "600"],
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -28,6 +21,10 @@ export const metadata: Metadata = {
   title: "Sergio Piñeros, brand & product designer",
   description:
     "Founder & Creative Director at Sergio Atelier. Brand identity, product design, AI systems, and visual storytelling.",
+  icons: {
+    icon: "/watermark.svg",
+    apple: "/watermark.svg",
+  },
   openGraph: {
     title: "Sergio Piñeros",
     description: "Designer who creates meaningful experiences through brand, product, and systems design.",
@@ -39,7 +36,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${serif.variable} ${sans.variable} ${display.variable}`}>
+    <html lang="en" className={`${serif.variable} ${sans.variable}`}>
       <body>{children}</body>
     </html>
   );
