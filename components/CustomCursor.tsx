@@ -48,7 +48,7 @@ export default function CustomCursor({ active = true }: { active?: boolean }) {
 
     window.addEventListener("mousemove", onMove);
 
-    const cards = document.querySelectorAll(".project-card");
+    const cards = document.querySelectorAll(".work-card");
     cards.forEach((card) => {
       card.addEventListener("mouseenter", onEnterProject);
       card.addEventListener("mouseleave", onLeaveProject);

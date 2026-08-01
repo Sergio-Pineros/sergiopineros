@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
-import { Baskervville, Inter } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Baskervville, Caveat, Inter } from "next/font/google";
 import "./globals.css";
 
 const serif = Baskervville({
@@ -17,13 +17,26 @@ const sans = Inter({
   display: "swap",
 });
 
+const display = Caveat({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-caveat",
+  display: "swap",
+});
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
 export const metadata: Metadata = {
   title: "Sergio Piñeros, brand & product designer",
   description:
     "Founder & Creative Director at Sergio Atelier. Brand identity, product design, AI systems, and visual storytelling.",
   icons: {
-    icon: "/watermark.svg",
-    apple: "/watermark.svg",
+    icon: "/logo.svg",
+    apple: "/logo.svg",
   },
   openGraph: {
     title: "Sergio Piñeros",
@@ -36,7 +49,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${serif.variable} ${sans.variable}`}>
+    <html lang="en" className={`${serif.variable} ${sans.variable} ${display.variable}`}>
       <body>{children}</body>
     </html>
   );

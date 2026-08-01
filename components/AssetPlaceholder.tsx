@@ -14,8 +14,7 @@ export default function AssetPlaceholder({ project, className = "" }: Props) {
     >
       <div className="asset-placeholder__inner">
         <span className="asset-placeholder__label">{project.assetLabel}</span>
-        <span className="asset-placeholder__hint">Asset needed</span>
-        <span className="asset-placeholder__size">1200 × 800</span>
+        <span className="asset-placeholder__hint">Drop image here</span>
       </div>
     </div>
   );

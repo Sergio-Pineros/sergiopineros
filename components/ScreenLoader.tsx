@@ -96,7 +96,7 @@ export default function ScreenLoader({ onComplete }: { onComplete: () => void })
   return (
     <div ref={overlayRef} className="screen-loader" aria-hidden="true">
       <div ref={iconRef} className="screen-loader__icon">
-        <Image src="/icon.svg" alt="" width={120} height={120} priority />
+        <Image src="/icon.svg" alt="" width={156} height={156} priority />
       </div>
       <div className="screen-loader__bottom">
         <div className="screen-loader__track">

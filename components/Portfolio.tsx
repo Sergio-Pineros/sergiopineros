@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useCallback, useLayoutEffect } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import { flushSync } from "react-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -15,190 +15,64 @@ import {
   NavIconStory,
   NavIconWork,
 } from "@/components/NavIcons";
-import { getHoverConfig, tagToPosition, type TagPosition } from "@/lib/animations";
 import { HERO_TABS, HERO_PANELS, PROJECTS, type Project } from "@/lib/projects";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-function applyTagPosition(
-  tag: HTMLElement,
-  pos: TagPosition,
-  options: { duration: number; delay?: number; ease: string }
-) {
-  const vars: gsap.TweenVars = {
-    top: pos.top,
-    rotation: pos.rotation,
-    duration: options.duration,
-    delay: options.delay ?? 0,
-    ease: options.ease,
-    overwrite: "auto",
-    force3D: true,
-  };
-
-  if (pos.left !== undefined) {
-    vars.left = pos.left;
-    vars.right = "auto";
-  } else if (pos.right !== undefined) {
-    vars.right = pos.right;
-    vars.left = "auto";
-  }
-
-  gsap.to(tag, vars);
+function parseTags(tagsLine: string) {
+  return tagsLine.split("·").map((tag) => tag.trim()).filter(Boolean);
 }
 
-function ProjectCard({ project }: { project: Project }) {
-  const cardRef = useRef<HTMLAnchorElement | HTMLDivElement>(null);
-  const folderRef = useRef<HTMLDivElement>(null);
-  const screenshotRef = useRef<HTMLDivElement>(null);
-  const tabRef = useRef<HTMLDivElement>(null);
-  const tagRefs = useRef<(HTMLSpanElement | null)[]>([]);
+function WorkCard({ project }: { project: Project }) {
+  const tags = parseTags(project.tagsLine);
+  const wide = Boolean(project.reverse);
 
-  useLayoutEffect(() => {
-    tagRefs.current.forEach((tag, i) => {
-      const initial = project.tags[i];
-      if (!tag || !initial) return;
-      gsap.set(tag, {
-        rotation: initial.rotation,
-        transformOrigin: "50% 50%",
-        force3D: true,
-      });
-    });
-  }, [project]);
-
-  const hoverIn = useCallback(() => {
-    const cfg = getHoverConfig(project);
-
-    gsap.to(screenshotRef.current, {
-      width: cfg.screenshot.width,
-      top: cfg.screenshot.top,
-      duration: 0.68,
-      ease: "power3.inOut",
-      overwrite: "auto",
-    });
-
-    gsap.to(tabRef.current, {
-      height: cfg.tabHeight,
-      duration: 0.68,
-      ease: "power3.inOut",
-      overwrite: "auto",
-    });
-
-    tagRefs.current.forEach((tag, i) => {
-      const target = cfg.tags[i];
-      if (!tag || !target) return;
-      applyTagPosition(tag, target, {
-        duration: 0.72,
-        delay: i * 0.04,
-        ease: "power2.out",
-      });
-    });
-  }, [project]);
-
-  const hoverOut = useCallback(() => {
-    gsap.to(screenshotRef.current, {
-      width: "50%",
-      top: "126px",
-      duration: 0.58,
-      ease: "power3.inOut",
-      overwrite: "auto",
-    });
-
-    gsap.to(tabRef.current, {
-      height: "70%",
-      duration: 0.58,
-      ease: "power3.inOut",
-      overwrite: "auto",
-    });
-
-    tagRefs.current.forEach((tag, i) => {
-      const initial = project.tags[i];
-      if (!tag || !initial) return;
-      applyTagPosition(tag, tagToPosition(initial), {
-        duration: 0.58,
-        delay: i * 0.025,
-        ease: "power2.inOut",
-      });
-    });
-  }, [project]);
-
-  const folder = (
-    <div
-      ref={folderRef}
-      className="project-card__folder"
-      style={{
-        background: project.theme.bg,
-        boxShadow: project.theme.insetShadow,
-      }}
-    >
-      {project.tags.map((tag, i) => (
-        <span
-          key={tag.label}
-          ref={(el) => {
-            tagRefs.current[i] = el;
-          }}
-          className="tag-pill"
-          style={{
-            top: tag.top,
-            left: tag.left,
-            right: tag.right,
-            background: project.theme.tagBg,
-            borderColor: project.theme.tagBorder,
-          }}
-        >
-          {tag.label}
-        </span>
-      ))}
-
-      <div ref={screenshotRef} className="project-card__screenshot">
-        <AssetPlaceholder project={project} />
+  const body = (
+    <>
+      <div className="work-card__media">
+        {project.comingSoon ? (
+          <span className="work-card__badge">Coming soon</span>
+        ) : null}
+        <AssetPlaceholder project={project} className="work-card__placeholder" />
       </div>
-
-      <div ref={tabRef} className="project-card__tab" />
-    </div>
+      <div className="work-card__content">
+        <div className="work-card__headline">
+          <h3 className="work-card__title">{project.name}</h3>
+          {!project.comingSoon && project.href ? (
+            <span className="work-card__arrow" aria-hidden="true">
+              ↗
+            </span>
+          ) : null}
+        </div>
+        <p className="work-card__description">{project.description}</p>
+        <ul className="work-card__tags" aria-label={`Tags for ${project.name}`}>
+          {tags.map((tag) => (
+            <li key={tag}>{tag}</li>
+          ))}
+        </ul>
+      </div>
+    </>
   );
 
-  const handlers = {
-    onMouseEnter: hoverIn,
-    onMouseLeave: hoverOut,
-    onFocus: hoverIn,
-    onBlur: hoverOut,
-  };
+  const className = `work-card fade-up${wide ? " work-card--wide" : ""}`;
 
   if (project.href && !project.comingSoon) {
     return (
       <a
-        ref={cardRef as React.RefObject<HTMLAnchorElement>}
-        className="project-card"
+        id={project.slug}
+        className={className}
         href={project.href}
         target={project.href.startsWith("http") ? "_blank" : undefined}
         rel={project.href.startsWith("http") ? "noopener noreferrer" : undefined}
-        {...handlers}
       >
-        {folder}
+        {body}
       </a>
     );
   }
 
   return (
-    <div ref={cardRef as React.RefObject<HTMLDivElement>} className="project-card" {...handlers}>
-      {folder}
-    </div>
-  );
-}
-
-function ProjectRow({ project }: { project: Project }) {
-  return (
-    <article
-      id={project.slug}
-      className={`project-row ${project.reverse ? "project-row--reverse" : ""}`}
-    >
-      <div className="project-row__card-col">
-        <ProjectCard project={project} />
-      </div>
-      <div className="project-row__text-col fade-up">
-        <p className="project-description">{project.description}</p>
-        <p className="project-tags-line">{project.tagsLine}</p>
-      </div>
+    <article id={project.slug} className={className}>
+      {body}
     </article>
   );
 }
@@ -213,6 +87,26 @@ export default function Portfolio() {
   const [loaded, setLoaded] = useState(false);
   const handleLoaderComplete = useCallback(() => setLoaded(true), []);
   const activePanel = HERO_PANELS[activeTab];
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [menuOpen]);
+
+  useEffect(() => {
+    if (!loaded) return;
+    const onResize = () => ScrollTrigger.refresh();
+    window.addEventListener("orientationchange", onResize);
+    window.addEventListener("resize", onResize);
+    return () => {
+      window.removeEventListener("orientationchange", onResize);
+      window.removeEventListener("resize", onResize);
+    };
+  }, [loaded]);
 
   const handleTabClick = (id: (typeof HERO_TABS)[number]["id"]) => {
     if (id === activeTab || !headlineRef.current || !scriptRef.current) return;
@@ -284,41 +178,16 @@ export default function Portfolio() {
 
       gsap.utils.toArray<HTMLElement>(".fade-up").forEach((el) => {
         gsap.from(el, {
-          y: 40,
+          y: 36,
           opacity: 0,
-          duration: 0.8,
+          duration: 0.75,
           ease: "power3.out",
           scrollTrigger: {
             trigger: el,
-            start: "top 85%",
+            start: "top 88%",
             toggleActions: "play none none reverse",
           },
         });
-      });
-
-      gsap.utils.toArray<HTMLElement>(".project-row").forEach((row) => {
-        gsap.from(row.querySelector(".project-card"), {
-          y: 30,
-          opacity: 0,
-          duration: 0.9,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: row,
-            start: "top 75%",
-            toggleActions: "play none none reverse",
-          },
-        });
-      });
-
-      gsap.from(".coming-soon-block__text", {
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".coming-soon-block",
-          start: "top 80%",
-        },
       });
 
       gsap.from(".footer__logotype", {
@@ -463,21 +332,33 @@ export default function Portfolio() {
             </div>
           </section>
 
-          <section id="projects" className="projects">
-            {PROJECTS.slice(0, 3).map((project) => (
-              <ProjectRow key={project.slug} project={project} />
-            ))}
-
-            <div className="coming-soon-block">
-              <p className="coming-soon-block__text">
-                I&apos;m supporting founders in building design-first products. Case studies coming
-                soon.
+          <section id="projects" className="work-section">
+            <header className="work-section__header fade-up">
+              <p className="work-section__eyebrow">Selected work</p>
+              <h2 className="work-section__title">Projects with clarity, craft, and care.</h2>
+              <p className="work-section__lead">
+                Brand systems, products, and automations for teams who want work that feels human
+                and holds up in the real world.
               </p>
-            </div>
+            </header>
 
-            {PROJECTS.slice(3).map((project) => (
-              <ProjectRow key={project.slug} project={project} />
-            ))}
+            <div className="work-grid">
+              {PROJECTS.slice(0, 3).map((project) => (
+                <WorkCard key={project.slug} project={project} />
+              ))}
+
+              <div className="work-callout fade-up">
+                <p className="work-callout__eyebrow">In progress</p>
+                <p className="work-callout__text">
+                  I&apos;m supporting founders in building design-first products. Case studies coming
+                  soon.
+                </p>
+              </div>
+
+              {PROJECTS.slice(3).map((project) => (
+                <WorkCard key={project.slug} project={project} />
+              ))}
+            </div>
           </section>
 
           <footer id="contact" className="footer">
