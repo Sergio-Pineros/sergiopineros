@@ -1,40 +1,22 @@
-# Sergio Piñeros — Portfolio
+# sergiopineros.com
 
-Single-page portfolio modeled after [sanvithi.com](https://sanvithi.com/), built with Next.js, Tailwind CSS v4, and GSAP.
+Sergio Piñeros’s personal site. Message first, selling quietly.
 
 ## Stack
 
-- **Next.js 15** (App Router)
-- **Tailwind CSS v4**
-- **GSAP ScrollTrigger** for scroll animations
-- **Fonts:** Averia Serif Libre + Inclusive Sans + Caveat (all SIL OFL, free commercial use)
+Next.js 15 (App Router), TypeScript, Tailwind CSS v4.
 
-## Structure
+## Edit copy and links
 
-```
-app/
-  layout.tsx, page.tsx, globals.css
-components/
-  Portfolio.tsx          # Full page (nav, hero, projects, footer)
-  AssetPlaceholder.tsx   # Dashed placeholders until assets arrive
-lib/
-  projects.ts            # Copy, project data, themes
-ASSETS.md                # Complete asset checklist per section
-```
+Everything visitor-facing lives in [`content/site.ts`](content/site.ts): hero, manifesto, writing, work, about, contact, socials, Substack, Stan Store, email.
 
-## Development
+## Develop
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Assets
+## Notes
 
-See **[ASSETS.md](./ASSETS.md)** for the full checklist of images needed per section (hero stickers, project screenshots, footer, etc.).
-
-## Deploy
-
-```bash
-npx vercel
-```
+See [`BUILD_NOTES.md`](BUILD_NOTES.md) for the rebuild record, 21st.dev restyles, and what still needs Sergio’s approval before deploy.

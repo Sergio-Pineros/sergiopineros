@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import { Baskervville, Caveat, Inter } from "next/font/google";
+import { Baskervville, Caveat, DM_Sans } from "next/font/google";
+import { PaperGrain } from "@/components/paper-grain";
+import { site } from "@/content/site";
 import "./globals.css";
 
 const serif = Baskervville({
@@ -10,16 +12,16 @@ const serif = Baskervville({
   display: "swap",
 });
 
-const sans = Inter({
+const sans = DM_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-inter",
+  weight: ["300", "400", "500"],
+  variable: "--font-dm-sans",
   display: "swap",
 });
 
-const display = Caveat({
+const hand = Caveat({
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["400", "500"],
   variable: "--font-caveat",
   display: "swap",
 });
@@ -28,20 +30,31 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
+  themeColor: "#faf8f5",
 };
 
 export const metadata: Metadata = {
-  title: "Sergio Piñeros, brand & product designer",
-  description:
-    "Founder & Creative Director at Sergio Atelier. Brand identity, product design, AI systems, and visual storytelling.",
+  metadataBase: new URL(site.url),
+  title: site.title,
+  description: site.description,
+  alternates: { canonical: "/" },
+  robots: { index: true, follow: true },
   icons: {
-    icon: "/logo.svg",
-    apple: "/logo.svg",
+    icon: "/icon.svg",
+    apple: "/icon.svg",
   },
   openGraph: {
-    title: "Sergio Piñeros",
-    description: "Designer who creates meaningful experiences through brand, product, and systems design.",
+    title: site.title,
+    description: site.description,
+    url: site.url,
+    siteName: site.name,
+    locale: "en_US",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: site.title,
+    description: site.description,
   },
 };
 
@@ -49,8 +62,14 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${serif.variable} ${sans.variable} ${display.variable}`}>
-      <body>{children}</body>
+    <html
+      lang="en"
+      className={`${serif.variable} ${sans.variable} ${hand.variable}`}
+    >
+      <body>
+        <PaperGrain />
+        {children}
+      </body>
     </html>
   );
 }
