@@ -1,84 +1,20 @@
 "use client";
 
-import { useRef, useState, useCallback, useEffect } from "react";
+import { useRef, useState, useCallback, useEffect, useMemo } from "react";
 import { flushSync } from "react-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
-import AssetPlaceholder from "@/components/AssetPlaceholder";
+import { Briefcase, FileText, Home } from "lucide-react";
+import { ThemeProvider } from "next-themes";
 import ScreenLoader from "@/components/ScreenLoader";
 import CustomCursor from "@/components/CustomCursor";
-import {
-  NavIconPlay,
-  NavIconResume,
-  NavIconStory,
-  NavIconWork,
-} from "@/components/NavIcons";
-import { HERO_TABS, HERO_PANELS, PROJECTS, type Project } from "@/lib/projects";
+import StudioDesktop from "@/components/StudioDesktop";
+import { NavBar } from "@/components/ui/tubelight-navbar";
+import { HERO_TABS, HERO_PANELS } from "@/lib/projects";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
-
-function parseTags(tagsLine: string) {
-  return tagsLine.split("·").map((tag) => tag.trim()).filter(Boolean);
-}
-
-function WorkCard({ project }: { project: Project }) {
-  const tags = parseTags(project.tagsLine);
-  const wide = Boolean(project.reverse);
-
-  const body = (
-    <>
-      <div
-        className="work-card__media"
-        style={project.imageRatio ? { aspectRatio: project.imageRatio } : undefined}
-      >
-        {project.comingSoon ? (
-          <span className="work-card__badge">Coming soon</span>
-        ) : null}
-        <AssetPlaceholder project={project} className="work-card__placeholder" />
-      </div>
-      <div className="work-card__content">
-        <div className="work-card__headline">
-          <h3 className="work-card__title">{project.name}</h3>
-          {!project.comingSoon && project.href ? (
-            <span className="work-card__arrow" aria-hidden="true">
-              ↗
-            </span>
-          ) : null}
-        </div>
-        <p className="work-card__description">{project.description}</p>
-        <ul className="work-card__tags" aria-label={`Tags for ${project.name}`}>
-          {tags.map((tag) => (
-            <li key={tag}>{tag}</li>
-          ))}
-        </ul>
-      </div>
-    </>
-  );
-
-  const className = `work-card fade-up${wide ? " work-card--wide" : ""}`;
-
-  if (project.href && !project.comingSoon) {
-    return (
-      <a
-        id={project.slug}
-        className={className}
-        href={project.href}
-        target={project.href.startsWith("http") ? "_blank" : undefined}
-        rel={project.href.startsWith("http") ? "noopener noreferrer" : undefined}
-      >
-        {body}
-      </a>
-    );
-  }
-
-  return (
-    <article id={project.slug} className={className}>
-      {body}
-    </article>
-  );
-}
 
 export default function Portfolio() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -86,19 +22,20 @@ export default function Portfolio() {
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const scriptRef = useRef<HTMLSpanElement>(null);
   const [activeTab, setActiveTab] = useState<(typeof HERO_TABS)[number]["id"]>("who");
-  const [menuOpen, setMenuOpen] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const [desktopOpen, setDesktopOpen] = useState(false);
+  const [desktopOrigin, setDesktopOrigin] = useState<DOMRect | null>(null);
   const handleLoaderComplete = useCallback(() => setLoaded(true), []);
   const activePanel = HERO_PANELS[activeTab];
 
-  useEffect(() => {
-    if (!menuOpen) return;
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = previousOverflow;
-    };
-  }, [menuOpen]);
+  const openDesktop = useCallback((origin?: DOMRect | null) => {
+    setDesktopOrigin(origin ?? null);
+    setDesktopOpen(true);
+  }, []);
+
+  const closeDesktop = useCallback(() => {
+    setDesktopOpen(false);
+  }, []);
 
   useEffect(() => {
     if (!loaded) return;
@@ -179,18 +116,16 @@ export default function Portfolio() {
         delay: 0.85,
       });
 
-      gsap.utils.toArray<HTMLElement>(".fade-up").forEach((el) => {
-        gsap.from(el, {
-          y: 36,
-          opacity: 0,
-          duration: 0.75,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: el,
-            start: "top 88%",
-            toggleActions: "play none none reverse",
-          },
-        });
+      gsap.from(".studio-gate", {
+        y: 24,
+        opacity: 0,
+        duration: 0.7,
+        ease: "power3.out",
+        delay: 0.2,
+        scrollTrigger: {
+          trigger: ".studio-gate",
+          start: "top 90%",
+        },
       });
 
       gsap.from(".footer__logotype", {
@@ -219,12 +154,30 @@ export default function Portfolio() {
     { scope: rootRef, dependencies: [loaded] }
   );
 
+  const navItems = useMemo(
+    () => [
+      { name: "Home", url: "#top", icon: Home },
+      {
+        name: "Work",
+        url: "#projects",
+        icon: Briefcase,
+        onSelect: () => openDesktop(null),
+      },
+      {
+        name: "Resume",
+        url: "mailto:hello@sergioatelier.co?subject=Resume%20request",
+        icon: FileText,
+      },
+    ],
+    [openDesktop]
+  );
+
   return (
     <>
       <ScreenLoader onComplete={handleLoaderComplete} />
       <CustomCursor active={loaded} />
 
-      <div ref={rootRef} className={loaded ? "site-visible" : "site-hidden"}>
+      <div id="top" ref={rootRef} className={loaded ? "site-visible" : "site-hidden"}>
         <header className="site-nav">
           <div className="site-nav__bar">
             <a href="#hero" className="nav-logo" aria-label="Sergio Piñeros home">
@@ -237,69 +190,12 @@ export default function Portfolio() {
                 priority
               />
             </a>
-
-            <button
-              type="button"
-              className="mobile-menu-btn"
-              aria-label="Open menu"
-              onClick={() => setMenuOpen(true)}
-            >
-              ☰
-            </button>
-
-            <nav className="nav-pill-group" aria-label="Primary">
-              <a href="#projects" className="nav-link nav-link--active">
-                <NavIconWork /> work
-              </a>
-              <a
-                href="https://sergioatelier.co/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="nav-link"
-              >
-                <NavIconPlay /> play
-              </a>
-              <a
-                href="mailto:hello@sergioatelier.co?subject=Resume%20request"
-                className="nav-link"
-              >
-                <NavIconResume /> résumé
-              </a>
-              <a href="#hero" className="nav-link">
-                <NavIconStory /> story
-              </a>
-            </nav>
           </div>
         </header>
 
-        {menuOpen && (
-          <div className="mobile-menu-overlay" role="dialog" aria-modal="true">
-            <button
-              type="button"
-              className="mobile-menu-btn mobile-menu-btn--close"
-              aria-label="Close menu"
-              onClick={() => setMenuOpen(false)}
-            >
-              ✕
-            </button>
-            {[
-              { label: "work", href: "#projects" },
-              { label: "play", href: "https://sergioatelier.co/" },
-              { label: "résumé", href: "mailto:hello@sergioatelier.co?subject=Resume%20request" },
-              { label: "story", href: "#hero" },
-            ].map((item, i) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="mobile-menu-overlay__link mobile-menu-item"
-                style={{ animationDelay: `${i * 0.05}s` }}
-                onClick={() => setMenuOpen(false)}
-              >
-                {item.label}
-              </a>
-            ))}
-          </div>
-        )}
+        {loaded && !desktopOpen ? (
+          <NavBar items={navItems} active="Home" />
+        ) : null}
 
         <main>
           <section id="hero" ref={heroRef} className="hero">
@@ -335,33 +231,15 @@ export default function Portfolio() {
             </div>
           </section>
 
-          <section id="projects" className="work-section">
-            <header className="work-section__header fade-up">
-              <p className="work-section__eyebrow">Selected work</p>
-              <h2 className="work-section__title">Projects with clarity, craft, and care.</h2>
-              <p className="work-section__lead">
-                Brand systems, products, and automations for teams who want work that feels human
-                and holds up in the real world.
-              </p>
-            </header>
-
-            <div className="work-grid">
-              {PROJECTS.slice(0, 3).map((project) => (
-                <WorkCard key={project.slug} project={project} />
-              ))}
-
-              <div className="work-callout fade-up">
-                <p className="work-callout__eyebrow">In progress</p>
-                <p className="work-callout__text">
-                  I&apos;m supporting founders in building design-first products. Case studies coming
-                  soon.
-                </p>
-              </div>
-
-              {PROJECTS.slice(3).map((project) => (
-                <WorkCard key={project.slug} project={project} />
-              ))}
-            </div>
+          <section id="projects" className="studio-gate">
+            <button
+              type="button"
+              className="studio-gate__btn"
+              aria-label="Open studio desktop"
+              onClick={(event) => openDesktop(event.currentTarget.getBoundingClientRect())}
+            >
+              <Image src="/icon.svg" alt="" width={80} height={73} priority />
+            </button>
           </section>
 
           <footer id="contact" className="footer">
@@ -389,6 +267,10 @@ export default function Portfolio() {
           </footer>
         </main>
       </div>
+
+      <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+        <StudioDesktop open={desktopOpen} onClose={closeDesktop} origin={desktopOrigin} />
+      </ThemeProvider>
     </>
   );
 }

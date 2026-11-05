@@ -49,7 +49,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${serif.variable} ${sans.variable} ${display.variable}`}>
+    <html lang="en" className={`${serif.variable} ${sans.variable} ${display.variable}`} suppressHydrationWarning>
       <body>{children}</body>
     </html>
   );
