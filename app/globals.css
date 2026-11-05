@@ -55,18 +55,35 @@ body {
   overflow-x: hidden;
 }
 
+@media (hover: hover) and (pointer: fine) {
+  body,
+  .os-desktop,
+  .os-window,
+  .os-window__title {
+    cursor: url("/cursors/arrow.svg") 1 1, auto;
+  }
+
+  a,
+  button,
+  [role="button"],
+  .os-folder,
+  .os-dock__item,
+  .os-menubar__home,
+  .os-window__close,
+  .studio-gate__btn {
+    cursor: url("/cursors/pointer.svg") 8 1, pointer;
+  }
+
+  input,
+  textarea,
+  [contenteditable="true"] {
+    cursor: url("/cursors/ibeam.svg") 8 12, text;
+  }
+}
+
 a,
 button {
   -webkit-tap-highlight-color: transparent;
-}
-
-body.custom-cursor-active {
-  cursor: none;
-}
-
-body.custom-cursor-active a,
-body.custom-cursor-active button {
-  cursor: none;
 }
 
 .site-hidden {
@@ -99,51 +116,12 @@ body.custom-cursor-active button {
   display: block;
 }
 
-/* ─── CUSTOM CURSOR ─── */
-.cursor-dot,
-.cursor-ring {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 9998;
-  transform: translate(-50%, -50%);
-  will-change: transform;
-}
-
-.cursor-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--color-brand);
-}
-
-.cursor-ring {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 1.5px solid color-mix(in srgb, var(--color-brand) 50%, transparent);
-}
-
 ::selection {
   background: color-mix(in srgb, var(--color-brand) 28%, transparent);
 }
 
 a {
   color: inherit;
-}
-
-.tubelight-navbar a.tubelight-navbar__item {
-  color: color-mix(in srgb, #b9a8d0 85%, transparent);
-}
-
-.tubelight-navbar a.tubelight-navbar__item:hover {
-  color: #b9a8d0;
-}
-
-.tubelight-navbar a.tubelight-navbar__item--active,
-.tubelight-navbar a.tubelight-navbar__item--active:hover {
-  color: #f2f3f5;
 }
 
 a:focus-visible,
@@ -293,12 +271,13 @@ button:focus-visible {
 .hero {
   display: grid;
   place-items: center;
-  gap: clamp(28px, 5vh, 48px);
+  align-content: center;
+  gap: clamp(22px, 3.6vh, 40px);
   min-height: 100dvh;
   padding:
-    calc(clamp(88px, 11vh, 120px) + 12px)
+    clamp(72px, 9vh, 96px)
     max(20px, env(safe-area-inset-right))
-    clamp(48px, 6vh, 72px)
+    clamp(28px, 5vh, 52px)
     max(20px, env(safe-area-inset-left));
   position: relative;
   overflow: clip;
@@ -309,7 +288,7 @@ button:focus-visible {
 
 @media (min-width: 1024px) {
   .hero {
-    padding: calc(clamp(96px, 12vh, 128px) + 16px) var(--section-pad-x) clamp(56px, 7vh, 80px);
+    padding: clamp(80px, 10vh, 108px) var(--section-pad-x) clamp(36px, 6vh, 64px);
   }
 }
 
@@ -322,7 +301,7 @@ button:focus-visible {
 .hero-tabs {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
   max-width: 100%;
   overflow-x: auto;
   scrollbar-width: none;
@@ -341,7 +320,7 @@ button:focus-visible {
   }
 
   .hero-tabs {
-    gap: 10px;
+    gap: 12px;
     justify-content: flex-start;
     width: 100%;
     max-width: 100%;
@@ -365,7 +344,7 @@ button:focus-visible {
   cursor: pointer;
   font-family: var(--font-sans);
   font-weight: 500;
-  font-size: 11px;
+  font-size: clamp(12px, 1.1vw, 13px);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   line-height: 1;
@@ -386,8 +365,8 @@ button:focus-visible {
 
 .hero-statement {
   position: relative;
-  width: min(980px, 100%);
-  min-height: clamp(280px, 38vh, 360px);
+  width: min(1080px, 100%);
+  min-height: clamp(260px, 36vh, 400px);
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -398,7 +377,7 @@ button:focus-visible {
   z-index: 2;
   color: var(--color-brand);
   font-family: var(--font-display);
-  font-size: clamp(5rem, 12vw, 9.5rem);
+  font-size: clamp(5.6rem, 13.5vw, 10.8rem);
   font-weight: 500;
   letter-spacing: -0.06em;
   line-height: 0.72;
@@ -443,7 +422,7 @@ button:focus-visible {
 
 @media (max-width: 1023px) {
   .hero-statement {
-    min-height: clamp(240px, 34vh, 300px);
+    min-height: clamp(220px, 30vh, 280px);
     overflow: hidden;
     width: 100%;
   }
@@ -451,45 +430,45 @@ button:focus-visible {
   .hero-statement[data-tab="who"] .hero-script {
     top: 56%;
     left: 50%;
-    font-size: clamp(3.25rem, 18vw, 6rem);
+    font-size: clamp(3.5rem, 16.5vw, 6.2rem);
     transform: translateX(-50%) rotate(-5deg);
   }
 
   .hero-statement[data-tab="build"] .hero-script {
     top: 52%;
     left: 50%;
-    font-size: clamp(3.25rem, 18vw, 6rem);
+    font-size: clamp(3.4rem, 16vw, 6rem);
     transform: translateX(-50%) rotate(-4deg);
   }
 
   .hero-statement[data-tab="believe"] .hero-script {
     top: 58%;
     left: 50%;
-    font-size: clamp(3rem, 16vw, 5.5rem);
+    font-size: clamp(3.2rem, 15vw, 5.6rem);
     transform: translateX(-50%) rotate(-6deg);
   }
 
   .hero-statement[data-tab="write"] .hero-script {
     top: 54%;
     left: 50%;
-    font-size: clamp(3.25rem, 18vw, 6rem);
+    font-size: clamp(3.5rem, 16.5vw, 6.2rem);
     transform: translateX(-50%) rotate(-3deg);
   }
 
   .hero-statement[data-tab="upto"] .hero-script {
     top: 60%;
     left: 50%;
-    font-size: clamp(3rem, 16vw, 5.5rem);
+    font-size: clamp(3.2rem, 15vw, 5.6rem);
     transform: translateX(-50%) rotate(-5deg);
   }
 }
 
 .hero-headline {
-  width: min(980px, 100%);
-  max-width: 980px;
+  width: min(1080px, 100%);
+  max-width: 1080px;
   text-align: center;
   font-family: var(--font-serif);
-  font-size: clamp(2.75rem, 5vw, 4rem);
+  font-size: clamp(3.1rem, 5.6vw, 4.6rem);
   letter-spacing: -0.04em;
   line-height: 0.88;
   color: var(--color-ink);
@@ -500,7 +479,7 @@ button:focus-visible {
 
 @media (min-width: 1024px) {
   .hero-headline {
-    font-size: clamp(3.5rem, 4.8vw, 4.25rem);
+    font-size: clamp(4rem, 5.5vw, 4.9rem);
     letter-spacing: -0.045em;
     line-height: 0.86;
   }
@@ -509,7 +488,7 @@ button:focus-visible {
 @media (max-width: 1023px) {
   .hero-headline {
     line-height: 1;
-    font-size: clamp(1.85rem, 7.5vw, 2.5rem);
+    font-size: clamp(2.1rem, 8.2vw, 2.85rem);
     letter-spacing: -0.04em;
     text-align: left;
   }
@@ -1084,25 +1063,54 @@ button:focus-visible {
   padding: 8px 16px;
 }
 
-@media (max-width: 639px) {
-  .site-visible,
-  .site-hidden {
-    padding-bottom: calc(96px + env(safe-area-inset-bottom));
-  }
+.studio-gate {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 96px;
 }
 
-.studio-gate {
-  display: flex;
-  justify-content: center;
-  width: 100%;
+.studio-gate__halo,
+.studio-gate__ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 104px;
+  height: 104px;
+  margin: -52px 0 0 -52px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.studio-gate__halo {
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, #b9a8d0 34%, transparent) 0%,
+    color-mix(in srgb, #9d86bc 8%, transparent) 55%,
+    transparent 72%
+  );
+  opacity: 0;
+}
+
+.studio-gate__ring {
+  border: 1.5px solid #9d86bc;
+  animation: studio-pulse 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.studio-gate__ring--late {
+  border-color: #b9a8d0;
+  animation-delay: 1.2s;
 }
 
 .studio-gate__btn {
+  position: relative;
+  z-index: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 72px;
-  min-height: 72px;
+  min-width: 84px;
+  min-height: 84px;
   padding: 12px;
   border: none;
   background: transparent;
@@ -1116,6 +1124,17 @@ button:focus-visible {
 
 .studio-gate__btn:active {
   transform: scale(0.96);
+}
+
+@keyframes studio-pulse {
+  0% {
+    transform: scale(0.78);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
 }
 
 .os-desktop {
@@ -1230,39 +1249,64 @@ button:focus-visible {
 
 .os-desktop__field {
   position: absolute;
-  top: 52px;
-  right: 16px;
-  bottom: 108px;
+  inset: 52px 16px 108px;
   z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 10px;
-  padding: 8px 4px;
 }
 
 .os-folder {
+  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  min-width: 88px;
-  min-height: 88px;
-  padding: 8px 6px;
+  gap: 8px;
+  min-width: 104px;
+  min-height: 104px;
+  padding: 8px 8px;
   border: none;
   background: transparent;
   color: #fff5eb;
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   text-align: center;
 }
 
 .os-folder span {
-  padding: 3px 7px;
+  max-width: 130px;
+  padding: 4px 8px;
   border-radius: 6px;
   background: rgba(42, 1, 52, 0.5);
   color: #fff5eb;
+}
+
+.os-folder--savron {
+  top: 6%;
+  left: 7%;
+  transform: rotate(-3.5deg);
+}
+
+.os-folder--grafti {
+  top: 16%;
+  left: 74%;
+  transform: rotate(5.5deg);
+}
+
+.os-folder--sergio-co {
+  top: 48%;
+  left: 16%;
+  transform: rotate(2.8deg);
+}
+
+.os-folder--savron-crm {
+  top: 34%;
+  left: 58%;
+  transform: rotate(-6deg);
+}
+
+.os-folder--client-automation {
+  top: 64%;
+  left: 40%;
+  transform: rotate(4deg);
 }
 
 .os-window {
@@ -1288,7 +1332,6 @@ button:focus-visible {
   gap: 10px;
   min-height: 44px;
   padding: 0 12px;
-  cursor: grab;
   touch-action: none;
   border-bottom: 1px solid var(--os-window-border);
 }
@@ -1442,12 +1485,43 @@ button:focus-visible {
 
 @media (max-width: 719px) {
   .os-desktop__field {
-    right: auto;
-    left: 12px;
-    flex-flow: row wrap;
-    align-items: flex-start;
-    justify-content: flex-start;
-    max-width: calc(100vw - 24px);
+    inset: 52px 8px 96px;
+  }
+
+  .os-folder {
+    min-width: 88px;
+    min-height: 88px;
+    font-size: 12px;
+  }
+
+  .os-folder--savron {
+    top: 2%;
+    left: 3%;
+    transform: rotate(-3deg);
+  }
+
+  .os-folder--grafti {
+    top: 6%;
+    left: 56%;
+    transform: rotate(4deg);
+  }
+
+  .os-folder--sergio-co {
+    top: 36%;
+    left: 6%;
+    transform: rotate(3deg);
+  }
+
+  .os-folder--savron-crm {
+    top: 34%;
+    left: 54%;
+    transform: rotate(-4deg);
+  }
+
+  .os-folder--client-automation {
+    top: 64%;
+    left: 26%;
+    transform: rotate(2deg);
   }
 
   .os-window {
@@ -1480,5 +1554,13 @@ button:focus-visible {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .studio-gate__halo {
+    opacity: 1;
+  }
+
+  .studio-gate__ring {
+    opacity: 0;
   }
 }

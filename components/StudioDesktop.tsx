@@ -30,7 +30,7 @@ function parseTags(tagsLine: string) {
 
 function FolderGlyph({ comingSoon = false }: { comingSoon?: boolean }) {
   return (
-    <svg viewBox="0 0 72 58" width="56" height="45" aria-hidden="true">
+    <svg viewBox="0 0 72 58" width="64" height="52" aria-hidden="true">
       <path
         d="M4 14c0-3.3 2.7-6 6-6h16l6 7h32c3.3 0 6 2.7 6 6v25c0 3.3-2.7 6-6 6H10c-3.3 0-6-2.7-6-6V14z"
         fill={comingSoon ? "#b9a8d0" : "#9d86bc"}

@@ -1,17 +1,14 @@
 "use client";
 
-import { useRef, useState, useCallback, useEffect, useMemo } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import { flushSync } from "react-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
-import { Briefcase, FileText, Home } from "lucide-react";
 import { ThemeProvider } from "next-themes";
 import ScreenLoader from "@/components/ScreenLoader";
-import CustomCursor from "@/components/CustomCursor";
 import StudioDesktop from "@/components/StudioDesktop";
-import { NavBar } from "@/components/ui/tubelight-navbar";
 import { HERO_TABS, HERO_PANELS } from "@/lib/projects";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -142,28 +139,9 @@ export default function Portfolio() {
     { scope: rootRef, dependencies: [loaded] }
   );
 
-  const navItems = useMemo(
-    () => [
-      { name: "Home", url: "#top", icon: Home },
-      {
-        name: "Work",
-        url: "#projects",
-        icon: Briefcase,
-        onSelect: () => openDesktop(null),
-      },
-      {
-        name: "Resume",
-        url: "mailto:hello@sergioatelier.co?subject=Resume%20request",
-        icon: FileText,
-      },
-    ],
-    [openDesktop]
-  );
-
   return (
     <>
       <ScreenLoader onComplete={handleLoaderComplete} />
-      <CustomCursor active={loaded} />
 
       <div id="top" ref={rootRef} className={loaded ? "site-visible" : "site-hidden"}>
         <header className="site-nav">
@@ -180,10 +158,6 @@ export default function Portfolio() {
             </a>
           </div>
         </header>
-
-        {loaded && !desktopOpen ? (
-          <NavBar items={navItems} active="Home" />
-        ) : null}
 
         <main>
           <section id="hero" ref={heroRef} className="hero">
@@ -214,13 +188,16 @@ export default function Portfolio() {
             </div>
 
             <div id="projects" className="studio-gate">
+              <span className="studio-gate__halo" aria-hidden="true" />
+              <span className="studio-gate__ring" aria-hidden="true" />
+              <span className="studio-gate__ring studio-gate__ring--late" aria-hidden="true" />
               <button
                 type="button"
                 className="studio-gate__btn"
                 aria-label="Open studio desktop"
                 onClick={(event) => openDesktop(event.currentTarget.getBoundingClientRect())}
               >
-                <Image src="/icon.svg" alt="" width={72} height={66} priority />
+                <Image src="/icon.svg" alt="" width={84} height={77} priority />
               </button>
             </div>
           </section>
