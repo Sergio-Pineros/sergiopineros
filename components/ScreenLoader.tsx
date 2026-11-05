@@ -4,20 +4,15 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 // Adapted from the Canvas2D Bayer 4×4 ordered-dither loader in
 // https://github.com/ficeskele/cocreate-brand-platform/blob/main/web/src/components/ui/ascii-loader.tsx
-// (sample an image into a cell grid, pulse the threshold, skip on tap/key,
-// reduced-motion fallback). Tuned here for Sergio's icon and brand palette.
+// (sample an image into a cell grid, pulse the threshold, reduced-motion
+// fallback). Tuned here for Sergio's icon and brand palette.
 
 const INK = "#9d86bc";
 const INK_DEEP = "#7f6899";
 const PAPER = "#ffffff";
 const EASE_OUT = "cubic-bezier(0.22, 1, 0.36, 1)";
-const HOLD_MS = 1400;
-const FADE_MS = 560;
-const REDUCED_HOLD_MS = 220;
-const REDUCED_FADE_MS = 280;
-const KEYBOARD_ARM_MS = 400;
-const LOAD_BUDGET_MS = 900;
-const HARD_FALLBACK_MS = 2100;
+const HOLD_MS = 1500;
+const FADE_MS = 500;
 const ICON_SRC = "/icon.svg";
 
 const BAYER = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5].map(
@@ -165,7 +160,6 @@ export default function ScreenLoader({ onComplete }: { onComplete: () => void })
   const doneRef = useRef(false);
   const onCompleteRef = useRef(onComplete);
   const [mounted, setMounted] = useState(true);
-  const [leaving, setLeaving] = useState(false);
 
   onCompleteRef.current = onComplete;
 
@@ -173,21 +167,20 @@ export default function ScreenLoader({ onComplete }: { onComplete: () => void })
     if (doneRef.current) return;
     doneRef.current = true;
     document.body.style.overflow = "";
+    // Reveal the site as the overlay starts dissolving — not before.
+    onCompleteRef.current();
 
-    const fadeMs = reduced ? REDUCED_FADE_MS : FADE_MS;
-    const overlay = overlayRef.current;
-    overlay?.animate(
-      [
-        { opacity: 1, transform: "scale(1)" },
-        { opacity: 0, transform: reduced ? "scale(1)" : "scale(1.055)" },
-      ],
-      { duration: fadeMs, easing: EASE_OUT, fill: "forwards" }
+    overlayRef.current?.animate(
+      reduced
+        ? [{ opacity: 1 }, { opacity: 0 }]
+        : [
+            { opacity: 1, transform: "scale(1)" },
+            { opacity: 0, transform: "scale(1.04)" },
+          ],
+      { duration: FADE_MS, easing: EASE_OUT, fill: "forwards" }
     );
-    setLeaving(true);
 
-    // Reveal the hero a beat into the dissolve so the overlay can fade over it.
-    window.setTimeout(() => onCompleteRef.current(), reduced ? 0 : 90);
-    window.setTimeout(() => setMounted(false), fadeMs + 20);
+    window.setTimeout(() => setMounted(false), FADE_MS + 20);
   }, []);
 
   useEffect(() => {
@@ -196,13 +189,16 @@ export default function ScreenLoader({ onComplete }: { onComplete: () => void })
     if (!canvas || !overlay) return;
 
     const ctx = canvas.getContext("2d");
-    if (!ctx) {
-      finish(true);
-      return;
-    }
-
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     document.body.style.overflow = "hidden";
+
+    if (!ctx) {
+      const fallback = window.setTimeout(() => finish(true), HOLD_MS);
+      return () => {
+        window.clearTimeout(fallback);
+        document.body.style.overflow = "";
+      };
+    }
 
     let frame = 0;
     let cancelled = false;
@@ -285,23 +281,7 @@ export default function ScreenLoader({ onComplete }: { onComplete: () => void })
       draw(performance.now());
     };
 
-    const keyboardArmedAt = performance.now() + KEYBOARD_ARM_MS;
-    const skip = (event?: Event) => {
-      if (event instanceof KeyboardEvent) {
-        if (event.metaKey || event.ctrlKey || event.altKey) return;
-        if (performance.now() < keyboardArmedAt) return;
-      }
-      finish(reduced);
-    };
-    overlay.addEventListener("pointerdown", skip);
-    window.addEventListener("keydown", skip);
-
-    timers.push(window.setTimeout(() => finish(reduced), HARD_FALLBACK_MS));
-
-    const loadWatch = window.setTimeout(() => {
-      if (!grid) finish(reduced);
-    }, LOAD_BUDGET_MS);
-    timers.push(loadWatch);
+    timers.push(window.setTimeout(() => finish(reduced), HOLD_MS));
 
     let icon: HTMLImageElement | null = null;
     const ro = new ResizeObserver(() => {
@@ -314,14 +294,7 @@ export default function ScreenLoader({ onComplete }: { onComplete: () => void })
       .then((img) => {
         if (cancelled || doneRef.current) return;
         icon = img;
-        window.clearTimeout(loadWatch);
         resample(img);
-        timers.push(
-          window.setTimeout(
-            () => finish(reduced),
-            reduced ? REDUCED_HOLD_MS : HOLD_MS
-          )
-        );
         if (reduced) {
           draw(performance.now());
         } else {
@@ -329,15 +302,13 @@ export default function ScreenLoader({ onComplete }: { onComplete: () => void })
         }
       })
       .catch(() => {
-        if (!cancelled) finish(reduced);
+        // Stay on the white overlay until the 1.5s hold elapses.
       });
 
     return () => {
       cancelled = true;
       cancelAnimationFrame(frame);
       timers.forEach((id) => window.clearTimeout(id));
-      overlay.removeEventListener("pointerdown", skip);
-      window.removeEventListener("keydown", skip);
       ro.disconnect();
       document.body.style.overflow = "";
     };
@@ -348,13 +319,12 @@ export default function ScreenLoader({ onComplete }: { onComplete: () => void })
   return (
     <div
       ref={overlayRef}
-      className={`screen-loader${leaving ? " is-leaving" : ""}`}
+      className="screen-loader"
       role="status"
       aria-live="polite"
       aria-label="Loading"
     >
       <canvas ref={canvasRef} className="screen-loader__canvas" aria-hidden="true" />
-      <p className="screen-loader__hint">Tap or press any key to skip</p>
     </div>
   );
 }
