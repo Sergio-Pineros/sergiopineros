@@ -108,24 +108,12 @@ export default function Portfolio() {
         delay: 0.4,
       });
 
-      gsap.from(".scroll-cue", {
+      gsap.from(".studio-gate", {
         y: 10,
         opacity: 0,
         duration: 0.6,
         ease: "power2.out",
         delay: 0.85,
-      });
-
-      gsap.from(".studio-gate", {
-        y: 24,
-        opacity: 0,
-        duration: 0.7,
-        ease: "power3.out",
-        delay: 0.2,
-        scrollTrigger: {
-          trigger: ".studio-gate",
-          start: "top 90%",
-        },
       });
 
       gsap.from(".footer__logotype", {
@@ -225,21 +213,16 @@ export default function Portfolio() {
               </span>
             </div>
 
-            <div className="scroll-cue">
-              <span className="scroll-cue__text">scroll to see work</span>
-              <div className="scroll-cue__mouse" />
+            <div id="projects" className="studio-gate">
+              <button
+                type="button"
+                className="studio-gate__btn"
+                aria-label="Open studio desktop"
+                onClick={(event) => openDesktop(event.currentTarget.getBoundingClientRect())}
+              >
+                <Image src="/icon.svg" alt="" width={72} height={66} priority />
+              </button>
             </div>
-          </section>
-
-          <section id="projects" className="studio-gate">
-            <button
-              type="button"
-              className="studio-gate__btn"
-              aria-label="Open studio desktop"
-              onClick={(event) => openDesktop(event.currentTarget.getBoundingClientRect())}
-            >
-              <Image src="/icon.svg" alt="" width={80} height={73} priority />
-            </button>
           </section>
 
           <footer id="contact" className="footer">

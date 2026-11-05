@@ -133,6 +133,19 @@ a {
   color: inherit;
 }
 
+.tubelight-navbar a.tubelight-navbar__item {
+  color: color-mix(in srgb, #b9a8d0 85%, transparent);
+}
+
+.tubelight-navbar a.tubelight-navbar__item:hover {
+  color: #b9a8d0;
+}
+
+.tubelight-navbar a.tubelight-navbar__item--active,
+.tubelight-navbar a.tubelight-navbar__item--active:hover {
+  color: #f2f3f5;
+}
+
 a:focus-visible,
 button:focus-visible {
   outline: 2px solid var(--color-brand);
@@ -1081,24 +1094,28 @@ button:focus-visible {
 .studio-gate {
   display: flex;
   justify-content: center;
-  padding: 8px 20px 48px;
+  width: 100%;
 }
 
 .studio-gate__btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 88px;
-  min-height: 88px;
+  min-width: 72px;
+  min-height: 72px;
   padding: 12px;
   border: none;
   background: transparent;
   border-radius: 28px;
-  transition: transform 0.45s var(--ease-out);
+  transition: transform 0.35s var(--ease-out);
 }
 
 .studio-gate__btn:hover {
-  transform: translateY(-4px) scale(1.04);
+  transform: scale(1.06);
+}
+
+.studio-gate__btn:active {
+  transform: scale(0.96);
 }
 
 .os-desktop {

@@ -26,7 +26,7 @@ export function NavBar({ items, className, active }: NavBarProps) {
   return (
     <div
       className={cn(
-        "pointer-events-none fixed bottom-0 left-1/2 z-50 mb-6 -translate-x-1/2 sm:top-0 sm:bottom-auto sm:mb-0 sm:pt-6",
+        "tubelight-navbar pointer-events-none fixed bottom-0 left-1/2 z-50 mb-6 -translate-x-1/2 sm:top-0 sm:bottom-auto sm:mb-0 sm:pt-6",
         className
       )}
     >
@@ -46,9 +46,8 @@ export function NavBar({ items, className, active }: NavBarProps) {
                 }
               }}
               className={cn(
-                "relative flex min-h-11 min-w-11 cursor-pointer items-center justify-center rounded-full px-5 text-sm font-semibold transition-colors sm:px-6",
-                "text-[#b9a8d0]/80 hover:text-[#b9a8d0]",
-                isActive && "bg-[#9d86bc]/10 text-[#b9a8d0]"
+                "tubelight-navbar__item relative flex min-h-11 min-w-11 cursor-pointer items-center justify-center rounded-full px-5 text-sm font-semibold transition-colors sm:px-6",
+                isActive && "tubelight-navbar__item--active bg-[#9d86bc]/10"
               )}
             >
               <span className="hidden md:inline">{item.name}</span>
