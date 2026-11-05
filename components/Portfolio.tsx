@@ -29,7 +29,10 @@ function WorkCard({ project }: { project: Project }) {
 
   const body = (
     <>
-      <div className="work-card__media">
+      <div
+        className="work-card__media"
+        style={project.imageRatio ? { aspectRatio: project.imageRatio } : undefined}
+      >
         {project.comingSoon ? (
           <span className="work-card__badge">Coming soon</span>
         ) : null}

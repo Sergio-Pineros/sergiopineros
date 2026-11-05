@@ -25,6 +25,9 @@ export type Project = {
   reverse?: boolean;
   assetLabel: string;
   assetNotes: string;
+  image?: string;
+  imageAlt?: string;
+  imageRatio?: string;
 };
 
 export const HERO_TABS = [
@@ -110,6 +113,9 @@ export const PROJECTS: Project[] = [
     ],
     assetLabel: "SAVRON brand hero",
     assetNotes: "Primary case study image: logo lockup, signage mockup, or brand board. 1200×800px min, PNG or JPG.",
+    image: "/projects/savron.webp",
+    imageAlt: "Savron Barbershop & Lounge website",
+    imageRatio: "3 / 2",
   },
   {
     slug: "grafti",
@@ -131,6 +137,9 @@ export const PROJECTS: Project[] = [
     reverse: true,
     assetLabel: "Grafti brand hero",
     assetNotes: "Brand board, packaging mockup, or field campaign visual. 1200×800px min.",
+    image: "/projects/grafti.webp",
+    imageAlt: "Grafti website",
+    imageRatio: "3 / 2",
   },
   {
     slug: "sergio-co",
@@ -152,6 +161,9 @@ export const PROJECTS: Project[] = [
     href: "https://sergioatelier.co/",
     assetLabel: "Sergio & Co. studio",
     assetNotes: "Studio brand board, bento grid mockup, or sergioatelier.co screenshot. 1200×800px min.",
+    image: "/projects/sergio-co.webp",
+    imageAlt: "Sergio & Co. brand card",
+    imageRatio: "3 / 2",
   },
   {
     slug: "savron-crm",
@@ -173,6 +185,9 @@ export const PROJECTS: Project[] = [
     reverse: true,
     assetLabel: "Savron CRM product",
     assetNotes: "Dashboard screenshot, schedule grid, or host view UI. 1440×900px min, PNG.",
+    image: "/projects/savron-crm.webp",
+    imageAlt: "Savron CRM dashboard",
+    imageRatio: "16 / 10",
   },
   {
     slug: "client-automation",
