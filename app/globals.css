@@ -80,7 +80,7 @@ body.custom-cursor-active button {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: var(--color-ink);
+  background: var(--color-surface);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -114,7 +114,7 @@ body.custom-cursor-active button {
   letter-spacing: 0.1em;
   word-spacing: 0.28em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--color-brand-light) 70%, transparent);
+  color: var(--color-brand-deep);
   pointer-events: none;
 }
 

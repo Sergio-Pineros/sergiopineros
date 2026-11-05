@@ -8,8 +8,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 // reduced-motion fallback). Tuned here for Sergio's icon and brand palette.
 
 const INK = "#9d86bc";
-const INK_LIGHT = "#b9a8d0";
-const PAPER = "#2a0134";
+const INK_DEEP = "#7f6899";
+const PAPER = "#ffffff";
 const EASE_OUT = "cubic-bezier(0.22, 1, 0.36, 1)";
 const HOLD_MS = 1400;
 const FADE_MS = 560;
@@ -132,8 +132,10 @@ function sampleIcon(
   // when the whole raster is dark (failed paper, or a silhouette mark).
   const invert = !weakContrast && hi < 90;
 
-  const k = 1.45;
-  const density = 0.12;
+  // On white paper, ink the dark linework. A slightly heavier density keeps
+  // the portrait from washing out against #ffffff.
+  const k = 1.55;
+  const density = 0.16;
   const lum = new Float32Array(count);
 
   for (let i = 0; i < count; i++) {
@@ -251,8 +253,8 @@ export default function ScreenLoader({ onComplete }: { onComplete: () => void })
       }
       ctx.fill();
 
-      // A lighter lavender pass on the densest cells keeps the mark from going flat.
-      ctx.fillStyle = INK_LIGHT;
+      // A deeper lavender pass on the densest cells keeps the mark from washing out on white.
+      ctx.fillStyle = INK_DEEP;
       ctx.beginPath();
       const highlight = radius * 0.55;
       for (let y = 0; y < rows; y++) {
