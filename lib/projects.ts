@@ -32,7 +32,7 @@ export type Project = {
 
 export const HERO_TABS = [
   { id: "who", label: "WHO I AM" },
-  { id: "build", label: "WHAT I BUILD" },
+  { id: "build", label: "WHAT I MAKE" },
   { id: "believe", label: "WHAT I BELIEVE" },
   { id: "write", label: "WHAT I WRITE" },
   { id: "upto", label: "WHAT I'M UP TO" },
@@ -41,63 +41,64 @@ export const HERO_TABS = [
 export type HeroTabId = (typeof HERO_TABS)[number]["id"];
 
 export type HeroPanel = {
-  headline: string;
+  opening: string;
+  emphasis: string;
+  ending: string;
   script: string;
-  scriptTop?: string;
-  scriptLeft?: string;
-  scriptRotate?: number;
+  note: string;
 };
 
-/** Per-tab hero copy — headline and handwritten script swap on tab click (sanvithi.com pattern) */
+/** Three editorial lines share a consistent rhythm across the five questions. */
 export const HERO_PANELS: Record<HeroTabId, HeroPanel> = {
   who: {
-    headline:
-      "Designer who creates meaningful experiences through brand, product, and systems design.",
-    script: "who i am",
-    scriptTop: "52%",
-    scriptLeft: "50%",
-    scriptRotate: -5,
+    opening: "I make things to",
+    emphasis: "understand",
+    ending: "the world. And myself.",
+    script: "a little better, anyway.",
+    note: "I'm Sergio. A Colombian artist, writer, and maker living in the U.S.",
   },
   build: {
-    headline:
-      "I build brand identities, digital products, and automations for teams that want to move faster.",
-    script: "what i build",
-    scriptTop: "48%",
-    scriptLeft: "46%",
-    scriptRotate: -4,
+    opening: "Words, sounds,",
+    emphasis: "images,",
+    ending: "and things you can hold.",
+    script: "curiosity takes many forms.",
+    note: "Sometimes a business. Sometimes a song. Always a way of finding out.",
   },
   believe: {
-    headline:
-      "I believe good work feels inevitable: clear in thought, precise in form, and human at heart.",
-    script: "what i believe",
-    scriptTop: "54%",
-    scriptLeft: "52%",
-    scriptRotate: -6,
+    opening: "What we notice",
+    emphasis: "becomes",
+    ending: "what matters to us.",
+    script: "attention is a kind of devotion.",
+    note: "I think what we pay attention to quietly becomes what we give meaning to.",
   },
   write: {
-    headline:
-      "I write about creativity, philosophy, mindset, and the slow discipline of developing taste.",
-    script: "what i write",
-    scriptTop: "50%",
-    scriptLeft: "44%",
-    scriptRotate: -3,
+    opening: "Technology,",
+    emphasis: "consciousness,",
+    ending: "and being alive.",
+    script: "no neat answers, mostly questions.",
+    note: "Notes on the strange ways we make sense of the world. And occasionally, each other.",
   },
   upto: {
-    headline:
-      "I'm looking for a team where brand craft and new technology can shape each other.",
-    script: "what i'm up to",
-    scriptTop: "56%",
-    scriptLeft: "48%",
-    scriptRotate: -5,
+    opening: "Strange carousels.",
+    emphasis: "New sounds.",
+    ending: "A question taking shape.",
+    script: "a few things in progress.",
+    note: "Exploring music, Nature, Rebranded, and a reflection deck called What Are We Making Sacred?",
   },
 };
+
+export const CREATIVE_LINKS = [
+  { label: "Writing", href: "https://sergwrites.substack.com" },
+  { label: "Visual experiments", href: "https://www.instagram.com/serg.writes/" },
+  { label: "Creative studio", href: "https://sergioatelier.co" },
+] as const;
 
 export const PROJECTS: Project[] = [
   {
     slug: "savron",
     name: "Savron",
     description:
-      "I built Savron's brand identity: monogram systems, signage, digital passes, and social templates. Quiet luxury, editorial restraint.",
+      "An identity for Savron, from monograms and signage to digital passes. An exploration of how a small mark can carry a whole atmosphere.",
     tagsLine: "Brand Identity · Luxury · Visual Systems · Barbershop · Shipped",
     theme: {
       bg: "rgb(180, 158, 142)",
@@ -121,7 +122,7 @@ export const PROJECTS: Project[] = [
     slug: "grafti",
     name: "Grafti",
     description:
-      "I designed Grafti's brand with organic geometry, field-ready marketing assets, and a site that favors substance over spectacle.",
+      "Organic geometry for an agrotech brand. I worked across identity, marketing assets, and a website, looking for a visual language rooted in what Grafti does.",
     tagsLine: "Agrotech · Brand Identity · Packaging · Marketing Assets · Shipped",
     theme: {
       bg: "rgb(198, 208, 178)",
@@ -145,7 +146,7 @@ export const PROJECTS: Project[] = [
     slug: "sergio-co",
     name: "Sergio & Co.",
     description:
-      "I built my studio brand: monochromatic, sharp, silent luxury. Bento-style systems for creative direction, writing, newsletters, and ICP research.",
+      "The identity I made for my own creative studio. A place where visual systems, writing, and building things for other people meet.",
     tagsLine: "Studio · Creative Direction · Silent Luxury · Writing · Shipped",
     theme: {
       bg: "rgb(228, 225, 218)",
@@ -169,7 +170,7 @@ export const PROJECTS: Project[] = [
     slug: "savron-crm",
     name: "Savron CRM",
     description:
-      "I designed and built a barbershop management platform with scheduling, client records, Apple Wallet passes, and automated SMS/email in one product.",
+      "What does a barbershop need behind the scenes? I designed and built a platform for scheduling, client records, Wallet passes, and messages. Another kind of making.",
     tagsLine: "0 to 1 · Product Design · CRM · AI Systems · Shipped",
     theme: {
       bg: "rgb(168, 172, 192)",
@@ -193,7 +194,7 @@ export const PROJECTS: Project[] = [
     slug: "client-automation",
     name: "Client Automations",
     description:
-      "I'm building AI agent workflows and custom automations for founders. Case studies coming soon.",
+      "An ongoing exploration of AI agents and custom workflows for founders. I'm interested in what happens when technology leaves more room for the human part.",
     tagsLine: "AI Agents · Workflow Automation · Coming Soon",
     theme: {
       bg: "rgb(210, 205, 198)",

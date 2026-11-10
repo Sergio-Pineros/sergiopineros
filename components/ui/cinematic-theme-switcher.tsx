@@ -2,7 +2,7 @@
 
 import { Sun, Moon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useTheme } from "next-themes";
 
 interface Particle {
@@ -12,6 +12,7 @@ interface Particle {
 }
 
 export function CinematicThemeSwitcher() {
+  const reducedMotion = useReducedMotion();
   const { theme, setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [particles, setParticles] = useState<Particle[]>([]);
@@ -38,7 +39,7 @@ export function CinematicThemeSwitcher() {
   };
 
   const handleToggle = () => {
-    generateParticles();
+    if (!reducedMotion) generateParticles();
     setTheme(isDark ? "light" : "dark");
   };
 
@@ -75,6 +76,7 @@ export function CinematicThemeSwitcher() {
 
       <motion.button
         ref={toggleRef}
+        type="button"
         onClick={handleToggle}
         className="relative flex h-[64px] w-[104px] items-center rounded-full p-[6px] transition-all duration-300 focus:outline-none"
         style={{
@@ -116,7 +118,7 @@ export function CinematicThemeSwitcher() {
         aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
         role="switch"
         aria-checked={isDark}
-        whileTap={{ scale: 0.98 }}
+        whileTap={reducedMotion ? undefined : { scale: 0.98 }}
       >
         <div
           className="pointer-events-none absolute inset-[3px] rounded-full"
@@ -178,7 +180,7 @@ export function CinematicThemeSwitcher() {
             border: isDark ? "2px solid rgba(185, 168, 208, 0.28)" : "2px solid rgba(255, 255, 255, 0.9)",
           }}
           animate={{ x: isDark ? 46 : 0 }}
-          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          transition={reducedMotion ? { duration: 0 } : { type: "spring", stiffness: 300, damping: 20 }}
         >
           <div
             className="pointer-events-none absolute inset-0 rounded-full"

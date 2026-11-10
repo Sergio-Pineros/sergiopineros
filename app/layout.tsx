@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Baskervville, Caveat, Inter } from "next/font/google";
+import { Baskervville, Caveat, DM_Sans } from "next/font/google";
 import "./globals.css";
 
 const serif = Baskervville({
@@ -10,10 +10,10 @@ const serif = Baskervville({
   display: "swap",
 });
 
-const sans = Inter({
+const sans = DM_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
-  variable: "--font-inter",
+  variable: "--font-dm-sans",
   display: "swap",
 });
 
@@ -31,17 +31,27 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Sergio Piñeros, brand & product designer",
+  metadataBase: new URL("https://sergiopineros.com"),
+  title: "Sergio Piñeros — artist, writer & maker",
   description:
-    "Founder & Creative Director at Sergio Atelier. Brand identity, product design, AI systems, and visual storytelling.",
+    "Words, sounds, images, and things you can hold. The creative world of Sergio Piñeros, a Colombian artist, writer, and maker exploring attention, technology, and being alive.",
+  alternates: { canonical: "/" },
+  twitter: {
+    card: "summary",
+    title: "Sergio Piñeros — artist, writer & maker",
+    description: "Words, sounds, images, and questions. A personal world of art, writing, music, and making.",
+  },
   icons: {
-    icon: "/logo.svg",
-    apple: "/logo.svg",
+    icon: "/icon.svg",
+    apple: "/icon.svg",
   },
   openGraph: {
-    title: "Sergio Piñeros",
-    description: "Designer who creates meaningful experiences through brand, product, and systems design.",
+    title: "Sergio Piñeros — artist, writer & maker",
+    description: "Words, sounds, images, and questions. Step into the creative world of Colombian artist, writer, and maker Sergio Piñeros.",
     type: "website",
+    url: "https://sergiopineros.com",
+    locale: "en_US",
+    siteName: "Sergio Piñeros",
   },
 };
 

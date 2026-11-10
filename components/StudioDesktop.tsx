@@ -2,8 +2,9 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 import { useTheme } from "next-themes";
-import { PROJECTS, type Project } from "@/lib/projects";
+import { PROJECTS, CREATIVE_LINKS, type Project } from "@/lib/projects";
 import WavesWallpaper from "@/components/WavesWallpaper";
 import { CinematicThemeSwitcher } from "@/components/ui/cinematic-theme-switcher";
 
@@ -99,6 +100,30 @@ export default function StudioDesktop({ open, onClose, origin = null }: Props) {
     );
   }, [open, origin, reduced]);
 
+  useEffect(() => {
+    if (!open || !rootRef.current) return;
+    const previousFocus = document.activeElement as HTMLElement | null;
+    const root = rootRef.current;
+    root.querySelector<HTMLButtonElement>("button")?.focus();
+    const trapFocus = (event: KeyboardEvent) => {
+      if (event.key !== "Tab") return;
+      const targets = Array.from(root.querySelectorAll<HTMLElement>('button, a[href], [tabindex="0"]'))
+        .filter((node) => node.getClientRects().length > 0);
+      const first = targets[0];
+      const last = targets[targets.length - 1];
+      if (event.shiftKey && (document.activeElement === first || !root.contains(document.activeElement))) {
+        event.preventDefault(); last?.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault(); first?.focus();
+      }
+    };
+    root.addEventListener("keydown", trapFocus);
+    return () => {
+      root.removeEventListener("keydown", trapFocus);
+      previousFocus?.focus();
+    };
+  }, [open]);
+
   const closeTopWindow = useCallback(() => {
     setWindows((prev) => {
       if (!prev.length) return prev;
@@ -115,14 +140,8 @@ export default function StudioDesktop({ open, onClose, origin = null }: Props) {
 
     const onKey = (event: KeyboardEvent) => {
       if (event.key !== "Escape") return;
-      setWindows((prev) => {
-        if (prev.length) {
-          const top = [...prev].sort((a, b) => b.z - a.z)[0];
-          return prev.filter((item) => item.slug !== top.slug);
-        }
-        onClose();
-        return prev;
-      });
+      if (windows.length) closeTopWindow();
+      else onClose();
     };
 
     window.addEventListener("keydown", onKey);
@@ -132,7 +151,7 @@ export default function StudioDesktop({ open, onClose, origin = null }: Props) {
       window.removeEventListener("keydown", onKey);
       document.body.style.overflow = previous;
     };
-  }, [open, onClose]);
+  }, [open, onClose, windows.length, closeTopWindow]);
 
   const openFolder = (project: Project, from: DOMRect | null) => {
     const mobile = window.innerWidth < 720;
@@ -141,7 +160,7 @@ export default function StudioDesktop({ open, onClose, origin = null }: Props) {
     const originX = from ? from.left + from.width / 2 : window.innerWidth / 2;
     const originY = from ? from.top + from.height / 2 : window.innerHeight / 2;
     const x = mobile ? 0 : Math.max(12, Math.min(originX - width / 2, window.innerWidth - width - 12));
-    const y = mobile ? 0 : Math.max(40, Math.min(originY - 24, window.innerHeight - height - 88));
+    const y = mobile ? 44 : Math.max(40, Math.min(originY - 24, window.innerHeight - height - 88));
 
     setWindows((prev) => {
       const existing = prev.find((item) => item.slug === project.slug);
@@ -223,7 +242,7 @@ export default function StudioDesktop({ open, onClose, origin = null }: Props) {
         <button type="button" className="os-menubar__home" onClick={onClose}>
           Home
         </button>
-        <span className="os-menubar__app">Finder</span>
+        <span className="os-menubar__app">Things I’ve made</span>
         <div className="os-menubar__end">
           <div className="os-theme">
             <CinematicThemeSwitcher />
@@ -249,6 +268,13 @@ export default function StudioDesktop({ open, onClose, origin = null }: Props) {
         ))}
       </div>
 
+      <p className="os-desktop__note">A few different ways<br />of following my curiosity.</p>
+      <nav className="os-desktop__links" aria-label="Elsewhere in my world">
+        {CREATIVE_LINKS.map((link) => (
+          <a key={link.href} href={link.href} target="_blank" rel="noopener noreferrer">{link.label} <ArrowUpRight size={12} aria-hidden="true" /></a>
+        ))}
+      </nav>
+
       {windows.map((win) => {
         const project = PROJECTS.find((item) => item.slug === win.slug);
         if (!project) return null;
@@ -263,6 +289,7 @@ export default function StudioDesktop({ open, onClose, origin = null }: Props) {
               zIndex: 20 + win.z,
               transformOrigin: `${win.originX - win.x}px ${win.originY - win.y}px`,
             }}
+            aria-labelledby={`window-title-${project.slug}`}
             onMouseDown={() => focusWindow(win.slug)}
           >
             <header
@@ -275,9 +302,12 @@ export default function StudioDesktop({ open, onClose, origin = null }: Props) {
                 type="button"
                 className="os-window__close"
                 aria-label={`Close ${project.name}`}
-                onClick={() => closeWindow(win.slug)}
+                onClick={() => {
+                  closeWindow(win.slug);
+                  rootRef.current?.querySelector<HTMLButtonElement>(`.os-folder--${project.slug}`)?.focus();
+                }}
               />
-              <span className="os-window__name">{project.name}</span>
+              <span id={`window-title-${project.slug}`} className="os-window__name">{project.name}</span>
             </header>
             <div className="os-window__body">
               {project.image ? (
@@ -292,8 +322,8 @@ export default function StudioDesktop({ open, onClose, origin = null }: Props) {
                 </div>
               ) : (
                 <div className="os-window__empty">
-                  <p>This folder is empty</p>
-                  <p>{project.comingSoon ? "Coming soon" : project.assetNotes}</p>
+                  <p>A little further down the rabbit hole.</p>
+                  <p>{project.comingSoon ? "Still taking shape. More to share as it grows." : "Notes from an ongoing exploration."}</p>
                 </div>
               )}
               <h2>{project.name}</h2>
@@ -305,7 +335,7 @@ export default function StudioDesktop({ open, onClose, origin = null }: Props) {
               </ul>
               {project.href && !project.comingSoon ? (
                 <a href={project.href} target="_blank" rel="noopener noreferrer">
-                  Open project
+                  Visit the studio <ArrowUpRight size={14} aria-hidden="true" />
                 </a>
               ) : null}
             </div>
