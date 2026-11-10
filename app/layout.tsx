@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Baskervville, Caveat, Inter } from "next/font/google";
+import { Baskervville, Caveat, DM_Sans } from "next/font/google";
 import "./globals.css";
 
 const serif = Baskervville({
@@ -10,10 +10,10 @@ const serif = Baskervville({
   display: "swap",
 });
 
-const sans = Inter({
+const sans = DM_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
-  variable: "--font-inter",
+  variable: "--font-dm-sans",
   display: "swap",
 });
 
@@ -31,16 +31,16 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Sergio Piñeros, brand & product designer",
+  title: "Sergio Piñeros — writing, sound, and objects",
   description:
-    "Founder & Creative Director at Sergio Atelier. Brand identity, product design, AI systems, and visual storytelling.",
+    "Writing and making things at the intersection of technology, art and consciousness. What are we making sacred?",
   icons: {
     icon: "/logo.svg",
     apple: "/logo.svg",
   },
   openGraph: {
     title: "Sergio Piñeros",
-    description: "Designer who creates meaningful experiences through brand, product, and systems design.",
+    description: "Writing, listening, and objects. What are we making sacred?",
     type: "website",
   },
 };
