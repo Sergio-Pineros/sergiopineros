@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { useTheme } from "next-themes";
 import { PROJECTS, CREATIVE_LINKS, type Project } from "@/lib/projects";
+import AttentionEye from "@/components/AttentionEye";
 import WavesWallpaper from "@/components/WavesWallpaper";
 import { CinematicThemeSwitcher } from "@/components/ui/cinematic-theme-switcher";
 
@@ -310,7 +311,11 @@ export default function StudioDesktop({ open, onClose, origin = null }: Props) {
               <span id={`window-title-${project.slug}`} className="os-window__name">{project.name}</span>
             </header>
             <div className="os-window__body">
-              {project.image ? (
+              {project.artwork === "attention-eye" ? (
+                <div className="os-window__artwork" role="img" aria-label="An engraved eye. The art of noticing.">
+                  <AttentionEye />
+                </div>
+              ) : project.image ? (
                 <div className="os-window__photo" style={{ aspectRatio: project.imageRatio ?? "3 / 2" }}>
                   <Image
                     src={project.image}

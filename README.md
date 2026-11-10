@@ -1,6 +1,6 @@
 # Sergio Piñeros — Portfolio
 
-An evolving personal home for Sergio Piñeros: artist, writer, and maker. Five questions open a conversation; an interactive desktop holds the projects. Built with Next.js, Tailwind CSS v4, and GSAP.
+An evolving personal home for Sergio Piñeros: artist, writer, and maker. A quiet, full-screen statement opens into a separate five-question conversation; an interactive desktop holds the projects. Built with Next.js, Tailwind CSS v4, and GSAP.
 
 ## Stack
 
@@ -16,7 +16,8 @@ app/
   layout.tsx, page.tsx, globals.css
 components/
   Portfolio.tsx          # Five-question conversation, desktop entry, and footer
-  AttentionEye.tsx       # Original SVG engraving; a single editorial collage treatment
+  QuestionConversation.tsx # Full-screen questions with a liquid dissolve
+  AttentionEye.tsx       # Original SVG engraving, discovered inside a desktop folder
   StudioDesktop.tsx      # Existing folders, draggable windows, and project links
   AssetPlaceholder.tsx   # Dashed placeholders until assets arrive
 lib/
@@ -33,7 +34,9 @@ npm run dev
 
 ## Assets
 
-See **[ASSETS.md](./ASSETS.md)** for the full checklist of images needed per section (hero stickers, project screenshots, footer, etc.).
+Project images live in `public/projects`. The original eye engraving lives only in
+the desktop folder **The art of noticing**; the hero contains no illustrations.
+The older **[ASSETS.md](./ASSETS.md)** checklist remains as a project asset reference.
 
 ## Deploy
 
@@ -55,7 +58,9 @@ Google Fonts (`fonts.googleapis.com` and `fonts.gstatic.com`) must be reachable
 at compile time. Next.js hosts downloaded fonts locally at runtime.
 
 For visual review, check all five questions at desktop, tablet, and narrow mobile
-widths. The tabs support Arrow Left/Right and Home/End. Open the desktop, open each
+widths. Tap the large question to advance, or use Enter/Space, Arrow Left/Right,
+and Home/End. After five seconds viewing the first question, a gentle liquid ripple
+suggests interaction (disabled for reduced motion). Open the desktop, open each
 folder, drag a window on desktop, toggle the theme, and close with Escape. Tab stays
 inside the desktop and focus returns to its entry button on exit. Also check with
 reduced motion enabled. There is no unit-test suite configured.
@@ -64,5 +69,5 @@ reduced motion enabled. There is no unit-test suite configured.
 
 `AttentionEye.tsx` is original vector linework, not a reproduction of reference art.
 `public/textures/paper-grain.png` is a small, generated grayscale paper tile. It is
-static, reused across the hero and footer, and does not animate or intercept input.
+static, reused across the hero, conversation, and footer, and does not animate or intercept input.
 The reflection deck is described as work in progress; there is no shop or preorder.

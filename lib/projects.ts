@@ -25,67 +25,34 @@ export type Project = {
   reverse?: boolean;
   assetLabel: string;
   assetNotes: string;
+  artwork?: "attention-eye";
   image?: string;
   imageAlt?: string;
   imageRatio?: string;
 };
 
-export const HERO_TABS = [
-  { id: "who", label: "WHO I AM" },
-  { id: "build", label: "WHAT I MAKE" },
-  { id: "believe", label: "WHAT I BELIEVE" },
-  { id: "write", label: "WHAT I WRITE" },
-  { id: "upto", label: "WHAT I'M UP TO" },
+export const QUESTIONS = [
+  {
+    id: "who", question: "Who am I?", lines: ["Who", "am I?"],
+    answer: "I'm Sergio. A Colombian artist, writer, and maker. I make things because I'm curious.",
+  },
+  {
+    id: "make", question: "What do I make?", lines: ["What", "do I", "make?"],
+    answer: "Words, sounds, images, and sometimes things you can hold.",
+  },
+  {
+    id: "believe", question: "What do I believe?", lines: ["What", "do I", "believe?"],
+    answer: "The things we pay attention to quietly become the things we give meaning to.",
+  },
+  {
+    id: "write", question: "What do I write?", lines: ["What", "do I", "write?"],
+    answer: "Technology, consciousness, and the strange ways we make sense of being alive.",
+  },
+  {
+    id: "upto", question: "What am I up to?", lines: ["What am", "I up to?"],
+    answer: "Strange little carousels, new music, and a reflection deck called What Are We Making Sacred?",
+  },
 ] as const;
-
-export type HeroTabId = (typeof HERO_TABS)[number]["id"];
-
-export type HeroPanel = {
-  opening: string;
-  emphasis: string;
-  ending: string;
-  script: string;
-  note: string;
-};
-
-/** Three editorial lines share a consistent rhythm across the five questions. */
-export const HERO_PANELS: Record<HeroTabId, HeroPanel> = {
-  who: {
-    opening: "I make things to",
-    emphasis: "understand",
-    ending: "the world. And myself.",
-    script: "a little better, anyway.",
-    note: "I'm Sergio. A Colombian artist, writer, and maker living in the U.S.",
-  },
-  build: {
-    opening: "Words, sounds,",
-    emphasis: "images,",
-    ending: "and things you can hold.",
-    script: "curiosity takes many forms.",
-    note: "Sometimes a business. Sometimes a song. Always a way of finding out.",
-  },
-  believe: {
-    opening: "What we notice",
-    emphasis: "becomes",
-    ending: "what matters to us.",
-    script: "attention is a kind of devotion.",
-    note: "I think what we pay attention to quietly becomes what we give meaning to.",
-  },
-  write: {
-    opening: "Technology,",
-    emphasis: "consciousness,",
-    ending: "and being alive.",
-    script: "no neat answers, mostly questions.",
-    note: "Notes on the strange ways we make sense of the world. And occasionally, each other.",
-  },
-  upto: {
-    opening: "Strange carousels.",
-    emphasis: "New sounds.",
-    ending: "A question taking shape.",
-    script: "a few things in progress.",
-    note: "Exploring music, Nature, Rebranded, and a reflection deck called What Are We Making Sacred?",
-  },
-};
 
 export const CREATIVE_LINKS = [
   { label: "Writing", href: "https://sergwrites.substack.com" },
@@ -94,6 +61,18 @@ export const CREATIVE_LINKS = [
 ] as const;
 
 export const PROJECTS: Project[] = [
+  {
+    slug: "art-of-noticing",
+    name: "The art of noticing",
+    description: "A small reminder to look again. Familiar things have a way of becoming strange when we give them a little more attention.",
+    tagsLine: "Attention · Perception · An ongoing curiosity",
+    theme: { bg: "#faf8f5", tagBg: "#e8e0ec", tagBorder: "#9d86bc" },
+    tags: [],
+    artwork: "attention-eye",
+    assetLabel: "The art of noticing — an engraved eye",
+    assetNotes: "Original line engraving. A small discovery inside the desktop.",
+  },
+
   {
     slug: "savron",
     name: "Savron",

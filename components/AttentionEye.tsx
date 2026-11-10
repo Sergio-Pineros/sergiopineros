@@ -28,7 +28,7 @@ export default function AttentionEye() {
           ))}
         </g>
       </svg>
-      <figcaption>fig. 01 — the art of noticing</figcaption>
+      <figcaption>the art of noticing</figcaption>
     </figure>
   );
 }
