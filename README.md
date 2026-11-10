@@ -34,8 +34,8 @@ npm run dev
 
 ## Assets
 
-Project images live in `public/projects`. The original eye engraving lives only in
-the desktop folder **The art of noticing**; the hero contains no illustrations.
+Project images live in `public/projects`. The original eye engraving lives in the desktop folder **The art of noticing**
+and its miniature cover preview; the hero contains no illustrations.
 The older **[ASSETS.md](./ASSETS.md)** checklist remains as a project asset reference.
 
 ## Deploy
@@ -58,10 +58,14 @@ Google Fonts (`fonts.googleapis.com` and `fonts.gstatic.com`) must be reachable
 at compile time. Next.js hosts downloaded fonts locally at runtime.
 
 For visual review, check all five questions at desktop, tablet, and narrow mobile
-widths. Tap the large question to advance, or use Enter/Space, Arrow Left/Right,
-and Home/End. After five seconds viewing the first question, a gentle liquid ripple
+widths. The question has a soft light behind it and a translucent tracing-paper layer
+that lifts on interaction, inspired by printed editorial compositions. Touch/click its text or rub the ink
+sideways to advance; keyboard controls are Enter/Space, Arrow Left/Right, and
+Home/End. Scrolling never changes the current question. After five seconds viewing the first question, a gentle liquid ripple
 suggests interaction (disabled for reduced motion). Open the desktop, open each
-folder, drag a window on desktop, toggle the theme, and close with Escape. Tab stays
+folder, inspect the content preview on its translucent cover, drag a window on
+desktop, toggle the theme, and close with Escape. Mobile previews are centered
+floating windows with visible margins, bounded height, and a dismissible backdrop. Tab stays
 inside the desktop and focus returns to its entry button on exit. Also check with
 reduced motion enabled. There is no unit-test suite configured.
 

@@ -65,7 +65,7 @@ export const PROJECTS: Project[] = [
     slug: "art-of-noticing",
     name: "The art of noticing",
     description: "A small reminder to look again. Familiar things have a way of becoming strange when we give them a little more attention.",
-    tagsLine: "Attention · Perception · An ongoing curiosity",
+    tagsLine: "",
     theme: { bg: "#faf8f5", tagBg: "#e8e0ec", tagBorder: "#9d86bc" },
     tags: [],
     artwork: "attention-eye",

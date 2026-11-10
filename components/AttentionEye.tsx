@@ -1,11 +1,14 @@
-/** Original line engraving: attention as the thread through all five questions. */
+import { useId } from "react";
+
+/** Original line engraving, shared by the artwork and its folder preview. */
 export default function AttentionEye() {
+  const id = useId().replace(/:/g, "");
   return (
-    <figure className="attention-eye" aria-hidden="true">
+    <span className="attention-eye" aria-hidden="true">
       <svg viewBox="0 0 280 180" fill="none">
         <defs>
-          <clipPath id="eye-aperture"><path d="M22 91Q130 8 258 91Q145 166 22 91Z" /></clipPath>
-          <pattern id="eye-hatching" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(22)">
+          <clipPath id={`${id}-aperture`}><path d="M22 91Q130 8 258 91Q145 166 22 91Z" /></clipPath>
+          <pattern id={`${id}-hatching`} width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(22)">
             <path d="M0 0V5" stroke="currentColor" strokeWidth=".7" />
           </pattern>
         </defs>
@@ -13,8 +16,8 @@ export default function AttentionEye() {
           <path d="M15 89Q125 -3 265 88M22 91Q130 8 258 91Q145 166 22 91Z" strokeWidth="1.8" />
           <path d="M25 103Q141 178 253 101M34 116Q142 179 241 113M46 130Q144 176 227 128" strokeWidth=".6" />
           <path d="M30 70Q130 6 249 70M43 55Q135 2 234 54M66 36Q142 4 209 36" strokeWidth=".7" />
-          <g clipPath="url(#eye-aperture)">
-            <circle cx="141" cy="88" r="47" fill="url(#eye-hatching)" strokeWidth="1.2" />
+          <g clipPath={`url(#${id}-aperture)`}>
+            <circle cx="141" cy="88" r="47" fill={`url(#${id}-hatching)`} strokeWidth="1.2" />
             {[...Array(48)].map((_, i) => (
               <path key={i} d="M141 45L142 62" transform={`rotate(${i * 7.5} 141 88)`} strokeWidth={i % 3 === 0 ? 1.4 : .6} />
             ))}
@@ -28,7 +31,6 @@ export default function AttentionEye() {
           ))}
         </g>
       </svg>
-      <figcaption>the art of noticing</figcaption>
-    </figure>
+    </span>
   );
 }

@@ -5,7 +5,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
-import { ArrowUpRight, Mail } from "lucide-react";
 import { ThemeProvider } from "next-themes";
 import ScreenLoader from "@/components/ScreenLoader";
 import StudioDesktop from "@/components/StudioDesktop";
@@ -46,7 +45,7 @@ export default function Portfolio() {
               setDesktopOrigin(event.currentTarget.getBoundingClientRect());
               setDesktopOpen(true);
             }}>
-              Look around <ArrowUpRight size={16} aria-hidden="true" />
+              Look around
             </button>
           </div>
         </header>
@@ -60,14 +59,14 @@ export default function Portfolio() {
           </section>
           <QuestionConversation paused={desktopOpen || !loaded} />
           <footer id="contact" className="footer">
-            <div className="footer-question"><span>A question I keep returning to</span><p>What Are We<br />Making <em>Sacred?</em></p><small>In the things we notice. In the things we make.</small></div>
+            <div className="footer-question"><p>What Are We<br />Making <em>Sacred?</em></p></div>
             <div className="footer__logo-wrap">
               <div className="footer__logotype" role="img" aria-label="Sergio Piñeros" />
             </div>
             <nav className="footer__actions" aria-label="Footer">
-              <a href="mailto:hello@sergioatelier.co" className="footer__pill"><Mail size={14} aria-hidden="true" /> email</a>
+              <a href="mailto:hello@sergioatelier.co" className="footer__pill">email</a>
               {CREATIVE_LINKS.map((link) => (
-                <a key={link.href} href={link.href} className="footer__pill" target="_blank" rel="noopener noreferrer">{link.label} <ArrowUpRight size={14} aria-hidden="true" /></a>
+                <a key={link.href} href={link.href} className="footer__pill" target="_blank" rel="noopener noreferrer">{link.label}</a>
               ))}
             </nav>
           </footer>

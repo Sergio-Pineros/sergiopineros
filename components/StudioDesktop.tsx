@@ -1,8 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
+import { Workflow } from "lucide-react";
 import { useTheme } from "next-themes";
 import { PROJECTS, CREATIVE_LINKS, type Project } from "@/lib/projects";
 import AttentionEye from "@/components/AttentionEye";
@@ -26,22 +26,21 @@ type Props = {
   origin?: DOMRect | null;
 };
 
-function parseTags(tagsLine: string) {
-  return tagsLine.split("·").map((tag) => tag.trim()).filter(Boolean);
-}
-
-function FolderGlyph({ comingSoon = false }: { comingSoon?: boolean }) {
+function FolderPreview({ project }: { project: Project }) {
   return (
-    <svg viewBox="0 0 72 58" width="64" height="52" aria-hidden="true">
-      <path
-        d="M4 14c0-3.3 2.7-6 6-6h16l6 7h32c3.3 0 6 2.7 6 6v25c0 3.3-2.7 6-6 6H10c-3.3 0-6-2.7-6-6V14z"
-        fill={comingSoon ? "#b9a8d0" : "#9d86bc"}
-      />
-      <path
-        d="M4 22h64v24c0 3.3-2.7 6-6 6H10c-3.3 0-6-2.7-6-6V22z"
-        fill={comingSoon ? "#cfc3e0" : "#7f6899"}
-      />
-    </svg>
+    <span className="folder-preview" aria-hidden="true" style={{ "--folder-color": project.theme.bg } as CSSProperties}>
+      <svg className="folder-preview__back" viewBox="0 0 100 82" fill="none">
+        <path d="M5 17a7 7 0 0 1 7-7h26l9 9h41a7 7 0 0 1 7 7v45a6 6 0 0 1-6 6H11a6 6 0 0 1-6-6Z" />
+      </svg>
+      <span className="folder-preview__contents">
+        {project.artwork ? <AttentionEye /> : project.image ? (
+          <Image src={project.image} alt="" fill sizes="96px" style={{ objectFit: "cover" }} />
+        ) : <Workflow className="folder-preview__symbol" strokeWidth={1.2} />}
+      </span>
+      <svg className="folder-preview__front" viewBox="0 0 100 82" fill="none">
+        <path d="M5 37a6 6 0 0 1 6-6h78a6 6 0 0 1 6 6v34a6 6 0 0 1-6 6H11a6 6 0 0 1-6-6Z" />
+      </svg>
+    </span>
   );
 }
 
@@ -156,11 +155,11 @@ export default function StudioDesktop({ open, onClose, origin = null }: Props) {
 
   const openFolder = (project: Project, from: DOMRect | null) => {
     const mobile = window.innerWidth < 720;
-    const width = mobile ? window.innerWidth : Math.min(620, window.innerWidth - 32);
+    const width = mobile ? window.innerWidth - 40 : Math.min(620, window.innerWidth - 32);
     const height = mobile ? window.innerHeight : Math.min(520, window.innerHeight - 96);
     const originX = from ? from.left + from.width / 2 : window.innerWidth / 2;
     const originY = from ? from.top + from.height / 2 : window.innerHeight / 2;
-    const x = mobile ? 0 : Math.max(12, Math.min(originX - width / 2, window.innerWidth - width - 12));
+    const x = mobile ? 20 : Math.max(12, Math.min(originX - width / 2, window.innerWidth - width - 12));
     const y = mobile ? 44 : Math.max(40, Math.min(originY - 24, window.innerHeight - height - 88));
 
     setWindows((prev) => {
@@ -260,36 +259,34 @@ export default function StudioDesktop({ open, onClose, origin = null }: Props) {
             className={`os-folder os-folder--${project.slug}`}
             onClick={(event) => openFolder(project, event.currentTarget.getBoundingClientRect())}
           >
-            <FolderGlyph comingSoon={project.comingSoon} />
-            <span>
+            <FolderPreview project={project} />
+            <span className="os-folder__label">
               {project.name}
-              {project.comingSoon ? " · soon" : ""}
             </span>
           </button>
         ))}
       </div>
 
-      <p className="os-desktop__note">A few different ways<br />of following my curiosity.</p>
       <nav className="os-desktop__links" aria-label="Elsewhere in my world">
         {CREATIVE_LINKS.map((link) => (
-          <a key={link.href} href={link.href} target="_blank" rel="noopener noreferrer">{link.label} <ArrowUpRight size={12} aria-hidden="true" /></a>
+          <a key={link.href} href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>
         ))}
       </nav>
 
+      {windows.length > 0 && <button type="button" className="os-window-shade" aria-label="Close preview" onClick={closeTopWindow} />}
       {windows.map((win) => {
         const project = PROJECTS.find((item) => item.slug === win.slug);
         if (!project) return null;
-        const tags = parseTags(project.tagsLine);
         return (
           <article
             key={win.slug}
             className="os-window"
             style={{
-              left: win.x,
-              top: win.y,
+              "--window-x": `${win.x}px`,
+              "--window-y": `${win.y}px`,
               zIndex: 20 + win.z,
               transformOrigin: `${win.originX - win.x}px ${win.originY - win.y}px`,
-            }}
+            } as CSSProperties}
             aria-labelledby={`window-title-${project.slug}`}
             onMouseDown={() => focusWindow(win.slug)}
           >
@@ -327,20 +324,14 @@ export default function StudioDesktop({ open, onClose, origin = null }: Props) {
                 </div>
               ) : (
                 <div className="os-window__empty">
-                  <p>A little further down the rabbit hole.</p>
                   <p>{project.comingSoon ? "Still taking shape. More to share as it grows." : "Notes from an ongoing exploration."}</p>
                 </div>
               )}
-              <h2>{project.name}</h2>
+              {!project.artwork && <h2>{project.name}</h2>}
               <p>{project.description}</p>
-              <ul>
-                {tags.map((tag) => (
-                  <li key={tag}>{tag}</li>
-                ))}
-              </ul>
               {project.href && !project.comingSoon ? (
                 <a href={project.href} target="_blank" rel="noopener noreferrer">
-                  Visit the studio <ArrowUpRight size={14} aria-hidden="true" />
+                  Visit the studio
                 </a>
               ) : null}
             </div>
@@ -360,7 +351,7 @@ export default function StudioDesktop({ open, onClose, origin = null }: Props) {
             aria-label={project.name}
             onClick={(event) => openFolder(project, event.currentTarget.getBoundingClientRect())}
           >
-            <FolderGlyph comingSoon={project.comingSoon} />
+            <FolderPreview project={project} />
           </button>
         ))}
         <button type="button" className="os-dock__item" onClick={closeTopWindow} aria-label="Close window">

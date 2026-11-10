@@ -1,9 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, type KeyboardEvent } from "react";
+import { useCallback, useEffect, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
 import { flushSync } from "react-dom";
 import gsap from "gsap";
-import { ArrowRight, Waves } from "lucide-react";
 import { QUESTIONS } from "@/lib/projects";
 
 export default function QuestionConversation({ paused = false }: { paused?: boolean }) {
@@ -14,6 +13,8 @@ export default function QuestionConversation({ paused = false }: { paused?: bool
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
   const requestedRef = useRef(0);
   const hintedRef = useRef(false);
+  const gestureRef = useRef<{ x: number; y: number; dragging: boolean } | null>(null);
+  const suppressClickRef = useRef(false);
   const [index, setIndex] = useState(0);
   const [interacted, setInteracted] = useState(false);
   const [rippling, setRippling] = useState(false);
@@ -107,8 +108,45 @@ export default function QuestionConversation({ paused = false }: { paused?: bool
     showQuestion(next);
   };
 
+  const moveLight = (event: PointerEvent<HTMLButtonElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    event.currentTarget.style.setProperty("--light-x", `${((event.clientX - rect.left) / rect.width) * 100}%`);
+    event.currentTarget.style.setProperty("--light-y", `${((event.clientY - rect.top) / rect.height) * 100}%`);
+    const gesture = gestureRef.current;
+    if (!gesture) return;
+    if (event.pointerType === "mouse" && event.buttons === 0) { gestureRef.current = null; return; }
+    const dx = event.clientX - gesture.x;
+    const dy = event.clientY - gesture.y;
+    if (!gesture.dragging && Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy) * 1.3) {
+      resetLiquid();
+      setInteracted(true);
+      gesture.dragging = true;
+      event.currentTarget.setPointerCapture(event.pointerId);
+    }
+    if (!gesture.dragging) return;
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      gsap.set([questionRef.current, answerRef.current], { filter: "url(#conversation-liquid)" });
+      displacementRef.current?.setAttribute("scale", String(Math.max(-70, Math.min(70, dx * 0.65))));
+    }
+  };
+
+  const finishGesture = (event: PointerEvent<HTMLButtonElement>) => {
+    const gesture = gestureRef.current;
+    gestureRef.current = null;
+    if (!gesture?.dragging) return;
+    suppressClickRef.current = true;
+    const dx = event.clientX - gesture.x;
+    if (Math.abs(dx) >= 36) {
+      const direction = dx < 0 ? 1 : -1;
+      showQuestion((requestedRef.current + direction + QUESTIONS.length) % QUESTIONS.length);
+    } else {
+      resetLiquid();
+      setRippling(false);
+    }
+  };
+
   return (
-    <section id="conversation" ref={sectionRef} className="conversation" aria-label="A few questions" data-question={current.id} data-rippling={rippling}>
+    <section id="conversation" ref={sectionRef} className="conversation" aria-label="About Sergio" data-question={current.id} data-rippling={rippling}>
       <svg className="liquid-filter" aria-hidden="true" focusable="false">
         <defs>
           <filter id="conversation-liquid" x="-25%" y="-30%" width="150%" height="160%" colorInterpolationFilters="sRGB">
@@ -117,21 +155,32 @@ export default function QuestionConversation({ paused = false }: { paused?: bool
           </filter>
         </defs>
       </svg>
-      <div className="conversation-heading"><span>A few questions</span><span>Let’s keep talking.</span></div>
       <div className="conversation-prompt">
         <h2 id="conversation-question">
-          <button type="button" className="conversation-question" aria-label={`${current.question} Next question`} aria-controls="conversation-answer" onClick={() => showQuestion((requestedRef.current + 1) % QUESTIONS.length)} onKeyDown={onKeyDown}>
+          <button type="button" className="conversation-question" aria-label={`${current.question} Next question`} aria-controls="conversation-answer" onClick={(event) => {
+            if (suppressClickRef.current && event.detail > 0) { suppressClickRef.current = false; return; }
+            suppressClickRef.current = false;
+            showQuestion((requestedRef.current + 1) % QUESTIONS.length);
+          }} onKeyDown={onKeyDown}
+            onPointerDown={(event) => {
+              if (!event.isPrimary || event.button !== 0) return;
+              suppressClickRef.current = false;
+              gestureRef.current = { x: event.clientX, y: event.clientY, dragging: false };
+            }}
+            onPointerMove={moveLight}
+            onPointerUp={finishGesture}
+            onPointerCancel={() => { gestureRef.current = null; resetLiquid(); setIndex(requestedRef.current); setRippling(false); }}
+          >
             <span ref={questionRef} className="conversation-question__text">
               {current.lines.map((line) => <span key={line}>{line}</span>)}
             </span>
+            <span className="conversation-vellum" aria-hidden="true" />
           </button>
         </h2>
-        <span className="conversation-cue" aria-hidden="true"><Waves size={18} /> Tap the question <ArrowRight size={16} /></span>
       </div>
       <div id="conversation-answer" className="conversation-answer" aria-live="polite" aria-atomic="true">
         <p ref={answerRef}>{current.answer}</p>
       </div>
-      <div className="conversation-bottom"><span>There’s always another question.</span><a href="#contact">Keep wandering <ArrowRight size={16} aria-hidden="true" /></a></div>
     </section>
   );
 }
