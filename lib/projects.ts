@@ -32,7 +32,7 @@ export type Project = {
 
 export const HERO_TABS = [
   { id: "who", label: "WHO I AM" },
-  { id: "build", label: "WHAT I BUILD" },
+  { id: "build", label: "WHAT I MAKE" },
   { id: "believe", label: "WHAT I BELIEVE" },
   { id: "write", label: "WHAT I WRITE" },
   { id: "upto", label: "WHAT I'M UP TO" },
@@ -50,46 +50,11 @@ export type HeroPanel = {
 
 /** Per-tab hero copy — headline and handwritten script swap on tab click (sanvithi.com pattern) */
 export const HERO_PANELS: Record<HeroTabId, HeroPanel> = {
-  who: {
-    headline:
-      "Designer who creates meaningful experiences through brand, product, and systems design.",
-    script: "who i am",
-    scriptTop: "52%",
-    scriptLeft: "50%",
-    scriptRotate: -5,
-  },
-  build: {
-    headline:
-      "I build brand identities, digital products, and automations for teams that want to move faster.",
-    script: "what i build",
-    scriptTop: "48%",
-    scriptLeft: "46%",
-    scriptRotate: -4,
-  },
-  believe: {
-    headline:
-      "I believe good work feels inevitable: clear in thought, precise in form, and human at heart.",
-    script: "what i believe",
-    scriptTop: "54%",
-    scriptLeft: "52%",
-    scriptRotate: -6,
-  },
-  write: {
-    headline:
-      "I write about creativity, philosophy, mindset, and the slow discipline of developing taste.",
-    script: "what i write",
-    scriptTop: "50%",
-    scriptLeft: "44%",
-    scriptRotate: -3,
-  },
-  upto: {
-    headline:
-      "I'm looking for a team where brand craft and new technology can shape each other.",
-    script: "what i'm up to",
-    scriptTop: "56%",
-    scriptLeft: "48%",
-    scriptRotate: -5,
-  },
+  who: { headline: "I'm Sergio. I write, make music, and build little things to understand the world around me.", script: "who i am" },
+  build: { headline: "I make words, sounds, images, and objects that ask people to look twice.", script: "what i make" },
+  believe: { headline: "I believe the things we pay attention to quietly shape the life we live.", script: "what i believe" },
+  write: { headline: "I write about technology, meaning, perception, and what we choose to make sacred.", script: "what i write" },
+  upto: { headline: "These days I'm writing, listening, and learning to make room for the things that matter.", script: "what i'm up to" },
 };
 
 export const PROJECTS: Project[] = [

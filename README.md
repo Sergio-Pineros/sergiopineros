@@ -1,40 +1,23 @@
-# Sergio Piñeros — Portfolio
+# Sergio Piñeros — an artistic home
 
-Single-page portfolio modeled after [sanvithi.com](https://sanvithi.com/), built with Next.js, Tailwind CSS v4, and GSAP.
+This Next.js site is a personal home for writing, sound experiments, and objects, independent from commercial design or agency work.
 
-## Stack
+## What Are We Making Sacred?
 
-- **Next.js 15** (App Router)
-- **Tailwind CSS v4**
-- **GSAP ScrollTrigger** for scroll animations
-- **Fonts:** Averia Serif Libre + Inclusive Sans + Caveat (all SIL OFL, free commercial use)
+The recurring question runs from the **Nature, Rebranded** carousels into essays and the bilingual deck prototype.
 
-## Structure
+The five-question interactive hero remains, but its copy is personal, not a services pitch. The homepage connects three domains:
+- Writing — https://sergwrites.substack.com
+- Listening — instrumental music and exercises (in progress)
+- Objects — `/shop` previews the deck; no orders or preorders yet
 
-```
-app/
-  layout.tsx, page.tsx, globals.css
-components/
-  Portfolio.tsx          # Full page (nav, hero, projects, footer)
-  AssetPlaceholder.tsx   # Dashed placeholders until assets arrive
-lib/
-  projects.ts            # Copy, project data, themes
-ASSETS.md                # Complete asset checklist per section
-```
+Visual language: #2A0134 ink, #FAF8F5 paper, Baskervville, DM Sans, Caveat. Keep the editorial restraint of the existing carousel design system.
 
-## Development
+## Dev
 
-```bash
+```sh
 npm install
 npm run dev
 ```
 
-## Assets
-
-See **[ASSETS.md](./ASSETS.md)** for the full checklist of images needed per section (hero stickers, project screenshots, footer, etc.).
-
-## Deploy
-
-```bash
-npx vercel
-```
+Review on desktop/mobile before merging. Old studio UI components stay in the repository but are no longer mounted on the homepage; the change is reversible.
