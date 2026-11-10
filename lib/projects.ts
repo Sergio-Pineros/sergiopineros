@@ -21,6 +21,7 @@ export type Project = {
   theme: ProjectTheme;
   tags: ProjectTag[];
   href?: string;
+  linkLabel?: string;
   comingSoon?: boolean;
   reverse?: boolean;
   assetLabel: string;
@@ -37,19 +38,19 @@ export const QUESTIONS = [
     answer: "I'm Sergio. A Colombian artist, writer, and maker. I make things because I'm curious.",
   },
   {
-    id: "make", question: "What do I make?", lines: ["What", "do I", "make?"],
+    id: "make", question: "What do I make?", lines: ["What", "do I make?"],
     answer: "Words, sounds, images, and sometimes things you can hold.",
   },
   {
-    id: "believe", question: "What do I believe?", lines: ["What", "do I", "believe?"],
+    id: "believe", question: "What do I believe?", lines: ["What", "do I believe?"],
     answer: "The things we pay attention to quietly become the things we give meaning to.",
   },
   {
-    id: "write", question: "What do I write?", lines: ["What", "do I", "write?"],
+    id: "write", question: "What do I write?", lines: ["What", "do I write?"],
     answer: "Technology, consciousness, and the strange ways we make sense of being alive.",
   },
   {
-    id: "upto", question: "What am I up to?", lines: ["What am", "I up to?"],
+    id: "upto", question: "What am I up to?", lines: ["What", "am I up to?"],
     answer: "Strange little carousels, new music, and a reflection deck called What Are We Making Sacred?",
   },
 ] as const;
@@ -59,6 +60,8 @@ export const CREATIVE_LINKS = [
   { label: "Visual experiments", href: "https://www.instagram.com/serg.writes/" },
   { label: "Creative studio", href: "https://sergioatelier.co" },
 ] as const;
+
+export const CASE_STUDIES_URL = "https://sergioatelier.co/work#case-studies";
 
 export const PROJECTS: Project[] = [
   {
@@ -75,6 +78,8 @@ export const PROJECTS: Project[] = [
 
   {
     slug: "savron",
+    href: CASE_STUDIES_URL,
+    linkLabel: "View case studies",
     name: "Savron",
     description:
       "An identity for Savron, from monograms and signage to digital passes. An exploration of how a small mark can carry a whole atmosphere.",
@@ -99,6 +104,8 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "grafti",
+    href: CASE_STUDIES_URL,
+    linkLabel: "View case studies",
     name: "Grafti",
     description:
       "Organic geometry for an agrotech brand. I worked across identity, marketing assets, and a website, looking for a visual language rooted in what Grafti does.",
@@ -147,6 +154,8 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "savron-crm",
+    href: CASE_STUDIES_URL,
+    linkLabel: "View case studies",
     name: "Savron CRM",
     description:
       "What does a barbershop need behind the scenes? I designed and built a platform for scheduling, client records, Wallet passes, and messages. Another kind of making.",

@@ -328,7 +328,7 @@ button:focus-visible {
   background: var(--color-page);
 }
 .conversation-prompt { min-width: 0; }
-.conversation-prompt h2 { margin: 0; }
+.conversation-prompt h2 { margin: 0; min-width: 0; width: 100%; }
 .conversation-question {
   position: relative;
   isolation: isolate;
@@ -340,8 +340,8 @@ button:focus-visible {
   background: transparent;
   color: var(--color-ink);
   text-align: left;
-  font: 700 clamp(66px, 9.8vw, 165px)/.92 var(--font-sans);
-  letter-spacing: -.07em;
+  font: 700 clamp(96px, 13vw, 210px)/.95 var(--font-serif);
+  letter-spacing: -.055em;
   touch-action: pan-y;
   user-select: none;
   -webkit-user-select: none;
@@ -361,8 +361,8 @@ button:focus-visible {
 .conversation-question:focus-visible::before,
 .conversation-question:active::before,
 .conversation[data-rippling="true"] .conversation-question::before { opacity: 1; scale: 1.04; }
-.conversation-question__text { display: block; padding: .08em 0 .12em; }
-.conversation-question__text > span { display: block; }
+.conversation-question__text { display: block; overflow: clip; padding: .08em 0 .12em; }
+.conversation-question__text > span { display: block; width: max-content; white-space: nowrap; letter-spacing: -.055em; transition-property: none; }
 /* A loose sheet of tracing paper makes the ink feel touchable, without a label. */
 .conversation-vellum {
   position: absolute;
@@ -405,8 +405,8 @@ button:focus-visible {
 .conversation-answer { min-width: 0; }
 .conversation-answer p {
   margin: 0;
-  font: 400 clamp(32px, 3.9vw, 65px)/1.14 var(--font-serif);
-  letter-spacing: -.04em;
+  font: 300 clamp(32px, 3.9vw, 65px)/1.15 var(--font-sans);
+  letter-spacing: -.05em;
   text-wrap: pretty;
 }
 .liquid-filter { position: absolute; width: 0; height: 0; pointer-events: none; }
@@ -420,7 +420,7 @@ button:focus-visible {
 }
 @media (max-width: 900px) and (min-width: 720px) {
   .conversation { column-gap: 36px; padding-inline: 28px; }
-  .conversation-question { font-size: clamp(62px, 8.5vw, 78px); }
+  .conversation-question { font-size: clamp(84px, 13vw, 118px); }
   .conversation-answer p { font-size: 34px; }
 }
 @media (max-width: 719px) {
@@ -430,12 +430,12 @@ button:focus-visible {
   .hero-line--ending { font-size: .92em; }
   .desktop-entry { font-size: 12px; }
   .conversation { grid-template-columns: minmax(0, 1fr); grid-template-rows: 40svh minmax(0, 1fr); gap: 20px; padding: 70px 24px 36px; }
-  .conversation-prompt { display: grid; align-items: center; height: 100%; }
-  .conversation-question { font-size: clamp(60px, 19vw, 110px); line-height: .94; text-align: center; }
-  .conversation-question__text { display: flex; flex-wrap: wrap; column-gap: .18em; justify-content: center; }
-  .conversation-question__text > span { display: block; }
+  .conversation-prompt { display: grid; grid-template-columns: minmax(0, 1fr); align-items: center; height: 100%; }
+  .conversation-question { font-size: clamp(94px, 29vw, 150px); line-height: .97; text-align: center; }
+  .conversation-question__text { display: block; }
+  .conversation-question__text > span { margin-inline: auto; }
   .conversation-answer { align-self: center; padding-bottom: 24px; }
-  .conversation-answer p { max-width: 22ch; margin-inline: auto; font-size: clamp(27px, 7.8vw, 42px); line-height: 1.19; letter-spacing: -.035em; text-align: center; }
+  .conversation-answer p { max-width: 22ch; margin-inline: auto; font-size: clamp(27px, 7.8vw, 42px); line-height: 1.19; letter-spacing: -.05em; text-align: center; }
   .os-folder--art-of-noticing { top: 63%; left: 54%; }
   .os-folder--client-automation { top: 63%; left: 3%; }
 }
@@ -1496,13 +1496,7 @@ button:focus-visible {
 .footer__pill { background: transparent; font-size: 13px; gap: 18px; }
 .os-window__body a { color: var(--os-ink); }
 .os-window__body a svg { display: inline-block; vertical-align: middle; }
-.os-desktop__links { position: absolute; bottom: 112px; left: 32px; display: flex; gap: 18px; z-index: 3; }
-.os-desktop__links a { display: inline-flex; align-items: center; gap: 5px; color: #fff5eb; background: #2a0134c9; padding: 10px; border-radius: 5px; font-size: 12px; }
 .os-theme button:focus-visible { outline: 3px solid var(--os-ink); outline-offset: 5px; }
-@media (max-width: 719px) {
-  .os-desktop__links { bottom: 100px; left: 12px; right: 12px; gap: 8px; flex-wrap: wrap; }
-  .os-desktop__links a { font-size: 11px; padding: 10px 8px; }
-}
 @media (max-width: 719px) {
   .os-desktop__field {
     display: grid;
@@ -1531,12 +1525,12 @@ button:focus-visible {
 /* Translucent folder covers reveal an actual piece of each project. */
 .folder-preview { position: relative; display: block; width: 100px; height: 84px; flex: 0 0 auto; }
 .folder-preview .folder-preview__back, .folder-preview .folder-preview__front { position: absolute; inset: 0; width: 100%; height: 100%; }
-.folder-preview__back path { fill: color-mix(in srgb, var(--folder-color) 55%, #b9a8d0); fill-opacity: .75; stroke: #9d86bc99; stroke-width: .7; }
-.folder-preview__contents { position: absolute; display: grid; place-items: center; top: 8px; left: 16%; width: 68%; height: 61%; overflow: hidden; border-radius: 3px; background: #faf8f5; border: 1px solid #ffffffb3; box-shadow: 0 3px 8px #2a01342e; transform: rotate(-7deg); }
+.folder-preview__back path { fill: color-mix(in srgb, var(--folder-color) 55%, #b9a8d0); fill-opacity: .90; stroke: #9d86bc99; stroke-width: .7; }
+.folder-preview__contents { opacity: .75; position: absolute; display: grid; place-items: center; top: 8px; left: 16%; width: 68%; height: 61%; overflow: hidden; border-radius: 3px; background: #faf8f5; border: 1px solid #ffffffb3; box-shadow: 0 3px 8px #2a01342e; transform: rotate(-7deg); }
 .folder-preview__contents .attention-eye { width: 92%; }
 .folder-preview__contents .attention-eye svg { width: 100%; height: auto; }
 .folder-preview__front { pointer-events: none; }
-.folder-preview__front path { fill: color-mix(in srgb, var(--folder-color) 35%, #cbb8e0); fill-opacity: .43; stroke: #9d86bc99; stroke-width: .8; }
+.folder-preview__front path { fill: color-mix(in srgb, var(--folder-color) 35%, #cbb8e0); fill-opacity: .58; stroke: #9d86bc99; stroke-width: .8; }
 .folder-preview .folder-preview__symbol { width: 58%; height: 58%; color: #7f6899; }
 .os-dock__item .folder-preview { width: 38px; height: 33px; }
 .os-dock__item .folder-preview__contents { top: 3px; border-radius: 1px; }

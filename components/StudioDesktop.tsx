@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties }
 import Image from "next/image";
 import { Workflow } from "lucide-react";
 import { useTheme } from "next-themes";
-import { PROJECTS, CREATIVE_LINKS, type Project } from "@/lib/projects";
+import { PROJECTS, type Project } from "@/lib/projects";
 import AttentionEye from "@/components/AttentionEye";
 import WavesWallpaper from "@/components/WavesWallpaper";
 import { CinematicThemeSwitcher } from "@/components/ui/cinematic-theme-switcher";
@@ -267,12 +267,6 @@ export default function StudioDesktop({ open, onClose, origin = null }: Props) {
         ))}
       </div>
 
-      <nav className="os-desktop__links" aria-label="Elsewhere in my world">
-        {CREATIVE_LINKS.map((link) => (
-          <a key={link.href} href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>
-        ))}
-      </nav>
-
       {windows.length > 0 && <button type="button" className="os-window-shade" aria-label="Close preview" onClick={closeTopWindow} />}
       {windows.map((win) => {
         const project = PROJECTS.find((item) => item.slug === win.slug);
@@ -331,7 +325,7 @@ export default function StudioDesktop({ open, onClose, origin = null }: Props) {
               <p>{project.description}</p>
               {project.href && !project.comingSoon ? (
                 <a href={project.href} target="_blank" rel="noopener noreferrer">
-                  Visit the studio
+                  {project.linkLabel ?? "Visit the studio"}
                 </a>
               ) : null}
             </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
 import { flushSync } from "react-dom";
 import gsap from "gsap";
 import { QUESTIONS } from "@/lib/projects";
@@ -19,6 +19,47 @@ export default function QuestionConversation({ paused = false }: { paused?: bool
   const [interacted, setInteracted] = useState(false);
   const [rippling, setRippling] = useState(false);
   const current = QUESTIONS[index];
+
+  // Fit each complete phrase independently so even the longest answer title
+  // remains exactly two lines across phone sizes, zoom, and font loading.
+  useLayoutEffect(() => {
+    const text = questionRef.current;
+    const button = text?.parentElement;
+    if (!text || !button) return;
+    let disposed = false;
+    let previousWidth = -1;
+    let frame = 0;
+    const fit = () => {
+      if (disposed) return;
+      const baseSize = parseFloat(getComputedStyle(button).fontSize);
+      const available = button.clientWidth - 4;
+      if (available <= 0) return;
+      for (const line of Array.from(text.children) as HTMLElement[]) {
+        line.style.fontSize = `${baseSize}px`;
+        const natural = line.getBoundingClientRect().width;
+        line.style.fontSize = `${Math.floor(Math.min(baseSize, baseSize * available / Math.max(natural, 1)))}px`;
+      }
+    };
+    fit();
+    const scheduleFit = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(fit);
+    };
+    const observer = new ResizeObserver(([entry]) => {
+      if (entry.contentRect.width === previousWidth) return;
+      previousWidth = entry.contentRect.width;
+      scheduleFit();
+    });
+    observer.observe(button);
+    document.fonts.ready.then(() => { if (!disposed) scheduleFit(); });
+    window.addEventListener("resize", scheduleFit);
+    return () => {
+      disposed = true;
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+      window.removeEventListener("resize", scheduleFit);
+    };
+  }, [index]);
 
   const resetLiquid = useCallback(() => {
     timelineRef.current?.kill();
