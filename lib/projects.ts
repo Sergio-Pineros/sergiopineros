@@ -35,18 +35,23 @@ export type Project = {
 export const QUESTIONS = [
   {
     id: "who", question: "Who am I?", lines: ["Who", "am I?"],
+    answer: "I’m Sergio. I make things to explore questions about love, art, science, and the sacred. Those interests tend to find their way into everything I do.",
   },
   {
     id: "make", question: "What do I make?", lines: ["What", "do I make?"],
+    answer: "I make art, build businesses, and turn ideas into writing and working systems. I’m interested in how patterns in nature show up in the things we create.",
   },
   {
     id: "believe", question: "What do I believe?", lines: ["What", "do I believe?"],
+    answer: "I believe we’re more than our biology. Caring for ourselves also means paying attention to meaning, connection, and our inner lives.",
   },
   {
     id: "write", question: "What do I write?", lines: ["What", "do I write?"],
+    answer: "I write about technology, consciousness, and history, looking for connections between them. Lately, I’m exploring how people have treated nature as sacred and how we might bring those practices into our lives today.",
   },
   {
     id: "upto", question: "What am I up to?", lines: ["What", "am I up to?"],
+    answer: "I’m developing a research project on sound and linguistics, and their potential role in wellbeing today. I’m also exploring businesses around these ideas, including NxtSeat.",
   },
 ] as const;
 
