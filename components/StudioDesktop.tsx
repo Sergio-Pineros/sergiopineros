@@ -1,9 +1,11 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import Image from "next/image";
+import { Workflow } from "lucide-react";
 import { useTheme } from "next-themes";
 import { PROJECTS, type Project } from "@/lib/projects";
+import AttentionEye from "@/components/AttentionEye";
 import WavesWallpaper from "@/components/WavesWallpaper";
 import { CinematicThemeSwitcher } from "@/components/ui/cinematic-theme-switcher";
 
@@ -24,22 +26,21 @@ type Props = {
   origin?: DOMRect | null;
 };
 
-function parseTags(tagsLine: string) {
-  return tagsLine.split("·").map((tag) => tag.trim()).filter(Boolean);
-}
-
-function FolderGlyph({ comingSoon = false }: { comingSoon?: boolean }) {
+function FolderPreview({ project }: { project: Project }) {
   return (
-    <svg viewBox="0 0 72 58" width="64" height="52" aria-hidden="true">
-      <path
-        d="M4 14c0-3.3 2.7-6 6-6h16l6 7h32c3.3 0 6 2.7 6 6v25c0 3.3-2.7 6-6 6H10c-3.3 0-6-2.7-6-6V14z"
-        fill={comingSoon ? "#b9a8d0" : "#9d86bc"}
-      />
-      <path
-        d="M4 22h64v24c0 3.3-2.7 6-6 6H10c-3.3 0-6-2.7-6-6V22z"
-        fill={comingSoon ? "#cfc3e0" : "#7f6899"}
-      />
-    </svg>
+    <span className="folder-preview" aria-hidden="true" style={{ "--folder-color": project.theme.bg } as CSSProperties}>
+      <svg className="folder-preview__back" viewBox="0 0 100 82" fill="none">
+        <path d="M5 17a7 7 0 0 1 7-7h26l9 9h41a7 7 0 0 1 7 7v45a6 6 0 0 1-6 6H11a6 6 0 0 1-6-6Z" />
+      </svg>
+      <span className="folder-preview__contents">
+        {project.artwork ? <AttentionEye /> : project.image ? (
+          <Image src={project.image} alt="" fill sizes="96px" style={{ objectFit: "cover" }} />
+        ) : <Workflow className="folder-preview__symbol" strokeWidth={1.2} />}
+      </span>
+      <svg className="folder-preview__front" viewBox="0 0 100 82" fill="none">
+        <path d="M5 37a6 6 0 0 1 6-6h78a6 6 0 0 1 6 6v34a6 6 0 0 1-6 6H11a6 6 0 0 1-6-6Z" />
+      </svg>
+    </span>
   );
 }
 
@@ -99,6 +100,30 @@ export default function StudioDesktop({ open, onClose, origin = null }: Props) {
     );
   }, [open, origin, reduced]);
 
+  useEffect(() => {
+    if (!open || !rootRef.current) return;
+    const previousFocus = document.activeElement as HTMLElement | null;
+    const root = rootRef.current;
+    root.querySelector<HTMLButtonElement>("button")?.focus();
+    const trapFocus = (event: KeyboardEvent) => {
+      if (event.key !== "Tab") return;
+      const targets = Array.from(root.querySelectorAll<HTMLElement>('button, a[href], [tabindex="0"]'))
+        .filter((node) => node.getClientRects().length > 0);
+      const first = targets[0];
+      const last = targets[targets.length - 1];
+      if (event.shiftKey && (document.activeElement === first || !root.contains(document.activeElement))) {
+        event.preventDefault(); last?.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault(); first?.focus();
+      }
+    };
+    root.addEventListener("keydown", trapFocus);
+    return () => {
+      root.removeEventListener("keydown", trapFocus);
+      previousFocus?.focus();
+    };
+  }, [open]);
+
   const closeTopWindow = useCallback(() => {
     setWindows((prev) => {
       if (!prev.length) return prev;
@@ -115,14 +140,8 @@ export default function StudioDesktop({ open, onClose, origin = null }: Props) {
 
     const onKey = (event: KeyboardEvent) => {
       if (event.key !== "Escape") return;
-      setWindows((prev) => {
-        if (prev.length) {
-          const top = [...prev].sort((a, b) => b.z - a.z)[0];
-          return prev.filter((item) => item.slug !== top.slug);
-        }
-        onClose();
-        return prev;
-      });
+      if (windows.length) closeTopWindow();
+      else onClose();
     };
 
     window.addEventListener("keydown", onKey);
@@ -132,16 +151,16 @@ export default function StudioDesktop({ open, onClose, origin = null }: Props) {
       window.removeEventListener("keydown", onKey);
       document.body.style.overflow = previous;
     };
-  }, [open, onClose]);
+  }, [open, onClose, windows.length, closeTopWindow]);
 
   const openFolder = (project: Project, from: DOMRect | null) => {
     const mobile = window.innerWidth < 720;
-    const width = mobile ? window.innerWidth : Math.min(620, window.innerWidth - 32);
+    const width = mobile ? window.innerWidth - 40 : Math.min(620, window.innerWidth - 32);
     const height = mobile ? window.innerHeight : Math.min(520, window.innerHeight - 96);
     const originX = from ? from.left + from.width / 2 : window.innerWidth / 2;
     const originY = from ? from.top + from.height / 2 : window.innerHeight / 2;
-    const x = mobile ? 0 : Math.max(12, Math.min(originX - width / 2, window.innerWidth - width - 12));
-    const y = mobile ? 0 : Math.max(40, Math.min(originY - 24, window.innerHeight - height - 88));
+    const x = mobile ? 20 : Math.max(12, Math.min(originX - width / 2, window.innerWidth - width - 12));
+    const y = mobile ? 44 : Math.max(40, Math.min(originY - 24, window.innerHeight - height - 88));
 
     setWindows((prev) => {
       const existing = prev.find((item) => item.slug === project.slug);
@@ -223,7 +242,7 @@ export default function StudioDesktop({ open, onClose, origin = null }: Props) {
         <button type="button" className="os-menubar__home" onClick={onClose}>
           Home
         </button>
-        <span className="os-menubar__app">Finder</span>
+        <span className="os-menubar__app">Things I’ve made</span>
         <div className="os-menubar__end">
           <div className="os-theme">
             <CinematicThemeSwitcher />
@@ -240,29 +259,29 @@ export default function StudioDesktop({ open, onClose, origin = null }: Props) {
             className={`os-folder os-folder--${project.slug}`}
             onClick={(event) => openFolder(project, event.currentTarget.getBoundingClientRect())}
           >
-            <FolderGlyph comingSoon={project.comingSoon} />
-            <span>
+            <FolderPreview project={project} />
+            <span className="os-folder__label">
               {project.name}
-              {project.comingSoon ? " · soon" : ""}
             </span>
           </button>
         ))}
       </div>
 
+      {windows.length > 0 && <button type="button" className="os-window-shade" aria-label="Close preview" onClick={closeTopWindow} />}
       {windows.map((win) => {
         const project = PROJECTS.find((item) => item.slug === win.slug);
         if (!project) return null;
-        const tags = parseTags(project.tagsLine);
         return (
           <article
             key={win.slug}
             className="os-window"
             style={{
-              left: win.x,
-              top: win.y,
+              "--window-x": `${win.x}px`,
+              "--window-y": `${win.y}px`,
               zIndex: 20 + win.z,
               transformOrigin: `${win.originX - win.x}px ${win.originY - win.y}px`,
-            }}
+            } as CSSProperties}
+            aria-labelledby={`window-title-${project.slug}`}
             onMouseDown={() => focusWindow(win.slug)}
           >
             <header
@@ -275,12 +294,19 @@ export default function StudioDesktop({ open, onClose, origin = null }: Props) {
                 type="button"
                 className="os-window__close"
                 aria-label={`Close ${project.name}`}
-                onClick={() => closeWindow(win.slug)}
+                onClick={() => {
+                  closeWindow(win.slug);
+                  rootRef.current?.querySelector<HTMLButtonElement>(`.os-folder--${project.slug}`)?.focus();
+                }}
               />
-              <span className="os-window__name">{project.name}</span>
+              <span id={`window-title-${project.slug}`} className="os-window__name">{project.name}</span>
             </header>
             <div className="os-window__body">
-              {project.image ? (
+              {project.artwork === "attention-eye" ? (
+                <div className="os-window__artwork" role="img" aria-label="An engraved eye. The art of noticing.">
+                  <AttentionEye />
+                </div>
+              ) : project.image ? (
                 <div className="os-window__photo" style={{ aspectRatio: project.imageRatio ?? "3 / 2" }}>
                   <Image
                     src={project.image}
@@ -292,20 +318,14 @@ export default function StudioDesktop({ open, onClose, origin = null }: Props) {
                 </div>
               ) : (
                 <div className="os-window__empty">
-                  <p>This folder is empty</p>
-                  <p>{project.comingSoon ? "Coming soon" : project.assetNotes}</p>
+                  <p>{project.comingSoon ? "Still taking shape. More to share as it grows." : "Notes from an ongoing exploration."}</p>
                 </div>
               )}
-              <h2>{project.name}</h2>
+              {!project.artwork && <h2>{project.name}</h2>}
               <p>{project.description}</p>
-              <ul>
-                {tags.map((tag) => (
-                  <li key={tag}>{tag}</li>
-                ))}
-              </ul>
               {project.href && !project.comingSoon ? (
                 <a href={project.href} target="_blank" rel="noopener noreferrer">
-                  Open project
+                  {project.linkLabel ?? "Visit the studio"}
                 </a>
               ) : null}
             </div>
@@ -325,7 +345,7 @@ export default function StudioDesktop({ open, onClose, origin = null }: Props) {
             aria-label={project.name}
             onClick={(event) => openFolder(project, event.currentTarget.getBoundingClientRect())}
           >
-            <FolderGlyph comingSoon={project.comingSoon} />
+            <FolderPreview project={project} />
           </button>
         ))}
         <button type="button" className="os-dock__item" onClick={closeTopWindow} aria-label="Close window">
