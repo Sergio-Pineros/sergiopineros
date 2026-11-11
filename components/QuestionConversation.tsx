@@ -220,7 +220,7 @@ export default function QuestionConversation({ paused = false }: { paused?: bool
         </h2>
       </div>
       <div id="conversation-answer" className="conversation-answer" aria-live="polite" aria-atomic="true">
-        <p ref={answerRef} />
+        <p ref={answerRef}>{current.id === "upto" ? <>{current.answer.replace(/NxtSeat\.$/, "")}<a href="https://nxtseat.co" target="_blank" rel="noopener noreferrer">NxtSeat</a>.</> : current.answer}</p>
       </div>
     </section>
   );
