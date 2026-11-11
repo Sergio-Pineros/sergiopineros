@@ -35,23 +35,18 @@ export type Project = {
 export const QUESTIONS = [
   {
     id: "who", question: "Who am I?", lines: ["Who", "am I?"],
-    answer: "I'm Sergio. A Colombian artist, writer, and maker. I make things because I'm curious.",
   },
   {
     id: "make", question: "What do I make?", lines: ["What", "do I make?"],
-    answer: "Words, sounds, images, and sometimes things you can hold.",
   },
   {
     id: "believe", question: "What do I believe?", lines: ["What", "do I believe?"],
-    answer: "The things we pay attention to quietly become the things we give meaning to.",
   },
   {
     id: "write", question: "What do I write?", lines: ["What", "do I write?"],
-    answer: "Technology, consciousness, and the strange ways we make sense of being alive.",
   },
   {
     id: "upto", question: "What am I up to?", lines: ["What", "am I up to?"],
-    answer: "Strange little carousels, new music, and a reflection deck called What Are We Making Sacred?",
   },
 ] as const;
 

@@ -220,7 +220,7 @@ export default function QuestionConversation({ paused = false }: { paused?: bool
         </h2>
       </div>
       <div id="conversation-answer" className="conversation-answer" aria-live="polite" aria-atomic="true">
-        <p ref={answerRef}>{current.answer}</p>
+        <p ref={answerRef} />
       </div>
     </section>
   );
