@@ -10,11 +10,13 @@ import ScreenLoader from "@/components/ScreenLoader";
 import StudioDesktop from "@/components/StudioDesktop";
 import QuestionConversation from "@/components/QuestionConversation";
 import { CREATIVE_LINKS } from "@/lib/projects";
+import { PowerKey } from "@/components/ui/power-key";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export default function Portfolio() {
   const rootRef = useRef<HTMLDivElement>(null);
+  const desktopEntryRef = useRef<HTMLSpanElement>(null);
   const [loaded, setLoaded] = useState(false);
   const [desktopOpen, setDesktopOpen] = useState(false);
   const [desktopOrigin, setDesktopOrigin] = useState<DOMRect | null>(null);
@@ -39,14 +41,14 @@ export default function Portfolio() {
         <header className="site-nav">
           <div className="site-nav__bar">
             <a href="#hero" className="nav-logo" aria-label="Sergio Piñeros home">
-              <Image src="/horizontal.svg" alt="" width={180} height={44} className="nav-logo__mark" priority />
+              <Image src="/icon.svg" alt="" width={44} height={44} className="nav-logo__mark" priority />
             </a>
-            <button type="button" className="desktop-entry" aria-label="Open studio desktop" onClick={(event) => {
-              setDesktopOrigin(event.currentTarget.getBoundingClientRect());
-              setDesktopOpen(true);
-            }}>
-              Look around
-            </button>
+            <span ref={desktopEntryRef}>
+              <PowerKey onPowerOn={() => {
+                setDesktopOrigin(desktopEntryRef.current?.getBoundingClientRect() ?? null);
+                setDesktopOpen(true);
+              }} />
+            </span>
           </div>
         </header>
         <main>
