@@ -1513,3 +1513,20 @@ button:focus-visible {
   .conversation-card { padding: 18px 30px; }
   .conversation .conversation-answer p { font-size: 16px; line-height: 1.35; }
 }
+
+.conversation-spread { width: min(100%, 1080px); display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; gap: clamp(48px, 8vw, 120px); }
+.conversation-spread .conversation-stack { min-width: 0; }
+.conversation-spread .conversation-card { display: grid; grid-template-columns: 1fr; min-height: clamp(250px, 48svh, 490px); padding: clamp(24px, 3.5vw, 46px); border-radius: 1px; background: linear-gradient(110deg,#fcfaf3a6,#f1ebe37a); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); }
+.conversation-spread .conversation-question { font-family: var(--font-serif); font-style: italic; font-weight: 400; color: #231d21; }
+.conversation-spread .conversation-card-behind { overflow: hidden; display: flex; align-items: flex-end; padding: 18px; opacity: .22; transform: translate(8px, 3px) rotate(4deg); background: #eee8de; }
+.conversation-card-behind span { font-style: italic; font-weight: 400; }
+.conversation-spread .conversation-answer { pointer-events: auto; }
+@media (max-width: 719px) {
+  .conversation-spread { grid-template-columns: minmax(0,1fr); gap: clamp(18px, 4svh, 32px); width: min(100%, 440px); }
+  .conversation-spread .conversation-card { min-height: clamp(130px, 24svh, 220px); padding: 16px 24px; }
+  .conversation-spread .conversation-answer { padding-inline: 6px; }
+}
+@media (max-height: 480px) and (min-width: 600px) {
+  .conversation-spread { width: min(100%, 1000px); grid-template-columns: 1fr 1fr; gap: 32px; }
+  .conversation-spread .conversation-card { min-height: 150px; padding: 16px; }
+}
