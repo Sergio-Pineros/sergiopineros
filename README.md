@@ -80,3 +80,26 @@ The reflection deck is described as work in progress; there is no shop or preord
 
 Client project windows link to https://sergioatelier.co/work#case-studies; the
 studio folder retains its homepage destination. The desktop has no extra external-link button row.
+
+## Folder files and conversation cards
+
+Reusable controls live in `components/ui`; Tailwind v4 styles enter through
+`app/globals.css`. `components.json` records those paths for shadcn tooling.
+`CardHandGallery` uses `motion/react` for the lifted selection and curved hand.
+It accepts controlled or internal selection, original image sources, and a
+`renderCard` function for text files and vector artwork.
+
+Folder contents come from `Project.files` in `lib/projects.ts`. Each file has a
+stable `id`, `title`, and optional `description`, `image`, `artwork`, or `text`.
+When omitted, the current project preview and a text note use existing content.
+Future Story folders can supply ordered files through the same data shape;
+no Story content is published by this change. Project links remain available
+below the hand. Fine pointers can flick a file upward; touch users can tap cards
+or use Previous/Next without blocking vertical scrolling.
+
+The conversation keeps each question and its answer together on a translucent
+sheet, with a folded corner and a faint following sheet. Answers are divided
+at sentence boundaries. The whole sheet advances the question, while the NxtSeat
+link remains independent. Previous/Next, arrow keys, Home/End, and reduced-motion
+preferences remain supported. The face icon returns home; the power key traces
+its glyph before opening the desktop.

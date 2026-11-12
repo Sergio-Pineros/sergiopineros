@@ -13,6 +13,15 @@ export type ProjectTag = {
   right?: string;
 };
 
+export type ProjectFile = {
+  id: string;
+  title: string;
+  description?: string;
+  image?: string;
+  artwork?: "attention-eye";
+  text?: string;
+};
+
 export type Project = {
   slug: string;
   name: string;
@@ -30,7 +39,29 @@ export type Project = {
   image?: string;
   imageAlt?: string;
   imageRatio?: string;
+  /** Ordered folder contents; also used by future Story folders. */
+  files?: readonly ProjectFile[];
 };
+
+export function getProjectFiles(project: Project): readonly ProjectFile[] {
+  if (project.files) return project.files;
+  const files: ProjectFile[] = [];
+  if (project.image || project.artwork) {
+    files.push({
+      id: `${project.slug}-preview`,
+      title: project.artwork ? "The art of noticing" : `${project.name} — preview`,
+      description: project.description,
+      image: project.image,
+      artwork: project.artwork,
+    });
+  }
+  files.push({
+    id: `${project.slug}-notes`, title: "Read me.txt",
+    description: project.description,
+    text: project.tagsLine || project.description,
+  });
+  return files;
+}
 
 export const QUESTIONS = [
   {

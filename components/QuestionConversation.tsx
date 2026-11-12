@@ -8,7 +8,7 @@ import { QUESTIONS } from "@/lib/projects";
 export default function QuestionConversation({ paused = false }: { paused?: boolean }) {
   const sectionRef = useRef<HTMLElement>(null);
   const questionRef = useRef<HTMLSpanElement>(null);
-  const answerRef = useRef<HTMLParagraphElement>(null);
+  const answerRef = useRef<HTMLDivElement>(null);
   const displacementRef = useRef<SVGFEDisplacementMapElement>(null);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
   const requestedRef = useRef(0);
@@ -19,6 +19,9 @@ export default function QuestionConversation({ paused = false }: { paused?: bool
   const [interacted, setInteracted] = useState(false);
   const [rippling, setRippling] = useState(false);
   const current = QUESTIONS[index];
+  const nextQuestion = QUESTIONS[(index + 1) % QUESTIONS.length];
+  const sentences = current.answer.split(/(?<=\.)\s+/);
+  const paragraphs = [sentences[0], sentences.slice(1).join(" ")].filter(Boolean);
 
   // Fit each complete phrase independently so even the longest answer title
   // remains exactly two lines across phone sizes, zoom, and font loading.
@@ -196,9 +199,25 @@ export default function QuestionConversation({ paused = false }: { paused?: bool
           </filter>
         </defs>
       </svg>
-      <div className="conversation-prompt">
-        <h2 id="conversation-question">
-          <button type="button" className="conversation-question" aria-label={`${current.question} Next question`} aria-controls="conversation-answer" onClick={(event) => {
+      <div className="conversation-stack">
+        <div className="conversation-card-behind" aria-hidden="true">
+          <span>{nextQuestion.question}</span>
+        </div>
+        <div className="conversation-card">
+          <span className="conversation-fold" aria-hidden="true" />
+          <h2 className="conversation-question" id="conversation-question" aria-label={current.question}>
+            <span ref={questionRef} className="conversation-question__text">
+              {current.lines.map((line) => <span key={line}>{line}</span>)}
+            </span>
+          </h2>
+          <div id="conversation-answer" className="conversation-answer" aria-live="polite" aria-atomic="true">
+            <div ref={answerRef}>
+              {paragraphs.map((paragraph, i) => <p key={i}>{current.id === "upto" && paragraph.includes("NxtSeat.")
+                ? <>{paragraph.replace(/NxtSeat\.$/, "")}<a href="https://nxtseat.co" target="_blank" rel="noopener noreferrer">NxtSeat</a>.</>
+                : paragraph}</p>)}
+            </div>
+          </div>
+          <button type="button" className="conversation-next-surface" aria-label={`${current.question} Next question`} aria-controls="conversation-answer" onClick={(event) => {
             if (suppressClickRef.current && event.detail > 0) { suppressClickRef.current = false; return; }
             suppressClickRef.current = false;
             showQuestion((requestedRef.current + 1) % QUESTIONS.length);
@@ -212,16 +231,15 @@ export default function QuestionConversation({ paused = false }: { paused?: bool
             onPointerUp={finishGesture}
             onPointerCancel={() => { gestureRef.current = null; resetLiquid(); setIndex(requestedRef.current); setRippling(false); }}
           >
-            <span ref={questionRef} className="conversation-question__text">
-              {current.lines.map((line) => <span key={line}>{line}</span>)}
-            </span>
-            <span className="conversation-vellum" aria-hidden="true" />
+            <span className="sr-only">Next question</span>
           </button>
-        </h2>
+        </div>
       </div>
-      <div id="conversation-answer" className="conversation-answer" aria-live="polite" aria-atomic="true">
-        <p ref={answerRef}>{current.id === "upto" ? <>{current.answer.replace(/NxtSeat\.$/, "")}<a href="https://nxtseat.co" target="_blank" rel="noopener noreferrer">NxtSeat</a>.</> : current.answer}</p>
-      </div>
+      <nav className="conversation-pagination" aria-label="Conversation questions">
+        <button type="button" aria-label="Previous question" onClick={() => showQuestion((requestedRef.current + QUESTIONS.length - 1) % QUESTIONS.length)}>←</button>
+        <span>{index + 1} / {QUESTIONS.length}</span>
+        <button type="button" aria-label="Next question" onClick={() => showQuestion((requestedRef.current + 1) % QUESTIONS.length)}>→</button>
+      </nav>
     </section>
   );
 }

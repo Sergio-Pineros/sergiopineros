@@ -6,6 +6,7 @@ import { Workflow } from "lucide-react";
 import { useTheme } from "next-themes";
 import { PROJECTS, type Project } from "@/lib/projects";
 import AttentionEye from "@/components/AttentionEye";
+import FolderContents from "@/components/FolderContents";
 import WavesWallpaper from "@/components/WavesWallpaper";
 import { CinematicThemeSwitcher } from "@/components/ui/cinematic-theme-switcher";
 
@@ -156,7 +157,7 @@ export default function StudioDesktop({ open, onClose, origin = null }: Props) {
   const openFolder = (project: Project, from: DOMRect | null) => {
     const mobile = window.innerWidth < 720;
     const width = mobile ? window.innerWidth - 40 : Math.min(620, window.innerWidth - 32);
-    const height = mobile ? window.innerHeight : Math.min(520, window.innerHeight - 96);
+    const height = mobile ? window.innerHeight : Math.min(680, window.innerHeight - 120);
     const originX = from ? from.left + from.width / 2 : window.innerWidth / 2;
     const originY = from ? from.top + from.height / 2 : window.innerHeight / 2;
     const x = mobile ? 20 : Math.max(12, Math.min(originX - width / 2, window.innerWidth - width - 12));
@@ -302,32 +303,7 @@ export default function StudioDesktop({ open, onClose, origin = null }: Props) {
               <span id={`window-title-${project.slug}`} className="os-window__name">{project.name}</span>
             </header>
             <div className="os-window__body">
-              {project.artwork === "attention-eye" ? (
-                <div className="os-window__artwork" role="img" aria-label="An engraved eye. The art of noticing.">
-                  <AttentionEye />
-                </div>
-              ) : project.image ? (
-                <div className="os-window__photo" style={{ aspectRatio: project.imageRatio ?? "3 / 2" }}>
-                  <Image
-                    src={project.image}
-                    alt={project.imageAlt ?? project.assetLabel}
-                    fill
-                    sizes="(max-width: 720px) 100vw, 560px"
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-              ) : (
-                <div className="os-window__empty">
-                  <p>{project.comingSoon ? "Still taking shape. More to share as it grows." : "Notes from an ongoing exploration."}</p>
-                </div>
-              )}
-              {!project.artwork && <h2>{project.name}</h2>}
-              <p>{project.description}</p>
-              {project.href && !project.comingSoon ? (
-                <a href={project.href} target="_blank" rel="noopener noreferrer">
-                  {project.linkLabel ?? "Visit the studio"}
-                </a>
-              ) : null}
+              <FolderContents project={project} />
             </div>
           </article>
         );
