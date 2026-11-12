@@ -96,6 +96,16 @@ export const CASE_STUDIES_URL = "https://sergioatelier.co/work#case-studies";
 
 export const PROJECTS: Project[] = [
   {
+    slug: "story",
+    name: "Story",
+    description: "Photographs collected through the years.",
+    tagsLine: "",
+    theme: { bg: "#d7b3cb", tagBg: "#efe3e8", tagBorder: "#ad91a8" },
+    tags: [],
+    assetLabel: "Story photo gallery",
+    assetNotes: "A chronological gallery of personal photographs.",
+  },
+  {
     slug: "art-of-noticing",
     name: "The art of noticing",
     description: "A small reminder to look again. Familiar things have a way of becoming strange when we give them a little more attention.",

@@ -7,6 +7,7 @@ import { useTheme } from "next-themes";
 import { PROJECTS, type Project } from "@/lib/projects";
 import AttentionEye from "@/components/AttentionEye";
 import FolderContents from "@/components/FolderContents";
+import StoryGallery from "@/components/StoryGallery";
 import WavesWallpaper from "@/components/WavesWallpaper";
 import { CinematicThemeSwitcher } from "@/components/ui/cinematic-theme-switcher";
 
@@ -41,6 +42,17 @@ function FolderPreview({ project }: { project: Project }) {
       <svg className="folder-preview__front" viewBox="0 0 100 82" fill="none">
         <path d="M5 37a6 6 0 0 1 6-6h78a6 6 0 0 1 6 6v34a6 6 0 0 1-6 6H11a6 6 0 0 1-6-6Z" />
       </svg>
+    </span>
+  );
+}
+
+function StoryAppIcon({ small = false }: { small?: boolean }) {
+  return (
+    <span className={`story-app-icon${small ? " story-app-icon--small" : ""}`} aria-hidden="true">
+      <span className="story-app-icon__petal"><Image src="/story-photos/2017%20flower.jpg" alt="" fill sizes="96px" /></span>
+      <span className="story-app-icon__petal"><Image src="/story-photos/2017.jpg" alt="" fill sizes="96px" /></span>
+      <span className="story-app-icon__petal"><Image src="/story-photos/2021.jpg" alt="" fill sizes="96px" /></span>
+      <span className="story-app-icon__petal"><Image src="/story-photos/2026.jpeg" alt="" fill sizes="96px" /></span>
     </span>
   );
 }
@@ -156,12 +168,13 @@ export default function StudioDesktop({ open, onClose, origin = null }: Props) {
 
   const openFolder = (project: Project, from: DOMRect | null) => {
     const mobile = window.innerWidth < 720;
-    const width = mobile ? window.innerWidth - 40 : Math.min(620, window.innerWidth - 32);
-    const height = mobile ? window.innerHeight : Math.min(680, window.innerHeight - 120);
+    const story = project.slug === "story";
+    const width = mobile ? window.innerWidth - 24 : Math.min(story ? 1120 : 620, window.innerWidth - 32);
+    const height = mobile ? window.innerHeight - 116 : Math.min(story ? 790 : 680, window.innerHeight - 120);
     const originX = from ? from.left + from.width / 2 : window.innerWidth / 2;
     const originY = from ? from.top + from.height / 2 : window.innerHeight / 2;
-    const x = mobile ? 20 : Math.max(12, Math.min(originX - width / 2, window.innerWidth - width - 12));
-    const y = mobile ? 44 : Math.max(40, Math.min(originY - 24, window.innerHeight - height - 88));
+    const x = mobile ? 12 : story ? (window.innerWidth - width) / 2 : Math.max(12, Math.min(originX - width / 2, window.innerWidth - width - 12));
+    const y = mobile ? 50 : story ? Math.max(54, (window.innerHeight - height) / 2 - 12) : Math.max(40, Math.min(originY - 24, window.innerHeight - height - 88));
 
     setWindows((prev) => {
       const existing = prev.find((item) => item.slug === project.slug);
@@ -260,7 +273,7 @@ export default function StudioDesktop({ open, onClose, origin = null }: Props) {
             className={`os-folder os-folder--${project.slug}`}
             onClick={(event) => openFolder(project, event.currentTarget.getBoundingClientRect())}
           >
-            <FolderPreview project={project} />
+            {project.slug === "story" ? <StoryAppIcon /> : <FolderPreview project={project} />}
             <span className="os-folder__label">
               {project.name}
             </span>
@@ -275,7 +288,7 @@ export default function StudioDesktop({ open, onClose, origin = null }: Props) {
         return (
           <article
             key={win.slug}
-            className="os-window"
+            className={`os-window${project.slug === "story" ? " os-window--story" : ""}`}
             style={{
               "--window-x": `${win.x}px`,
               "--window-y": `${win.y}px`,
@@ -303,7 +316,7 @@ export default function StudioDesktop({ open, onClose, origin = null }: Props) {
               <span id={`window-title-${project.slug}`} className="os-window__name">{project.name}</span>
             </header>
             <div className="os-window__body">
-              <FolderContents project={project} />
+              {project.slug === "story" ? <StoryGallery /> : <FolderContents project={project} />}
             </div>
           </article>
         );
@@ -321,7 +334,7 @@ export default function StudioDesktop({ open, onClose, origin = null }: Props) {
             aria-label={project.name}
             onClick={(event) => openFolder(project, event.currentTarget.getBoundingClientRect())}
           >
-            <FolderPreview project={project} />
+            {project.slug === "story" ? <StoryAppIcon small /> : <FolderPreview project={project} />}
           </button>
         ))}
         <button type="button" className="os-dock__item" onClick={closeTopWindow} aria-label="Close window">
