@@ -237,11 +237,6 @@ export default function QuestionConversation({ paused = false }: { paused?: bool
           </div>
         </div>
       </div>
-      <nav className="conversation-pagination" aria-label="Conversation questions">
-        <button type="button" aria-label="Previous question" onClick={() => showQuestion((requestedRef.current + QUESTIONS.length - 1) % QUESTIONS.length)}>←</button>
-        <span>{index + 1} / {QUESTIONS.length}</span>
-        <button type="button" aria-label="Next question" onClick={() => showQuestion((requestedRef.current + 1) % QUESTIONS.length)}>→</button>
-      </nav>
     </section>
   );
 }

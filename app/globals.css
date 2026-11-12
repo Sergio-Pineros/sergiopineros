@@ -1514,16 +1514,19 @@ button:focus-visible {
   .conversation .conversation-answer p { font-size: 16px; line-height: 1.35; }
 }
 
-.conversation-spread { width: min(100%, 1080px); display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; gap: clamp(48px, 8vw, 120px); }
+.conversation-spread { width: min(100%, 1280px); display: grid; grid-template-columns: 1.08fr 1fr; align-items: center; gap: clamp(54px, 7vw, 130px); }
 .conversation-spread .conversation-stack { min-width: 0; }
-.conversation-spread .conversation-card { display: grid; grid-template-columns: 1fr; min-height: clamp(250px, 48svh, 490px); padding: clamp(24px, 3.5vw, 46px); border-radius: 1px; background: linear-gradient(110deg,#fcfaf3a6,#f1ebe37a); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); }
-.conversation-spread .conversation-question { font-family: var(--font-serif); font-style: italic; font-weight: 400; color: #231d21; }
+.conversation-spread .conversation-card { display: grid; grid-template-columns: 1fr; min-height: clamp(310px, 56svh, 610px); padding: clamp(30px, 4vw, 62px); border-radius: 1px; background: linear-gradient(110deg,#fcfaf3a6,#f1ebe37a); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); }
+.conversation-spread .conversation-question { font-family: var(--font-serif); font-style: italic; font-weight: 400; color: #231d21; font-size: clamp(72px, 8.9vw, 144px); }
+.conversation-spread .conversation-answer p { font-size: clamp(22px, 2.25vw, 33px); }
 .conversation-spread .conversation-card-behind { overflow: hidden; display: flex; align-items: flex-end; padding: 18px; opacity: .22; transform: translate(8px, 3px) rotate(4deg); background: #eee8de; }
 .conversation-card-behind span { font-style: italic; font-weight: 400; }
 .conversation-spread .conversation-answer { pointer-events: auto; }
 @media (max-width: 719px) {
   .conversation-spread { grid-template-columns: minmax(0,1fr); gap: clamp(18px, 4svh, 32px); width: min(100%, 440px); }
-  .conversation-spread .conversation-card { min-height: clamp(130px, 24svh, 220px); padding: 16px 24px; }
+  .conversation-spread .conversation-card { min-height: clamp(155px, 27svh, 250px); padding: 20px 26px; }
+  .conversation-spread .conversation-question { font-size: clamp(50px, 14vw, 82px); }
+  .conversation-spread .conversation-answer p { font-size: clamp(18px, 4.8vw, 23px); }
   .conversation-spread .conversation-answer { padding-inline: 6px; }
 }
 @media (max-height: 480px) and (min-width: 600px) {
