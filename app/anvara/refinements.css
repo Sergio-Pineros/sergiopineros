@@ -411,7 +411,7 @@
     line-height: 1.35;
   }
   .av-projection-controls {
-    font-size: 9px;
+    font-size: 10px;
   }
   .av-projection-controls button {
     width: 44px;
@@ -431,7 +431,10 @@
     display: none;
   }
   .av-prism-fallback svg > g:last-child text {
-    font-size: 23px;
+    font-size: 30px;
+  }
+  .av-axis-3d {
+    font-size: 10px;
   }
   .av-prism-label {
     font-size: 11px !important;
