@@ -21,7 +21,7 @@ function Perspectives() {
         <div className="av-section-intro">
           <div>
             <p className="av-kicker">
-              THE MARKETPLACE IS THE RELATIONSHIP
+              TWO SIDES OF THE MARKETPLACE
             </p>
             <h2>
               Two perspectives.
@@ -106,11 +106,11 @@ function Perspectives() {
             </div>
             <div className="av-shared-caption">
               <span>THE SHARED OUTCOME</span>
-              <strong>A relevant, executable partnership.</strong>
+              <strong>A partnership that works for both sides.</strong>
               <p>
-                Quality supply attracts serious demand.
+                Brands need enough information to choose.
                 <br />
-                Serious demand gives supply a reason to stay.
+                Rightsholders need inquiries worth responding to.
               </p>
             </div>
           </div>
@@ -118,16 +118,15 @@ function Perspectives() {
         <div className="av-marketplace-insight">
           <span>THE PRODUCT QUESTION</span>
           <p>
-            How do we help the right partners move forward <br />
-            with <strong>less uncertainty on both sides?</strong>
+            How can we help both sides find the right fit <br />
+            and <strong>move from interest to a deal?</strong>
           </p>
         </div>
         <div className="av-source-note">
           <p>
             <strong>Starting from what exists.</strong> Anvara publicly
             describes AI matching, end-to-end deal execution and performance
-            reporting. This exploration asks where confidence and coordination
-            could improve within those experiences.
+            reporting. I’m exploring how those experiences might help brands understand a match and help both sides get to a useful first conversation.
           </p>
           <a
             href="https://www.anvara.com/"
@@ -161,9 +160,8 @@ function Hero() {
           deserves to be <span>found.</span>
         </h1>
         <p className="av-hero-lead">
-          An independent product exploration of how sponsorship
-          <br className="av-desktop-break" /> marketplaces can turn discovery
-          into meaningful partnerships.
+          A look at how Anvara could help brands and rightsholders
+          <br className="av-desktop-break" /> find the right fit and move a partnership forward.
         </p>
       </motion.div>
       <div className="av-hero-spatial">
@@ -176,7 +174,7 @@ function Hero() {
           TO OUTCOME
         </span>
         <a href="#marketplace">
-          Explore the system <ArrowDown size={15} />
+          Explore the case study <ArrowDown size={15} />
         </a>
         <span>
           INDEPENDENT THINKING.
@@ -202,9 +200,7 @@ function Background() {
         <div className="av-background-intro">
           <span className="av-personal-signature">Sergio Piñeros</span>
           <p>
-            I’ve worked where creative ambition meets real coordination:
-            artists, events, customers and small teams. The thread is helping
-            people turn a possibility into something that actually happens.
+            I’ve worked with artists, event organizers and small businesses. I know that making an introduction is only the first step: people still need to agree on the details and make the idea happen.
           </p>
         </div>
         <div className="av-experience-thread">
@@ -212,12 +208,12 @@ function Background() {
             {
               name: "17 Bits Records",
               tag: "UNDERSTAND THE PEOPLE",
-              text: "Co-founded an independent record label. Worked with artists, collaborators, concerts and cultural initiatives—where a shared idea still needs people to bring it to life.",
+              text: "Co-founded an independent record label and worked with artists and collaborators on concerts and cultural projects.",
             },
             {
               name: "MusicConnect",
               tag: "EXPLORE THE MARKETPLACE",
-              text: "Explored an early-stage concept connecting musicians and event organizers. It did not commercially launch. It sharpened my interest in discovery and trust on both sides.",
+              text: "Explored a marketplace for musicians and event organizers to find each other. It did not commercially launch.",
             },
             {
               name: "SAVRON / NxtSeat",

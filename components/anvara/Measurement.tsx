@@ -6,37 +6,37 @@ const learning = [
   {
     label: "Customer feedback",
     detail:
-      "Weekly conversations with brands and rightsholders. Add sales and business-development notes, lost-deal context and support themes. Separate anecdotes from observed prevalence.",
+      "Talk to brands and rightsholders. Ask sales and support what questions come up repeatedly and why deals stall.",
   },
   {
     label: "Identify friction",
     detail:
-      "Triangulate interview patterns, event data and deal reviews. Check whether friction is concentrated in a participant, category or journey stage.",
+      "Check whether the same issue appears in interviews, product data and deal reviews—and which users it affects.",
   },
   {
     label: "Form hypothesis",
     detail:
-      "State who struggles, what should change and why. Write a falsifiable prediction and the guardrails for the other marketplace participant.",
+      "Write down who has the problem, what change might help and what result would show the idea is wrong.",
   },
   {
     label: "Prototype",
     detail:
-      "Build the smallest working interaction that exposes the uncertainty. Use fictional data until a controlled, consented pilot is appropriate.",
+      "Build a small prototype that lets people try the proposed change. Use fictional data for the first usability tests.",
   },
   {
     label: "Test",
     detail:
-      "Start with comprehension and usability. Establish baselines before sizing a controlled experiment; agree assignment, exposure and stopping rules.",
+      "First, watch people use it. If it makes sense, agree on a baseline and a test plan before comparing it with the current experience.",
   },
   {
     label: "Measure",
     detail:
-      "Review the intended outcome and two-sided guardrails. Distinguish correlation, intent and observed behavior from causal evidence.",
+      "Check whether the intended result improved and whether the change created extra work for the other side.",
   },
   {
     label: "Prioritize",
     detail:
-      "Update value, effort and evidence in the shared decision model. Revisit dependencies with engineering and communicate the decision back to sales and customers.",
+      "Update the estimates with what we learned. Check effort with engineering, then explain the next decision to sales and customers.",
   },
 ];
 export default function Measurement() {
@@ -200,9 +200,7 @@ export default function Measurement() {
             <div className="av-sales-input">
               <span>THE COMMERCIAL TEAM IS PART OF THE LOOP</span>
               <p>
-                Sales and business development bring recurring objections and
-                deal context into discovery. Product brings tested decisions and
-                clear rationale back.
+                Sales and business development can share why deals stall and which questions come up often. Product can test those patterns and share what it learns.
               </p>
             </div>
             <a className="av-text-link" href="#decisions">

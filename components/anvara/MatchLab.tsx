@@ -79,11 +79,9 @@ export default function MatchLab() {
             </h2>
           </div>
           <p>
-            Improvements to existing experiences.
+            Three ideas to test within experiences Anvara already describes.
             <br />
-            Hypotheses to test together,
-            <br />
-            not findings dressed as features.
+            None of these are tested findings.
           </p>
         </div>
         <div className="av-experiment-tabs" aria-label="Product experiments">
@@ -149,8 +147,8 @@ export default function MatchLab() {
                       <SlidersHorizontal size={13} /> YOUR HYPOTHETICAL CAMPAIGN
                     </span>
                     <h4>
-                      Find your kind <br />
-                      of connection.
+                      Set up your <br />
+                      campaign.
                     </h4>
                     <label>
                       Budget ceiling
@@ -389,9 +387,9 @@ export default function MatchLab() {
                       SHARED EXPECTATIONS
                     </span>
                     <h4>
-                      Better context.
+                      Give the partner
                       <br />
-                      Better conversations.
+                      a clear starting point.
                     </h4>
                     <p>
                       Prepare a draft for <strong>{chosen.name}</strong>. This
@@ -500,7 +498,7 @@ export default function MatchLab() {
                         <span className="av-mini-label">
                           RECEIVING TEAM / ILLUSTRATIVE RESPONSE VIEW
                         </span>
-                        <h5>A brief worth responding to.</h5>
+                        <h5>What the rightsholder receives.</h5>
                         <div className="av-readiness-checks">
                           {[
                             "Goal defined",
@@ -622,13 +620,13 @@ export default function MatchLab() {
                       </span>
                       <h5>
                         {view === "brand"
-                          ? "Resolve the evidence gap before renewal."
-                          : "Close the reporting gap before asking for renewal."}
+                          ? "Ask for the missing audience report."
+                          : "Share the missing audience report."}
                       </h5>
                       <p>
                         {view === "brand"
-                          ? "Request audience validation and compare delivery to the original objective. Interaction counts do not establish incremental sales or ROI."
-                          : "Confirm the remaining deliverable, document counting methodology and agree a joint debrief. Do not turn observed interactions into an unsupported return claim."}
+                          ? "Ask for the audience report and compare what was delivered with the original goal. Interactions alone do not tell us how many sales the campaign caused."
+                          : "Confirm the outstanding report, explain how interactions were counted and discuss the results with the brand. Do not claim a return without supporting data."}
                       </p>
                     </div>
                     <p className="av-footnote">
@@ -655,18 +653,14 @@ export default function MatchLab() {
             <summary>How I would test this</summary>
             <p>{exp.method}</p>
             <p>
-              Guardrails: listing abandonment, brand inquiry abandonment,
-              rightsholder workload and spam. Check both participant cohorts; a
-              faster buyer action is not a win if partner quality declines. No
-              experiment has been run. Targets and timelines are proposed
-              starting points to validate with the team, not actual results.
+              Also check whether more brands abandon the inquiry, whether rightsholders get more spam, or whether responding takes them longer. These tests have not been run.
             </p>
           </details>
         </div>
         <Drawer
           open={compare}
           onClose={() => setCompare(false)}
-          title="Make the trade-off visible."
+          title="Compare two opportunities."
           label="FICTIONAL OPPORTUNITY COMPARISON"
         >
           <p>

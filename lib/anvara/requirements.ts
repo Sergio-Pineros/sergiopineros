@@ -6,7 +6,7 @@ export type Requirement = {
 };
 export const requirements: Record<string, Requirement> = {
   quality: {
-    job: "When publishing a sponsorship package, I need to know which decision-critical details are missing so a brand can assess it without a clarification exchange.",
+    job: "When I publish a sponsorship package, I want to see which important details are missing so a brand can decide whether to get in touch.",
     scope:
       "A proposed listing-editor completeness panel plus the corresponding buyer-facing information. Fields: package price and currency, date/availability window, market, inclusions, category restrictions, audience estimate, source and as-of date. Confirm the actual schema with engineering before implementation.",
     stories: [
@@ -129,7 +129,7 @@ export const requirements: Record<string, Requirement> = {
     ],
   },
   collections: {
-    job: "When research spans sessions, I need to retain the shortlist and decision context for the right campaign.",
+    job: "When I return to a campaign, I want to see the listings my team saved and why we saved them.",
     scope:
       "Campaign-scoped saved opportunities with optional notes and reversible removal.",
     stories: [
@@ -144,11 +144,11 @@ export const requirements: Record<string, Requirement> = {
     ],
   },
   feedback: {
-    job: "After a deal, I need a concise two-sided debrief so recurrent friction can inform the next product decision.",
+    job: "After a deal, I want to hear what worked and what did not from both sides, then check whether the same issues appear in other deals.",
     scope:
       "Opt-in debrief prompts for each participant, tagged by journey stage; a product review queue informed by sales context.",
     stories: [
-      "As a partner, I can report friction without sharing private commercial detail with the other side.",
+      "As a partner, I can share feedback without revealing private commercial details to the other side.",
       "As product, I can group themes and validate them before changing priorities.",
     ],
     acceptance: [

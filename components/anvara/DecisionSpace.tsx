@@ -322,19 +322,17 @@ export function DecisionSpace() {
       <div className="av-wrap">
         <div className="av-section-intro">
           <div>
-            <p className="av-kicker">THE DECISION SPACE</p>
+            <p className="av-kicker">WHICH IDEA FIRST?</p>
             <h2>
-              See the potential.
+              Which ideas should we test?
               <br />
-              <span>Question the assumptions.</span>
+              <span>Start with what we know.</span>
             </h2>
           </div>
           <p>
-            One model. Two ways to think.
+            Compare possible improvements by value, effort and evidence.
             <br />
-            Explore the assumptions behind
-            <br />
-            what deserves to happen next.
+            The scores are starting assumptions—not research findings.
           </p>
         </div>
         <div className="av-decision-shell">
@@ -582,9 +580,7 @@ export function DecisionSpace() {
           </div>
         </div>
         <p className="av-footnote">
-          Illustrative estimates, not Anvara research. Changing confidence is a
-          scenario exercise; moving a slider does not create evidence. Estimates
-          stay in this browser session.
+          These scores are my starting assumptions, not Anvara research. Move the sliders to explore a different order; the scores do not create evidence. Your changes stay in this browser.
         </p>
       </div>
     </section>
@@ -603,27 +599,25 @@ export function Roadmap() {
           <div>
             <p className="av-kicker">FROM REASONING TO REQUIREMENTS</p>
             <h2>
-              A sequence.
+              A possible plan.
               <br />
-              <span>Not a feature wishlist.</span>
+              <span>Start by talking to customers.</span>
             </h2>
           </div>
           <p>
-            The roadmap follows your estimates.
+            Change the estimates above to see a suggested order.
             <br />
-            Evidence and dependencies
-            <br />
-            determine the next commitment.
+            Real customer research and engineering input would change the plan.
           </p>
         </div>
         <div className="av-roadmap-grid">
           {[
             {
               label: "Now",
-              title: "Validate critical friction",
+              title: "Check if the problem is real",
               timing: "Weeks 1–2",
               action:
-                "Interview 5 brands and 5 rightsholders; review recent inquiries with sales.",
+                "Talk to five brands and five rightsholders. Review recent inquiries with sales to see what information is missing and where deals stall.",
               items: plan.now,
               empty: "No high-value candidates require validation.",
             },
@@ -632,7 +626,7 @@ export function Roadmap() {
               title: "Prototype the strongest candidate",
               timing: "Weeks 3–6, if ready",
               action:
-                "Prototype the highest-ranked ready idea; agree on a baseline, sample size and guardrails before testing.",
+                "Build a small prototype of the strongest idea. Agree on what to measure and check that it does not create more work for the other side.",
               items: plan.next,
               empty:
                 "Await evidence. No candidate clears the readiness gate yet.",
@@ -642,7 +636,7 @@ export function Roadmap() {
               title: "Revisit after learning",
               timing: "Week 7+ / after testing",
               action:
-                "Once the cohort matures, review the agreed measures and decide whether to expand, revise or stop.",
+                "Review the test results once enough time has passed. Decide whether to expand, change or stop.",
               items: plan.later,
               empty: "No lower-value candidates in this scenario.",
             },

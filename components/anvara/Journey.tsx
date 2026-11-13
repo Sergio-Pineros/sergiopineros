@@ -35,11 +35,11 @@ export default function Journey() {
             </h2>
           </div>
           <p>
-            A successful match opens a door.
+            Finding a match is the first step.
             <br />
-            The product has to help
+            Both sides still need to agree on details,
             <br />
-            both sides walk through it.
+            run the activation and review the results.
           </p>
         </div>
         <div className="av-journey-visual">
@@ -110,7 +110,7 @@ export default function Journey() {
         <div className="av-journey-detail">
           <div>
             <span className="av-mini-label">
-              {stage.toUpperCase()} / TWO JOBS TO BE DONE
+              {stage.toUpperCase()} / WHAT EACH SIDE NEEDS
             </span>
             <div className="av-paired-goals">
               <p>
@@ -137,7 +137,7 @@ export default function Journey() {
               href="#decisions"
               onClick={() => select(idea.id)}
             >
-              Inspect the hypothesis <ArrowUpRight size={15} />
+              See the idea in the matrix <ArrowUpRight size={15} />
             </a>
           </div>
           <AnimatePresence mode="wait">

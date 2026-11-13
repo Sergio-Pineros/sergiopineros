@@ -20,25 +20,25 @@ const proposed = "Proposed experiment" as const;
 export const opportunities: Opportunity[] = [
   {
     id: "rationale",
-    title: "Explainable Match Rationale",
+    title: "Why a match fits",
     short: "Match rationale",
     problem:
-      "A relevant recommendation can still leave a buyer unsure why it fits.",
+      "A brand may see a match without knowing which parts of its campaign it fits—or where it falls short.",
     side: "brand",
     stage: "Evaluate",
     hypothesis:
-      "Showing the strongest fit signals and an explicit trade-off will help buyers take a more informed next step.",
+      "If a match shows how its audience, location and price compare with the campaign—and flags gaps—more brands may send relevant inquiries.",
     impact: 9,
     effort: 4,
     confidence: 4,
     assumptions: [
-      "Buyers struggle to interpret fit, rather than simply lack relevant inventory.",
-      "Audience, budget and location data are sufficiently trustworthy.",
+      "Brands need help understanding a match, not just more options.",
+      "The listing has reliable audience, price and location details.",
     ],
     dependencies: ["quality"],
     metrics: [
       "Campaigns with a qualified inquiry within 14 days / eligible campaigns exposed",
-      "Median time to first meaningful action",
+      "Median time from viewing a match to shortlisting or sending an inquiry",
       "Rightsholder-reported inquiry relevance",
     ],
     status: proposed,
@@ -48,17 +48,17 @@ export const opportunities: Opportunity[] = [
     title: "Opportunity Comparison",
     short: "Comparison",
     problem:
-      "Buyers must reconcile different packages before making a trade-off.",
+      "Sponsorship packages can include different things, making it hard to compare two options side by side.",
     side: "brand",
     stage: "Evaluate",
     hypothesis:
-      "A consistent comparison of inclusions, fit and uncertainty will make shortlists more intentional.",
+      "If brands can compare price, audience, location and what is included side by side, they may find a suitable option faster.",
     impact: 8,
     effort: 6,
     confidence: 3,
     assumptions: [
-      "Comparable package attributes exist.",
-      "Comparison reduces ambiguity without suggesting false equivalence.",
+      "Listings contain enough of the same details to compare.",
+      "The comparison makes missing information visible instead of treating it as a match.",
     ],
     dependencies: ["quality", "collections"],
     metrics: [
@@ -72,21 +72,21 @@ export const opportunities: Opportunity[] = [
     title: "Listing Information Quality",
     short: "Listing quality",
     problem:
-      "Incomplete inventory information can shift clarification work onto both parties.",
+      "If a listing leaves out price, availability or audience details, both sides may need extra messages before they can move forward.",
     side: "rightsholder",
     stage: "Discover",
     hypothesis:
-      "A lightweight completeness prompt will improve decision-useful information without increasing listing abandonment.",
+      "If rightsholders see which key listing details are missing, more listings may include them without fewer people finishing their listings.",
     impact: 8,
     effort: 3,
     confidence: 5,
     assumptions: [
-      "Important missing fields can be identified through review.",
+      "Brands and sales can identify which missing details matter most.",
       "Rightsholders can provide the requested detail.",
     ],
     dependencies: [],
     metrics: [
-      "Listings with required decision fields / active listings",
+      "Active listings with price, dates, audience and package details / active listings",
       "Listing completion rate",
       "Clarification requests per inquiry",
     ],
@@ -101,11 +101,11 @@ export const opportunities: Opportunity[] = [
     side: "brand",
     stage: "Connect",
     hypothesis:
-      "A short optional readiness check will help brands state budget, timing and activation needs.",
+      "An optional checklist for budget, dates and activation needs may help brands send a more complete first inquiry.",
     impact: 6,
     effort: 2,
     confidence: 4,
-    assumptions: ["The checklist feels useful rather than obstructive."],
+    assumptions: ["Brands are willing to share these details before reaching out."],
     dependencies: [],
     metrics: [
       "Brief completion rate",
@@ -118,15 +118,15 @@ export const opportunities: Opportunity[] = [
     id: "brief",
     title: "Qualified Inquiry Brief",
     short: "Inquiry brief",
-    problem: "Rightsholders need enough context to respond meaningfully.",
+    problem: "A rightsholder may need a brand’s budget, dates and goals before they can suggest a package.",
     side: "both",
     stage: "Connect",
     hypothesis:
-      "A structured, editable brief will reduce avoidable back-and-forth and improve proposal progression.",
+      "If the first inquiry includes budget, dates and goals, rightsholders may need fewer clarification messages before sending a proposal.",
     impact: 9,
     effort: 5,
     confidence: 4,
-    assumptions: ["A small common brief can cover varied sponsorship formats."],
+    assumptions: ["A few shared fields are useful across different sponsorship types."],
     dependencies: ["readiness"],
     metrics: [
       "Qualified inquiries / all inquiries",
@@ -139,16 +139,16 @@ export const opportunities: Opportunity[] = [
     id: "response",
     title: "Response Coordination",
     short: "Response coordination",
-    problem: "Unclear ownership can leave an interested partner waiting.",
+    problem: "An inquiry may sit unanswered if no one on the rightsholder team knows who should reply.",
     side: "rightsholder",
     stage: "Connect",
     hypothesis:
-      "Visible response ownership and next steps will reduce unanswered qualified inquiries.",
+      "Assigning an owner and showing the next step may reduce the number of qualified inquiries left unanswered.",
     impact: 7,
     effort: 7,
     confidence: 3,
     assumptions: [
-      "Response delay is operational, not a deliberate lack of interest.",
+      "Some delays happen because ownership is unclear, not because the rightsholder is uninterested.",
     ],
     dependencies: ["brief"],
     metrics: [
@@ -162,15 +162,15 @@ export const opportunities: Opportunity[] = [
     title: "Activation Milestone Visibility",
     short: "Activation milestones",
     problem:
-      "Brands and properties may interpret the next deliverable differently.",
+      "After a deal, each side may have a different understanding of who owes what and when.",
     side: "both",
     stage: "Execute",
     hypothesis:
-      "Shared deliverables with owners and dates will reduce execution ambiguity.",
+      "A shared list of deliverables, owners and due dates may help both sides keep the activation on track.",
     impact: 8,
     effort: 8,
     confidence: 3,
-    assumptions: ["Both parties will maintain shared milestone information."],
+    assumptions: ["Both sides are willing to update the shared list."],
     dependencies: ["brief"],
     metrics: [
       "On-time accepted milestones / due milestones",
@@ -182,17 +182,17 @@ export const opportunities: Opportunity[] = [
     id: "summary",
     title: "Outcome Summary",
     short: "Outcome summary",
-    problem: "Activity totals alone may not tell a partner what to do next.",
+    problem: "A report can show what happened without making it clear whether the original campaign goal was met.",
     side: "both",
     stage: "Measure",
     hypothesis:
-      "A goal-linked summary that separates observed activity from attribution will support clearer follow-up decisions.",
+      "A report that puts the original goal next to delivered activities and missing data may help both sides discuss what to do next.",
     impact: 7,
     effort: 6,
     confidence: 2,
     assumptions: [
-      "Partners can supply sufficiently consistent reporting.",
-      "Renewal decisions can be observed over an appropriate sales cycle.",
+      "Both sides can provide the data needed for a useful report.",
+      "There is enough time to follow a partnership through a renewal decision.",
     ],
     dependencies: ["milestones"],
     metrics: [
@@ -206,15 +206,15 @@ export const opportunities: Opportunity[] = [
     id: "collections",
     title: "Saved Opportunity Collections",
     short: "Saved collections",
-    problem: "A brand may lose the context behind an earlier consideration.",
+    problem: "A brand comparing options over several sessions may forget why it saved one.",
     side: "brand",
     stage: "Evaluate",
     hypothesis:
-      "Campaign-level saved collections with notes will help teams revisit decisions.",
+      "Letting a team save listings with notes for a campaign may make it easier to pick up where they left off.",
     impact: 5,
     effort: 3,
     confidence: 4,
-    assumptions: ["Research occurs across multiple sessions."],
+    assumptions: ["Brands research the same campaign over more than one session."],
     dependencies: [],
     metrics: [
       "Campaigns revisiting a saved opportunity within 14 days",
@@ -227,17 +227,17 @@ export const opportunities: Opportunity[] = [
     title: "Post-Deal Feedback Loop",
     short: "Post-deal feedback",
     problem:
-      "Feedback can stay in individual conversations rather than inform product decisions.",
+      "After a deal, useful feedback may stay in one salesperson’s notes instead of reaching the product team.",
     side: "both",
     stage: "Measure",
     hypothesis:
-      "A concise two-sided debrief, reviewed with sales, will surface repeated execution friction.",
+      "A short post-deal check-in with both sides, reviewed with sales, may reveal problems worth investigating across more deals.",
     impact: 4,
     effort: 7,
     confidence: 3,
     assumptions: [
       "Both sides will share candid feedback.",
-      "Sales can contribute context without treating anecdotes as prevalence.",
+      "Sales can share context, and the team can check whether a problem occurs beyond one deal.",
     ],
     dependencies: ["summary"],
     metrics: [
@@ -267,24 +267,24 @@ export const journey: Record<
 > = {
   Discover: {
     brand: "Find an audience worth reaching.",
-    rightsholder: "Make valuable inventory legible.",
-    friction: "Missing context makes relevance harder to judge.",
+    rightsholder: "Show what the package includes and who it reaches.",
+    friction: "A brand may not have the price, audience or dates needed to judge a listing.",
     opportunity: "quality",
-    metric: "Decision-ready listing coverage",
+    metric: "Listings with price, dates, audience and package details",
     interfaceTitle: "A useful first impression",
   },
   Evaluate: {
     brand: "Understand the fit and the trade-offs.",
-    rightsholder: "Communicate value credibly.",
-    friction: "A match score cannot answer every buyer question.",
+    rightsholder: "Show what the brand gets and who it can reach.",
+    friction: "A score alone may not explain why the audience or budget fits.",
     opportunity: "rationale",
     metric: "Qualified inquiry per eligible campaign",
-    interfaceTitle: "A reason to feel confident",
+    interfaceTitle: "Why this could be a fit",
   },
   Connect: {
     brand: "Share a clear, realistic brief.",
     rightsholder: "Respond with a relevant proposal.",
-    friction: "An interested buyer is not always a ready buyer.",
+    friction: "The rightsholder may need the brand’s budget and dates before making a proposal.",
     opportunity: "brief",
     metric: "Time to substantive response",
     interfaceTitle: "A better first conversation",
@@ -292,7 +292,7 @@ export const journey: Record<
   Execute: {
     brand: "Know what happens next.",
     rightsholder: "Deliver the agreed activation.",
-    friction: "Owners, assets and deadlines can become ambiguous.",
+    friction: "The two sides may disagree about who is responsible for an asset or deadline.",
     opportunity: "milestones",
     metric: "On-time accepted milestones",
     interfaceTitle: "One shared next step",
@@ -300,7 +300,7 @@ export const journey: Record<
   Measure: {
     brand: "Decide what to repeat or change.",
     rightsholder: "Demonstrate delivery and learn.",
-    friction: "Observed activity is not proof of incremental sales.",
+    friction: "A report of event interactions alone cannot tell us how many sales the sponsorship caused.",
     opportunity: "summary",
     metric: "Reporting coverage + repeat engagement",
     interfaceTitle: "An outcome with context",
@@ -405,44 +405,44 @@ export const experiments = [
     id: "match",
     title: "Match confidence",
     question:
-      "Can clearer match explanations help brands act with greater confidence?",
-    problem: "A recommendation can be relevant without being understandable.",
+      "Would showing why a match fits help brands send better inquiries?",
+    problem: "A brand may see a recommended listing without knowing why it fits their campaign.",
     hypothesis:
-      "Showing why a listing fits—and one limitation—will help more brands submit relevant inquiries.",
+      "If we show how the audience, budget and location fit—and flag a limitation—more brands may send inquiries that rightsholders consider relevant.",
     measurement:
-      "Campaigns with at least one qualified inquiry within 14 days ÷ eligible campaigns exposed. Also track rightsholder-rated inquiry relevance.",
+      "Compare the share of brands that send a qualified inquiry within 14 days, with and without the explanation. Ask rightsholders whether those inquiries are relevant.",
     decision:
-      "Advance if the rate rises at least 10% relative to control, with no more than a 0.25-point drop in average relevance (1–5). These are proposed thresholds; if the sample is too small, continue learning rather than call a winner.",
+      "Consider expanding if more brands send qualified inquiries without lowering their relevance to rightsholders. Agree on a meaningful target and sample size with the team before the test.",
     method:
-      "Define a qualified inquiry as one with a goal, budget and timing that meet the listing’s stated requirements; ask rightsholders to rate relevance separately. Establish a baseline and sample size, compare both experiences for at least 4 weeks, and follow every exposed campaign for 14 days.",
+      "First ask brands to explain why they would choose a match. If the explanation helps, compare it with the current experience. Define a qualified inquiry with the team and follow each campaign for 14 days; check the sample size before drawing conclusions.",
   },
   {
     id: "brief",
     title: "Deal readiness",
-    question: "Can shared expectations improve early conversations?",
-    problem: "Unclear intent creates clarification work for both parties.",
+    question: "Would a more complete first inquiry save both sides time?",
+    problem: "A rightsholder may need to ask for the brand’s budget, dates and goals before they can respond with a proposal.",
     hypothesis:
       "An editable brief with campaign goals, audience, market, budget and timing will help rightsholders respond with less clarification.",
     measurement:
-      "Complete briefs ÷ briefs started; median business hours to first substantive response; rightsholder relevance ratings.",
+      "Count how often a rightsholder has to ask for missing budget, dates or goals before preparing a proposal. Also track brief completion and first-response time.",
     decision:
-      "Proposed pilot target: 80% of started briefs contain all five fields, and 80% of rated inquiries score at least 4/5 for relevance. Review abandonment before expanding the test.",
+      "Move forward if fewer inquiries need those clarification questions and brief completion does not fall. Set a target with the team after measuring the current flow.",
     method:
-      "Run a 4-week opt-in pilot targeting 20 inquiries and 10 rightsholder ratings. Compare abandonment with the existing flow; if participation is too low, extend the pilot. Treat the findings as directional.",
+      "First review recent inquiries with sales to see which details are actually missing. Then pilot the brief with willing partners and compare clarification requests and completion with the current flow. A small pilot would be directional, not proof.",
   },
   {
     id: "outcomes",
     title: "Outcome understanding",
-    question: "Can clearer summaries support better follow-up decisions?",
-    problem: "A total does not explain whether an activation met its goal.",
+    question: "Would a report tied to the campaign goal make the next conversation more useful?",
+    problem: "A count of interactions alone does not show whether a campaign reached its goal.",
     hypothesis:
-      "A summary linking the original goal, delivery and missing evidence will help both partners choose a next step.",
+      "If the report shows the campaign goal, what was delivered and what data is missing, both partners may be better prepared to discuss the next campaign.",
     measurement:
-      "Participants who identify the goal, missing evidence and next action without help, by marketplace side.",
+      "Count how many participants on each side can identify the campaign goal, missing data and a sensible next step without help.",
     decision:
-      "Proposed target: at least 4 of 5 participants on each side answer all three prompts correctly. Revise the summary if either side falls short.",
+      "If people cannot find the goal or explain what is missing, revise the report before testing it with live campaigns.",
     method:
-      "Within 2 weeks of recruiting, test a fictional report with 5 brands and 5 rightsholders. Then pilot completed reports with consenting partners and observe repeat engagement over a full buying cycle; do not infer causality from intent.",
+      "Ask five brands and five rightsholders to review a fictional report and explain what they would do next. If the format is useful, explore a pilot with real partners and their consent.",
   },
 ] as const;
 export const funnel = [
