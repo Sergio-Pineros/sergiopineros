@@ -1,16 +1,13 @@
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
+import Image from "next/image";
 import Link from "next/link";
-import ReadingProgress from "@/components/linq/ReadingProgress";
 import PlansExplorer from "@/components/linq/PlansExplorer";
-import { LINQ_LINKS, LINQ_PLANS } from "@/lib/linq";
+import LinqSignal from "@/components/linq/LinqSignal";
+import { LINQ_LINKS } from "@/lib/linq";
+import "./linq.css";
 
-const openSans = Open_Sans({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-  variable: "--font-linq-sans",
-  display: "swap",
-});
+const openSans = Open_Sans({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-linq-sans", display: "swap" });
 
 export const metadata: Metadata = {
   title: "For Linq: a growth exercise by Sergio Piñeros",
@@ -22,236 +19,59 @@ export const metadata: Metadata = {
     card: "summary",
     title: "For Linq: a growth exercise by Sergio Piñeros",
     description:
-      "Good growth starts with understanding people. Experiments I would explore at Linq, and the experience behind each one.",
+      "Practical demos, builder sessions and campaigns that help the right teams discover and use Linq.",
   },
   openGraph: {
     title: "For Linq: a growth exercise by Sergio Piñeros",
     description:
-      "Good growth starts with understanding people. Experiments I would explore at Linq, and the experience behind each one.",
+      "Practical demos, builder sessions and campaigns that help the right teams discover and use Linq.",
     type: "article",
     url: "https://sergiopineros.com/linq",
     siteName: "Sergio Piñeros",
   },
 };
 
-function Eyebrow({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-deep">
-      {children}
-    </p>
-  );
-}
 
 export default function LinqPage() {
   return (
-    <div className={`${openSans.variable} min-h-screen bg-page text-ink antialiased [font-family:var(--font-linq-sans),system-ui,sans-serif]`}>
-      <ReadingProgress />
-      <a
-        href="#plans"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:bg-page focus:px-4 focus:py-2 focus:outline focus:outline-2 focus:outline-brand"
-      >
-        Skip to the plans
-      </a>
-
-      <header className="mx-auto flex w-full max-w-5xl items-center justify-between px-5 py-6 sm:px-8">
-        <Link
-          href="/"
-          className="text-lg font-bold text-ink underline-offset-4 transition-colors hover:text-brand-deep hover:underline"
-        >
-          Sergio Piñeros
-        </Link>
-        <nav aria-label="Page" className="flex items-center gap-2 sm:gap-3">
-          <a
-            href="#plans"
-            className="rounded-full px-4 py-2.5 text-[15px] font-medium text-ink-soft transition-colors hover:bg-surface-muted/60 hover:text-ink"
-          >
-            The plans
-          </a>
-        </nav>
-      </header>
-
-      <main className="mx-auto w-full max-w-5xl px-5 sm:px-8">
-        <section aria-labelledby="linq-title" className="relative pb-16 pt-10 sm:pt-16">
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 opacity-40"
-            style={{
-              backgroundImage: "url('/textures/paper-grain.png')",
-              backgroundRepeat: "repeat",
-              backgroundSize: "256px",
-            }}
-          />
-          <div className="relative max-w-[68ch]">
-            <Eyebrow>An independent growth exercise / Linq</Eyebrow>
-            <h1
-              id="linq-title"
-              className="mt-6 text-[44px] font-extrabold leading-[1.08] text-ink sm:text-6xl sm:leading-[1.05]"
-            >
-              Good growth starts with understanding people.
-            </h1>
-            <p className="mt-6 text-[22px] font-light leading-[1.45] text-ink-soft sm:text-2xl">
-              Work I would do at Linq, and the real jobs and campaigns it comes from.
-            </p>
-            <div className="mt-10 space-y-4 text-[17px] font-light leading-[1.75] text-ink-soft">
-              <p>
-                I&apos;m Sergio. I&apos;ve spent the past several years helping small businesses
-                find customers, communicate what makes them different, and put technology to work.
-              </p>
-              <p>
-                Linq describes this job in plain terms: find the businesses and developers who
-                should use Linq, help turn them into users, and keep them. The day to day work is
-                events, content, landing pages, campaigns and research. The plans below are my
-                version of that future work. Each one says what I would do, how I would do it, and
-                why. And each one is tied to something I have already done.
-              </p>
+    <div className={`${openSans.variable} lq-page`}>
+      <a className="lq-skip" href="#plans">Skip to the plans</a>
+      <header className="lq-header"><div className="lq-wrap lq-header-inner">
+        <div className="lq-lockup">
+          <a href={LINQ_LINKS.linq} target="_blank" rel="noopener noreferrer" aria-label="Visit Linq"><Image src="/linq/linq-logo.png" alt="Linq" width={100} height={50} priority /></a>
+          <span aria-hidden="true">×</span><Link href="/">Sergio Piñeros</Link>
+        </div>
+        <nav aria-label="Page"><a href="#plans">Explore the plans</a></nav>
+      </div></header>
+      <main>
+        <section className="lq-hero" aria-labelledby="linq-title">
+          <Image className="lq-hero-art" src="/linq/city-hero.webp" alt="" fill sizes="100vw" priority />
+          <div className="lq-hero-tint" aria-hidden="true" />
+          <div className="lq-wrap lq-hero-grid">
+            <div className="lq-hero-copy">
+              <p className="lq-eyebrow">A growth proposal for Linq</p>
+              <h1 id="linq-title">Make it click.<br /><span>Get builders building.</span></h1>
+              <p className="lq-hero-lead">Show what Linq makes possible. Bring the right people together. Turn that interest into lasting use.</p>
+              <a className="lq-hero-link" href="#plans">Explore the plans<span aria-hidden="true" className="lq-link-line" /></a>
             </div>
-            <p className="mt-10 text-sm leading-relaxed text-muted">
-              An independent exercise prepared for Linq&apos;s Growth Strategist position. Linq has
-              not commissioned, approved or endorsed this page, and the plans are ideas formed from
-              public information, not conclusions drawn from internal data.
-            </p>
-            <ul className="mt-10 flex flex-wrap gap-2" aria-label="The plans at a glance">
-              {LINQ_PLANS.map((plan) => (
-                <li key={plan.id}>
-                  <a
-                    href="#plans"
-                    className="inline-block rounded-full border border-ink/15 px-4 py-2 text-[14px] font-medium text-ink-soft transition-colors hover:border-brand/60 hover:text-ink"
-                  >
-                    {plan.tab}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <LinqSignal />
           </div>
         </section>
-
-        <section id="plans" aria-labelledby="plans-title" className="scroll-mt-20 border-t border-ink/10 py-16 sm:py-20">
-          <div className="max-w-[68ch]">
-            <Eyebrow>The plans</Eyebrow>
-            <h2 id="plans-title" className="mt-4 text-4xl font-extrabold leading-[1.12] text-ink sm:text-[44px]">
-              Ways I would grow Linq.
-            </h2>
-            <p className="mt-5 text-[17px] font-light leading-[1.75] text-ink-soft">
-              Pick a plan. Walk through it step by step. See what each step needs, what it
-              produces, and how I would know if it worked.
-            </p>
-          </div>
-          <div className="mt-12">
+        <section id="plans" className="lq-plans" aria-labelledby="plans-title">
+          <div className="lq-wrap">
+            <header className="lq-plans-intro"><h2 id="plans-title">Good ideas.<br /><span>A clear way to test them.</span></h2><p>From the first impression<br />to the first working build.</p></header>
             <PlansExplorer />
           </div>
         </section>
-
-        <section aria-labelledby="loop-title" className="border-t border-ink/10 py-16 sm:py-20">
-          <div className="max-w-[68ch]">
-            <Eyebrow>How the plans connect</Eyebrow>
-            <h2 id="loop-title" className="mt-4 text-4xl font-extrabold leading-[1.12] text-ink sm:text-[44px]">
-              Ideas that feed each other.
-            </h2>
-            <p
-              className="mt-10 flex flex-wrap items-baseline gap-x-4 gap-y-2 text-2xl text-ink sm:text-3xl"
-              aria-label="Discover, demonstrate, activate, learn, repeat"
-            >
-              <span className="font-extrabold">Discover</span>
-              <span aria-hidden="true" className="font-light text-brand-deep">·</span>
-              <span className="font-light">Demonstrate</span>
-              <span aria-hidden="true" className="font-light text-brand-deep">·</span>
-              <span className="font-extrabold">Activate</span>
-              <span aria-hidden="true" className="font-light text-brand-deep">·</span>
-              <span className="font-light">Learn</span>
-              <span aria-hidden="true" className="font-light text-brand-deep">·</span>
-              <span className="font-extrabold text-brand-deep">Repeat</span>
-            </p>
-            <p className="mt-10 text-[17px] font-light leading-[1.75] text-ink-soft">
-              The plans are one loop, not separate projects. Research finds the real problems.
-              Demos make Linq easy to get. Events get people building, not just watching. Campaigns
-              turn that interest into people getting started. And what we learn makes the next
-              round better. I would not call these the right ideas before talking with Linq&apos;s
-              team and customers. They are where I would start.
-            </p>
-          </div>
-        </section>
-
-        <section id="talk" aria-labelledby="talk-title" className="scroll-mt-20 border-t border-ink/10 py-16 sm:py-20">
-          <div className="max-w-[68ch]">
-            <Eyebrow>Why Linq, and a little about me</Eyebrow>
-            <h2 id="talk-title" className="mt-4 text-4xl font-extrabold leading-[1.12] text-ink sm:text-[44px]">
-              Let&apos;s talk about growth at Linq.
-            </h2>
-            <div className="mt-8 space-y-4 text-[17px] font-light leading-[1.75] text-ink-soft">
-              <p>
-                My work has moved from helping businesses communicate with customers to exploring
-                how technology can make those interactions more natural and useful. That is what
-                caught my attention about Linq. I am interested in the tools behind new ways of
-                communicating, and just as much in helping people discover what they can build
-                with them.
-              </p>
-              <p>
-                I&apos;m Sergio Piñeros, a Colombian founder, creative strategist and builder
-                working across growth, digital experiences and applied technology. I&apos;m
-                bilingual in English and Spanish. I have built small businesses, worked with
-                creative teams, worked directly with customers, and explored products where
-                technology meets communication.
-              </p>
-            </div>
-            <p className="mt-12 text-[26px] font-bold leading-snug text-ink sm:text-3xl">
-              I&apos;d love to talk about what we could test together.
-            </p>
-            <ul className="mt-8 flex flex-wrap gap-3">
-              <li>
-                <a
-                  href={`mailto:${LINQ_LINKS.email}`}
-                  className="inline-block rounded-full border border-ink/15 px-5 py-2.5 text-[16px] text-ink-soft transition-colors hover:border-brand/50 hover:text-brand-deep"
-                >
-                  {LINQ_LINKS.email}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={LINQ_LINKS.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block rounded-full border border-ink/15 px-5 py-2.5 text-[16px] text-ink-soft transition-colors hover:border-brand/50 hover:text-brand-deep"
-                >
-                  LinkedIn
-                </a>
-              </li>
-              <li>
-                <Link
-                  href="/"
-                  className="inline-block rounded-full border border-ink/15 px-5 py-2.5 text-[16px] text-ink-soft transition-colors hover:border-brand/50 hover:text-brand-deep"
-                >
-                  sergiopineros.com
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </section>
+        <section className="lq-about" aria-labelledby="about-title"><div className="lq-wrap lq-about-inner">
+          <h2 id="about-title">I can connect the story<br /><span>to the work behind it.</span></h2>
+          <div><p>I’m Sergio. I’ve found clients, made campaigns, organised events and worked with creative teams. I’d bring that same hands-on approach to helping builders discover and use Linq.</p><a href={`mailto:${LINQ_LINKS.email}`}>{LINQ_LINKS.email}</a></div>
+        </div></section>
       </main>
-
-      <footer className="border-t border-ink/10">
-        <div className="mx-auto w-full max-w-5xl px-5 py-14 sm:px-8">
-          <div className="max-w-[68ch]">
-            <Eyebrow>More of my work</Eyebrow>
-            <p className="mt-4 text-[16px] leading-[1.7] text-ink-soft">
-              Explore selected commercial and digital strategy projects at Sergio &amp; Co.
-            </p>
-            <p className="mt-4">
-              <a
-                href={LINQ_LINKS.studio}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xl font-bold text-ink underline-offset-4 transition-colors hover:text-brand-deep hover:underline"
-              >
-                Sergio &amp; Co. · Digital Strategy &amp; Creative Work
-              </a>
-            </p>
-            <p className="mt-12 text-[13px] leading-relaxed text-muted">
-              Sergio Piñeros · An independent growth exercise for Linq&apos;s Growth Strategist
-              position · Not affiliated with or endorsed by Linq
-            </p>
-          </div>
-        </div>
-      </footer>
+      <footer className="lq-footer"><div className="lq-wrap">
+        <div className="lq-footer-main"><div><Link href="/">Sergio Piñeros</Link><a href={LINQ_LINKS.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a></div><a href={LINQ_LINKS.studio} className="lq-studio-link" target="_blank" rel="noopener noreferrer" aria-label="Visit Sergio & Co."><Image src="/linq/sergio-co.svg" alt="Sergio & Co." width={280} height={62} /></a></div>
+        <p className="lq-colophon">An independent exercise for Linq’s Growth Strategist role. Proposed tests, based on public information. Not endorsed by Linq. Hero artwork: Linq.</p>
+      </div></footer>
     </div>
   );
 }
