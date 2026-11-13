@@ -84,7 +84,7 @@
   padding: 120px 0;
 }
 .av-kicker {
-  font-size: 10px;
+  font-size: 15px;
   letter-spacing: 0.16em;
   font-weight: 600;
   line-height: 1.6;
@@ -111,7 +111,7 @@
   color: #566383;
 }
 .av-section-intro > p {
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.8;
   color: var(--av-muted);
   padding-bottom: 4px;
@@ -121,14 +121,14 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 9px;
+  font-size: 15px;
   letter-spacing: 0.1em;
   font-weight: 600;
   color: #67738a;
   line-height: 1.6;
 }
 .av-footnote {
-  font-size: 11px;
+  font-size: 15px;
   line-height: 1.7;
   color: #6d768a;
 }
@@ -137,7 +137,7 @@
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 500;
 }
 .av-text-link {
@@ -157,7 +157,7 @@
   border-radius: 100px;
   min-height: 43px;
   padding: 12px 21px;
-  font-size: 12px !important;
+  font-size: 15px !important;
   font-weight: 500 !important;
   line-height: 1.3;
   background: #fff !important;
@@ -192,7 +192,7 @@
   gap: 7px;
   border-radius: 100px;
   padding: 8px 16px;
-  font-size: 11px;
+  font-size: 15px;
   white-space: nowrap;
   color: #626e83;
   min-height: 34px;
@@ -280,7 +280,7 @@
   letter-spacing: -0.12em;
 }
 .av-nav-lockup > a:first-child > span {
-  font-size: 8px;
+  font-size: 15px;
   letter-spacing: 0;
   vertical-align: super;
   margin-left: 4px;
@@ -298,7 +298,7 @@
 }
 .av-anvara-wordmark > span {
   display: block;
-  font-size: 8px;
+  font-size: 15px;
   letter-spacing: 0.11em;
   font-weight: 400;
   margin-top: 4px;
@@ -312,7 +312,7 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  font-size: 11px;
+  font-size: 15px;
   color: #525e73;
   transition: color 0.2s;
 }
@@ -323,7 +323,7 @@
   color: #2369e8;
 }
 .av-nav-contact {
-  font-size: 11px;
+  font-size: 15px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -345,7 +345,7 @@
   border: 1px solid #e1e6f1;
   border-radius: 100px;
   padding: 10px 17px;
-  font-size: 10px;
+  font-size: 15px;
   box-shadow: 0 4px 24px #1324470d;
   backdrop-filter: blur(14px);
 }
@@ -382,7 +382,7 @@
 }
 .av-hero-copy > .av-kicker {
   color: #677491;
-  font-size: 9px;
+  font-size: 15px;
   margin-bottom: 28px;
 }
 .av-hero h1 {
@@ -427,7 +427,7 @@
   gap: 10px;
   align-items: center;
   white-space: nowrap;
-  font-size: 8px;
+  font-size: 15px;
   letter-spacing: 0.15em;
   color: #626d85;
   font-family: var(--font-dm-sans), sans-serif;
@@ -443,7 +443,7 @@
   z-index: 3;
 }
 .av-hero-bottom > span {
-  font-size: 8px;
+  font-size: 15px;
   letter-spacing: 0.13em;
   line-height: 1.8;
   color: #626d85;
@@ -454,7 +454,7 @@
 .av-hero-bottom > a {
   display: flex;
   gap: 20px;
-  font-size: 10px;
+  font-size: 15px;
   align-items: center;
   border-bottom: 1px solid #c6cce1;
   padding-bottom: 7px;
@@ -468,7 +468,7 @@
   left: 0;
   width: 100%;
   text-align: center;
-  font-size: 8px;
+  font-size: 15px;
   letter-spacing: 0.03em;
   color: #626d85;
 }
@@ -491,7 +491,7 @@
   justify-content: center;
   gap: 10px;
   color: #626d85;
-  font-size: 10px;
+  font-size: 15px;
 }
 .av-spatial-loading > span {
   width: 5px;
@@ -533,7 +533,7 @@
   max-width: 450px;
   margin: auto !important;
   color: #aebbd7;
-  font-size: 13px;
+  font-size: 15px;
 }
 .av-perspectives {
   background: #fff;
@@ -563,7 +563,7 @@
   display: flex;
   gap: 12px;
   align-items: center;
-  font-size: 13px;
+  font-size: 15px;
   color: #647089;
 }
 .av-perspective-copy li svg {
@@ -613,7 +613,7 @@
   z-index: 1;
 }
 .av-participant-node > span {
-  font-size: 8px;
+  font-size: 15px;
   letter-spacing: 0.1em;
   color: #626d85;
 }
@@ -648,7 +648,7 @@
   text-align: center;
 }
 .av-shared-caption > span {
-  font-size: 8px;
+  font-size: 15px;
   letter-spacing: 0.14em;
   color: #626d85;
 }
@@ -660,7 +660,7 @@
   letter-spacing: -0.03em;
 }
 .av-shared-caption > p {
-  font-size: 12px;
+  font-size: 15px;
   color: #626d85;
   line-height: 1.7;
 }
@@ -673,7 +673,7 @@
   align-items: flex-start;
 }
 .av-marketplace-insight > span {
-  font-size: 9px;
+  font-size: 15px;
   letter-spacing: 0.1em;
   color: #626d85;
   padding-top: 8px;
@@ -697,7 +697,7 @@
   margin-top: 40px;
   padding-top: 25px;
   color: #626d85;
-  font-size: 10px;
+  font-size: 15px;
   line-height: 1.8;
 }
 .av-source-note > p {
@@ -733,7 +733,7 @@
   align-items: center;
 }
 .av-workspace-toolbar > .av-text-button {
-  font-size: 10px;
+  font-size: 15px;
   color: #626d85;
 }
 .av-filter-row {
@@ -749,7 +749,7 @@
   gap: 18px;
 }
 .av-participants > button {
-  font-size: 10px;
+  font-size: 15px;
   padding: 7px 0;
   color: #626d85;
   border-bottom: 1px solid transparent;
@@ -762,7 +762,7 @@
   display: flex;
   gap: 8px;
   align-items: center;
-  font-size: 10px;
+  font-size: 15px;
   color: #626d85;
 }
 .av-filter-row select {
@@ -770,7 +770,7 @@
   border-radius: 6px;
   background: #fff;
   padding: 5px 7px;
-  font-size: 10px;
+  font-size: 15px;
   color: #4f5e78;
   max-width: 150px;
 }
@@ -814,11 +814,11 @@
   touch-action: none;
 }
 .av-quadrants text {
-  font-size: 12px;
+  font-size: 15px;
   fill: #9aa3b4;
 }
 .av-chart-axes text {
-  font-size: 11px;
+  font-size: 15px;
   fill: #8d97aa;
 }
 .av-chart-point {
@@ -836,7 +836,7 @@
   fill: #2369e8;
 }
 .av-point-label {
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 500;
   paint-order: stroke;
   stroke: #f9faff;
@@ -857,7 +857,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 9px;
+  font-size: 15px;
   color: inherit;
   opacity: 0.8;
   pointer-events: none;
@@ -877,7 +877,7 @@
   bottom: 9px;
   left: 25px;
   right: 20px;
-  font-size: 8px;
+  font-size: 15px;
   letter-spacing: 0.02em;
   min-height: 15px;
   color: inherit;
@@ -886,7 +886,7 @@
 .av-prism-label {
   white-space: nowrap;
   color: #b8c7ef !important;
-  font-size: 10px !important;
+  font-size: 15px !important;
   padding: 4px 7px !important;
   border-radius: 5px;
   background: #1a244a99 !important;
@@ -896,12 +896,12 @@
 .av-prism-label.is-selected {
   background: #ffffffec !important;
   color: #29335c !important;
-  font-size: 11px !important;
+  font-size: 15px !important;
   box-shadow: 0 3px 20px #151a3455;
 }
 .av-axis-3d {
   white-space: nowrap;
-  font-size: 8px;
+  font-size: 15px;
   letter-spacing: 0.12em;
   color: #aebadb;
 }
@@ -918,7 +918,7 @@
   margin-top: 10px;
 }
 .av-status {
-  font-size: 8px;
+  font-size: 15px;
   display: inline-flex;
   border: 1px solid #e5e8f2;
   border-radius: 100px;
@@ -927,7 +927,7 @@
   margin: 13px 0;
 }
 .av-hypothesis p {
-  font-size: 11px;
+  font-size: 15px;
   line-height: 1.7;
   color: #69758a;
 }
@@ -935,7 +935,7 @@
   margin-bottom: 16px;
 }
 .av-hypothesis .av-mini-label {
-  font-size: 8px;
+  font-size: 15px;
 }
 .av-estimates {
   display: grid;
@@ -947,7 +947,7 @@
   grid-template-columns: 1fr auto;
   gap: 0 10px;
   align-items: center;
-  font-size: 10px;
+  font-size: 15px;
   position: relative;
 }
 .av-estimates label > span small {
@@ -965,16 +965,16 @@
   border-radius: 5px;
   padding: 9px;
   z-index: 5;
-  font-size: 9px;
+  font-size: 15px;
   font-weight: 400;
   line-height: 1.5;
 }
 .av-estimates output {
   font-variant-numeric: tabular-nums;
-  font-size: 11px;
+  font-size: 15px;
 }
 .av-estimates output small {
-  font-size: 8px;
+  font-size: 15px;
   color: #626d85;
   margin-left: 1px;
 }
@@ -987,11 +987,11 @@
   margin: 2px 0;
 }
 .av-metric-text {
-  font-size: 10px !important;
+  font-size: 15px !important;
   margin-top: 4px !important;
 }
 .av-page details summary {
-  font-size: 10px;
+  font-size: 15px;
   cursor: pointer;
   color: #616f8d;
 }
@@ -1002,12 +1002,12 @@
 }
 .av-hypothesis details ul {
   padding-left: 15px;
-  font-size: 10px;
+  font-size: 15px;
   line-height: 1.65;
   color: #626d85;
 }
 .av-hypothesis details p {
-  font-size: 10px;
+  font-size: 15px;
 }
 .av-opportunity-index {
   border-top: 1px solid #e5e9f2;
@@ -1021,12 +1021,12 @@
   display: flex;
   align-items: center;
   gap: 7px;
-  font-size: 9px;
+  font-size: 15px;
   color: #626d85;
   min-height: 27px;
 }
 .av-opportunity-index > button > span {
-  font-size: 8px;
+  font-size: 15px;
   color: #626d85;
 }
 .av-opportunity-index > button[aria-pressed="true"] {
@@ -1034,14 +1034,14 @@
 }
 .av-decision-section > .av-wrap > .av-footnote {
   margin-top: 18px;
-  font-size: 10px;
+  font-size: 15px;
   max-width: 960px;
 }
 .av-empty {
   position: absolute;
   inset: 30%;
   text-align: center;
-  font-size: 13px;
+  font-size: 15px;
   background: #fff;
   padding: 20px;
   border-radius: 9px;
@@ -1049,7 +1049,7 @@
 .av-empty > button {
   display: block;
   color: #2369e8;
-  font-size: 11px;
+  font-size: 15px;
   margin-top: 10px;
 }
 .av-journey-section {
@@ -1068,7 +1068,7 @@
   display: flex;
   align-items: center;
   gap: 7px;
-  font-size: 8px;
+  font-size: 15px;
   letter-spacing: 0.08em;
   color: #626d85;
 }
@@ -1097,7 +1097,7 @@
 }
 .av-journey-stages > button {
   text-align: left;
-  font-size: 12px;
+  font-size: 15px;
   color: #626d85;
   padding: 12px 0;
   border-top: 1px solid #e3e7f0;
@@ -1106,7 +1106,7 @@
   text-align: right;
 }
 .av-journey-stages > button > span {
-  font-size: 8px;
+  font-size: 15px;
   margin-right: 12px;
   color: #626d85;
 }
@@ -1133,7 +1133,7 @@
 }
 .av-paired-goals > p > span {
   display: block;
-  font-size: 8px;
+  font-size: 15px;
   letter-spacing: 0.12em;
   margin-bottom: 10px;
 }
@@ -1142,7 +1142,7 @@
   padding-top: 15px;
 }
 .av-friction > p {
-  font-size: 12px;
+  font-size: 15px;
   color: #626d85;
   margin-top: 7px;
 }
@@ -1154,7 +1154,7 @@
   margin-top: 24px;
 }
 .av-journey-detail h3 + p {
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.8;
   color: #626d85;
   margin-top: 9px;
@@ -1163,12 +1163,12 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
-  font-size: 11px;
+  font-size: 15px;
   margin: 20px 0 !important;
   color: #586a8e;
 }
 .av-journey-metric > span {
-  font-size: 8px;
+  font-size: 15px;
   letter-spacing: 0.1em;
   color: #626d85;
 }
@@ -1194,7 +1194,7 @@
   background: #c5cede;
 }
 .av-ui-chrome > small {
-  font-size: 7px;
+  font-size: 15px;
   letter-spacing: 0.1em;
   color: #626d85;
   margin-left: auto;
@@ -1210,7 +1210,7 @@
   line-height: 1.2;
 }
 .av-ui-inner > p {
-  font-size: 12px;
+  font-size: 15px;
   color: #626d85;
   margin-bottom: 20px;
 }
@@ -1257,7 +1257,7 @@
   position: absolute;
   bottom: 14px;
   left: 18px;
-  font-size: 13px;
+  font-size: 15px;
   color: #fff;
   z-index: 2;
 }
@@ -1270,7 +1270,7 @@
   display: grid;
   grid-template-columns: 75px 1fr;
   gap: 10px;
-  font-size: 10px;
+  font-size: 15px;
   border-bottom: 1px solid #e2e7f1;
   padding-bottom: 8px;
 }
@@ -1285,7 +1285,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 10px;
+  font-size: 15px;
   color: #4f67aa;
   margin-top: 25px;
   padding-top: 13px;
@@ -1309,7 +1309,7 @@
   transform: rotateX(20deg) rotateY(25deg);
 }
 .av-fit-display > span {
-  font-size: 8px;
+  font-size: 15px;
   letter-spacing: 0.08em;
   color: #626d85;
 }
@@ -1326,13 +1326,13 @@
   border: 1px solid #fff;
   border-radius: 6px;
   padding: 17px 20px;
-  font-size: 11px;
+  font-size: 15px;
   color: #626d85;
   line-height: 1.8;
 }
 .av-ui-note > span {
   display: block;
-  font-size: 7px;
+  font-size: 15px;
   color: #626d85;
   letter-spacing: 0.1em;
   margin-bottom: 6px;
@@ -1342,7 +1342,7 @@
   background: #fff;
   border: 1px solid #e3e8f4;
   border-radius: 8px 8px 8px 0;
-  font-size: 12px;
+  font-size: 15px;
   color: #627292;
   line-height: 1.8;
   max-width: 92%;
@@ -1350,7 +1350,7 @@
 }
 .av-message > span {
   display: block;
-  font-size: 7px;
+  font-size: 15px;
   letter-spacing: 0.08em;
   color: #626d85;
   margin-bottom: 7px;
@@ -1378,16 +1378,16 @@
   height: 30px;
   background: #ebeefa;
   border-radius: 50%;
-  font-size: 9px;
+  font-size: 15px;
   color: #626d85;
 }
 .av-milestone-list p {
-  font-size: 12px;
+  font-size: 15px;
   color: #596986;
 }
 .av-milestone-list p > small {
   display: block;
-  font-size: 8px;
+  font-size: 15px;
   color: #626d85;
   margin-top: 3px;
 }
@@ -1405,7 +1405,7 @@
 }
 .av-outcome-mini > span {
   max-width: 120px;
-  font-size: 11px;
+  font-size: 15px;
   color: #626d85;
 }
 .av-lab-section {
@@ -1435,7 +1435,7 @@
 }
 .av-experiment-tabs > button > span {
   display: block;
-  font-size: 8px;
+  font-size: 15px;
   letter-spacing: 0.13em;
   margin-bottom: 9px;
 }
@@ -1469,13 +1469,13 @@
   gap: 25px;
 }
 .av-experiment-reasoning p {
-  font-size: 11px;
+  font-size: 15px;
   color: #626d85;
   line-height: 1.8;
 }
 .av-experiment-reasoning p > span {
   display: block;
-  font-size: 7px;
+  font-size: 15px;
   letter-spacing: 0.12em;
   margin-bottom: 7px;
   color: #626d85;
@@ -1499,7 +1499,7 @@
   display: flex;
   align-items: center;
   gap: 9px;
-  font-size: 9px;
+  font-size: 15px;
   letter-spacing: 0.1em;
   font-weight: 600;
   color: #3f4c70;
@@ -1511,7 +1511,7 @@
   border-radius: 50%;
 }
 .av-prototype-title > span:last-child {
-  font-size: 9px;
+  font-size: 15px;
   color: #626d85;
 }
 .av-lab-progress {
@@ -1523,7 +1523,7 @@
 }
 .av-lab-progress > button {
   padding: 13px 0;
-  font-size: 9px;
+  font-size: 15px;
   white-space: nowrap;
   color: #626d85;
   border-bottom: 1px solid transparent;
@@ -1551,7 +1551,7 @@
 .av-campaign label {
   display: block;
   margin-bottom: 20px;
-  font-size: 10px;
+  font-size: 15px;
   color: #626d85;
 }
 .av-page select,
@@ -1562,7 +1562,7 @@
   border: 1px solid #dce3ef;
   border-radius: 6px;
   padding: 11px 12px;
-  font-size: 11px;
+  font-size: 15px;
   line-height: 1.4;
 }
 .av-campaign select {
@@ -1570,7 +1570,7 @@
   color: #3c4b6d;
 }
 .av-campaign > .av-footnote {
-  font-size: 9px;
+  font-size: 15px;
   line-height: 1.9;
   margin-top: 30px;
 }
@@ -1596,7 +1596,7 @@
   color: #626d85;
 }
 .av-results-top > .av-text-button {
-  font-size: 10px;
+  font-size: 15px;
   white-space: nowrap;
   color: #626d85;
   margin-top: 4px;
@@ -1663,13 +1663,13 @@
 }
 .av-event-info > small {
   display: block;
-  font-size: 7px;
+  font-size: 15px;
   color: #626d85;
   letter-spacing: 0.02em;
 }
 .av-event-info > strong {
   display: block;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
   letter-spacing: -0.01em;
   margin: 2px 0;
@@ -1677,7 +1677,7 @@
 .av-event-info > span {
   display: flex;
   gap: 12px;
-  font-size: 9px;
+  font-size: 15px;
   color: #626d85;
 }
 .av-event-info em {
@@ -1713,7 +1713,7 @@
   color: #626d85;
 }
 .av-match-explanation > div:first-child small {
-  font-size: 9px;
+  font-size: 15px;
   margin-left: 3px;
   color: #626d85;
 }
@@ -1727,7 +1727,7 @@
   display: flex;
   gap: 9px;
   align-items: flex-start;
-  font-size: 9px;
+  font-size: 15px;
   color: #626d85;
   line-height: 1.6;
 }
@@ -1751,7 +1751,7 @@
 .av-fit-signals strong {
   display: block;
   color: #626d85;
-  font-size: 9px;
+  font-size: 15px;
   font-weight: 500;
   margin-bottom: 2px;
 }
@@ -1759,13 +1759,13 @@
   padding: 12px 15px;
   background: #f7f7fc;
   border-left: 2px solid #b8b3de;
-  font-size: 10px;
+  font-size: 15px;
   line-height: 1.7;
   color: #626d85;
 }
 .av-tradeoff > strong {
   display: block;
-  font-size: 8px;
+  font-size: 15px;
   color: #626d85;
   font-weight: 500;
   margin-bottom: 4px;
@@ -1780,10 +1780,10 @@
   padding-top: 22px;
 }
 .av-results-actions > .av-text-button {
-  font-size: 10px;
+  font-size: 15px;
 }
 .av-results-actions > .av-button {
-  font-size: 10px !important;
+  font-size: 15px !important;
   min-height: 36px;
   padding: 10px 16px;
 }
@@ -1791,12 +1791,12 @@
   margin-top: 12px;
 }
 .av-empty-inline {
-  font-size: 12px;
+  font-size: 15px;
   color: #626d85;
   padding: 20px 5px;
 }
 .av-empty-inline button {
-  font-size: 11px;
+  font-size: 15px;
   color: #2369e8;
   display: flex;
   gap: 9px;
@@ -1820,7 +1820,7 @@
 }
 .av-brief-layout > div > p,
 .av-outcome-layout > div > p {
-  font-size: 12px;
+  font-size: 15px;
   color: #626d85;
   line-height: 1.8;
   margin-bottom: 25px;
@@ -1830,7 +1830,7 @@
 }
 .av-brief-layout .av-toggle button,
 .av-outcome-layout .av-toggle button {
-  font-size: 9px;
+  font-size: 15px;
   padding-inline: 13px;
 }
 .av-brief-facts {
@@ -1842,7 +1842,7 @@
   gap: 15px;
   padding: 10px 0;
   border-bottom: 1px solid #e5eaf3;
-  font-size: 10px;
+  font-size: 15px;
 }
 .av-brief-facts dt {
   color: #626d85;
@@ -1861,7 +1861,7 @@
 .av-inquiry-editor > label,
 .av-inquiry-editor > label > textarea {
   display: block;
-  font-size: 11px;
+  font-size: 15px;
   color: #626d85;
 }
 .av-inquiry-editor > label {
@@ -1873,11 +1873,11 @@
   line-height: 1.8;
 }
 .av-inquiry-editor > .av-footnote {
-  font-size: 9px;
+  font-size: 15px;
   margin: 10px 0 16px;
 }
 .av-inquiry-editor .av-button {
-  font-size: 10px !important;
+  font-size: 15px !important;
 }
 .av-inquiry-editor h5,
 .av-outcome-report h5 {
@@ -1901,7 +1901,7 @@
   overflow-wrap: anywhere;
 }
 .av-generated-brief button {
-  font-size: 10px;
+  font-size: 15px;
   margin-top: 12px;
 }
 .av-readiness-checks {
@@ -1912,7 +1912,7 @@
 .av-readiness-checks > p {
   display: flex;
   gap: 10px;
-  font-size: 11px;
+  font-size: 15px;
   color: #626d85;
 }
 .av-readiness-checks > p > span {
@@ -1925,13 +1925,13 @@
   margin-top: 30px;
 }
 .av-experiment-measurement p {
-  font-size: 11px;
+  font-size: 15px;
   color: #626d85;
   line-height: 1.8;
   margin-top: 8px;
 }
 .av-experiment-measurement summary {
-  font-size: 11px !important;
+  font-size: 15px !important;
   padding-top: 3px;
 }
 .av-outcome-report {
@@ -1955,7 +1955,7 @@
 }
 .av-outcome-numbers span {
   display: block;
-  font-size: 9px;
+  font-size: 15px;
   color: #626d85;
 }
 .av-deliverables {
@@ -1968,7 +1968,7 @@
   display: flex;
   gap: 10px;
   align-items: center;
-  font-size: 10px;
+  font-size: 15px;
   color: #626d85;
 }
 .av-deliverables svg {
@@ -1978,12 +1978,12 @@
   padding-top: 24px;
 }
 .av-outcome-insight > p {
-  font-size: 11px;
+  font-size: 15px;
   line-height: 1.8;
   color: #626d85;
 }
 .av-outcome-report > .av-footnote {
-  font-size: 8px;
+  font-size: 15px;
   border-top: 1px solid #dfe4ef;
   margin-top: 22px;
   padding-top: 12px;
@@ -2001,7 +2001,7 @@
   gap: 12px;
 }
 .av-funnel button {
-  font-size: 10px;
+  font-size: 15px;
   color: #626d85;
   text-align: left;
   line-height: 1.4;
@@ -2009,7 +2009,7 @@
 }
 .av-funnel button > span {
   display: block;
-  font-size: 7px;
+  font-size: 15px;
   letter-spacing: 0.1em;
   margin-bottom: 7px;
   color: #626d85;
@@ -2036,13 +2036,13 @@
 .av-instrumentation code {
   display: block;
   font-family: monospace;
-  font-size: 12px;
+  font-size: 15px;
   color: #5c75b0;
   margin: 14px 0;
   overflow-wrap: anywhere;
 }
 .av-instrumentation p {
-  font-size: 10px;
+  font-size: 15px;
   color: #626d85;
   line-height: 1.9;
 }
@@ -2060,7 +2060,7 @@
   padding: 25px 0;
 }
 .av-instrumentation-plan p {
-  font-size: 11px;
+  font-size: 15px;
   color: #626d85;
   line-height: 1.9;
 }
@@ -2093,7 +2093,7 @@
   transform: translate(-50%, -50%);
   width: 100px;
   text-align: center;
-  font-size: 10px;
+  font-size: 15px;
   line-height: 1.35;
   color: #626d85;
   padding: 8px 3px;
@@ -2102,7 +2102,7 @@
 }
 .av-learning-orbit > button > span {
   display: block;
-  font-size: 7px;
+  font-size: 15px;
   color: #626d85;
   margin-bottom: 6px;
 }
@@ -2119,7 +2119,7 @@
 }
 .av-loop-center > span {
   display: block;
-  font-size: 7px;
+  font-size: 15px;
   letter-spacing: 0.13em;
   color: #626d85;
 }
@@ -2138,7 +2138,7 @@
   margin: 15px 0;
 }
 .av-learning-copy > p {
-  font-size: 13px;
+  font-size: 15px;
   color: #626d85;
   line-height: 1.9;
   max-width: 400px;
@@ -2149,12 +2149,12 @@
   margin: 25px 0 30px;
 }
 .av-sales-input > span {
-  font-size: 7px;
+  font-size: 15px;
   letter-spacing: 0.09em;
   color: #626d85;
 }
 .av-sales-input > p {
-  font-size: 11px;
+  font-size: 15px;
   line-height: 1.9;
   color: #626d85;
   margin-top: 7px;
@@ -2177,11 +2177,11 @@
   display: flex;
   gap: 13px;
   align-items: center;
-  font-size: 12px;
+  font-size: 15px;
   color: #626d85;
 }
 .av-phase-label > span {
-  font-size: 8px;
+  font-size: 15px;
   color: #626d85;
 }
 .av-phase-label > svg {
@@ -2203,12 +2203,12 @@
   display: block;
   border-bottom: 1px solid #dfe4f0;
   padding: 15px 22px 15px 0;
-  font-size: 12px;
+  font-size: 15px;
   color: #626d85;
 }
 .av-roadmap-phase > a > small {
   display: block;
-  font-size: 8px;
+  font-size: 15px;
   color: #626d85;
   margin-top: 4px;
 }
@@ -2219,7 +2219,7 @@
   color: #626d85;
 }
 .av-roadmap-phase > p {
-  font-size: 12px;
+  font-size: 15px;
   color: #626d85;
   line-height: 1.9;
   max-width: 260px;
@@ -2228,7 +2228,7 @@
 .av-roadmap-phase > small {
   display: block;
   margin-top: 15px;
-  font-size: 9px;
+  font-size: 15px;
   color: #626d85;
 }
 .av-priority-note {
@@ -2240,7 +2240,7 @@
   padding-top: 30px;
 }
 .av-priority-note > p {
-  font-size: 10px;
+  font-size: 15px;
   line-height: 1.9;
   color: #626d85;
   max-width: 710px;
@@ -2250,12 +2250,12 @@
   color: #626d85;
 }
 .av-priority-note .av-button {
-  font-size: 10px !important;
+  font-size: 15px !important;
   flex-shrink: 0;
   padding-inline: 19px;
 }
 .av-roadmap .av-footnote {
-  font-size: 9px;
+  font-size: 15px;
   margin-top: 24px;
   color: #626d85;
 }
@@ -2298,12 +2298,12 @@
   align-items: start;
 }
 .av-experience-thread article > span {
-  font-size: 9px;
+  font-size: 15px;
   color: #626d85;
   padding-top: 3px;
 }
 .av-experience-thread article small {
-  font-size: 7px;
+  font-size: 15px;
   letter-spacing: 0.12em;
   color: #626d85;
   display: block;
@@ -2316,7 +2316,7 @@
   line-height: 1.2;
 }
 .av-experience-thread article > p {
-  font-size: 12px;
+  font-size: 15px;
   color: #626d85;
   line-height: 1.9;
   max-width: 475px;
@@ -2336,16 +2336,16 @@
   color: #626d85;
 }
 .av-campaign-proof > div > span {
-  font-size: 10px;
+  font-size: 15px;
   color: #626d85;
 }
 .av-campaign-proof > p {
-  font-size: 12px;
+  font-size: 15px;
   color: #626d85;
   line-height: 1.9;
 }
 .av-campaign-proof > p > span {
-  font-size: 9px;
+  font-size: 15px;
   color: #626d85;
 }
 .av-closing {
@@ -2397,7 +2397,7 @@
 }
 .av-final-signature > span {
   display: block;
-  font-size: 10px;
+  font-size: 15px;
   color: #626d85;
   margin-top: 3px;
 }
@@ -2411,7 +2411,7 @@
   display: flex;
   gap: 6px;
   align-items: center;
-  font-size: 10px;
+  font-size: 15px;
   color: #626d85;
 }
 .av-colophon {
@@ -2420,7 +2420,7 @@
   border-top: 1px solid #dbe1ef;
   padding-top: 20px;
   text-align: left;
-  font-size: 8px;
+  font-size: 15px;
   line-height: 1.8;
   color: #626d85;
 }
@@ -2430,12 +2430,12 @@
   max-width: 900px;
 }
 .av-method-note > summary {
-  font-size: 9px !important;
+  font-size: 15px !important;
   color: #626d85 !important;
 }
 .av-method-note > p {
   margin-top: 12px;
-  font-size: 10px;
+  font-size: 15px;
   line-height: 1.9;
   color: #626d85;
 }
@@ -2494,7 +2494,7 @@
   margin: 0 0 20px;
 }
 .av-drawer p {
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.9;
   color: #626d85;
 }
@@ -2521,7 +2521,7 @@
 .av-spec-block ol {
   padding-left: 18px;
   color: #626d85;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.9;
 }
 .av-spec-block li + li {
@@ -2534,7 +2534,7 @@
   margin: 30px 0;
 }
 .av-compare-selectors > label {
-  font-size: 10px;
+  font-size: 15px;
   color: #626d85;
 }
 .av-compare-selectors select {
@@ -2546,12 +2546,12 @@
 .av-comparison-table table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 10px;
+  font-size: 15px;
   line-height: 1.8;
 }
 .av-comparison-table caption {
   text-align: left;
-  font-size: 8px;
+  font-size: 15px;
   color: #626d85;
   padding-bottom: 15px;
 }
@@ -2567,7 +2567,7 @@
 .av-comparison-table tr > th:first-child {
   padding-left: 0;
   font-weight: 400;
-  font-size: 9px;
+  font-size: 15px;
   color: #626d85;
   width: 30%;
 }
@@ -2582,7 +2582,7 @@
   margin-top: 25px;
 }
 .av-compare-actions .av-button {
-  font-size: 9px !important;
+  font-size: 15px !important;
   padding-inline: 15px;
 }
 @keyframes av-pulse {
@@ -2648,7 +2648,7 @@
     font-size: 48px;
   }
   .av-section-intro > p {
-    font-size: 12px;
+    font-size: 15px;
   }
   .av-journey-detail {
     gap: 50px;
@@ -2696,7 +2696,7 @@
     gap: 13px;
   }
   .av-nav nav a {
-    font-size: 9px;
+    font-size: 15px;
   }
   .av-nav-lockup {
     gap: 12px;
@@ -2717,7 +2717,7 @@
     font-size: 40px;
   }
   .av-section-intro > p {
-    font-size: 11px;
+    font-size: 15px;
   }
   .av-hero {
     min-height: 870px;
@@ -2862,7 +2862,7 @@
   .av-event-mark {
     width: 39px;
     height: 45px;
-    font-size: 14px;
+    font-size: 15px;
   }
   .av-result-main {
     gap: 10px;
@@ -2880,7 +2880,7 @@
     display: none;
   }
   .av-event-info > small {
-    font-size: 6px;
+    font-size: 15px;
   }
   .av-fit-signals {
     gap: 15px;
@@ -2910,7 +2910,7 @@
     font-size: 30px;
   }
   .av-outcome-numbers span {
-    font-size: 8px;
+    font-size: 15px;
   }
   .av-experiment-measurement {
     gap: 25px;
@@ -2922,14 +2922,14 @@
     gap: 25px;
   }
   .av-learning-orbit > button {
-    font-size: 9px;
+    font-size: 15px;
     width: 85px;
   }
   .av-learning-copy h3 {
     font-size: 30px;
   }
   .av-learning-copy > p {
-    font-size: 12px;
+    font-size: 15px;
   }
   .av-loop-center > strong {
     font-size: 22px;
@@ -2942,10 +2942,10 @@
     min-height: 60px;
   }
   .av-roadmap-phase > a {
-    font-size: 11px;
+    font-size: 15px;
   }
   .av-roadmap-phase > a > small {
-    font-size: 7px;
+    font-size: 15px;
   }
   .av-background h2 {
     font-size: 43px;
@@ -2978,13 +2978,13 @@
   }
   .av-section-intro > .av-kicker,
   .av-kicker {
-    font-size: 8px;
+    font-size: 15px;
   }
   .av-section-intro h2 {
     font-size: 37px;
   }
   .av-section-intro > p {
-    font-size: 11px;
+    font-size: 15px;
     margin-top: 22px;
     max-width: 300px;
   }
@@ -3018,7 +3018,7 @@
     box-shadow: 0 16px 30px #20315b12;
   }
   .av-nav nav.is-open a {
-    font-size: 13px;
+    font-size: 15px;
     padding: 13px 0;
     justify-content: space-between;
   }
@@ -3026,7 +3026,7 @@
     display: flex;
     align-items: center;
     gap: 16px;
-    font-size: 11px !important;
+    font-size: 15px !important;
   }
   .av-mobile-menu > span {
     font-size: 19px;
@@ -3048,7 +3048,7 @@
   .av-quick-prototype {
     right: 12px;
     bottom: 12px;
-    font-size: 9px;
+    font-size: 15px;
     padding: 9px 13px;
     gap: 10px;
   }
@@ -3061,7 +3061,7 @@
     padding: 136px 18px 0 !important;
   }
   .av-hero-copy > .av-kicker {
-    font-size: 6px;
+    font-size: 15px;
     letter-spacing: 0.15em;
     margin-bottom: 25px;
   }
@@ -3071,7 +3071,7 @@
     line-height: 1.04;
   }
   .av-hero-lead {
-    font-size: 12px;
+    font-size: 15px;
     margin: 22px auto 0 !important;
     max-width: 310px;
     line-height: 1.8;
@@ -3092,18 +3092,18 @@
     align-items: center;
   }
   .av-hero-bottom > span {
-    font-size: 6px;
+    font-size: 15px;
     letter-spacing: 0.09em;
   }
   .av-hero-bottom > span:last-child {
     display: none;
   }
   .av-hero-bottom > a {
-    font-size: 9px;
+    font-size: 15px;
     gap: 10px;
   }
   .av-hero-caption {
-    font-size: 6px;
+    font-size: 15px;
     bottom: 18px;
   }
   .av-hero-orbit {
@@ -3112,7 +3112,7 @@
     top: 52%;
   }
   .av-scene-label {
-    font-size: 6px;
+    font-size: 15px;
     letter-spacing: 0.08em;
     gap: 6px;
   }
@@ -3131,7 +3131,7 @@
     max-width: 320px;
   }
   .av-perspective-copy li {
-    font-size: 12px;
+    font-size: 15px;
     gap: 10px;
   }
   .av-perspective-copy ul {
@@ -3154,7 +3154,7 @@
     bottom: 0;
   }
   .av-shared-caption > p {
-    font-size: 11px;
+    font-size: 15px;
   }
   .av-marketplace-insight {
     margin-top: 45px;
@@ -3162,7 +3162,7 @@
     display: block;
   }
   .av-marketplace-insight > span {
-    font-size: 8px;
+    font-size: 15px;
   }
   .av-marketplace-insight > p {
     font-size: 23px;
@@ -3175,14 +3175,14 @@
     display: block;
     margin-top: 30px;
     padding-top: 20px;
-    font-size: 9px;
+    font-size: 15px;
   }
   .av-source-note > a {
-    font-size: 9px;
+    font-size: 15px;
     margin-top: 13px;
   }
   .av-toggle button {
-    font-size: 10px;
+    font-size: 15px;
     padding-inline: 13px;
   }
   .av-workspace-toolbar {
@@ -3195,7 +3195,7 @@
     padding: 3px;
   }
   .av-workspace-toolbar .av-toggle > button {
-    font-size: 9px;
+    font-size: 15px;
     padding: 7px 10px;
     gap: 5px;
     min-height: 32px;
@@ -3221,14 +3221,14 @@
     gap: 17px;
   }
   .av-participants > button {
-    font-size: 9px;
+    font-size: 15px;
   }
   .av-filter-row > label {
     font-size: 0;
     gap: 0;
   }
   .av-filter-row select {
-    font-size: 9px;
+    font-size: 15px;
     max-width: 100px;
     padding: 6px;
   }
@@ -3276,7 +3276,7 @@
     left: 16px;
     right: 16px;
     bottom: 29px;
-    font-size: 7px;
+    font-size: 15px;
   }
   .av-plot-footer > div {
     gap: 10px;
@@ -3285,18 +3285,18 @@
     left: 16px;
     right: 10px;
     bottom: 8px;
-    font-size: 6px;
+    font-size: 15px;
     letter-spacing: 0;
     line-height: 1.5;
   }
   .av-prism-label {
-    font-size: 8px !important;
+    font-size: 15px !important;
   }
   .av-prism-label.is-selected {
-    font-size: 9px !important;
+    font-size: 15px !important;
   }
   .av-axis-3d {
-    font-size: 6px;
+    font-size: 15px;
   }
   .av-hypothesis {
     display: block;
@@ -3309,7 +3309,7 @@
     margin-bottom: 4px;
   }
   .av-hypothesis > p {
-    font-size: 11px;
+    font-size: 15px;
     max-width: none;
   }
   .av-hypothesis .av-problem {
@@ -3327,14 +3327,14 @@
   }
   .av-estimates label > span {
     display: block;
-    font-size: 9px;
+    font-size: 15px;
     margin-bottom: 5px;
   }
   .av-estimates output {
     font-size: 18px;
   }
   .av-estimates output > small {
-    font-size: 8px;
+    font-size: 15px;
     margin-left: 2px;
   }
   .av-estimates input {
@@ -3364,20 +3364,20 @@
     gap: 6px 15px;
   }
   .av-opportunity-index > button {
-    font-size: 8px;
+    font-size: 15px;
     text-align: left;
     gap: 6px;
     min-height: 32px;
     line-height: 1.4;
   }
   .av-opportunity-index > button > span {
-    font-size: 7px;
+    font-size: 15px;
   }
   .av-opportunity-index > button > svg {
     display: none;
   }
   .av-decision-section > .av-wrap > .av-footnote {
-    font-size: 8px;
+    font-size: 15px;
     line-height: 1.9;
   }
   .av-decision-shell {
@@ -3391,19 +3391,19 @@
     height: 90px;
   }
   .av-journey-labels > span {
-    font-size: 6px;
+    font-size: 15px;
   }
   .av-journey-stages {
     gap: 7px;
   }
   .av-journey-stages > button {
-    font-size: 9px;
+    font-size: 15px;
     text-align: center;
     padding: 9px 0;
   }
   .av-journey-stages > button > span {
     display: block;
-    font-size: 6px;
+    font-size: 15px;
     margin: 0 0 5px;
   }
   .av-journey-stages > button:last-child {
@@ -3421,7 +3421,7 @@
     max-width: 170px;
   }
   .av-paired-goals > p > span {
-    font-size: 7px;
+    font-size: 15px;
   }
   .av-journey-detail h3 {
     font-size: 24px;
@@ -3445,11 +3445,11 @@
     padding-left: 12px !important;
   }
   .av-experiment-tabs > button > span {
-    font-size: 6px;
+    font-size: 15px;
     margin-bottom: 7px;
   }
   .av-experiment-tabs > button > strong {
-    font-size: 13px;
+    font-size: 15px;
     line-height: 1.3;
     display: block;
     max-width: 80px;
@@ -3471,7 +3471,7 @@
     gap: 22px;
   }
   .av-experiment-reasoning p {
-    font-size: 10px;
+    font-size: 15px;
   }
   .av-prototype-shell {
     border-radius: 12px;
@@ -3481,11 +3481,11 @@
     gap: 15px;
   }
   .av-prototype-title > span:first-child {
-    font-size: 7px;
+    font-size: 15px;
     gap: 6px;
   }
   .av-prototype-title > span:last-child {
-    font-size: 7px;
+    font-size: 15px;
     text-align: right;
     max-width: 125px;
   }
@@ -3494,7 +3494,7 @@
     gap: 23px;
   }
   .av-lab-progress > button {
-    font-size: 8px;
+    font-size: 15px;
     padding: 12px 0;
   }
   .av-match-layout {
@@ -3510,7 +3510,7 @@
   }
   .av-campaign > .av-mini-label {
     grid-column: 1/-1;
-    font-size: 7px;
+    font-size: 15px;
   }
   .av-campaign h4 {
     grid-column: 1/-1;
@@ -3521,18 +3521,18 @@
     display: none;
   }
   .av-campaign label {
-    font-size: 8px;
+    font-size: 15px;
     margin-bottom: 14px;
   }
   .av-campaign select {
-    font-size: 10px;
+    font-size: 15px;
     padding: 10px 7px;
     margin-top: 7px;
     min-width: 0;
   }
   .av-campaign > .av-footnote {
     grid-column: 1/-1;
-    font-size: 8px;
+    font-size: 15px;
     margin-top: 6px;
   }
   .av-results {
@@ -3546,7 +3546,7 @@
     font-size: 23px;
   }
   .av-results-top > .av-text-button {
-    font-size: 8px;
+    font-size: 15px;
     gap: 5px;
     margin-top: 2px;
   }
@@ -3559,19 +3559,19 @@
     font-size: 15px;
   }
   .av-event-info > small {
-    font-size: 6px;
+    font-size: 15px;
   }
   .av-event-info > strong {
-    font-size: 12px;
+    font-size: 15px;
   }
   .av-event-info > span {
-    font-size: 8px;
+    font-size: 15px;
     display: flex;
     flex-wrap: wrap;
     gap: 4px 9px;
   }
   .av-event-info em {
-    font-size: 7px;
+    font-size: 15px;
   }
   .av-result {
     padding: 8px 6px;
@@ -3587,7 +3587,7 @@
     margin-top: 20px;
   }
   .av-match-explanation .av-mini-label {
-    font-size: 7px;
+    font-size: 15px;
   }
   .av-match-explanation > div:first-child > strong {
     font-size: 25px;
@@ -3596,14 +3596,14 @@
     gap: 16px 13px;
   }
   .av-fit-signals > p {
-    font-size: 8px;
+    font-size: 15px;
     gap: 7px;
   }
   .av-fit-signals strong {
-    font-size: 8px;
+    font-size: 15px;
   }
   .av-tradeoff {
-    font-size: 9px;
+    font-size: 15px;
   }
   .av-results-actions {
     flex-direction: row;
@@ -3612,10 +3612,10 @@
     align-items: center;
   }
   .av-results-actions > .av-text-button {
-    font-size: 9px;
+    font-size: 15px;
   }
   .av-results-actions > .av-button {
-    font-size: 9px !important;
+    font-size: 15px !important;
   }
   .av-experiment-measurement {
     grid-template-columns: 1fr 1fr;
@@ -3623,10 +3623,10 @@
     margin-top: 24px;
   }
   .av-experiment-measurement .av-mini-label {
-    font-size: 7px;
+    font-size: 15px;
   }
   .av-experiment-measurement p {
-    font-size: 10px;
+    font-size: 15px;
   }
   .av-experiment-measurement > details {
     grid-column: 1/-1;
@@ -3645,20 +3645,20 @@
   }
   .av-brief-layout > div > p,
   .av-outcome-layout > div > p {
-    font-size: 11px;
+    font-size: 15px;
   }
   .av-inquiry-editor,
   .av-outcome-report {
     padding: 20px 17px;
   }
   .av-inquiry-editor > .av-mini-label {
-    font-size: 7px;
+    font-size: 15px;
   }
   .av-outcome-numbers strong {
     font-size: 38px;
   }
   .av-outcome-numbers span {
-    font-size: 8px;
+    font-size: 15px;
   }
   .av-funnel > svg {
     display: none;
@@ -3670,12 +3670,12 @@
     padding-left: 17px;
   }
   .av-funnel button {
-    font-size: 9px;
+    font-size: 15px;
     padding: 8px 0;
     min-height: 55px;
   }
   .av-funnel button > span {
-    font-size: 6px;
+    font-size: 15px;
     margin-bottom: 4px;
   }
   .av-instrumentation {
@@ -3689,11 +3689,11 @@
     max-width: 320px;
   }
   .av-instrumentation code {
-    font-size: 11px;
+    font-size: 15px;
     line-height: 1.6;
   }
   .av-instrumentation p {
-    font-size: 9px;
+    font-size: 15px;
   }
   .av-instrumentation-plan > div {
     grid-template-columns: 1fr;
@@ -3701,7 +3701,7 @@
     padding-top: 20px;
   }
   .av-instrumentation-plan p {
-    font-size: 10px;
+    font-size: 15px;
   }
   .av-learning-layout {
     grid-template-columns: 1fr;
@@ -3713,7 +3713,7 @@
     margin-inline: auto;
   }
   .av-learning-orbit > button {
-    font-size: 9px;
+    font-size: 15px;
     width: 85px;
   }
   .av-loop-center > strong {
@@ -3723,10 +3723,10 @@
     font-size: 35px;
   }
   .av-learning-copy > p {
-    font-size: 12px;
+    font-size: 15px;
   }
   .av-sales-input > p {
-    font-size: 10px;
+    font-size: 15px;
   }
   .av-roadmap-grid {
     grid-template-columns: 1fr;
@@ -3742,14 +3742,14 @@
     margin: 17px 0;
   }
   .av-roadmap-phase > a {
-    font-size: 12px;
+    font-size: 15px;
     padding-block: 14px;
   }
   .av-roadmap-phase > a > small {
-    font-size: 8px;
+    font-size: 15px;
   }
   .av-roadmap-phase > p {
-    font-size: 11px;
+    font-size: 15px;
     margin-top: 15px;
   }
   .av-priority-note {
@@ -3758,15 +3758,15 @@
     padding-top: 25px;
   }
   .av-priority-note > p {
-    font-size: 10px;
+    font-size: 15px;
   }
   .av-priority-note .av-button {
     margin-top: 22px;
-    font-size: 10px !important;
+    font-size: 15px !important;
     max-width: 100%;
   }
   .av-roadmap .av-footnote {
-    font-size: 8px;
+    font-size: 15px;
     line-height: 1.9;
   }
   .av-background h2 {
@@ -3781,7 +3781,7 @@
     font-size: 36px;
   }
   .av-background-intro > p {
-    font-size: 13px;
+    font-size: 15px;
     line-height: 1.9;
   }
   .av-experience-thread article {
@@ -3791,16 +3791,16 @@
   }
   .av-experience-thread article > p {
     grid-column: 2;
-    font-size: 11px;
+    font-size: 15px;
   }
   .av-experience-thread h3 {
     font-size: 26px;
   }
   .av-experience-thread article small {
-    font-size: 6px;
+    font-size: 15px;
   }
   .av-experience-thread article > span {
-    font-size: 8px;
+    font-size: 15px;
   }
   .av-campaign-proof {
     grid-template-columns: 1fr 1fr;
@@ -3811,14 +3811,14 @@
     font-size: 43px;
   }
   .av-campaign-proof > div > span {
-    font-size: 9px;
+    font-size: 15px;
   }
   .av-campaign-proof > p {
     grid-column: 1/-1;
-    font-size: 11px;
+    font-size: 15px;
   }
   .av-campaign-proof > p > span {
-    font-size: 8px;
+    font-size: 15px;
   }
   .av-closing {
     padding: 215px 0 70px;
@@ -3831,17 +3831,17 @@
     opacity: 0.7;
   }
   .av-closing .av-kicker {
-    font-size: 7px;
+    font-size: 15px;
   }
   .av-closing h2 {
     font-size: 38px;
   }
   .av-closing h2 + p {
-    font-size: 12px;
+    font-size: 15px;
     margin: 22px 0 25px;
   }
   .av-closing .av-button {
-    font-size: 11px !important;
+    font-size: 15px !important;
   }
   .av-final-signature {
     margin-top: 45px;
@@ -3852,7 +3852,7 @@
   }
   .av-colophon {
     display: block;
-    font-size: 7px;
+    font-size: 15px;
     padding-top: 17px;
   }
   .av-colophon > span {
@@ -3860,10 +3860,10 @@
     margin-bottom: 9px;
   }
   .av-method-note > summary {
-    font-size: 8px !important;
+    font-size: 15px !important;
   }
   .av-method-note > p {
-    font-size: 9px;
+    font-size: 15px;
   }
   .av-drawer-content {
     padding: 23px 23px 60px;
@@ -3872,55 +3872,55 @@
     font-size: 33px;
   }
   .av-drawer-top > .av-mini-label {
-    font-size: 7px;
+    font-size: 15px;
   }
   .av-drawer-lead {
     font-size: 15px !important;
   }
   .av-spec-block p,
   .av-spec-block li {
-    font-size: 11px;
+    font-size: 15px;
   }
   .av-compare-selectors {
     gap: 12px;
   }
   .av-compare-selectors > label {
-    font-size: 9px;
+    font-size: 15px;
   }
   .av-compare-selectors select {
-    font-size: 10px;
+    font-size: 15px;
     padding: 10px 7px;
   }
   .av-comparison-table table {
-    font-size: 9px;
+    font-size: 15px;
   }
   .av-comparison-table th,
   .av-comparison-table td {
     padding: 12px 7px;
   }
   .av-comparison-table tr > th:first-child {
-    font-size: 8px;
+    font-size: 15px;
   }
   .av-comparison-table caption {
-    font-size: 7px;
+    font-size: 15px;
   }
   .av-compare-actions {
     gap: 10px;
   }
   .av-compare-actions .av-button {
-    font-size: 8px !important;
+    font-size: 15px !important;
     padding-inline: 12px;
   }
   .av-empty-inline {
-    font-size: 11px;
+    font-size: 15px;
   }
   .av-empty {
     inset: 10% 15%;
-    font-size: 11px;
+    font-size: 15px;
   }
   .av-canvas-fallback {
     padding: 50px 25px;
-    font-size: 11px;
+    font-size: 15px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -3990,7 +3990,7 @@
   justify-content: center;
   gap: 18px;
   color: #b0bddc;
-  font-size: 8px;
+  font-size: 15px;
 }
 .av-projection-controls button {
   font-size: 17px;
@@ -4017,60 +4017,60 @@
   stroke-linejoin: round;
 }
 .av-point-label {
-  font-size: 14px;
+  font-size: 15px;
 }
 .av-hypothesis p {
-  font-size: 12px;
+  font-size: 15px;
 }
 .av-hypothesis .av-mini-label {
-  font-size: 9px;
+  font-size: 15px;
 }
 .av-status {
-  font-size: 9px;
+  font-size: 15px;
 }
 .av-opportunity-index > button {
-  font-size: 10px;
+  font-size: 15px;
 }
 .av-workspace-toolbar > .av-text-button,
 .av-participants > button {
-  font-size: 11px;
+  font-size: 15px;
 }
 .av-filter-row select {
-  font-size: 11px;
+  font-size: 15px;
 }
 .av-event-info > small {
-  font-size: 9px;
+  font-size: 15px;
 }
 .av-event-info > strong {
-  font-size: 14px;
+  font-size: 15px;
 }
 .av-event-info > span,
 .av-event-info em {
-  font-size: 10px;
+  font-size: 15px;
 }
 .av-fit-signals > p,
 .av-fit-signals strong {
-  font-size: 11px;
+  font-size: 15px;
 }
 .av-mini-label {
-  font-size: 10px;
+  font-size: 15px;
 }
 .av-tradeoff {
-  font-size: 11px;
+  font-size: 15px;
 }
 .av-campaign label {
-  font-size: 11px;
+  font-size: 15px;
 }
 .av-page select,
 .av-page textarea {
-  font-size: 12px;
+  font-size: 15px;
 }
 .av-prototype-title > span:last-child,
 .av-lab-progress > button {
-  font-size: 10px;
+  font-size: 15px;
 }
 .av-campaign > .av-footnote {
-  font-size: 10px;
+  font-size: 15px;
 }
 .av-match-layout {
   grid-template-columns: 290px minmax(0, 1fr);
@@ -4080,22 +4080,22 @@
 }
 .av-hypothesis details p,
 .av-hypothesis details ul {
-  font-size: 11px;
+  font-size: 15px;
 }
 .av-roadmap-phase > a > small {
-  font-size: 10px;
+  font-size: 15px;
 }
 .av-source-note {
-  font-size: 11px;
+  font-size: 15px;
 }
 .av-plot-footer {
-  font-size: 10px;
+  font-size: 15px;
 }
 .av-chart-preview {
-  font-size: 9px;
+  font-size: 15px;
 }
 .av-experiment-measurement p {
-  font-size: 12px;
+  font-size: 15px;
 }
 .av-event-info em {
   color: #626d85;
@@ -4107,16 +4107,16 @@
   min-height: 38px;
 }
 .av-compare-selectors > label {
-  font-size: 11px;
+  font-size: 15px;
 }
 .av-comparison-table table {
-  font-size: 12px;
+  font-size: 15px;
 }
 .av-comparison-table tr > th:first-child {
-  font-size: 11px;
+  font-size: 15px;
 }
 .av-comparison-table caption {
-  font-size: 10px;
+  font-size: 15px;
 }
 @media (max-width: 1100px) {
   .av-match-layout {
@@ -4142,55 +4142,55 @@
     grid-template-columns: 1fr;
   }
   .av-opportunity-index > button {
-    font-size: 10px;
+    font-size: 15px;
   }
   .av-mini-label {
-    font-size: 9px;
+    font-size: 15px;
   }
   .av-hypothesis .av-mini-label {
-    font-size: 9px;
+    font-size: 15px;
   }
   .av-hypothesis p {
-    font-size: 12px;
+    font-size: 15px;
   }
   .av-campaign label {
-    font-size: 10px;
+    font-size: 15px;
   }
   .av-campaign select {
-    font-size: 11px;
+    font-size: 15px;
   }
   .av-campaign > .av-footnote {
-    font-size: 10px;
+    font-size: 15px;
   }
   .av-page select,
   .av-page textarea {
-    font-size: 12px;
+    font-size: 15px;
   }
   .av-event-info > small {
-    font-size: 8px;
+    font-size: 15px;
   }
   .av-event-info > strong {
-    font-size: 13px;
+    font-size: 15px;
   }
   .av-event-info > span,
   .av-event-info em {
-    font-size: 9px;
+    font-size: 15px;
   }
   .av-fit-signals > p,
   .av-fit-signals strong {
-    font-size: 10px;
+    font-size: 15px;
   }
   .av-tradeoff {
-    font-size: 10px;
+    font-size: 15px;
   }
   .av-plot-footer {
-    font-size: 8px;
+    font-size: 15px;
   }
   .av-chart-preview {
-    font-size: 7px;
+    font-size: 15px;
   }
   .av-projection-controls {
-    font-size: 6px;
+    font-size: 15px;
     gap: 8px;
     left: 10px;
     right: 10px;
@@ -4200,25 +4200,25 @@
     height: 25px;
   }
   .av-source-note {
-    font-size: 10px;
+    font-size: 15px;
   }
   .av-experiment-measurement p {
-    font-size: 11px;
+    font-size: 15px;
   }
   .av-comparison-table table {
-    font-size: 10px;
+    font-size: 15px;
   }
   .av-comparison-table tr > th:first-child {
-    font-size: 9px;
+    font-size: 15px;
   }
   .av-comparison-table caption {
-    font-size: 9px;
+    font-size: 15px;
   }
   .av-roadmap-phase > a > small {
-    font-size: 9px;
+    font-size: 15px;
   }
   .av-lab-progress > button {
-    font-size: 9px;
+    font-size: 15px;
   }
 }
 .av-network-fallback i {
@@ -4242,10 +4242,10 @@
     min-height: 36px;
   }
   .av-hero-copy > .av-kicker {
-    font-size: 7px;
+    font-size: 15px;
   }
   .av-hero-caption {
-    font-size: 7px;
+    font-size: 15px;
   }
 }
 .av-plot-footer {
