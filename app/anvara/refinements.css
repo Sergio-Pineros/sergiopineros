@@ -991,3 +991,10 @@
   .av-feature-dialog { width: calc(100% - 20px); height: 90dvh; max-height: 90dvh; border-radius: 16px; }
   .av-feature-dialog .av-decision-section > .av-wrap { width: calc(100% - 32px); }
 }
+
+/* Keep the matrix visible as soon as the panel opens. */
+.av-feature-dialog .av-decision-section { padding-top: 28px; }
+.av-feature-dialog .av-section-intro { margin-bottom: 28px; }
+.av-feature-dialog .av-section-intro h2 { font-size: clamp(30px, 3.3vw, 44px); }
+.av-feature-dialog .av-section-intro .av-kicker { margin-bottom: 12px; }
+.av-experience-photos figcaption { font-size: 15px; }

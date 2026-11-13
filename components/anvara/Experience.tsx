@@ -181,7 +181,7 @@ function Background() {
           <p>I’ve worked with artists, event organizers and small businesses. An introduction is only the first step. People still need to agree on the details and make the idea happen.</p>
         </div>
         <div className="av-experience-photos">
-          <figure><Image src="/story-photos/2021.jpg" alt="Sergio making music with a collaborator" width={600} height={440} /><figcaption>Making music with collaborators</figcaption></figure>
+          <figure><Image src="/story-photos/2021.jpg" alt="Two musicians playing together indoors" width={600} height={440} /><figcaption>Making music with collaborators</figcaption></figure>
           <figure><Image src="/story-photos/2026 mid freelance.jpeg" alt="Sergio working in a barbershop" width={600} height={440} /><figcaption>Working alongside small businesses</figcaption></figure>
         </div>
         <div className="av-experience-thread">
