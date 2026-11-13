@@ -931,3 +931,7 @@
 @media (prefers-reduced-motion: reduce) { .av-sergio-logo img { transition: none; } }
 
 .av-no-brief { padding: 32px; }
+
+.av-anvara-wordmark > .av-anvara-icon { position: relative; display: block; flex: 0 0 34px; width: 34px; height: 34px; overflow: hidden; border-radius: 8px; margin: 0; background: #2346f9; }
+.av-anvara-icon img { position: absolute; left: 50%; top: 50%; width: 96px; height: 60px; max-width: none; object-fit: fill; transform: translate(-50%, -50%); }
+@media (max-width: 600px) { .av-anvara-wordmark > .av-anvara-icon { flex-basis: 29px; width: 29px; height: 29px; } .av-anvara-icon img { width: 83px; height: 52px; } }

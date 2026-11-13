@@ -338,7 +338,7 @@ export default function Experience() {
               </Link>
               <span className="av-nav-divider" />
               <a href="#av-title" className="av-anvara-wordmark" aria-label="Anvara exploration">
-                <Image src="https://framerusercontent.com/assets/fB4H5emI4EbXPc5yoCie0UEN2T4.svg" alt="" width={31} height={31} unoptimized />
+                <span className="av-anvara-icon"><Image src="https://framerusercontent.com/assets/fB4H5emI4EbXPc5yoCie0UEN2T4.svg" alt="" width={96} height={60} unoptimized /></span>
                 {!compactNav && <span className="av-anvara-name">anvara<span>exploration</span></span>}
               </a>
             </div>

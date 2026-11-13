@@ -248,7 +248,7 @@ export default function MatchLab() {
                         Shortlist ({shortlist.length})
                       </button>
                     </div>
-                    <button className="av-filter-mode av-text-button" onClick={() => { setShowAll((v) => !v); setShortOnly(false); }}>
+                    <button className="av-filter-mode av-text-button" onClick={() => { if (visible.length) setActive(chosen.id); setShowAll((v) => !v); setShortOnly(false); }}>
                       {showAll ? "Show matching options" : "Show all options"}
                     </button>
                     <div className="av-result-list" aria-live="polite">
