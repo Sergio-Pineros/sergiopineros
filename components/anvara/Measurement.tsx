@@ -10,7 +10,7 @@ const learning = [
   {
     label: "Identify friction",
     detail:
-      "Check whether the same issue appears in interviews, product data and deal reviews—and which users it affects.",
+      "Check whether the same issue appears in interviews, product data and deal reviews, and which users it affects.",
   },
   {
     label: "Form hypothesis",

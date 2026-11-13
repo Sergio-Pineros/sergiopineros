@@ -3,7 +3,7 @@ import Experience from "@/components/anvara/Experience";
 import "./anvara.css";
 import "./refinements.css";
 export const metadata: Metadata = {
-  title: "Anvara — From opportunity to outcome | Sergio Piñeros",
+  title: "Anvara: From opportunity to outcome | Sergio Piñeros",
   description:
     "An independent product exploration: two marketplace journeys, a living decision space and a working sponsorship prototype by Sergio Piñeros.",
   alternates: { canonical: "/anvara" },
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Anvara — From opportunity to outcome",
+    title: "Anvara: From opportunity to outcome",
     description: "An independent product exploration by Sergio Piñeros.",
   },
 };

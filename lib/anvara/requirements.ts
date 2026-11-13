@@ -137,7 +137,7 @@ export const requirements: Record<string, Requirement> = {
       "As a returning planner, I can see when a saved package changed.",
     ],
     acceptance: [
-      "Deduplicate campaign–opportunity pairs; saving twice creates one item.",
+      "Deduplicate campaign and opportunity pairs; saving twice creates one item.",
       "A change in campaign does not copy another campaign’s notes or saved items.",
       "Retain withdrawn inventory as unavailable with the original reference, rather than silently deleting it.",
       "Surface price and availability changes when reopening saved items.",

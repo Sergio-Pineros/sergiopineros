@@ -71,8 +71,6 @@ export default function MatchLab() {
           </div>
           <p>
             Three ideas to test within experiences Anvara already describes.
-            <br />
-            None of these are tested findings.
           </p>
         </div>
         <div className="av-experiment-tabs" aria-label="Product experiments">
@@ -135,7 +133,7 @@ export default function MatchLab() {
                 <div className="av-match-layout">
                   <aside className="av-campaign">
                     <span className="av-mini-label">
-                      <SlidersHorizontal size={13} /> YOUR HYPOTHETICAL CAMPAIGN
+                      <SlidersHorizontal size={13} /> YOUR CAMPAIGN
                     </span>
                     <h4>
                       Set up your <br />
@@ -306,7 +304,7 @@ export default function MatchLab() {
                         <div className="av-empty-inline">
                           <p>Your shortlist is empty.</p>
                           <button onClick={() => setShortOnly(false)}>
-                            Explore the fictional inventory{" "}
+                            Explore opportunities{" "}
 
                           </button>
                         </div>
@@ -365,7 +363,7 @@ export default function MatchLab() {
                     </div>
                     {!chosen.eligible && (
                       <p className="av-footnote">
-                        Raise the hypothetical budget or choose another package
+                        Raise the budget or choose another package
                         to prepare a brief.
                       </p>
                     )}
@@ -541,7 +539,7 @@ export default function MatchLab() {
                 <div className="av-outcome-layout">
                   <div>
                     <span className="av-mini-label">
-                      FICTIONAL POST-ACTIVATION SCENARIO
+                      POST-ACTIVATION SCENARIO
                     </span>
                     <h4>
                       What happened.
@@ -574,7 +572,7 @@ export default function MatchLab() {
                   </div>
                   <div className="av-outcome-report">
                     <span className="av-mini-label">
-                      ILLUSTRATIVE REPORT / NO REAL CAMPAIGN
+                      FICTIONAL REPORT
                     </span>
                     <div className="av-outcome-numbers">
                       <div>

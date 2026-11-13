@@ -128,7 +128,7 @@ function Matrix({ data }: { data: Opportunity[] }) {
           Value →
         </text>
         <text x="935" y="25" textAnchor="end">
-          Illustrative estimates · 1–10
+          Illustrative estimates · 1 to 10
         </text>
       </g>
       {layout(data).map((o) => (
@@ -325,7 +325,7 @@ export function DecisionSpace() {
           <p>
             Compare possible improvements by value, effort and evidence.
             <br />
-            The scores are starting assumptions—not research findings.
+            The scores are assumptions, not research findings.
           </p>
         </div>
         <div className="av-decision-shell">
@@ -573,7 +573,7 @@ export function DecisionSpace() {
           </div>
         </div>
         <p className="av-footnote">
-          These scores are my starting assumptions, not Anvara research. Move the sliders to explore a different order; the scores do not create evidence. Your changes stay in this browser.
+          Adjust the sliders to explore different priorities. Your changes stay in this browser.
         </p>
       </div>
     </section>
@@ -608,7 +608,7 @@ export function Roadmap() {
             {
               label: "Now",
               title: "Check if the problem is real",
-              timing: "Weeks 1–2",
+              timing: "Weeks 1 to 2",
               action:
                 "Talk to five brands and five rightsholders. Review recent inquiries with sales to see what information is missing and where deals stall.",
               items: plan.now,
@@ -617,7 +617,7 @@ export function Roadmap() {
             {
               label: "Next",
               title: "Prototype the strongest candidate",
-              timing: "Weeks 3–6, if ready",
+              timing: "Weeks 3 to 6, if ready",
               action:
                 "Build a small prototype of the strongest idea. Agree on what to measure and check that it does not create more work for the other side.",
               items: plan.next,

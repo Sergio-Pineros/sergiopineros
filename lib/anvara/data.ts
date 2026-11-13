@@ -23,11 +23,11 @@ export const opportunities: Opportunity[] = [
     title: "Why a match fits",
     short: "Match rationale",
     problem:
-      "A brand may see a match without knowing which parts of its campaign it fits—or where it falls short.",
+      "A brand may see a match without knowing which parts of its campaign it fits and where it falls short.",
     side: "brand",
     stage: "Evaluate",
     hypothesis:
-      "If a match shows how its audience, location and price compare with the campaign—and flags gaps—more brands may send relevant inquiries.",
+      "If a match shows how its audience, location and price compare with the campaign and flags gaps, more brands may send relevant inquiries.",
     impact: 9,
     effort: 4,
     confidence: 4,
@@ -408,7 +408,7 @@ export const experiments = [
       "Would showing why a match fits help brands send better inquiries?",
     problem: "A brand may see a recommended listing without knowing why it fits their campaign.",
     hypothesis:
-      "If we show how the audience, budget and location fit—and flag a limitation—more brands may send inquiries that rightsholders consider relevant.",
+      "If we show how the audience, budget and location fit and flag a limitation, more brands may send inquiries that rightsholders consider relevant.",
     measurement:
       "Compare the share of brands that send a qualified inquiry within 14 days, with and without the explanation. Ask rightsholders whether those inquiries are relevant.",
     decision:
@@ -449,7 +449,7 @@ export const funnel = [
   {
     stage: "Discovery",
     event: "opportunity_viewed",
-    definition: "Distinct campaign–opportunity views; exclude staff and bots.",
+    definition: "Distinct campaign and opportunity views; exclude staff and bots.",
   },
   {
     stage: "Evaluation",
