@@ -29,7 +29,7 @@ function Demo({ idea, index }: { idea: GrowthIdea; index: number }) {
         </div>
       </div>
       <div className="lq-demo-bottom">
-        <p>{index === 0 ? "Illustrative storyboard · not a live product" : "Proposed experiment · no results assumed"}</p>
+        <p>Illustrative journey · no live API calls</p>
         <button className="lq-demo-next" type="button" onClick={() => setStep(s => (s + 1) % idea.steps.length)} aria-label={step === idea.steps.length - 1 ? "Restart this walkthrough" : "Next step in this walkthrough"}>
           {step === idea.steps.length - 1 ? "Replay" : "Next"}
           <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M4 12h16m-6-6 6 6-6 6" /></svg>
@@ -82,7 +82,7 @@ export default function ExperimentExplorer() {
     <section id="experiments" className="lq-explorer lq-wrap" aria-labelledby="ideas-title">
       <header className="lq-explorer-intro">
         <div><p className="lq-eyebrow">Three experiments / Start anywhere</p><h2 id="ideas-title">Pick an idea.<br /><em>See how it works.</em></h2></div>
-        <p>What I’d try, how I’d start, and what would tell us it’s working.</p>
+        <p>Linq gives developers the messaging layer for their own agents. These tests build on the tools it already ships.</p>
       </header>
       <div className="lq-idea-tabs" role="tablist" aria-label="Growth experiments">
         {GROWTH_IDEAS.map((idea, i) => (
@@ -97,20 +97,27 @@ export default function ExperimentExplorer() {
           <div className="lq-idea-copy">
             <p className="lq-eyebrow">{idea.category}</p>
             <h3>{idea.title}</h3>
+            <p className="lq-idea-audience"><span>For</span> {idea.audience}</p>
             <p className="lq-idea-description">{idea.description}</p>
             <dl className="lq-idea-plan">
               <div><dt>The first test</dt><dd>{idea.pilot}</dd></div>
               <div><dt>What matters</dt><dd>{idea.measure}</dd></div>
             </dl>
             <details className="lq-proof">
-              <summary>Why I’d bring this idea <span aria-hidden="true">+</span></summary>
-              <p>{idea.proof}</p>
+              <summary>Why Linq + how I’d test it <span aria-hidden="true">+</span></summary>
+              <div className="lq-proof-content">
+                <h4>The product basis</h4><p>{idea.basis}</p>
+                <div className="lq-source-links" aria-label="Official product sources">{idea.sources.map(source => <a key={source.href} href={source.href} target="_blank" rel="noopener noreferrer">{source.label}</a>)}</div>
+                <h4>Test design</h4><p>{idea.design}</p>
+                <h4>What to watch</h4><p>{idea.guardrail}</p>
+                <h4>My contribution</h4><p>{idea.proof}</p>
+              </div>
             </details>
           </div>
           <Demo idea={idea} index={i} />
         </div>
       ))}
-      <p className="lq-explorer-note">Starting points to test with Linq’s team and customers.</p>
+      <p className="lq-explorer-note">Product-informed hypotheses. Validate the baseline with Linq’s team before running them.</p>
     </section>
   );
 }
