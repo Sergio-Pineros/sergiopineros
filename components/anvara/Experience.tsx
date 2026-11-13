@@ -13,6 +13,7 @@ import MatchLab from "./MatchLab";
 import Measurement from "./Measurement";
 import Guide from "./Guide";
 import FeatureDialog from "./FeatureDialog";
+import IntroLoader from "./IntroLoader";
 function Perspectives() {
   const [side, setSide] = useState<"brand" | "rightsholder">("brand");
   const brands = side === "brand";
@@ -304,6 +305,7 @@ export default function Experience() {
     <MotionConfig reducedMotion="user">
       <ExplorationProvider>
         <div className="av-page" ref={page}>
+          <IntroLoader />
           <a className="av-skip" href="#prototype">
             Skip to the prototype
           </a>

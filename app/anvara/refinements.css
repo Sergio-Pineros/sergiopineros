@@ -1,4 +1,30 @@
 /* Reading hierarchy for the case study and its working controls. */
+.av-intro-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  background: #f4f6fd;
+}
+.av-intro-glass {
+  width: 100%;
+  height: 100%;
+  cursor: default;
+}
+.av-intro-skip {
+  position: absolute;
+  right: max(24px, env(safe-area-inset-right));
+  bottom: max(24px, env(safe-area-inset-bottom));
+  border: 1px solid #d9e0f1;
+  border-radius: 999px;
+  padding: 10px 19px;
+  background: #fff;
+  color: #1c2c65;
+  cursor: pointer;
+  font-size: 15px;
+}
+.av-intro-skip:focus-visible { outline: 2px solid #2346f9; outline-offset: 3px; }
 .av-matrix-mobile,
 .av-mobile-instructions {
   display: none;
