@@ -30,7 +30,7 @@ export default function PlansExplorer() {
             aria-selected={index === planIndex}
             aria-controls={`panel-${item.id}`}
             onClick={() => choosePlan(index)}
-            className={`rounded-full px-5 py-3 font-serif text-[17px] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand ${
+            className={`rounded-full px-5 py-3 text-[17px] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand ${
               index === planIndex
                 ? "bg-ink text-page"
                 : "border border-ink/15 bg-transparent text-ink-soft hover:border-brand/60 hover:text-ink"
@@ -47,13 +47,13 @@ export default function PlansExplorer() {
         aria-labelledby={`tab-${plan.id}`}
         className="mt-10"
       >
-        <h3 className="max-w-[22ch] font-serif text-4xl leading-[1.12] text-ink sm:text-[44px]">
+        <h3 className="max-w-[22ch] text-4xl font-extrabold leading-[1.12] text-ink sm:text-[44px]">
           {plan.title}
         </h3>
-        <p className="mt-5 max-w-[68ch] text-[17px] leading-[1.75] text-ink-soft">{plan.intro}</p>
+        <p className="mt-5 max-w-[68ch] text-[17px] font-light leading-[1.75] text-ink-soft">{plan.intro}</p>
 
         <div className="mt-12 border-t border-ink/10 pt-8">
-          <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-deep">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-deep">
             A pilot, step by step
           </p>
           <div className="mt-5 flex flex-wrap gap-2" role="tablist" aria-label="Pilot steps">
@@ -76,17 +76,17 @@ export default function PlansExplorer() {
 
           <div className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,1fr)_260px] lg:gap-16">
             <div className="max-w-[62ch]">
-              <h4 className="font-serif text-2xl text-ink">{step.name}</h4>
-              <p className="mt-3 text-[17px] leading-[1.75] text-ink-soft">{step.text}</p>
+              <h4 className="text-2xl font-bold text-ink">{step.name}</h4>
+              <p className="mt-3 text-[17px] font-light leading-[1.75] text-ink-soft">{step.text}</p>
               <div className="mt-7 space-y-3">
-                <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-deep">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-deep">
                   What this produces
                 </p>
                 <p className="text-[17px] leading-[1.7] text-ink">{step.produces}</p>
               </div>
             </div>
             <aside aria-label="What to have ready" className="lg:border-l lg:border-brand/30 lg:pl-6">
-              <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-deep">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-deep">
                 Have ready
               </p>
               <ul className="mt-3 list-disc space-y-2 pl-5 text-[15px] leading-[1.65] text-muted marker:text-brand-deep">
@@ -110,7 +110,7 @@ export default function PlansExplorer() {
               <button
                 type="button"
                 onClick={() => setStepIndex(stepIndex - 1)}
-                className="rounded-full border border-ink/15 px-5 py-2.5 font-serif text-[16px] text-ink-soft transition-colors hover:border-brand/60 hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+                className="rounded-full border border-ink/15 px-5 py-2.5 text-[16px] text-ink-soft transition-colors hover:border-brand/60 hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
               >
                 Back: {plan.steps[stepIndex - 1].name}
               </button>
@@ -119,25 +119,25 @@ export default function PlansExplorer() {
               <button
                 type="button"
                 onClick={() => setStepIndex(stepIndex + 1)}
-                className="rounded-full bg-ink px-5 py-2.5 font-serif text-[16px] text-page transition-colors hover:bg-brand-deep focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+                className="rounded-full bg-ink px-5 py-2.5 text-[16px] text-page transition-colors hover:bg-brand-deep focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
               >
                 Next: {plan.steps[stepIndex + 1].name}
               </button>
             ) : (
-              <p className="font-serif text-[16px] italic text-muted">That is the full pilot.</p>
+              <p className="text-[16px] text-muted">That is the full pilot.</p>
             )}
           </div>
         </div>
 
         <div className="mt-14 grid gap-10 border-t border-ink/10 pt-10 md:grid-cols-2 md:gap-14">
           <div>
-            <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-deep">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-deep">
               Why do it
             </p>
-            <p className="mt-3 text-[17px] leading-[1.75] text-ink-soft">{plan.goal}</p>
+            <p className="mt-3 text-[17px] font-light leading-[1.75] text-ink-soft">{plan.goal}</p>
           </div>
           <div>
-            <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-deep">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-deep">
               What I would measure
             </p>
             <ul className="mt-3 list-disc space-y-2 pl-5 text-[17px] leading-[1.7] text-ink-soft marker:text-brand-deep">
@@ -154,7 +154,7 @@ export default function PlansExplorer() {
             aria-expanded={experienceOpen}
             aria-controls={`experience-${plan.id}`}
             onClick={() => setExperienceOpen((open) => !open)}
-            className="flex items-center gap-3 font-serif text-[22px] text-ink transition-colors hover:text-brand-deep focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+            className="flex items-center gap-3 text-[22px] font-bold text-ink transition-colors hover:text-brand-deep focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
           >
             {plan.experienceTitle}
             <span aria-hidden="true" className="text-brand-deep">

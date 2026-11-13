@@ -1,8 +1,16 @@
 import type { Metadata } from "next";
+import { Open_Sans } from "next/font/google";
 import Link from "next/link";
 import ReadingProgress from "@/components/linq/ReadingProgress";
 import PlansExplorer from "@/components/linq/PlansExplorer";
 import { LINQ_LINKS, LINQ_PLANS } from "@/lib/linq";
+
+const openSans = Open_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-linq-sans",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "For Linq: a growth exercise by Sergio Piñeros",
@@ -28,7 +36,7 @@ export const metadata: Metadata = {
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-deep">
+    <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-deep">
       {children}
     </p>
   );
@@ -36,7 +44,7 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 
 export default function LinqPage() {
   return (
-    <div className="min-h-screen bg-page font-sans text-ink antialiased">
+    <div className={`${openSans.variable} min-h-screen bg-page text-ink antialiased [font-family:var(--font-linq-sans),system-ui,sans-serif]`}>
       <ReadingProgress />
       <a
         href="#plans"
@@ -48,7 +56,7 @@ export default function LinqPage() {
       <header className="mx-auto flex w-full max-w-5xl items-center justify-between px-5 py-6 sm:px-8">
         <Link
           href="/"
-          className="font-serif text-lg text-ink underline-offset-4 transition-colors hover:text-brand-deep hover:underline"
+          className="text-lg font-bold text-ink underline-offset-4 transition-colors hover:text-brand-deep hover:underline"
         >
           Sergio Piñeros
         </Link>
@@ -58,12 +66,6 @@ export default function LinqPage() {
             className="rounded-full px-4 py-2.5 text-[15px] font-medium text-ink-soft transition-colors hover:bg-surface-muted/60 hover:text-ink"
           >
             The plans
-          </a>
-          <a
-            href="#talk"
-            className="rounded-full bg-ink px-5 py-2.5 font-serif text-[16px] text-page transition-colors hover:bg-brand-deep"
-          >
-            Let&apos;s talk
           </a>
         </nav>
       </header>
@@ -83,14 +85,14 @@ export default function LinqPage() {
             <Eyebrow>An independent growth exercise / Linq</Eyebrow>
             <h1
               id="linq-title"
-              className="mt-6 font-serif text-[44px] leading-[1.08] text-ink sm:text-6xl sm:leading-[1.05]"
+              className="mt-6 text-[44px] font-extrabold leading-[1.08] text-ink sm:text-6xl sm:leading-[1.05]"
             >
               Good growth starts with understanding people.
             </h1>
-            <p className="mt-6 font-serif text-[22px] italic leading-[1.45] text-ink-soft sm:text-2xl">
+            <p className="mt-6 text-[22px] font-light leading-[1.45] text-ink-soft sm:text-2xl">
               Work I would do at Linq, and the real jobs and campaigns it comes from.
             </p>
-            <div className="mt-10 space-y-4 text-[17px] leading-[1.75] text-ink-soft">
+            <div className="mt-10 space-y-4 text-[17px] font-light leading-[1.75] text-ink-soft">
               <p>
                 I&apos;m Sergio. I&apos;ve spent the past several years helping small businesses
                 find customers, communicate what makes them different, and put technology to work.
@@ -103,7 +105,7 @@ export default function LinqPage() {
                 why. And each one is tied to something I have already done.
               </p>
             </div>
-            <p className="mt-10 text-sm italic leading-relaxed text-muted">
+            <p className="mt-10 text-sm leading-relaxed text-muted">
               An independent exercise prepared for Linq&apos;s Growth Strategist position. Linq has
               not commissioned, approved or endorsed this page, and the plans are ideas formed from
               public information, not conclusions drawn from internal data.
@@ -126,10 +128,10 @@ export default function LinqPage() {
         <section id="plans" aria-labelledby="plans-title" className="scroll-mt-20 border-t border-ink/10 py-16 sm:py-20">
           <div className="max-w-[68ch]">
             <Eyebrow>The plans</Eyebrow>
-            <h2 id="plans-title" className="mt-4 font-serif text-4xl leading-[1.12] text-ink sm:text-[44px]">
+            <h2 id="plans-title" className="mt-4 text-4xl font-extrabold leading-[1.12] text-ink sm:text-[44px]">
               Ways I would grow Linq.
             </h2>
-            <p className="mt-5 text-[17px] leading-[1.75] text-ink-soft">
+            <p className="mt-5 text-[17px] font-light leading-[1.75] text-ink-soft">
               Pick a plan. Walk through it step by step. See what each step needs, what it
               produces, and how I would know if it worked.
             </p>
@@ -142,25 +144,24 @@ export default function LinqPage() {
         <section aria-labelledby="loop-title" className="border-t border-ink/10 py-16 sm:py-20">
           <div className="max-w-[68ch]">
             <Eyebrow>How the plans connect</Eyebrow>
-            <h2 id="loop-title" className="mt-4 font-serif text-4xl leading-[1.12] text-ink sm:text-[44px]">
+            <h2 id="loop-title" className="mt-4 text-4xl font-extrabold leading-[1.12] text-ink sm:text-[44px]">
               Ideas that feed each other.
             </h2>
             <p
-              className="mt-10 flex flex-wrap items-baseline gap-x-3 gap-y-2 font-serif text-2xl text-ink sm:text-3xl"
+              className="mt-10 flex flex-wrap items-baseline gap-x-4 gap-y-2 text-2xl text-ink sm:text-3xl"
               aria-label="Discover, demonstrate, activate, learn, repeat"
             >
-              {["Discover", "Demonstrate", "Activate", "Learn", "Repeat"].map((word, index, all) => (
-                <span key={word} className="flex items-baseline gap-3">
-                  <span className={index === all.length - 1 ? "italic text-brand-deep" : undefined}>{word}</span>
-                  {index < all.length - 1 ? (
-                    <span aria-hidden="true" className="text-brand">
-                      →
-                    </span>
-                  ) : null}
-                </span>
-              ))}
+              <span className="font-extrabold">Discover</span>
+              <span aria-hidden="true" className="font-light text-brand-deep">·</span>
+              <span className="font-light">Demonstrate</span>
+              <span aria-hidden="true" className="font-light text-brand-deep">·</span>
+              <span className="font-extrabold">Activate</span>
+              <span aria-hidden="true" className="font-light text-brand-deep">·</span>
+              <span className="font-light">Learn</span>
+              <span aria-hidden="true" className="font-light text-brand-deep">·</span>
+              <span className="font-extrabold text-brand-deep">Repeat</span>
             </p>
-            <p className="mt-10 text-[17px] leading-[1.75] text-ink-soft">
+            <p className="mt-10 text-[17px] font-light leading-[1.75] text-ink-soft">
               The plans are one loop, not separate projects. Research finds the real problems.
               Demos make Linq easy to get. Events get people building, not just watching. Campaigns
               turn that interest into people getting started. And what we learn makes the next
@@ -173,10 +174,10 @@ export default function LinqPage() {
         <section id="talk" aria-labelledby="talk-title" className="scroll-mt-20 border-t border-ink/10 py-16 sm:py-20">
           <div className="max-w-[68ch]">
             <Eyebrow>Why Linq, and a little about me</Eyebrow>
-            <h2 id="talk-title" className="mt-4 font-serif text-4xl leading-[1.12] text-ink sm:text-[44px]">
+            <h2 id="talk-title" className="mt-4 text-4xl font-extrabold leading-[1.12] text-ink sm:text-[44px]">
               Let&apos;s talk about growth at Linq.
             </h2>
-            <div className="mt-8 space-y-4 text-[17px] leading-[1.75] text-ink-soft">
+            <div className="mt-8 space-y-4 text-[17px] font-light leading-[1.75] text-ink-soft">
               <p>
                 My work has moved from helping businesses communicate with customers to exploring
                 how technology can make those interactions more natural and useful. That is what
@@ -192,14 +193,14 @@ export default function LinqPage() {
                 technology meets communication.
               </p>
             </div>
-            <p className="mt-12 font-serif text-[26px] leading-snug text-ink sm:text-3xl">
+            <p className="mt-12 text-[26px] font-bold leading-snug text-ink sm:text-3xl">
               I&apos;d love to talk about what we could test together.
             </p>
             <ul className="mt-8 flex flex-wrap gap-3">
               <li>
                 <a
                   href={`mailto:${LINQ_LINKS.email}`}
-                  className="inline-block rounded-full border border-ink/15 px-5 py-2.5 font-serif text-[16px] text-ink-soft transition-colors hover:border-brand/50 hover:text-brand-deep"
+                  className="inline-block rounded-full border border-ink/15 px-5 py-2.5 text-[16px] text-ink-soft transition-colors hover:border-brand/50 hover:text-brand-deep"
                 >
                   {LINQ_LINKS.email}
                 </a>
@@ -209,7 +210,7 @@ export default function LinqPage() {
                   href={LINQ_LINKS.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block rounded-full border border-ink/15 px-5 py-2.5 font-serif text-[16px] text-ink-soft transition-colors hover:border-brand/50 hover:text-brand-deep"
+                  className="inline-block rounded-full border border-ink/15 px-5 py-2.5 text-[16px] text-ink-soft transition-colors hover:border-brand/50 hover:text-brand-deep"
                 >
                   LinkedIn
                 </a>
@@ -217,7 +218,7 @@ export default function LinqPage() {
               <li>
                 <Link
                   href="/"
-                  className="inline-block rounded-full border border-ink/15 px-5 py-2.5 font-serif text-[16px] text-ink-soft transition-colors hover:border-brand/50 hover:text-brand-deep"
+                  className="inline-block rounded-full border border-ink/15 px-5 py-2.5 text-[16px] text-ink-soft transition-colors hover:border-brand/50 hover:text-brand-deep"
                 >
                   sergiopineros.com
                 </Link>
@@ -239,7 +240,7 @@ export default function LinqPage() {
                 href={LINQ_LINKS.studio}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-serif text-xl text-ink underline-offset-4 transition-colors hover:text-brand-deep hover:underline"
+                className="text-xl font-bold text-ink underline-offset-4 transition-colors hover:text-brand-deep hover:underline"
               >
                 Sergio &amp; Co. · Digital Strategy &amp; Creative Work
               </a>
