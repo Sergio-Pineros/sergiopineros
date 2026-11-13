@@ -277,7 +277,7 @@ function MobileMatrix({ data }: { data: Opportunity[] }) {
     </svg>
   );
 }
-export function DecisionSpace() {
+export function DecisionSpace({ featuredOnly = false }: { featuredOnly?: boolean }) {
   const { data, selected, select, update, reset } = useExploration();
   const [side, setSide] = useState<Side | "all">("all");
   const [stage, setStage] = useState<Stage | "all">("all");
@@ -286,7 +286,9 @@ export function DecisionSpace() {
   const [camera, setCamera] = useState(0);
   const [focus, setFocus] = useState(false);
   const [hover, setHover] = useState<string | null>(null);
-  const filtered = data.filter(
+  const featuredIds = ["rationale", "quality", "brief", "comparison", "readiness"];
+  const available = featuredOnly ? data.filter((o) => featuredIds.includes(o.id) || o.id === selected) : data;
+  const filtered = available.filter(
     (o) =>
       (side === "all" || o.side === side || o.side === "both") &&
       (stage === "all" || o.stage === stage),
@@ -295,7 +297,7 @@ export function DecisionSpace() {
   const peek = data.find((o) => o.id === hover);
   function filterSide(value: typeof side) {
     setSide(value);
-    const first = data.find(
+    const first = available.find(
       (o) =>
         (value === "all" || o.side === value || o.side === "both") &&
         (stage === "all" || o.stage === stage),
@@ -376,7 +378,7 @@ export function DecisionSpace() {
                 onChange={(e) => {
                   const val = e.target.value as Stage | "all";
                   setStage(val);
-                  const first = data.find(
+                  const first = available.find(
                     (o) =>
                       (side === "all" ||
                         o.side === side ||
@@ -579,7 +581,7 @@ export function DecisionSpace() {
     </section>
   );
 }
-export function Roadmap() {
+export function Roadmap({ onOpenMatrix }: { onOpenMatrix: () => void }) {
   const { data, select } = useExploration();
   const plan = roadmap(data);
   const [spec, setSpec] = useState(false);
@@ -598,7 +600,7 @@ export function Roadmap() {
             </h2>
           </div>
           <p>
-            Change the estimates above to see a suggested order.
+            Change estimates in the matrix to see a suggested order.
             <br />
             Real customer research and engineering input would change the plan.
           </p>
@@ -646,7 +648,7 @@ export function Roadmap() {
               </p>
               {phase.items.length ? (
                 phase.items.slice(0, 3).map((o) => (
-                  <a key={o.id} href="#decisions" onClick={() => select(o.id)}>
+                  <a key={o.id} href="#decisions" onClick={(e) => { e.preventDefault(); select(o.id); onOpenMatrix(); }}>
                     {o.short}
                     <small>
                       {o.confidence}/10 evidence · {o.dependencies.length}{" "}

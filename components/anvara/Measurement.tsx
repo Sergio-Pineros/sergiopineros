@@ -38,7 +38,7 @@ const learning = [
       "Update the estimates with what we learned. Check effort with engineering, then explain the next decision to sales and customers.",
   },
 ];
-export default function Measurement() {
+export default function Measurement({ onOpenMatrix }: { onOpenMatrix: () => void }) {
   const [active, setActive] = useState(0);
   const [loop, setLoop] = useState(0);
   return (
@@ -202,7 +202,7 @@ export default function Measurement() {
                 Sales and business development can share why deals stall and which questions come up often. Product can test those patterns and share what it learns.
               </p>
             </div>
-            <a className="av-text-link" href="#decisions">
+            <a className="av-text-link" href="#decisions" onClick={(e) => { e.preventDefault(); onOpenMatrix(); }}>
               Return to the decision space
             </a>
           </div>

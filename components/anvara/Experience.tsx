@@ -7,11 +7,12 @@ import { Check, Mail, Globe } from "lucide-react";
 import Scene from "./Scene";
 import { LinkedInIcon } from "@/components/SocialIcons";
 import { ExplorationProvider } from "./State";
-import { DecisionSpace, Roadmap } from "./DecisionSpace";
+import { Roadmap } from "./DecisionSpace";
 import Journey from "./Journey";
 import MatchLab from "./MatchLab";
 import Measurement from "./Measurement";
 import Guide from "./Guide";
+import FeatureDialog from "./FeatureDialog";
 function Perspectives() {
   const [side, setSide] = useState<"brand" | "rightsholder">("brand");
   const brands = side === "brand";
@@ -155,71 +156,48 @@ function Hero() {
     </section>
   );
 }
+function Objectives() {
+  return (
+    <section className="av-objectives" aria-labelledby="av-objectives-title">
+      <div className="av-wrap">
+        <div className="av-objectives-heading"><span>THE PURPOSE</span><h2 id="av-objectives-title">A closer look at<br /><em>what makes a match work.</em></h2></div>
+        <div className="av-objectives-list">
+          <article><h3>Understand the marketplace</h3><p>See what brands and rightsholders need to find the right partner and move a deal forward.</p></article>
+          <article><h3>Explore a product idea</h3><p>Try a prototype that shows why an opportunity might fit a campaign and where it falls short.</p></article>
+          <article><h3>Show how I work</h3><p>Share how I would test the idea, decide what to build and learn from both sides.</p></article>
+        </div>
+      </div>
+    </section>
+  );
+}
 function Background() {
   return (
     <section id="about-sergio" className="av-section av-background">
       <div className="av-wrap">
         <p className="av-kicker">WHY THIS SPACE IS PERSONAL</p>
-        <h2>
-          I’ve seen what happens
-          <br />
-          <span>between the idea and the deal.</span>
-        </h2>
+        <h2>I’ve seen what happens<br /><span>between the idea and the deal.</span></h2>
         <div className="av-background-intro">
           <span className="av-personal-signature">Sergio Piñeros</span>
-          <p>
-            I’ve worked with artists, event organizers and small businesses. I know that making an introduction is only the first step: people still need to agree on the details and make the idea happen.
-          </p>
+          <p>I’ve worked with artists, event organizers and small businesses. An introduction is only the first step. People still need to agree on the details and make the idea happen.</p>
+        </div>
+        <div className="av-experience-photos">
+          <figure><Image src="/story-photos/2021.jpg" alt="Sergio making music with a collaborator" width={600} height={440} /><figcaption>Making music with collaborators</figcaption></figure>
+          <figure><Image src="/story-photos/2026 mid freelance.jpeg" alt="Sergio working in a barbershop" width={600} height={440} /><figcaption>Working alongside small businesses</figcaption></figure>
         </div>
         <div className="av-experience-thread">
-          {[
-            {
-              name: "17 Bits Records",
-              tag: "UNDERSTAND THE PEOPLE",
-              text: "Co-founded an independent record label and worked with artists and collaborators on concerts and cultural projects.",
-            },
-            {
-              name: "MusicConnect",
-              tag: "EXPLORE THE MARKETPLACE",
-              text: "Explored a marketplace for musicians and event organizers to find each other. It did not commercially launch.",
-            },
-            {
-              name: "SAVRON / NxtSeat",
-              tag: "BUILD THE WORKFLOW",
-              text: "Helped shape booking and operational workflows, including a bilingual AI voice concierge pilot. NxtSeat is exploring voice-first business software with a marketplace planned for the future.",
-            },
-            {
-              name: "Fofo Labs",
-              tag: "CONNECT WORK TO OUTCOMES",
-              text: "Founded a marketing and creative services business, led a small team and helped host hackathons and dinners for our client La Estancia.",
-            },
-          ].map((p) => (
-            <article key={p.name}>
-              <div>
-                <small>{p.tag}</small>
-                <h3>{p.name}</h3>
-              </div>
-              <p>{p.text}</p>
-            </article>
-          ))}
+          <article><div><small>ARTISTS & LIVE EVENTS</small><h3><a href="https://17bitsrecords.vercel.app/" target="_blank" rel="noopener noreferrer">17 Bits Records</a></h3></div><p>Co-founded an independent record label and worked with artists and collaborators on concerts and cultural projects.</p></article>
+          <article><div><small>EXPLORING MARKETPLACES</small><h3>MusicConnect</h3></div><p>Explored a marketplace for musicians and event organizers to find each other. It did not commercially launch.</p></article>
+          <article><div><small>BUILDING THE WORKFLOW</small><h3><a href="https://savronmn.com/" target="_blank" rel="noopener noreferrer">SAVRON</a> / <a href="https://www.nxtseat.co/" target="_blank" rel="noopener noreferrer">NxtSeat</a></h3></div><p>Helped shape booking and operational workflows, including a bilingual AI voice concierge pilot. NxtSeat is exploring voice-first business software with a marketplace planned for the future.</p></article>
+          <article><div><small>CREATIVE & GROWTH</small><h3><a href="http://sergioatelier.co/" target="_blank" rel="noopener noreferrer" className="av-studio-logo"><Image src="/linq/sergio-co.svg" width={190} height={42} alt="Sergio & Co." /></a></h3></div><p>Founded a marketing and creative services business, led a small team and helped host hackathons and dinners for our client La Estancia.</p></article>
         </div>
-        <div className="av-campaign-proof">
-          <div>
-            <strong>≈540k</strong>
-            <span>TikTok views</span>
+        <div className="av-estancia">
+          <div className="av-estancia-heading"><div><span>CLIENT STORY</span><h3>La Estancia</h3></div><p>Social media, event planning and a stronger online presence, including listings on DoorDash and Grubhub.</p></div>
+          <div className="av-estancia-stats">
+            <div><strong>46%</strong><span>revenue increase</span><small>$32,000 in additional revenue</small></div>
+            <div><strong>≈540k</strong><span>TikTok views</span><small>first campaign month</small></div>
+            <div><strong>1,200+</strong><span>new followers</span><small>first campaign month</small></div>
           </div>
-          <div>
-            <strong>1,200+</strong>
-            <span>new followers</span>
-          </div>
-          <p>
-            La Estancia / first campaign month.
-            <br />
-            <span>
-              Campaign marketing results, not product usage or retention
-              metrics.
-            </span>
-          </p>
+          <p className="av-estancia-note">Reported business and campaign results. Product usage was not measured.</p>
         </div>
       </div>
     </section>
@@ -265,6 +243,7 @@ export default function Experience() {
   const page = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll();
   const [menu, setMenu] = useState(false);
+  const [matrixOpen, setMatrixOpen] = useState(false);
   const [compactNav, setCompactNav] = useState(false);
   useEffect(() => {
     const update = () => {
@@ -280,7 +259,8 @@ export default function Experience() {
     const showLinkedSection = () => {
       const section = window.location.hash.slice(1);
       if (!["decisions", "journey", "measurement", "roadmap"].includes(section)) return;
-      const details = document.querySelector<HTMLDetailsElement>("#deeper-exploration");
+      if (section === "decisions") { setMatrixOpen(true); return; }
+      const details = document.querySelector<HTMLDetailsElement>("#deeper-exploration details");
       if (details && !details.open) {
         details.open = true;
         requestAnimationFrame(() => document.getElementById(section)?.scrollIntoView());
@@ -373,19 +353,25 @@ export default function Experience() {
           </header>
           <main>
             <Hero />
+            <Objectives />
             <Perspectives />
             <MatchLab />
             <Background />
-            <details id="deeper-exploration" className="av-deeper-exploration">
-              <summary>
-                <span><small>CURIOUS TO GO DEEPER?</small><strong>Explore the product thinking.</strong><em>The journey, decision space, measurement and roadmap.</em></span>
-                <span className="av-deeper-plus" aria-hidden="true">+</span>
-              </summary>
-              <Journey />
-              <DecisionSpace />
-              <Measurement />
-              <Roadmap />
-            </details>
+            <section id="deeper-exploration" className="av-deeper-exploration">
+              <div className="av-deeper-intro">
+                <span>CURIOUS TO GO DEEPER?</span>
+                <h2>Explore the product thinking.</h2>
+                <p>Compare the most relevant ideas, then explore the journey, measurement and roadmap.</p>
+                <button className="av-button av-button-dark av-matrix-launch" onClick={() => setMatrixOpen(true)}>Explore the feature matrix</button>
+              </div>
+              <details>
+                <summary><span>Explore the journey, metrics and roadmap</span><span className="av-deeper-plus" aria-hidden="true">+</span></summary>
+                <Journey onOpenMatrix={() => setMatrixOpen(true)} />
+                <Measurement onOpenMatrix={() => setMatrixOpen(true)} />
+                <Roadmap onOpenMatrix={() => setMatrixOpen(true)} />
+              </details>
+            </section>
+            <FeatureDialog open={matrixOpen} onClose={() => setMatrixOpen(false)} />
           </main>
           <Closing />
           <a className="av-quick-prototype" href="#prototype">

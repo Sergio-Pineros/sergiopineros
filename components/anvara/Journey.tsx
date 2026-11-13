@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { Check } from "lucide-react";
 import { journey, Stage, stages, sponsorships } from "@/lib/anvara/data";
 import { useExploration } from "./State";
-export default function Journey() {
+export default function Journey({ onOpenMatrix }: { onOpenMatrix: () => void }) {
   const [stage, setStage] = useState<Stage>("Discover");
   const { data, select, campaign, activeSponsor, setLab } = useExploration();
   const step = journey[stage];
@@ -135,7 +135,7 @@ export default function Journey() {
             <a
               className="av-text-link"
               href="#decisions"
-              onClick={() => select(idea.id)}
+              onClick={(e) => { e.preventDefault(); select(idea.id); onOpenMatrix(); }}
             >
               See the idea in the matrix
             </a>

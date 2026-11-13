@@ -9,7 +9,7 @@ const steps = [
   { target: ".av-campaign", label: "THE PROTOTYPE", title: "Start with a campaign", text: "Choose a budget, audience, location and goal. The sample opportunities update as you go." },
   { target: ".av-match-explanation", label: "THE IDEA", title: "Look beyond the score", text: "See which campaign details match and what to check before reaching out. Shortlist or compare the options that interest you." },
   { target: "#about-sergio h2", label: "WHY THIS MATTERS TO ME", title: "From experience to product", text: "My work with artists, events and small businesses is why I care about what happens after an introduction." },
-  { target: "#deeper-exploration > summary", label: "GO DEEPER", title: "Explore the thinking", text: "Open the product notes for the journey, decision matrix, measurement plan and a working spec." },
+  { target: "#deeper-exploration .av-deeper-intro", label: "GO DEEPER", title: "Explore the thinking", text: "Open the feature matrix or explore the journey, measurement plan and working spec." },
 ];
 
 export default function Guide() {
