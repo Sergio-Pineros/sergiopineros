@@ -828,3 +828,35 @@
     line-height: 1.4;
   }
 }
+
+/* Keep controls clean while preserving focus and selected states. */
+.av-page button,
+.av-page a,
+.av-page button em,
+.av-page a em {
+  font-style: normal;
+  text-decoration: none;
+}
+.av-page .av-text-link {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+.av-page .av-journey-stages > button,
+.av-page .av-lab-progress > button,
+.av-page .av-funnel button,
+.av-page .av-participants > button,
+.av-page .av-experiment-tabs > button {
+  border-bottom: 0;
+}
+.av-perspectives .av-section-intro h2 {
+  max-width: 19ch;
+}
+
+.av-page .av-projection-controls button {
+  width: auto;
+  min-width: 55px;
+  min-height: 44px;
+  padding: 0 10px;
+  border-radius: 22px;
+  font-size: 15px;
+}

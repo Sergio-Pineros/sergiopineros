@@ -1,16 +1,7 @@
 "use client";
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import {
-  ArrowRight,
-  ArrowUpRight,
-  Bookmark,
-  Check,
-  Copy,
-  GitCompareArrows,
-  Send,
-  SlidersHorizontal,
-} from "lucide-react";
+import { Bookmark, Check, Copy, Send, SlidersHorizontal } from "lucide-react";
 import { experiments, sponsorships } from "@/lib/anvara/data";
 import { makeBrief, match } from "@/lib/anvara/model";
 import { useExploration } from "./State";
@@ -92,7 +83,7 @@ export default function MatchLab() {
               onClick={() => setLab(e.id)}
             >
               <strong>{e.title}</strong>
-              <ArrowUpRight size={21} />
+
             </button>
           ))}
         </div>
@@ -292,7 +283,7 @@ export default function MatchLab() {
                                   </em>
                                 </span>
                               </span>
-                              <ArrowUpRight size={15} />
+
                             </button>
                             <button
                               className="av-save"
@@ -316,7 +307,7 @@ export default function MatchLab() {
                           <p>Your shortlist is empty.</p>
                           <button onClick={() => setShortOnly(false)}>
                             Explore the fictional inventory{" "}
-                            <ArrowRight size={14} />
+
                           </button>
                         </div>
                       )}
@@ -361,7 +352,7 @@ export default function MatchLab() {
                           setCompare(true);
                         }}
                       >
-                        <GitCompareArrows size={16} />
+
                         Compare two alternatives
                       </button>
                       <button
@@ -369,7 +360,7 @@ export default function MatchLab() {
                         disabled={!chosen.eligible}
                         onClick={prepare}
                       >
-                        Prepare inquiry <ArrowRight size={14} />
+                        Prepare inquiry
                       </button>
                     </div>
                     {!chosen.eligible && (
@@ -433,7 +424,7 @@ export default function MatchLab() {
                       className="av-text-button"
                       onClick={() => setLab("match")}
                     >
-                      Edit campaign & opportunity <ArrowUpRight size={14} />
+                      Edit campaign & opportunity
                     </button>
                   </div>
                   <div className="av-inquiry-editor">

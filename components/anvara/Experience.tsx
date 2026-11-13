@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { MotionConfig, motion, useScroll, useTransform } from "motion/react";
-import { ArrowDown, ArrowRight, ArrowUpRight, Check } from "lucide-react";
+import { Check } from "lucide-react";
 import Scene from "./Scene";
 import { ExplorationProvider } from "./State";
 import { DecisionSpace, Roadmap } from "./DecisionSpace";
@@ -19,21 +19,7 @@ function Perspectives() {
     >
       <div className="av-wrap">
         <div className="av-section-intro">
-          <div>
-            <p className="av-kicker">
-              TWO SIDES OF THE MARKETPLACE
-            </p>
-            <h2>
-              Two perspectives.
-              <br />
-              <span>One marketplace.</span>
-            </h2>
-          </div>
-          <p>
-            Making the connection
-            <br />
-            is only the beginning.
-          </p>
+          <h2>Two sides of the marketplace.</h2>
         </div>
         <div className="av-perspective-layout">
           <div className="av-perspective-copy">
@@ -123,17 +109,12 @@ function Perspectives() {
           </p>
         </div>
         <div className="av-source-note">
-          <p>
-            <strong>Starting from what exists.</strong> Anvara publicly
-            describes AI matching, end-to-end deal execution and performance
-            reporting. I’m exploring how those experiences might help brands understand a match and help both sides get to a useful first conversation.
-          </p>
           <a
             href="https://www.anvara.com/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Public product reference <ArrowUpRight size={13} />
+            Public product reference
           </a>
         </div>
       </div>
@@ -167,23 +148,6 @@ function Hero() {
       <div className="av-hero-spatial">
         <Scene variant="hero" />
       </div>
-      <div className="av-hero-bottom">
-        <span>
-          FROM OPPORTUNITY
-          <br />
-          TO OUTCOME
-        </span>
-        <a href="#marketplace">
-          Explore the case study <ArrowDown size={15} />
-        </a>
-        <span>
-          INDEPENDENT THINKING.
-          <br />A WORKING EXPLORATION.
-        </span>
-      </div>
-      <span className="av-hero-caption">
-        Conceptual matching visualization, not Anvara’s algorithm.
-      </span>
     </section>
   );
 }
@@ -271,12 +235,6 @@ function Closing() {
           complex things feel <span>simple.</span>
         </h2>
         <p>I’d love to help build what comes next.</p>
-        <a
-          className="av-button av-button-dark"
-          href="mailto:s.dpineros@gmail.com"
-        >
-          Let’s talk <ArrowUpRight size={17} />
-        </a>
         <div className="av-final-signature">
           <strong>Sergio Piñeros</strong>
           <span>Founder / Product Builder</span>
@@ -287,13 +245,13 @@ function Closing() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            LinkedIn <ArrowUpRight size={13} />
+            LinkedIn
           </a>
           <Link href="/">
-            Portfolio <ArrowUpRight size={13} />
+            Portfolio
           </Link>
           <a href="mailto:s.dpineros@gmail.com">
-            Email <ArrowUpRight size={13} />
+            Email
           </a>
         </div>
         <div className="av-colophon">
@@ -406,7 +364,6 @@ export default function Experience() {
                   onClick={() => setMenu(false)}
                 >
                   {item.text}
-                  {item.href === "#prototype" && <ArrowUpRight size={12} />}
                 </a>
               ))}
             </nav>
@@ -419,9 +376,6 @@ export default function Experience() {
               {menu ? "Close" : "Explore"}
               <span>{menu ? "−" : "+"}</span>
             </button>
-            <a className="av-nav-contact" href="mailto:s.dpineros@gmail.com">
-              Let’s talk <ArrowUpRight size={13} />
-            </a>
           </header>
           <main>
             <Hero />
@@ -435,7 +389,7 @@ export default function Experience() {
           </main>
           <Closing />
           <a className="av-quick-prototype" href="#prototype">
-            Try the working prototype <ArrowRight size={13} />
+            Try the working prototype
           </a>
         </div>
       </ExplorationProvider>

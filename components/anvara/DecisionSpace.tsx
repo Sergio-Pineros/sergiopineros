@@ -1,14 +1,7 @@
 "use client";
 import { useRef, useState, PointerEvent, KeyboardEvent } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import {
-  ArrowUpRight,
-  Box,
-  Grid2X2,
-  RotateCcw,
-  Focus,
-  ArrowRight,
-} from "lucide-react";
+import { Box, Grid2X2, RotateCcw, Focus } from "lucide-react";
 import { Opportunity, Side, Stage, stages } from "@/lib/anvara/data";
 import { requirements } from "@/lib/anvara/requirements";
 import { clamp, priority, quadrant, roadmap } from "@/lib/anvara/model";
@@ -574,7 +567,7 @@ export function DecisionSpace() {
                 onClick={() => select(o.id)}
               >
                 {o.short}
-                <ArrowUpRight size={12} />
+
               </button>
             ))}
           </div>
@@ -644,7 +637,7 @@ export function Roadmap() {
             <div className="av-roadmap-phase" key={phase.label}>
               <div className="av-phase-label">
                 {phase.label}
-                <ArrowRight size={18} />
+
               </div>
               <h3>{phase.title}</h3>
               <p className="av-phase-plan">
@@ -661,7 +654,7 @@ export function Roadmap() {
                         ? "dependency"
                         : "dependencies"}
                     </small>
-                    <ArrowUpRight size={15} />
+
                   </a>
                 ))
               ) : (
@@ -687,7 +680,7 @@ export function Roadmap() {
             className="av-button av-button-dark"
             onClick={() => setSpec(true)}
           >
-            Read the leading candidate’s brief <ArrowUpRight size={16} />
+            Read the leading candidate’s brief
           </button>
         </div>
         <p className="av-footnote">

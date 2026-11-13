@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ArrowUpRight, Check, ArrowRight } from "lucide-react";
+import { Check } from "lucide-react";
 import { journey, Stage, stages, sponsorships } from "@/lib/anvara/data";
 import { useExploration } from "./State";
 export default function Journey() {
@@ -137,7 +137,7 @@ export default function Journey() {
               href="#decisions"
               onClick={() => select(idea.id)}
             >
-              See the idea in the matrix <ArrowUpRight size={15} />
+              See the idea in the matrix
             </a>
           </div>
           <AnimatePresence mode="wait">
@@ -254,7 +254,7 @@ export default function Journey() {
                   </>
                 )}
                 <a href="#prototype" className="av-ui-action">
-                  Explore this part of the prototype <ArrowRight size={14} />
+                  Explore this part of the prototype
                 </a>
               </div>
             </motion.div>

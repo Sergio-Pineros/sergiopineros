@@ -198,14 +198,14 @@ export default function PrismFallback({
           onClick={() => setAngle((v) => v - 0.2)}
           aria-label="Rotate projected prism left"
         >
-          ←
+          Left
         </button>
         <span>3D projection / WebGL unavailable in this browser</span>
         <button
           onClick={() => setAngle((v) => v + 0.2)}
           aria-label="Rotate projected prism right"
         >
-          →
+          Right
         </button>
       </div>
     </div>

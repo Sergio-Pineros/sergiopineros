@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import { ArrowUpRight } from "lucide-react";
 import { funnel } from "@/lib/anvara/data";
 const learning = [
   {
@@ -204,7 +203,7 @@ export default function Measurement() {
               </p>
             </div>
             <a className="av-text-link" href="#decisions">
-              Return to the decision space <ArrowUpRight size={15} />
+              Return to the decision space
             </a>
           </div>
         </div>
