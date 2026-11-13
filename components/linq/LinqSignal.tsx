@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useRef, useState, type PointerEvent } from "react";
 
 export default function LinqSignal() {
@@ -27,7 +26,7 @@ export default function LinqSignal() {
         <span className="lq-signal-halo" />
         <span className="lq-signal-echo lq-signal-echo-a" />
         <span className="lq-signal-echo lq-signal-echo-b" />
-        <span className="lq-signal-mark"><Image src="/linq/linq-logo.png" alt="" width={540} height={270} priority /><span className="lq-signal-shine" /></span>
+        <span className="lq-signal-mark"><span className="lq-signal-ink" /></span>
         <span className="lq-signal-trail lq-signal-trail-a" />
         <span className="lq-signal-trail lq-signal-trail-b" />
         <span className="lq-signal-spark" />

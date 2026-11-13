@@ -33,9 +33,10 @@
 .lq-signal-scene{position:absolute;inset:0;display:grid;place-items:center;transform:rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg));transition:transform .35s ease-out;transform-style:preserve-3d}
 .lq-signal-halo{position:absolute;inset:5%;border-radius:50%;background:radial-gradient(ellipse,#bc86f151,transparent 65%);filter:blur(16px);animation:lq-halo 8s ease-in-out infinite}
 .lq-signal-mark{position:relative;display:block;width:85%;transform:translateZ(45px);mix-blend-mode:screen;animation:lq-signal-in 1.4s cubic-bezier(.22,1,.36,1) both}
-.lq-signal-mark img{width:100%;height:auto;display:block;filter:drop-shadow(0 0 2px #e6d5ff) drop-shadow(0 0 24px #ba90e46b)}
+.lq-signal-mark{filter:drop-shadow(0 0 2px #e6d5ff) drop-shadow(0 0 24px #ba90e46b)}
+.lq-signal-ink{display:block;width:100%;aspect-ratio:2;background:linear-gradient(110deg,#fff 25%,#e0c9f6 40%,#d3ff64 50%,#fff 65%);background-size:250% 100%;background-position:180% 0;mask:url('/linq/linq-logo.png') center/contain no-repeat;mask-mode:luminance;animation:lq-shine 7s ease-in-out 1s infinite}
 .lq-signal-shine{position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,#e1ff8c9c 48%,transparent 61%);background-size:250% 100%;background-position:180% 0;mix-blend-mode:color;pointer-events:none;animation:lq-shine 7s ease-in-out 1s infinite}
-.lq-signal-echo{position:absolute;inset:25% 7%;background:url('/linq/linq-logo.png') center/contain no-repeat;mix-blend-mode:screen;pointer-events:none;opacity:0}
+.lq-signal-echo{position:absolute;inset:25% 7%;background:#d8c0ef;mask:url('/linq/linq-logo.png') center/contain no-repeat;mask-mode:luminance;mix-blend-mode:screen;pointer-events:none;opacity:0}
 .lq-signal-echo-a{filter:drop-shadow(0 0 8px #d3ff64);animation:lq-echo 1.2s .1s ease-out both}
 .lq-signal-echo-b{filter:drop-shadow(0 0 8px #c496f1);animation:lq-echo 1.2s .25s ease-out both}
 .lq-signal-trail{position:absolute;height:1px;width:82%;left:9%;background:linear-gradient(90deg,transparent,#cfb1e7,transparent);transform:rotate(-20deg);opacity:.5;pointer-events:none}
@@ -44,7 +45,7 @@
 .lq-signal-trail-b{bottom:15%;transform:rotate(-20deg) scaleX(-1)}
 .lq-signal-trail-b::after{animation-delay:3.6s}
 .lq-signal-spark{position:absolute;top:12%;right:14%;width:6px;height:6px;background:var(--lq-lime);box-shadow:0 0 22px #d3ff64;border-radius:50%;animation:lq-halo 4s ease-in-out infinite}
-.lq-signal:hover .lq-signal-mark img,.lq-signal:focus-visible .lq-signal-mark img{filter:drop-shadow(0 0 3px #efffd5) drop-shadow(0 0 32px #c599efaa)}
+.lq-signal:hover .lq-signal-mark,.lq-signal:focus-visible .lq-signal-mark{filter:drop-shadow(0 0 3px #efffd5) drop-shadow(0 0 32px #c599efaa)}
 .lq-plans{padding:100px 0 85px;background:linear-gradient(#faf8f5f0,#faf8f5f0),url('/textures/paper-grain.png');background-size:auto,256px}
 .lq-plans-intro{display:flex;justify-content:space-between;align-items:end;gap:40px}
 .lq-plans-intro h2{font-size:clamp(36px,4.2vw,56px);font-weight:500;letter-spacing:-.055em;line-height:1.15}
