@@ -22,7 +22,8 @@ function layout(data: Opportunity[]) {
   return data.map((o) => {
     const w = Math.min(176, o.short.length * 7 + 20);
     const x = Math.max(100, Math.min(900 - w, px(o) + 15));
-    const candidates = Array.from({ length: 25 }, (_, i) => 65 + i * 18).sort(
+    // Keep labels away from the quadrant captions at the top and bottom.
+    const candidates = Array.from({ length: 21 }, (_, i) => 100 + i * 18).sort(
       (a, b) => Math.abs(a - (py(o) - 15)) - Math.abs(b - (py(o) - 15)),
     );
     const y =
@@ -201,6 +202,104 @@ function Matrix({ data }: { data: Opportunity[] }) {
     </svg>
   );
 }
+
+// The phone chart uses its own viewBox so labels and touch targets stay legible.
+// Its coordinates and selection come from the same opportunity model as desktop.
+function MobileMatrix({ data }: { data: Opportunity[] }) {
+  const { select, selected } = useExploration();
+  return (
+    <svg
+      className="av-matrix-mobile"
+      viewBox="0 0 400 338"
+      role="group"
+      aria-label="Effort versus value. Tap a numbered point or select an opportunity below."
+    >
+      <rect
+        x="28"
+        y="18"
+        width="344"
+        height="274"
+        rx="14"
+        fill="#f5f7ff"
+        stroke="#dce3f1"
+      />
+      <path
+        d="M200 18V292 M28 155H372"
+        stroke="#cbd2e3"
+        strokeDasharray="4 5"
+      />
+      <g className="av-mobile-quadrants">
+        <text x="40" y="42">
+          Quick wins
+        </text>
+        <text x="212" y="42">
+          Strategic bets
+        </text>
+        <text x="40" y="280">
+          Nice to have
+        </text>
+        <text x="212" y="280">
+          Reconsider / later
+        </text>
+      </g>
+      {data.map((o, i) => {
+        const x = 51 + ((o.effort - 1) / 9) * 298;
+        const y = 258 - ((o.impact - 1) / 9) * 205;
+        return (
+          <g
+            key={o.id}
+            role="button"
+            tabIndex={0}
+            aria-pressed={selected === o.id}
+            aria-label={`${o.title}: effort ${o.effort}, value ${o.impact}, ${quadrant(o)}. Select to edit.`}
+            onClick={() => select(o.id)}
+            onKeyDown={(event) => {
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                select(o.id);
+              }
+            }}
+          >
+            <circle cx={x} cy={y} r="21" fill="transparent" />
+            <circle
+              cx={x}
+              cy={y}
+              r={selected === o.id ? 14 : 12}
+              fill={
+                o.side === "brand"
+                  ? "#2369e8"
+                  : o.side === "rightsholder"
+                    ? "#6439cf"
+                    : "#5965c9"
+              }
+              stroke="#fff"
+              strokeWidth="2"
+            />
+            <text
+              x={x}
+              y={y + 4}
+              textAnchor="middle"
+              className="av-mobile-point-number"
+            >
+              {String(i + 1).padStart(2, "0")}
+            </text>
+          </g>
+        );
+      })}
+      <g className="av-mobile-axes">
+        <text x="28" y="12">
+          Value ↑
+        </text>
+        <text x="28" y="320">
+          Low effort
+        </text>
+        <text x="372" y="320" textAnchor="end">
+          High effort →
+        </text>
+      </g>
+    </svg>
+  );
+}
 export function DecisionSpace() {
   const { data, selected, select, update, reset } = useExploration();
   const [side, setSide] = useState<Side | "all">("all");
@@ -344,6 +443,7 @@ export function DecisionSpace() {
                     transition={{ duration: 0.5, delay: 0.45 }}
                   >
                     <Matrix data={filtered} />
+                    <MobileMatrix data={filtered} />
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -362,9 +462,18 @@ export function DecisionSpace() {
               )}
               <div className="av-plot-footer">
                 <span>
-                  {mode === "2d"
-                    ? "Drag a point, or select it to edit below."
-                    : "Rotate the space · Select a point to inspect"}
+                  {mode === "2d" ? (
+                    <>
+                      <span className="av-desktop-instructions">
+                        Drag a point, or select it to edit below.
+                      </span>
+                      <span className="av-mobile-instructions">
+                        Tap a point; use the sliders below to adjust.
+                      </span>
+                    </>
+                  ) : (
+                    "Rotate the space · Select a point to inspect"
+                  )}
                 </span>
                 {mode === "3d" && (
                   <div>
@@ -392,7 +501,7 @@ export function DecisionSpace() {
               <div className="av-chart-preview" aria-live="polite">
                 {peek
                   ? `${peek.title} · Value ${peek.impact} / Effort ${peek.effort} / Evidence ${peek.confidence}`
-                  : "Blue / Brands     Violet / Rightsholders     Indigo / Shared"}
+                  : "Blue: brand · Violet: rightsholder · Indigo: both"}
               </div>
             </div>
             <aside className="av-hypothesis" aria-label="Selected opportunity">
@@ -559,7 +668,9 @@ export function Roadmap() {
                     {o.short}
                     <small>
                       {o.confidence}/10 evidence · {o.dependencies.length}{" "}
-                      dependencies
+                      {o.dependencies.length === 1
+                        ? "dependency"
+                        : "dependencies"}
                     </small>
                     <ArrowUpRight size={15} />
                   </a>

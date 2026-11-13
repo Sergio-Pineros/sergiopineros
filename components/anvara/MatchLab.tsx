@@ -150,8 +150,7 @@ export default function MatchLab() {
                       <SlidersHorizontal size={13} /> YOUR HYPOTHETICAL CAMPAIGN
                     </span>
                     <h4>
-                      Find your kind
-                      <br />
+                      Find your kind <br />
                       of connection.
                     </h4>
                     <label>
@@ -660,7 +659,8 @@ export default function MatchLab() {
               Guardrails: listing abandonment, brand inquiry abandonment,
               rightsholder workload and spam. Check both participant cohorts; a
               faster buyer action is not a win if partner quality declines. No
-              experiment has been run.
+              experiment has been run. Targets and timelines are proposed
+              starting points to validate with the team, not actual results.
             </p>
           </details>
         </div>

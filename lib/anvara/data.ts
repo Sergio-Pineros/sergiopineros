@@ -37,7 +37,7 @@ export const opportunities: Opportunity[] = [
     ],
     dependencies: ["quality"],
     metrics: [
-      "Qualified inquiries / exposed eligible campaigns",
+      "Campaigns with a qualified inquiry within 14 days / eligible campaigns exposed",
       "Median time to first meaningful action",
       "Rightsholder-reported inquiry relevance",
     ],
@@ -409,12 +409,13 @@ export const experiments = [
       "Can clearer match explanations help brands act with greater confidence?",
     problem: "A recommendation can be relevant without being understandable.",
     hypothesis:
-      "Explain fit and a meaningful trade-off at the moment of evaluation.",
-    measurement: "Qualified inquiry rate; time to first meaningful action.",
+      "Showing why a listing fits—and one limitation—will help more brands submit relevant inquiries.",
+    measurement:
+      "Campaigns with at least one qualified inquiry within 14 days ÷ eligible campaigns exposed. Also track rightsholder-rated inquiry relevance.",
     decision:
-      "Expand only if qualified progression improves without lowering inquiry relevance.",
+      "Advance if the rate rises at least 10% relative to control, with no more than a 0.25-point drop in average relevance (1–5). These are proposed thresholds; if the sample is too small, continue learning rather than call a winner.",
     method:
-      "Compare the current experience with explained matches in eligible campaigns. Predefine sample size and minimum detectable effect after establishing a baseline.",
+      "Define a qualified inquiry as one with a goal, budget and timing that meet the listing’s stated requirements; ask rightsholders to rate relevance separately. Establish a baseline and sample size, compare both experiences for at least 4 weeks, and follow every exposed campaign for 14 days.",
   },
   {
     id: "brief",
@@ -422,13 +423,14 @@ export const experiments = [
     title: "Deal readiness",
     question: "Can shared expectations improve early conversations?",
     problem: "Unclear intent creates clarification work for both parties.",
-    hypothesis: "A concise editable brief improves response quality and speed.",
+    hypothesis:
+      "An editable brief with campaign goals, audience, market, budget and timing will help rightsholders respond with less clarification.",
     measurement:
-      "Qualified inquiry percentage; response time; proposal progression.",
+      "Complete briefs ÷ briefs started; median business hours to first substantive response; rightsholder relevance ratings.",
     decision:
-      "Keep only if response quality improves without increasing abandonment.",
+      "Proposed pilot target: 80% of started briefs contain all five fields, and 80% of rated inquiries score at least 4/5 for relevance. Review abandonment before expanding the test.",
     method:
-      "Pilot with willing brands and rightsholders. Review anonymized brief quality and abandonment before a randomized rollout.",
+      "Run a 4-week opt-in pilot targeting 20 inquiries and 10 rightsholder ratings. Compare abandonment with the existing flow; if participation is too low, extend the pilot. Treat the findings as directional.",
   },
   {
     id: "outcomes",
@@ -436,12 +438,14 @@ export const experiments = [
     title: "Outcome understanding",
     question: "Can clearer summaries support better follow-up decisions?",
     problem: "A total does not explain whether an activation met its goal.",
-    hypothesis: "Goal-linked summaries make the next decision clearer.",
-    measurement: "Reporting completion; repeat engagement; renewal intent.",
+    hypothesis:
+      "A summary linking the original goal, delivery and missing evidence will help both partners choose a next step.",
+    measurement:
+      "Participants who identify the goal, missing evidence and next action without help, by marketplace side.",
     decision:
-      "Iterate if summaries are understood but do not support a concrete next step.",
+      "Proposed target: at least 4 of 5 participants on each side answer all three prompts correctly. Revise the summary if either side falls short.",
     method:
-      "Run comprehension interviews on completed activations first. Observe repeat engagement over a full buying cycle; do not infer causality from intent.",
+      "Within 2 weeks of recruiting, test a fictional report with 5 brands and 5 rightsholders. Then pilot completed reports with consenting partners and observe repeat engagement over a full buying cycle; do not infer causality from intent.",
   },
 ] as const;
 export const funnel = [

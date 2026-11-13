@@ -118,8 +118,7 @@ function Perspectives() {
         <div className="av-marketplace-insight">
           <span>THE PRODUCT QUESTION</span>
           <p>
-            How do we help the right partners move forward
-            <br />
+            How do we help the right partners move forward <br />
             with <strong>less uncertainty on both sides?</strong>
           </p>
         </div>
@@ -353,20 +352,18 @@ export default function Experience() {
         if (cancelled) return;
         gsap.registerPlugin(ScrollTrigger);
         const context = gsap.context(() => {
-          gsap.utils
-            .toArray<HTMLElement>(".av-section-intro")
-            .forEach((el) =>
-              gsap.fromTo(
-                el,
-                { y: 24 },
-                {
-                  y: 0,
-                  duration: 0.9,
-                  ease: "power2.out",
-                  scrollTrigger: { trigger: el, start: "top 90%", once: true },
-                },
-              ),
-            );
+          gsap.utils.toArray<HTMLElement>(".av-section-intro").forEach((el) =>
+            gsap.fromTo(
+              el,
+              { y: 24 },
+              {
+                y: 0,
+                duration: 0.9,
+                ease: "power2.out",
+                scrollTrigger: { trigger: el, start: "top 90%", once: true },
+              },
+            ),
+          );
         }, page);
         revert = () => context.revert();
       },

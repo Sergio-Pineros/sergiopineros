@@ -42,6 +42,9 @@ export default function PrismFallback({
   const center = focus && target ? point(target) : [390, 220];
   return (
     <div className="av-prism-fallback">
+      {target && (
+        <span className="av-prism-selected">Selected: {target.short}</span>
+      )}
       <svg
         viewBox={
           focus

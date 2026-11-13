@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Experience from "@/components/anvara/Experience";
 import "./anvara.css";
+import "./refinements.css";
 export const metadata: Metadata = {
   title: "Anvara — From opportunity to outcome | Sergio Piñeros",
   description:
