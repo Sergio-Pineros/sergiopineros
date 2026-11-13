@@ -9,6 +9,7 @@ import { DecisionSpace, Roadmap } from "./DecisionSpace";
 import Journey from "./Journey";
 import MatchLab from "./MatchLab";
 import Measurement from "./Measurement";
+import Guide from "./Guide";
 function Perspectives() {
   const [side, setSide] = useState<"brand" | "rightsholder">("brand");
   const brands = side === "brand";
@@ -144,6 +145,7 @@ function Hero() {
           A look at how Anvara could help brands and rightsholders
           <br className="av-desktop-break" /> find the right fit and move a partnership forward.
         </p>
+        <Guide />
       </motion.div>
       <div className="av-hero-spatial">
         <Scene variant="hero" />
@@ -153,7 +155,7 @@ function Hero() {
 }
 function Background() {
   return (
-    <section className="av-section av-background">
+    <section id="about-sergio" className="av-section av-background">
       <div className="av-wrap">
         <p className="av-kicker">WHY THIS SPACE IS PERSONAL</p>
         <h2>
@@ -297,6 +299,20 @@ export default function Experience() {
   const { scrollYProgress } = useScroll();
   const [menu, setMenu] = useState(false);
   useEffect(() => {
+    const showLinkedSection = () => {
+      const section = window.location.hash.slice(1);
+      if (!["decisions", "journey", "measurement", "roadmap"].includes(section)) return;
+      const details = document.querySelector<HTMLDetailsElement>("#deeper-exploration");
+      if (details && !details.open) {
+        details.open = true;
+        requestAnimationFrame(() => document.getElementById(section)?.scrollIntoView());
+      }
+    };
+    showLinkedSection();
+    window.addEventListener("hashchange", showLinkedSection);
+    return () => window.removeEventListener("hashchange", showLinkedSection);
+  }, []);
+  useEffect(() => {
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let revert: (() => void) | undefined;
     let cancelled = false;
@@ -330,8 +346,8 @@ export default function Experience() {
     <MotionConfig reducedMotion="user">
       <ExplorationProvider>
         <div className="av-page" ref={page}>
-          <a className="av-skip" href="#decisions">
-            Skip to the decision space
+          <a className="av-skip" href="#prototype">
+            Skip to the prototype
           </a>
           <motion.div
             className="av-reading-progress"
@@ -353,10 +369,9 @@ export default function Experience() {
             >
               {[
                 { href: "#marketplace", text: "The system" },
-                { href: "#decisions", text: "Decisions" },
-                { href: "#journey", text: "Journey" },
                 { href: "#prototype", text: "Try the prototype" },
-                { href: "#roadmap", text: "Roadmap" },
+                { href: "#about-sergio", text: "About Sergio" },
+                { href: "#deeper-exploration", text: "Explore more" },
               ].map((item) => (
                 <a
                   key={item.href}
@@ -380,12 +395,18 @@ export default function Experience() {
           <main>
             <Hero />
             <Perspectives />
-            <DecisionSpace />
-            <Journey />
             <MatchLab />
-            <Measurement />
-            <Roadmap />
             <Background />
+            <details id="deeper-exploration" className="av-deeper-exploration">
+              <summary>
+                <span><small>CURIOUS TO GO DEEPER?</small><strong>Explore the product thinking.</strong><em>The journey, decision space, measurement and roadmap.</em></span>
+                <span className="av-deeper-plus" aria-hidden="true">+</span>
+              </summary>
+              <Journey />
+              <DecisionSpace />
+              <Measurement />
+              <Roadmap />
+            </details>
           </main>
           <Closing />
           <a className="av-quick-prototype" href="#prototype">
