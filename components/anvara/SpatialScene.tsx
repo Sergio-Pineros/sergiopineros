@@ -172,22 +172,16 @@ function position(o: Opportunity, flat: boolean): [number, number, number] {
 }
 function PrismPoint({
   o,
-  index,
   flat,
   selected,
   onSelect,
   reduced,
-  all,
-  selectedId,
 }: {
   o: Opportunity;
-  index: number;
   flat: boolean;
   selected: boolean;
   onSelect: (id: string) => void;
   reduced: boolean;
-  all: Opportunity[];
-  selectedId: string;
 }) {
   const mesh = useRef<THREE.Mesh>(null);
   useFrame((_, delta) => {
@@ -220,55 +214,28 @@ function PrismPoint({
         emissive={selected ? "#7a7be2" : "#222b60"}
         emissiveIntensity={selected ? 0.5 : 0.1}
       />
-      <Html
-        center
-        position={[0, 0.23, 0]}
-        zIndexRange={[12, 1]}
-        calculatePosition={(el, camera, size) => {
-          const labels: { id: string; x: number; y: number; w: number }[] = [];
-          for (const item of [...all].sort(
-            (a, b) => Number(b.id === selectedId) - Number(a.id === selectedId),
-          )) {
-            const v = new THREE.Vector3(...position(item, flat)).project(
-              camera,
-            );
-            const width = item.id === selectedId ? 140 : 30;
-            const x = THREE.MathUtils.clamp(
-              (v.x * 0.5 + 0.5) * size.width + 5,
-              width / 2 + 5,
-              size.width - width / 2 - 5,
-            );
-            let y = (-v.y * 0.5 + 0.5) * size.height - 23;
-            for (
-              let i = 0;
-              i < 14 &&
-              labels.some(
-                (l) =>
-                  Math.abs(l.y - y) < 24 &&
-                  Math.abs(l.x - x) < (l.w + width) / 2 + 4,
-              );
-              i++
-            )
-              y += 24;
-            labels.push({
-              id: item.id,
-              x,
-              y: THREE.MathUtils.clamp(y, 20, size.height - 35),
-              w: width,
-            });
-          }
-          const label = labels.find((l) => l.id === o.id);
-          return label ? [label.x, label.y] : [0, 0];
-        }}
-      >
-        <button
-          className={`av-prism-label ${selected ? "is-selected" : ""}`}
-          onClick={() => onSelect(o.id)}
-          aria-label={`Inspect ${o.title}`}
+      {selected && (
+        <Html
+          center
+          position={[0, 0.23, 0]}
+          zIndexRange={[12, 1]}
+          calculatePosition={(el, camera, size) => {
+            const v = el.getWorldPosition(new THREE.Vector3()).project(camera);
+            return [
+              THREE.MathUtils.clamp((v.x * 0.5 + 0.5) * size.width, 75, size.width - 75),
+              THREE.MathUtils.clamp((-v.y * 0.5 + 0.5) * size.height, 20, size.height - 35),
+            ];
+          }}
         >
-          {selected ? o.short : String(index + 1).padStart(2, "0")}
-        </button>
-      </Html>
+          <button
+            className="av-prism-label is-selected"
+            onClick={() => onSelect(o.id)}
+            aria-label={`Inspect ${o.title}`}
+          >
+            {o.short}
+          </button>
+        </Html>
+      )}
     </mesh>
   );
 }
@@ -385,17 +352,14 @@ function Prism({
           <span className="av-axis-3d">EVIDENCE ↗</span>
         </Html>
       </group>
-      {data.map((o, i) => (
+      {data.map((o) => (
         <PrismPoint
           key={o.id}
           o={o}
-          index={i}
           flat={flat}
           selected={o.id === selected}
           onSelect={onSelect}
           reduced={reduced}
-          all={data}
-          selectedId={selected}
         />
       ))}
       {!flat &&

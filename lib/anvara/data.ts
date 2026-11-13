@@ -403,7 +403,6 @@ export const sponsorships: Sponsorship[] = [
 export const experiments = [
   {
     id: "match",
-    number: "01",
     title: "Match confidence",
     question:
       "Can clearer match explanations help brands act with greater confidence?",
@@ -419,7 +418,6 @@ export const experiments = [
   },
   {
     id: "brief",
-    number: "02",
     title: "Deal readiness",
     question: "Can shared expectations improve early conversations?",
     problem: "Unclear intent creates clarification work for both parties.",
@@ -434,7 +432,6 @@ export const experiments = [
   },
   {
     id: "outcomes",
-    number: "03",
     title: "Outcome understanding",
     question: "Can clearer summaries support better follow-up decisions?",
     problem: "A total does not explain whether an activation met its goal.",

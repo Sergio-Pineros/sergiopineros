@@ -138,7 +138,7 @@ function Matrix({ data }: { data: Opportunity[] }) {
           Illustrative estimates · 1–10
         </text>
       </g>
-      {layout(data).map((o, i) => (
+      {layout(data).map((o) => (
         <g
           key={o.id}
           role="button"
@@ -189,14 +189,6 @@ function Matrix({ data }: { data: Opportunity[] }) {
           >
             {o.short}
           </motion.text>
-          <text
-            className="av-point-number"
-            x={px(o)}
-            y={py(o) - 17}
-            textAnchor="middle"
-          >
-            {String(i + 1).padStart(2, "0")}
-          </text>
         </g>
       ))}
     </svg>
@@ -212,7 +204,7 @@ function MobileMatrix({ data }: { data: Opportunity[] }) {
       className="av-matrix-mobile"
       viewBox="0 0 400 338"
       role="group"
-      aria-label="Effort versus value. Tap a numbered point or select an opportunity below."
+      aria-label="Effort versus value. Tap a point or select an opportunity below."
     >
       <rect
         x="28"
@@ -242,7 +234,7 @@ function MobileMatrix({ data }: { data: Opportunity[] }) {
           Reconsider / later
         </text>
       </g>
-      {data.map((o, i) => {
+      {data.map((o) => {
         const x = 51 + ((o.effort - 1) / 9) * 298;
         const y = 258 - ((o.impact - 1) / 9) * 205;
         return (
@@ -275,14 +267,6 @@ function MobileMatrix({ data }: { data: Opportunity[] }) {
               stroke="#fff"
               strokeWidth="2"
             />
-            <text
-              x={x}
-              y={y + 4}
-              textAnchor="middle"
-              className="av-mobile-point-number"
-            >
-              {String(i + 1).padStart(2, "0")}
-            </text>
           </g>
         );
       })}
@@ -338,7 +322,7 @@ export function DecisionSpace() {
       <div className="av-wrap">
         <div className="av-section-intro">
           <div>
-            <p className="av-kicker">02 / THE DECISION SPACE</p>
+            <p className="av-kicker">THE DECISION SPACE</p>
             <h2>
               See the potential.
               <br />
@@ -581,7 +565,7 @@ export function DecisionSpace() {
             className="av-opportunity-index"
             aria-label="All visible opportunities"
           >
-            {filtered.map((o, i) => (
+            {filtered.map((o) => (
               <button
                 key={o.id}
                 aria-pressed={selected === o.id}
@@ -591,7 +575,6 @@ export function DecisionSpace() {
                 onBlur={() => setHover(null)}
                 onClick={() => select(o.id)}
               >
-                <span>{String(i + 1).padStart(2, "0")}</span>
                 {o.short}
                 <ArrowUpRight size={12} />
               </button>
@@ -618,7 +601,7 @@ export function Roadmap() {
       <div className="av-wrap">
         <div className="av-section-intro">
           <div>
-            <p className="av-kicker">06 / FROM REASONING TO REQUIREMENTS</p>
+            <p className="av-kicker">FROM REASONING TO REQUIREMENTS</p>
             <h2>
               A sequence.
               <br />
@@ -663,10 +646,9 @@ export function Roadmap() {
               items: plan.later,
               empty: "No lower-value candidates in this scenario.",
             },
-          ].map((phase, i) => (
+          ].map((phase) => (
             <div className="av-roadmap-phase" key={phase.label}>
               <div className="av-phase-label">
-                <span>0{i + 1}</span>
                 {phase.label}
                 <ArrowRight size={18} />
               </div>
@@ -752,7 +734,7 @@ export function Roadmap() {
           </div>
           <div className="av-spec-block">
             <h4>Acceptance criteria</h4>
-            <ol>
+            <ul>
               {req.acceptance.map((criterion) => (
                 <li key={criterion}>{criterion}</li>
               ))}
@@ -760,7 +742,7 @@ export function Roadmap() {
                 All controls work by keyboard and at 360px; missing data,
                 loading and failure states preserve the user’s work.
               </li>
-            </ol>
+            </ul>
           </div>
           <div className="av-spec-block">
             <h4>Dependencies & edge cases</h4>

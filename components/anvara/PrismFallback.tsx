@@ -136,7 +136,7 @@ export default function PrismFallback({
               );
             }),
         )}
-        {data.map((o, i) => {
+        {data.map((o) => {
           const [x, y] = point(o);
           return (
             <g
@@ -175,14 +175,11 @@ export default function PrismFallback({
                 stroke="#fff"
                 strokeWidth={selected === o.id ? 2 : 0}
               />
-              <text
-                x={x + 12}
-                y={y - 10}
-                fill="#d3daf5"
-                fontSize={selected === o.id ? 12 : 10}
-              >
-                {selected === o.id ? o.short : String(i + 1).padStart(2, "0")}
-              </text>
+              {selected === o.id && (
+                <text x={x + 12} y={y - 10} fill="#d3daf5" fontSize="12">
+                  {o.short}
+                </text>
+              )}
             </g>
           );
         })}

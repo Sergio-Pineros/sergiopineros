@@ -70,7 +70,7 @@ export default function MatchLab() {
         <div className="av-section-intro">
           <div>
             <p className="av-kicker">
-              04 / THREE EXPERIMENTS. ONE CONNECTED PROTOTYPE.
+              PRODUCT EXPERIMENTS / WORKING PROTOTYPE
             </p>
             <h2>
               Not more features.
@@ -93,7 +93,6 @@ export default function MatchLab() {
               aria-pressed={lab === e.id}
               onClick={() => setLab(e.id)}
             >
-              <span>EXP {e.number}</span>
               <strong>{e.title}</strong>
               <ArrowUpRight size={21} />
             </button>
@@ -122,9 +121,9 @@ export default function MatchLab() {
           </div>
           <div className="av-lab-progress">
             {[
-              { id: "match", label: "01 / Explore & compare" },
-              { id: "brief", label: "02 / Prepare a brief" },
-              { id: "outcomes", label: "03 / Understand outcomes" },
+              { id: "match", label: "Explore & compare" },
+              { id: "brief", label: "Prepare a brief" },
+              { id: "outcomes", label: "Understand outcomes" },
             ].map((s) => (
               <button
                 key={s.id}
@@ -387,7 +386,7 @@ export default function MatchLab() {
                 <div className="av-brief-layout">
                   <div>
                     <span className="av-mini-label">
-                      EXP 02 / SHARED EXPECTATIONS
+                      SHARED EXPECTATIONS
                     </span>
                     <h4>
                       Better context.
@@ -553,7 +552,7 @@ export default function MatchLab() {
                 <div className="av-outcome-layout">
                   <div>
                     <span className="av-mini-label">
-                      EXP 03 / FICTIONAL POST-ACTIVATION SCENARIO
+                      FICTIONAL POST-ACTIVATION SCENARIO
                     </span>
                     <h4>
                       What happened.
@@ -677,7 +676,7 @@ export default function MatchLab() {
           <div className="av-compare-selectors">
             {[0, 1].map((_, i) => (
               <label key={i}>
-                Alternative {i + 1}
+                {i === 0 ? "Opportunity" : "Compare with"}
                 <select
                   value={pair[i] || ""}
                   onChange={(e) =>

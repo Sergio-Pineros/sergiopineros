@@ -21,7 +21,7 @@ function Perspectives() {
         <div className="av-section-intro">
           <div>
             <p className="av-kicker">
-              01 / THE MARKETPLACE IS THE RELATIONSHIP
+              THE MARKETPLACE IS THE RELATIONSHIP
             </p>
             <h2>
               Two perspectives.
@@ -193,7 +193,7 @@ function Background() {
   return (
     <section className="av-section av-background">
       <div className="av-wrap">
-        <p className="av-kicker">07 / WHY THIS SPACE IS PERSONAL</p>
+        <p className="av-kicker">WHY THIS SPACE IS PERSONAL</p>
         <h2>
           I’ve seen what happens
           <br />
@@ -229,9 +229,8 @@ function Background() {
               tag: "CONNECT WORK TO OUTCOMES",
               text: "Founded a marketing and creative services business, coordinated a small team and worked on measurable customer-facing campaigns.",
             },
-          ].map((p, i) => (
+          ].map((p) => (
             <article key={p.name}>
-              <span>0{i + 1}</span>
               <div>
                 <small>{p.tag}</small>
                 <h3>{p.name}</h3>

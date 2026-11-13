@@ -27,7 +27,7 @@ export default function Journey() {
       <div className="av-wrap">
         <div className="av-section-intro">
           <div>
-            <p className="av-kicker">03 / THE ENTIRE RELATIONSHIP</p>
+            <p className="av-kicker">THE ENTIRE RELATIONSHIP</p>
             <h2>
               From discovery
               <br />
@@ -96,13 +96,12 @@ export default function Journey() {
             ))}
           </svg>
           <div className="av-journey-stages" aria-label="Journey stages">
-            {stages.map((s, i) => (
+            {stages.map((s) => (
               <button
                 key={s}
                 onClick={() => choose(s)}
                 aria-pressed={s === stage}
               >
-                <span>0{i + 1}</span>
                 {s}
               </button>
             ))}
@@ -227,7 +226,7 @@ export default function Journey() {
                           {i < 3 ? (
                             <Check size={15} />
                           ) : (
-                            String(i + 1).padStart(2, "0")
+                            "○"
                           )}
                         </span>
                         <p>

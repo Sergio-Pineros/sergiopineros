@@ -48,7 +48,7 @@ export default function Measurement() {
         <div className="av-section-intro">
           <div>
             <p className="av-kicker">
-              05 / MEASURE WHAT MOVES THE RELATIONSHIP
+              MEASURE WHAT MOVES THE RELATIONSHIP
             </p>
             <h2>
               A click is an event.
@@ -94,7 +94,6 @@ export default function Measurement() {
                 aria-pressed={i === active}
                 onClick={() => setActive(i)}
               >
-                <span>0{i + 1}</span>
                 {f.stage}
               </button>
             ))}
@@ -187,7 +186,6 @@ export default function Measurement() {
                   aria-pressed={i === loop}
                   onClick={() => setLoop(i)}
                 >
-                  <span>0{i + 1}</span>
                   {item.label}
                 </button>
               );
@@ -195,7 +193,7 @@ export default function Measurement() {
           </div>
           <div className="av-learning-copy">
             <span className="av-mini-label">
-              THE PRODUCT LEARNING LOOP / 0{loop + 1}
+              THE PRODUCT LEARNING LOOP
             </span>
             <h3>{learning[loop].label}.</h3>
             <p>{learning[loop].detail}</p>
