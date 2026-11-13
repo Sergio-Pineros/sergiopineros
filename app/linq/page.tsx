@@ -26,7 +26,7 @@ const CHAPTERS = [
 ];
 
 function Arrow() {
-  return <span aria-hidden="true">↗</span>;
+  return <span className="lq-arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M6 18 18 6M6 6h12v12" /></svg></span>;
 }
 
 function ExperimentSection({ experiment, index }: { experiment: LinqExperiment; index: number }) {
@@ -56,7 +56,7 @@ function ExperimentSection({ experiment, index }: { experiment: LinqExperiment; 
             <blockquote>{experiment.takeaway}</blockquote>
           </div>
           <div className="lq-proposal lq-dark">
-            <p className="lq-world-label"><span className="lq-dot lq-dot-lime" /> Into Linq’s world <span aria-hidden="true">↗</span></p>
+            <p className="lq-world-label"><span className="lq-dot lq-dot-lime" /> Into Linq’s world <Arrow /></p>
             <h3>What I’d test at Linq.</h3>
             <div className="lq-prose">{experiment.testIntro.map(p => <p key={p.slice(0, 32)}>{p}</p>)}</div>
             <h4 className="lq-pilot-title">{experiment.pilotTitle}</h4>
@@ -149,7 +149,7 @@ export default function LinqPage() {
         <div className="lq-wrap">
           <p className="lq-eyebrow"><span className="lq-dot lq-dot-lime" /> Bringing it together</p>
           <div className="lq-system-heading"><h2 id="system-title">Three experiments.<br /><em>One learning system.</em></h2><p>Understand a real problem. Make the value visible. Give people a reason to build. Learn from what they do next.</p></div>
-          <ol className="lq-sequence">{["Discover", "Demonstrate", "Activate", "Learn", "Repeat"].map((s, i) => <li key={s}><span className="lq-eyebrow">0{i + 1}</span><span>{s}</span><span aria-hidden="true">{i === 4 ? "↺" : "→"}</span></li>)}</ol>
+          <ol className="lq-sequence">{["Discover", "Demonstrate", "Activate", "Learn", "Repeat"].map((s, i) => <li key={s}><span className="lq-eyebrow">0{i + 1}</span><span>{s}</span><span className="lq-sequence-arrow" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">{i === 4 ? <path d="M4 10a8 8 0 1 1 1 8M4 4v6h6" /> : <path d="M4 12h16m-6-6 6 6-6 6" />}</svg></span></li>)}</ol>
           <blockquote>I wouldn’t assume these are the right experiments before speaking with Linq’s team and customers. They’re where I’d start asking better questions.</blockquote>
         </div>
       </section>
