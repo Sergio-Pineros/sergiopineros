@@ -1658,3 +1658,5 @@ button:focus-visible {
   .story-gallery__grid--single .story-gallery__tile--portrait { grid-column: span 2; grid-row: span 3; }
   .story-gallery__grid--pair .story-gallery__tile { grid-column: span 1; grid-row: span 2; }
 }
+
+.footer__pill svg { flex: none; }

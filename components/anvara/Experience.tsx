@@ -1,9 +1,11 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { MotionConfig, motion, useScroll, useTransform } from "motion/react";
-import { Check } from "lucide-react";
+import { Check, Mail, Globe } from "lucide-react";
 import Scene from "./Scene";
+import { LinkedInIcon } from "@/components/SocialIcons";
 import { ExplorationProvider } from "./State";
 import { DecisionSpace, Roadmap } from "./DecisionSpace";
 import Journey from "./Journey";
@@ -184,12 +186,12 @@ function Background() {
             {
               name: "SAVRON / NxtSeat",
               tag: "BUILD THE WORKFLOW",
-              text: "Helped shape customer-facing booking and operational workflows, including a bilingual AI voice concierge pilot. Now exploring voice-first business software.",
+              text: "Helped shape booking and operational workflows, including a bilingual AI voice concierge pilot. NxtSeat is exploring voice-first business software with a marketplace planned for the future.",
             },
             {
               name: "Fofo Labs",
               tag: "CONNECT WORK TO OUTCOMES",
-              text: "Founded a marketing and creative services business, coordinated a small team and worked on measurable customer-facing campaigns.",
+              text: "Founded a marketing and creative services business, led a small team and helped host hackathons and dinners for our client La Estancia.",
             },
           ].map((p) => (
             <article key={p.name}>
@@ -230,13 +232,12 @@ function Closing() {
         <Scene variant="closing" />
       </div>
       <div className="av-wrap av-closing-copy">
-        <p className="av-kicker">FROM OPPORTUNITY TO OUTCOME</p>
         <h2>
           Great products make
           <br />
           complex things feel <span>simple.</span>
         </h2>
-        <p>I’d love to help build what comes next.</p>
+        <p>I’m ready to build what comes next with you.</p>
         <div className="av-final-signature">
           <strong>Sergio Piñeros</strong>
           <span>Founder / Product Builder</span>
@@ -247,49 +248,15 @@ function Closing() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            LinkedIn
+            <LinkedInIcon size={18} /> LinkedIn
           </a>
           <Link href="/">
-            Portfolio
+            <Globe size={18} aria-hidden="true" /> Portfolio
           </Link>
           <a href="mailto:s.dpineros@gmail.com">
-            Email
+            <Mail size={18} aria-hidden="true" /> Email
           </a>
         </div>
-        <div className="av-colophon">
-          <span>
-            Independent product exploration. Not affiliated with or endorsed by
-            Anvara.
-          </span>
-          <span>Public references reviewed November 13, 2026.</span>
-        </div>
-        <details className="av-method-note">
-          <summary>Sources & limits of this exploration</summary>
-          <p>
-            Based on Anvara’s{" "}
-            <a
-              href="https://www.anvara.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              public product site
-            </a>{" "}
-            and{" "}
-            <a
-              href="https://www.anvara.com/careers/product-manager"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Product Manager role
-            </a>
-            . No access to the production app, internal analytics, proprietary
-            matching logic or customer research. All prioritization scores are
-            illustrative assumptions. All sponsorship inventory and prototype
-            outcomes are fictional. Proposed experiments have not been tested.
-            Built as an independent, AI-assisted frontend exploration by Sergio
-            Piñeros.
-          </p>
-        </details>
       </div>
     </footer>
   );
@@ -298,6 +265,17 @@ export default function Experience() {
   const page = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll();
   const [menu, setMenu] = useState(false);
+  const [compactNav, setCompactNav] = useState(false);
+  useEffect(() => {
+    const update = () => {
+      const hero = document.querySelector<HTMLElement>(".av-hero");
+      if (hero) setCompactNav(hero.getBoundingClientRect().bottom <= 90);
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => { window.removeEventListener("scroll", update); window.removeEventListener("resize", update); };
+  }, []);
   useEffect(() => {
     const showLinkedSection = () => {
       const section = window.location.hash.slice(1);
@@ -354,13 +332,14 @@ export default function Experience() {
             style={{ scaleX: scrollYProgress }}
           />
           <header className="av-nav">
-            <div className="av-nav-lockup">
-              <Link href="/" aria-label="Sergio Piñeros portfolio">
-                SP<span>®</span>
+            <div className={`av-nav-lockup ${compactNav ? "is-compact" : ""}`}>
+              <Link href="/" aria-label="Sergio Piñeros portfolio" className="av-sergio-logo">
+                <Image src={compactNav ? "/icon.svg" : "/horizontal.svg"} alt="" width={104} height={40} unoptimized />
               </Link>
               <span className="av-nav-divider" />
-              <a href="#av-title" className="av-anvara-wordmark">
-                anvara<span>exploration</span>
+              <a href="#av-title" className="av-anvara-wordmark" aria-label="Anvara exploration">
+                <Image src="https://framerusercontent.com/assets/fB4H5emI4EbXPc5yoCie0UEN2T4.svg" alt="" width={31} height={31} unoptimized />
+                {!compactNav && <span className="av-anvara-name">anvara<span>exploration</span></span>}
               </a>
             </div>
             <nav

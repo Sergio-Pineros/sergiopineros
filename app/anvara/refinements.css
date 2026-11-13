@@ -902,3 +902,32 @@
   line-height: 1.55;
   max-width: 390px;
 }
+
+/* The two identities simplify to their marks after the opening screen. */
+.av-nav-lockup { gap: 14px; min-width: 0; }
+.av-nav-lockup .av-sergio-logo { display: flex; align-items: center; justify-content: center; line-height: 1; }
+.av-sergio-logo img { display: block; width: 104px; height: 40px; object-fit: contain; transition: width .25s ease; }
+.av-nav-lockup.is-compact .av-sergio-logo img { width: 37px; height: 38px; }
+.av-nav-lockup .av-anvara-wordmark { display: flex; align-items: center; gap: 9px; line-height: 1; }
+.av-anvara-wordmark > img { display: block; width: 31px; height: 31px; object-fit: contain; }
+.av-anvara-wordmark > .av-anvara-name { display: block; font-size: 22px; font-weight: 600; letter-spacing: -.06em; }
+.av-anvara-name > span { display: block; margin-top: 4px; font-size: 13px; font-weight: 400; letter-spacing: .11em; }
+.av-nav-lockup.is-compact .av-anvara-wordmark > img { width: 31px; height: 31px; }
+.av-closing .av-closing-copy > h2 + p { font-size: clamp(21px, 2.1vw, 29px); font-weight: 600; line-height: 1.35; letter-spacing: -.025em; color: #343d60; margin: 28px 0 30px; }
+.av-footer-links { flex-wrap: wrap; }
+.av-footer-links > a { gap: 9px; }
+.av-filter-mode { margin: 16px 0 4px; color: #365bc1 !important; min-height: 40px; }
+.av-fallback-labels { position: absolute; left: 7%; right: 7%; bottom: 4%; display: flex; justify-content: space-around; gap: 12px; font-size: 13px; letter-spacing: .1em; color: #5e708e; }
+.av-fallback-labels span:last-child { color: #7653c5; }
+@media (max-width: 600px) {
+  .av-nav-lockup { gap: 8px; }
+  .av-sergio-logo img { width: 75px; height: 33px; }
+  .av-nav-lockup.is-compact .av-sergio-logo img { width: 32px; height: 32px; }
+  .av-anvara-wordmark > img, .av-nav-lockup.is-compact .av-anvara-wordmark > img { width: 26px; height: 26px; }
+  .av-anvara-wordmark > .av-anvara-name { font-size: 18px; }
+  .av-anvara-name > span { font-size: 11px; }
+  .av-fallback-labels { font-size: 10px; letter-spacing: .04em; }
+}
+@media (prefers-reduced-motion: reduce) { .av-sergio-logo img { transition: none; } }
+
+.av-no-brief { padding: 32px; }

@@ -148,18 +148,14 @@ function Marketplace({
           )}
         </group>
       ))}
-      <Html position={[-separation, -1.65, 0]} center>
-        <span className="av-scene-label">
-          BRANDS
-          <span className="av-blue-dot" />
-        </span>
-      </Html>
-      <Html position={[separation, -1.65, 0]} center>
-        <span className="av-scene-label">
-          <span className="av-violet-dot" />
-          RIGHTSHOLDERS
-        </span>
-      </Html>
+      {!coherent && <>
+        <Html position={[-separation, -1.65, 0]} center>
+          <span className="av-scene-label"><span className="av-blue-dot" /> BRAND HOLDERS</span>
+        </Html>
+        <Html position={[separation, -1.65, 0]} center>
+          <span className="av-scene-label"><span className="av-violet-dot" /> RIGHTSHOLDERS</span>
+        </Html>
+      </>}
     </group>
   );
 }

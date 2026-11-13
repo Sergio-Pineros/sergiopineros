@@ -22,7 +22,7 @@ export default function Guide() {
 
   useEffect(() => {
     if (step === null) return;
-    const element = document.querySelector<HTMLElement>(steps[step].target);
+    const element = document.querySelector<HTMLElement>(steps[step].target) || (step === 2 ? document.querySelector<HTMLElement>(".av-results") : null);
     if (!element) return;
     element.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: window.innerWidth < 700 ? "start" : "center" });
     element.classList.add("av-tour-target");

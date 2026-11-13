@@ -26,6 +26,7 @@ export default function MatchLab() {
   const [copied, setCopied] = useState(false);
   const [copyFailed, setCopyFailed] = useState(false);
   const [shortOnly, setShortOnly] = useState(false);
+  const [showAll, setShowAll] = useState(false);
   const exp = experiments.find((e) => e.id === lab)!;
   const ranked = sponsorships
     .map((s) => ({ ...s, ...match(campaign, s) }))
@@ -35,8 +36,15 @@ export default function MatchLab() {
         b.score - a.score ||
         a.cost - b.cost,
     );
-  const chosen = ranked.find((s) => s.id === active)!;
-  const visible = ranked.filter((s) => !shortOnly || shortlist.includes(s.id));
+  const matches = ranked.filter((s) =>
+    s.eligible &&
+    (campaign.location === "Any US market" || s.location === campaign.location) &&
+    s.audiences.includes(campaign.audience) &&
+    s.goals.includes(campaign.goal)
+  );
+  const candidates = showAll ? ranked : matches;
+  const visible = candidates.filter((s) => !shortOnly || shortlist.includes(s.id));
+  const chosen = visible.find((s) => s.id === active) || visible[0] || candidates.find((s) => s.id === active) || candidates[0] || ranked.find((s) => s.id === active)!;
   const comparisons = pair
     .map((id) => ranked.find((s) => s.id === id)!)
     .filter(Boolean);
@@ -223,10 +231,9 @@ export default function MatchLab() {
                           FICTIONAL INVENTORY
                         </span>
                         <h4>
-                          {ranked.filter((s) => s.eligible).length} within
-                          budget.
+                          {matches.length} {matches.length === 1 ? "match" : "matches"} for your campaign.
                           <br />
-                          <span>Let’s look beyond the score.</span>
+                          <span>{showAll ? "Showing all options, including partial fits." : "Matching your filters."}</span>
                         </h4>
                       </div>
                       <button
@@ -241,17 +248,20 @@ export default function MatchLab() {
                         Shortlist ({shortlist.length})
                       </button>
                     </div>
-                    <div className="av-result-list">
+                    <button className="av-filter-mode av-text-button" onClick={() => { setShowAll((v) => !v); setShortOnly(false); }}>
+                      {showAll ? "Show matching options" : "Show all options"}
+                    </button>
+                    <div className="av-result-list" aria-live="polite">
                       {visible.length ? (
                         visible.map((s) => (
                           <div
                             key={s.id}
-                            className={`av-result ${s.id === active ? "is-active" : ""}`}
+                            className={`av-result ${s.id === chosen.id ? "is-active" : ""}`}
                           >
                             <button
                               className="av-result-main"
                               onClick={() => setActive(s.id)}
-                              aria-pressed={s.id === active}
+                              aria-pressed={s.id === chosen.id}
                             >
                               <span
                                 className="av-event-mark"
@@ -302,14 +312,14 @@ export default function MatchLab() {
                         ))
                       ) : (
                         <div className="av-empty-inline">
-                          <p>Your shortlist is empty.</p>
-                          <button onClick={() => setShortOnly(false)}>
-                            Explore opportunities{" "}
-
+                          <p>{shortOnly ? "No saved options match these filters." : "No exact matches for these filters."}</p>
+                          <button onClick={() => { setShortOnly(false); setShowAll(true); }}>
+                            Show all opportunities
                           </button>
                         </div>
                       )}
                     </div>
+                    {visible.length > 0 && <>
                     <div className="av-match-explanation">
                       <div>
                         <span className="av-mini-label">
@@ -363,11 +373,16 @@ export default function MatchLab() {
                     </div>
                     {!chosen.eligible && (
                       <p className="av-footnote">
-                        Raise the budget or choose another package
-                        to prepare a brief.
+                        Raise the budget or choose another package to prepare a brief.
                       </p>
                     )}
+                    </>}
                   </div>
+                </div>
+              ) : lab === "brief" && !candidates.length ? (
+                <div className="av-empty-inline av-no-brief">
+                  <p>No opportunities match this campaign yet. View all options or adjust your filters before preparing an inquiry.</p>
+                  <button className="av-button" onClick={() => { setLab("match"); setShowAll(true); }}>View all options</button>
                 </div>
               ) : lab === "brief" ? (
                 <div className="av-brief-layout">
