@@ -1,86 +1,131 @@
-export type PlanStep = {
-  label: string;
-  when: string;
-  title: string;
-  action: string;
-  needed: string[];
-  output: string;
-};
-
-export type GrowthIdea = {
+export type LinqExperiment = {
   id: string;
-  label: string;
+  theme: string;
   title: string;
-  idea: string;
-  duration: string;
-  businessCase: string;
-  measure: string;
-  experience: string;
-  steps: PlanStep[];
-  sources: { label: string; href: string }[];
+  annotation: string;
+  experience: string[];
+  did: string[];
+  learned: string;
+  why: string;
+  testIntro: string[];
+  pilotTitle: string;
+  pilot: string[];
+  metrics: string[];
+  metricsNote: string;
+  takeaway: string;
 };
 
-export const GROWTH_IDEAS: GrowthIdea[] = [
+export const LINQ_EXPERIMENTS: LinqExperiment[] = [
   {
-    id: "experiment-1",
-    label: "Customer stories",
-    title: "Let the customer’s product make the case.",
-    idea: "Turn a useful product built on Linq into a story the next customer can see themselves in.",
-    duration: "A proposed four-week pilot",
-    businessCase: "Build recognition through customer proof and the builder’s own audience, then give interested teams a clear path to evaluate Linq.",
-    measure: "Qualified product conversations, sandbox activation and customers attributed to the story.",
-    experience: "At Fofo Labs, I found our first clients and worked with a four-person team on content and campaigns. Our La Estancia strategy reached about 540k TikTok views and 1,200+ followers in month one. I’d own the story, production, distribution and follow-up; technical claims would be reviewed with the customer and Linq.",
-    steps: [
-      { label: "Choose", when: "Week 1", title: "Find a product worth showing.", action: "Pick one consenting customer whose product solves a problem the target audience recognises.", needed: ["One target builder audience", "Customer approval and an interview", "Access to a working product"], output: "One approved story brief: the problem, the product and why Linq mattered." },
-      { label: "Produce", when: "Week 2", title: "Make the value visible.", action: "Capture the product in use. Build a short customer story and a practical follow-up explaining how it works.", needed: ["A screen recording and customer interview", "Verified claims and technical review", "One clear next step for builders"], output: "A short film, a product walkthrough and a small set of campaign assets." },
-      { label: "Distribute", when: "Week 3", title: "Launch with the builder.", action: "Coordinate the release across Linq, the customer and relevant developer channels.", needed: ["Approved assets and a shared release date", "Agreed customer and community channels", "A tagged path to the sandbox or sales"], output: "One coordinated launch that reaches beyond Linq’s existing audience." },
-      { label: "Learn", when: "Week 4 onward", title: "Follow the interest into the product.", action: "Look at who came in, why they were interested, and whether they started using Linq.", needed: ["Tagged traffic and a source question", "A defined activation event", "A relevant baseline and cohort follow-up"], output: "A decision to repeat, change or stop the format, based on qualified demand and adoption." },
+    id: "show-it-working",
+    theme: "Content and landing pages",
+    title: "Show the moment it becomes useful.",
+    annotation: "Views tell us what people stopped to watch. They do not tell us who wants to build.",
+    experience: [
+      "At Fofo Labs I worked with restaurants. We learned fast that talking about a restaurant did not do much. People had to see the food, the room and the feeling of being there. That is when they cared.",
+      "At La Estancia Steakhouse, our team made short videos with that idea. The work brought in about 540,000 views on TikTok and more than 1,200 new followers in the first month. It was a team result, and views are not sales. But it taught us what people respond to.",
     ],
-    sources: [
-      { label: "Linq customer stories", href: "https://linqapp.com/blog" },
-      { label: "Existing example apps", href: "https://docs.linqapp.com/channel/imessage/guides/resources/example/" },
+    did: [
+      "I helped plan the content, worked on getting new customers, and kept track of which videos people actually responded to.",
     ],
+    learned: "People get it when they can see it. If the value is clear in a few seconds, they want to know more.",
+    why: "Linq is a tool for building. Most people will not read about messaging tools and just get it. They need to see a real thing, working, solving a real problem. That is the fastest way to trust it.",
+    testIntro: [
+      "I would make a small set of short demos and call it Built with Linq. Linq already shows real agents people can text, in its Agent Store. I would start from public examples like those, and from talks with the team about what users build most.",
+      "Each demo would be short and plain. This was the problem. This is what was built. This is how it works. This is where to try it.",
+      "Writing content and building landing pages is part of this job, as Linq describes it. This is that work, pointed at one goal: help the right people see what Linq does, fast.",
+    ],
+    pilotTitle: "How I would start",
+    pilot: [
+      "Pick a few use cases from public examples and from what the team hears from users.",
+      "Write and make one short demo for each one. Keep each one about a single problem.",
+      "Put them on one simple page with a clear next step, like reading the docs or starting a trial.",
+      "Try the same demo with two ways of saying it, and see which one people act on.",
+      "Share the demos where developers and builders already spend time, with help from the team on who to reach.",
+    ],
+    metrics: [
+      "Visits from the right kind of people, not just any visits.",
+      "How many of them sign up.",
+      "How many build a first working thing after signing up.",
+      "Which demos get saved, shared or asked about by developers.",
+    ],
+    metricsNote: "What matters is not the view count. It is whether someone goes from watching a demo to building something real.",
+    takeaway: "Show it working first. Ask for trust after.",
   },
   {
-    id: "experiment-2",
-    label: "Builder community",
-    title: "Put Linq in the right conversations.",
-    idea: "Make Linq a useful place for agent builders to learn, share work and find collaborators.",
-    duration: "A proposed six-week pilot",
-    businessCase: "Earn trust in the builder network. Useful sessions, public work and peer recommendations can create qualified referrals and production projects.",
-    measure: "Returning builders, qualified referrals, active integrations and partner-sourced paid accounts.",
-    experience: "Through 17 Bits Records, I helped organise concerts, workshops and creative collaborations. I’d bring the partner coordination, participant communication, logistics and follow-through, alongside a technical host who can help teams build.",
-    steps: [
-      { label: "Partner", when: "Week 1", title: "Start with the right room.", action: "Choose one relevant community, such as teams building with Vercel’s Chat SDK, and agree on a useful session.", needed: ["A community partner and technical host", "A specific builder audience", "One practical use case"], output: "A focused invitation and a partner who can reach the right people." },
-      { label: "Prepare", when: "Week 2", title: "Remove friction before the event.", action: "Rehearse the build using Linq’s existing adapter and make sure participants can access what they need.", needed: ["Working sample and current documentation", "Linq tokens and test-number readiness", "Agenda, support plan and recording consent"], output: "A tested session plan that gives participants a realistic chance of finishing." },
-      { label: "Gather", when: "Week 3", title: "Give people something to build and share.", action: "Host a small working session around a real project, with space for useful discussion and technical support.", needed: ["A working customer demo", "A host, clear build scope and help channel", "Permission to document finished projects"], output: "Working integrations, builder relationships and a useful public recap." },
-      { label: "Follow through", when: "Weeks 4–6", title: "Turn the room into a network.", action: "Follow up around actual projects, make relevant introductions and invite builders to share what they shipped.", needed: ["Project-specific follow-ups", "A way to attribute referrals", "Day-seven usage and production-pilot checks"], output: "Evidence of returning builders, referrals and teams moving toward production." },
+    id: "build-together",
+    theme: "Events and community",
+    title: "Give people a reason to build together.",
+    annotation: "An event worked if people leave with something built, not if the room was full.",
+    experience: [
+      "I co-founded 17 Bits Records in Colombia. We put on concerts, workshops and projects with artists. I helped with the planning, the people and the many small jobs that make an event happen.",
+      "What I saw, again and again: people who take part in a thing feel part of it. People who only watch, forget it by next week.",
     ],
-    sources: [
-      { label: "Linq’s Chat SDK adapter", href: "https://docs.linqapp.com/channel/imessage/guides/integrations/chat-sdk/" },
-      { label: "Existing example apps", href: "https://docs.linqapp.com/channel/imessage/guides/resources/example/" },
+    did: [
+      "I helped plan and run events, kept collaborators in the loop, and made sure ideas turned into a real day, with real people in the room.",
     ],
+    learned: "Doing a thing together builds a stronger tie than hearing about it. The doing is the point.",
+    why: "Planning and running events and hackathons is part of this job at Linq. A build session does two jobs at once. Developers learn Linq by using it, and they make things they want to show other people. That is how new users find Linq without ads doing all the work.",
+    testIntro: [
+      "I would run a small build session, online first, with one developer community. The idea is simple. Bring a real problem. Build a small messaging agent with Linq during the session. Show it at the end.",
+      "I would keep it small on purpose. The goal is not a big crowd. The goal is that most people who come actually finish something.",
+    ],
+    pilotTitle: "How I would start",
+    pilot: [
+      "Pick one developer community and ask a few of its members if this is useful to them.",
+      "Work with an organiser from that community, if we can, instead of starting from zero.",
+      "Set one simple build task that the current Linq docs support.",
+      "Make a short sign up page and invite people in plain words.",
+      "Run one session, with help on hand while people build.",
+      "Write up what people made, with their okay, and share it back to the community.",
+    ],
+    metrics: [
+      "Sign ups from the right kind of developers.",
+      "How many of them show up.",
+      "How many start building, and how many finish.",
+      "Who is still using Linq some weeks later.",
+      "Who brings a friend next time.",
+    ],
+    metricsNote: "Sign ups are a start. Finished projects, and people coming back, are the real sign it worked.",
+    takeaway: "People share what they helped make.",
   },
   {
-    id: "experiment-3",
-    label: "Commercial conversion",
-    title: "Turn attention into production accounts.",
-    idea: "Give the interest created by stories and community a clear commercial next step.",
-    duration: "A proposed test with 30-day retention follow-up",
-    businessCase: "Keep the story, landing page and evaluation experience consistent so qualified teams understand the value and can make a buying decision.",
-    measure: "Commercial sandbox-to-paid conversion, 30-day activity and cost per retained customer.",
-    experience: "At Sergio & Co., I’ve worked directly with clients on digital strategy, reviewed creative work, and personally run paid ads and email campaigns. I’d connect the positioning, page, distribution and follow-up, with engineering reviewing production readiness.",
-    steps: [
-      { label: "Map", when: "Week 1", title: "Choose a buyer and a use case.", action: "Map the current commercial journey with Linq’s team and identify one audience with a real launch plan.", needed: ["A clear business use case", "Current funnel and trial baseline", "Agreed eligibility and success criteria"], output: "One audience, one offer and a defined route from campaign to product." },
-      { label: "Build", when: "Week 2", title: "Make the next step obvious.", action: "Connect a focused landing page to the existing sandbox and a relevant, opted-in follow-up.", needed: ["Campaign assets and a matching page", "Current pricing and trial terms", "A technical launch-readiness checklist"], output: "One consistent campaign path, from first interest to a working prototype." },
-      { label: "Test", when: "Weeks 3–4", title: "Compare the commercial paths fairly.", action: "Test normal follow-up against the use-case-specific launch offer for eligible business teams.", needed: ["A comparable or randomly assigned cohort", "Consistent pricing and trial terms", "Tracking, opt-out handling and a support owner"], output: "A useful comparison of qualified activation, paid conversion and support cost." },
-      { label: "Retain", when: "30 days after upgrade", title: "Check that the customer stays active.", action: "Follow the paid cohort long enough to see whether the acquisition created lasting value.", needed: ["Paid-account and activity cohorts", "Campaign and support costs", "Feedback from teams that stalled"], output: "Retained production customers and a clear decision about what to scale." },
+    id: "learn-from-campaigns",
+    theme: "Campaigns, email and research",
+    title: "Run campaigns to learn, not just to launch.",
+    annotation: "If a campaign teaches us nothing, it was just noise with a budget.",
+    experience: [
+      "At Sergio & Co., my studio, I worked on the marketing of an independent magazine project. The work made me think in a chain. Where do people first hear about it. What makes them care. What makes them act. What happens after they do.",
+      "It also taught me to be honest about credit. The project's results belong to the project and its team. My part was the marketing work below.",
     ],
-    sources: [
-      { label: "Business sandbox and Hobby use", href: "https://linqapp.com/cli" },
-      { label: "Pro positioning", href: "https://linqapp.com/s/pricing" },
-      { label: "Integration best practices", href: "https://docs.linqapp.com/channel/imessage/getting-started/best-practices/" },
+    did: [
+      "I set the marketing plan, checked and approved the creative work, planned where it would run, and ran the paid ads and the email campaigns myself.",
     ],
+    learned: "Each step has a job. If one step is weak, the rest cannot fix it. A campaign should tell you which step is weak.",
+    why: "This job includes supporting paid, email and content work, and researching customers and competitors. That work pays off when each campaign answers one clear question. Then the team knows what to do more of, and what to stop.",
+    testIntro: [
+      "I would pick one kind of customer, based on what Linq already knows and what we can learn from research. One kind of customer, one problem they know well.",
+      "Then I would write two ways of talking about Linq for that problem, build one simple page for it, and send people to it through content, ads or outreach. People who sign up but do not get started would get a short email follow up, only if they agreed to hear from Linq.",
+      "I would share what we learn with the Head of Product and Growth, so the next campaign starts smarter. Any of this would follow Linq's own tools, rules and way of working.",
+    ],
+    pilotTitle: "How I would start",
+    pilot: [
+      "Research one kind of customer and the words they use for their problem. Look at competitors too, and what they promise.",
+      "Write two clear messages for that problem, and say up front what we expect each one to do.",
+      "Build or fix one simple landing page for that customer and that problem.",
+      "Send the right people to it through content or ads.",
+      "Write a short email follow up for people who signed up but did not get started.",
+      "Look at the results with the team, and agree on what to keep, change or drop.",
+    ],
+    metrics: [
+      "Visits from the right kind of customer.",
+      "How many of them sign up on the page.",
+      "How many get a first thing working, and how fast.",
+      "Who keeps using Linq after that.",
+      "What people who did not sign up, or did not get started, tell us about why.",
+    ],
+    metricsNote: "Sign ups are an early sign. People getting started, and staying, are the result that counts.",
+    takeaway: "A good campaign teaches us something, even when it fails.",
   },
 ];
 
