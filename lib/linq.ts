@@ -1,98 +1,61 @@
 export type GrowthIdea = {
   id: string;
   label: string;
-  category: string;
-  audience: string;
   title: string;
-  description: string;
-  pilot: string;
+  idea: string;
+  firstMove: string;
+  businessCase: string;
   measure: string;
-  basis: string;
-  design: string;
-  guardrail: string;
-  proof: string;
+  experience: string;
+  test: string;
   sources: { label: string; href: string }[];
-  demoTitle: string;
-  demoHint: string;
-  steps: { label: string; title: string; text: string; detail: string }[];
 };
 
 export const GROWTH_IDEAS: GrowthIdea[] = [
   {
     id: "experiment-1",
-    label: "First real reply",
-    category: "Activation / I’d start here",
-    audience: "New builders with a Linq token and a test number ready.",
-    title: "Get to the first real reply.",
-    description: "Test whether guiding builders through a complete two-way conversation helps more of them activate and keep building.",
-    pilot: "Compare the existing quickstart with a short, reply-first walkthrough using Linq’s current tools.",
-    measure: "Two-way activation within 24 hours. Apps still exchanging messages on day seven.",
-    basis: "Linq already ships a quickstart, SDKs, a CLI webhook listener, and a coding-agent plugin. The opportunity to test is how those assets guide a builder to a complete conversation.",
-    design: "Split eligible new teams between the current path and the guided walkthrough. Define activation as a verified incoming event processed by the app, followed by an accepted reply in the same chat. Compare activation rate and time to that round trip. Track token and number setup separately so provisioning time does not distort the result.",
-    guardrail: "Use consenting test recipients. Track setup errors and support time; check seven-day app activity before calling a faster first reply a win. A small pilot gives directional evidence, not a guaranteed uplift.",
-    proof: "I’d own the demo, walkthrough, recruitment and user interviews, with engineering validating the integration and events. At Fofo Labs, I contributed content strategy and acquisition to La Estancia’s first-month team result of about 540k TikTok views and 1.2k new followers.",
+    label: "Customer proof",
+    title: "Let the customer’s product make the case.",
+    idea: "Turn the products built on Linq into stories that reach the next generation of customers.",
+    firstMove: "Start with one customer and one use case. Create a short story showing the problem, the product in use, and Linq’s role in making it work. Publish it with the builder, then distribute a practical follow-up through the developer channels that audience trusts.",
+    businessCase: "Linq already has examples and an Agent Store. I’d test how to get more commercial value from that proof: stronger association with useful agent products, distribution through credible builders, and a clear route for interested teams to evaluate Linq.",
+    measure: "Qualified teams reaching the sandbox or sales, then activated accounts attributed to the story. Use direct feedback to learn what people now associate with Linq.",
+    experience: "I founded Fofo Labs, found our first clients, and worked with a four-person team on content and campaigns. Our La Estancia strategy reached about 540k TikTok views and 1,200+ new followers in its first month. I’d bring that storytelling discipline to a different audience and a different business goal.",
+    test: "Pilot one story with a consenting customer and a defined builder audience. Track tagged traffic, qualified conversations, and first two-way product usage. Ask prospects what brought them in. Compare with relevant existing content, while accounting for differences in audience and distribution. My role would be the story, production, campaign and follow-through; the customer and technical team would validate the product claims.",
     sources: [
-      { label: "Quickstart", href: "https://docs.linqapp.com/channel/imessage/getting-started/quickstart/" },
-      { label: "Coding-agent plugin", href: "https://docs.linqapp.com/channel/imessage/getting-started/ai-agents/" },
-      { label: "CLI & webhook listener", href: "https://linqapp.com/cli" },
-    ],
-    demoTitle: "The activation moment",
-    demoHint: "Explore the proposed two-way activation journey.",
-    steps: [
-      { label: "Text", title: "A person texts the app.", text: "“Help me plan today.”", detail: "Start with a consenting tester on a provisioned Linq line." },
-      { label: "Receive", title: "The app gets the message.", text: "Incoming message → verified webhook → app handler.", detail: "Linq carries the conversation. The developer’s application supplies the reasoning and tools." },
-      { label: "Reply", title: "The app answers back.", text: "“Let’s start with your first priority.”", detail: "The activation event is the completed round trip. Check whether the app is still in use seven days later." },
+      { label: "Linq’s existing example apps", href: "https://docs.linqapp.com/channel/imessage/guides/resources/example/" },
+      { label: "Agent Store", href: "https://www.imessage.store/" },
     ],
   },
   {
     id: "experiment-2",
-    label: "Bring your bot",
-    category: "Acquisition / One partner community",
-    audience: "Teams already running an agent with Vercel’s Chat SDK.",
-    title: "Give an existing bot a new channel.",
-    description: "Test a sharper invitation: bring a bot you already have, and add iMessage through Linq’s maintained adapter.",
-    pilot: "One Chat SDK community. Two invitation angles. One supported channel-addition clinic.",
-    measure: "Invited teams that add Linq and still handle conversations seven days later.",
-    basis: "Linq’s Chat SDK adapter already connects existing handlers to iMessage and SMS. Its example app runs one bot across multiple platforms. This test distributes an integration Linq already maintains.",
-    design: "With a community partner’s agreement, split an opted-in, qualified audience between “build an iMessage agent” and “add iMessage to your existing bot” invitations for the same clinic. Keep the session and setup support identical. Compare invited-team-to-retained-integration conversion, with attendance and first conversations as intermediate steps.",
-    guardrail: "Confirm API access and number readiness before the session. Track engineering support per activated team. Use partner community channels, not unsolicited iMessages, and avoid treating registrations as customers.",
-    proof: "I’d handle the partner, invitation, event and follow-up; a technical teammate would lead integration support. Through 17 Bits Records, I helped organise concerts, workshops and creative collaborations, coordinating people and carrying plans into actual events.",
+    label: "Builder community",
+    title: "Put Linq in the right conversations.",
+    idea: "Build a reputation as a useful place for serious agent builders to learn, share work and meet collaborators.",
+    firstMove: "Co-host a small builder session with one relevant community, starting with teams using Vercel’s Chat SDK. Put a working customer project at the centre. Use Linq’s existing adapter for a practical session, publish a useful recap, and follow up around the projects people are actually building.",
+    businessCase: "The value extends beyond the guest list. Useful, consistent gatherings can make Linq a trusted name in the builder network. The work people share, the partners they meet, and the recommendations they make can become a source of qualified demand.",
+    measure: "Returning builders, qualified referrals and partner-sourced production pilots. Follow those teams through to active integrations and paid accounts.",
+    experience: "Through 17 Bits Records, I helped organise concerts, workshops and creative collaborations. That involved recruiting participants, coordinating people, communicating clearly, and getting the details right before and after the event. I’d own that execution alongside a technical host.",
+    test: "Start with one partner and one focused session. Define the audience and commercial use cases before sending invitations. Track how participants and their referrals progress over the following month, and ask what makes Linq worth recommending. Separate attendance from product adoption and monitor support time per activated team. This uses Linq’s maintained Chat SDK adapter and examples rather than proposing another framework.",
     sources: [
-      { label: "Chat SDK integration", href: "https://docs.linqapp.com/channel/imessage/guides/integrations/chat-sdk/" },
+      { label: "Linq’s Chat SDK adapter", href: "https://docs.linqapp.com/channel/imessage/guides/integrations/chat-sdk/" },
       { label: "Existing example apps", href: "https://docs.linqapp.com/channel/imessage/guides/resources/example/" },
-    ],
-    demoTitle: "Keep the bot. Add the channel.",
-    demoHint: "Explore the proposed integration clinic.",
-    steps: [
-      { label: "Bring", title: "Start with a working bot.", text: "Existing Chat SDK agent + a real messaging use case.", detail: "Qualify teams already using the framework, and get their Linq credentials ready." },
-      { label: "Connect", title: "Add Linq’s adapter.", text: "Existing bot handlers → Linq adapter → iMessage / SMS.", detail: "Use the maintained adapter and signed-webhook setup. Scope the clinic to its documented capabilities." },
-      { label: "Keep", title: "Check that it sticks.", text: "Is the same integration handling conversations a week later?", detail: "A retained channel integration is the outcome. An event signup is an intermediate signal." },
     ],
   },
   {
     id: "experiment-3",
-    label: "Launch for real",
-    category: "Conversion / Commercial sandbox teams",
-    audience: "Business builders with a working prototype and a stated launch plan.",
-    title: "Help the prototype become a product.",
-    description: "Test whether timely launch support turns more qualified sandbox teams into lasting Pro customers.",
-    pilot: "After a working two-way prototype, test a launch-readiness offer against the normal trial follow-up.",
-    measure: "Eligible teams that become paid Pro accounts and remain active 30 days later.",
-    basis: "Linq directs business projects toward its sandbox and positions Pro for production. Its docs already cover signed webhooks, opt-outs, chat health and protocol differences. Package that guidance around an actual launch goal.",
-    design: "First verify the current trial journey with Linq’s team. Among commercial teams with a working prototype and launch intent, compare normal follow-up with a use-case launch checklist and a scoped technical review. Keep pricing and trial terms unchanged. Measure paid conversion and 30-day retained activity using all eligible teams as the denominator.",
-    guardrail: "Track support hours per retained customer. Keep personal Hobby users outside this sales test. Validate consent, opt-outs and protocol-appropriate behavior with engineering; do not encourage extra messages just to inflate usage.",
-    proof: "I’d own segmentation, the launch offer, campaign and interviews, with engineering reviewing production readiness. At Sergio & Co., I developed digital strategy and personally ran paid advertising and email campaigns for an editorial project.",
+    label: "Commercial conversion",
+    title: "Turn attention into production accounts.",
+    idea: "Give the interest generated by stories and community a clear commercial next step.",
+    firstMove: "Choose one business use case and connect its campaign to a focused landing page, the existing sandbox, and a relevant follow-up. Qualify teams with a real launch plan. Work with engineering on a short readiness checklist so a working prototype has a clear path to production.",
+    businessCase: "Strong positioning brings the right people in. A consistent path from the first story to the product helps them understand the value, evaluate it, and make a buying decision. The opportunity is to improve the quality and conversion of demand we already create.",
+    measure: "Commercial sandbox teams becoming paid Pro accounts, activity after 30 days, and the campaign and support cost per retained customer.",
+    experience: "At Sergio & Co., I’ve worked directly with clients on digital strategy, reviewed creative work, and personally run paid advertising and email campaigns. I can connect the positioning to the landing page, distribution and follow-up, then use the results to decide what to change.",
+    test: "First map the current commercial trial journey with Linq’s team. Compare normal follow-up with a use-case-specific launch offer for eligible business teams, keeping pricing and trial terms consistent. Measure paid conversion and retained activity across the full eligible cohort. Keep personal Hobby users outside this sales test, respect opt-outs, and account for the engineering support required.",
     sources: [
-      { label: "Hobby, sandbox & production", href: "https://linqapp.com/cli" },
-      { label: "Pro positioning", href: "https://linqapp.com/s/pricing" },
-      { label: "Messaging best practices", href: "https://docs.linqapp.com/channel/imessage/getting-started/best-practices/" },
-    ],
-    demoTitle: "The offer changes with readiness",
-    demoHint: "Explore the proposed sandbox-to-production journey.",
-    steps: [
-      { label: "Qualify", title: "A real launch in mind.", text: "Working conversation + business use case + launch intent.", detail: "Recruit commercial sandbox teams. Leave personal Hobby projects on the path that suits them." },
-      { label: "Prepare", title: "Make the next step concrete.", text: "One launch checklist. One scoped technical review.", detail: "Review webhook handling, consent, opt-outs and chat health using Linq’s existing guidance." },
-      { label: "Retain", title: "Measure beyond the upgrade.", text: "Paid Pro + real activity after 30 days.", detail: "Compare retained customers and support cost, rather than celebrating trial starts alone." },
+      { label: "Business sandbox and personal Hobby use", href: "https://linqapp.com/cli" },
+      { label: "Pro and production positioning", href: "https://linqapp.com/s/pricing" },
+      { label: "Integration best practices", href: "https://docs.linqapp.com/channel/imessage/getting-started/best-practices/" },
     ],
   },
 ];
