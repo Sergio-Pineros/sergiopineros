@@ -638,12 +638,18 @@ export function Roadmap() {
             {
               label: "Now",
               title: "Validate critical friction",
+              timing: "Weeks 1–2",
+              action:
+                "Interview 5 brands and 5 rightsholders; review recent inquiries with sales.",
               items: plan.now,
               empty: "No high-value candidates require validation.",
             },
             {
               label: "Next",
               title: "Prototype the strongest candidate",
+              timing: "Weeks 3–6, if ready",
+              action:
+                "Prototype the highest-ranked ready idea; agree on a baseline, sample size and guardrails before testing.",
               items: plan.next,
               empty:
                 "Await evidence. No candidate clears the readiness gate yet.",
@@ -651,6 +657,9 @@ export function Roadmap() {
             {
               label: "Later",
               title: "Revisit after learning",
+              timing: "Week 7+ / after testing",
+              action:
+                "Once the cohort matures, review the agreed measures and decide whether to expand, revise or stop.",
               items: plan.later,
               empty: "No lower-value candidates in this scenario.",
             },
@@ -662,6 +671,10 @@ export function Roadmap() {
                 <ArrowRight size={18} />
               </div>
               <h3>{phase.title}</h3>
+              <p className="av-phase-plan">
+                <strong>{phase.timing}</strong>
+                {phase.action}
+              </p>
               {phase.items.length ? (
                 phase.items.slice(0, 3).map((o) => (
                   <a key={o.id} href="#decisions" onClick={() => select(o.id)}>
@@ -691,8 +704,8 @@ export function Roadmap() {
             <strong>How the suggestion works.</strong> Rank by value ×
             (confidence ÷ 10) ÷ effort. Value ≥ 5.5 enters validation.
             Confidence ≥ 6, including every dependency, unlocks prototyping.
-            These thresholds are working assumptions; engineering should size
-            real work.
+            These thresholds and timeframes are working assumptions; recruiting,
+            evidence and engineering estimates may change the sequence.
           </p>
           <button
             className="av-button av-button-dark"
