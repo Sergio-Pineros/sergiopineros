@@ -1,5 +1,5 @@
 "use client";
-import { ArrowUpRight, Download, X } from "lucide-react";
+import { X } from "lucide-react";
 
 type Props = { onClose: () => void };
 
@@ -70,7 +70,7 @@ export default function ApplicationDoc({onClose}:Props){
       <header className="nt-modal-header">
         <div className="nt-modal-heading"><span>NOTION / APPLICATION</span><strong>Cover letter + résumé</strong></div>
         <div className="nt-modal-header-actions">
-          <button type="button" className="nt-print-btn" onClick={()=>window.print()}><Download size={15}/> Save as PDF</button>
+          <button type="button" className="nt-print-btn" onClick={()=>window.print()}>Save as PDF</button>
           <button type="button" className="nt-modal-close" onClick={onClose} aria-label="Close application"><X size={21}/></button>
         </div>
       </header>
@@ -81,17 +81,17 @@ export default function ApplicationDoc({onClose}:Props){
             <h2>Sergio Piñeros</h2>
             <p className="nt-doc-role">AI Product Manager, Growth Marketing · Notion</p>
             <div className="nt-doc-contacts">
-              <span>San Francisco, CA</span><a href="mailto:s.dpineros@gmail.com">s.dpineros@gmail.com</a><a href="https://www.linkedin.com/in/sergio-pineros-c/" target="_blank" rel="noopener noreferrer">LinkedIn <ArrowUpRight size={11}/></a>
+              <span>San Francisco, CA</span><a href="mailto:s.dpineros@gmail.com">s.dpineros@gmail.com</a><a href="https://www.linkedin.com/in/sergio-pineros-c/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             </div>
             <div className="nt-cover-copy">
               <p>Dear Notion team,</p>
               {paragraphs.map(p=><p key={p}>{p}</p>)}
               <p>Best,<br/><strong>Sergio Piñeros</strong></p>
             </div>
-            <a className="nt-doc-portfolio" href="https://www.sergiopineros.com/notion" target="_blank" rel="noopener noreferrer">Product exploration · sergiopineros.com/notion <ArrowUpRight size={13}/></a>
+            <a className="nt-doc-portfolio" href="https://www.sergiopineros.com/notion" target="_blank" rel="noopener noreferrer">Product exploration · sergiopineros.com/notion</a>
           </article>
 
-          <div className="nt-doc-connector" aria-hidden="true"><span>↓</span><p>Keep scrolling for the résumé</p></div>
+          <div className="nt-doc-connector"><p>Résumé follows below</p></div>
 
           <article className="nt-doc-paper nt-resume-paper">
             <div className="nt-doc-kicker"><span>02 / 02</span><span>RÉSUMÉ</span></div>
