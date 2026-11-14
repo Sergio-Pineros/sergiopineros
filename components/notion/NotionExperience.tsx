@@ -32,7 +32,7 @@ const experiments: Experiment[] = [
     metric: "Activation rate", result: "+12.4%",
     context: "The example shows higher activation. We would check cohort quality, tracking and sample size before making a decision.",
     decision: "iterate",
-    verdict: "The early signal is worth another test. I&apos;d run it with a longer measurement window.",
+    verdict: "The early signal is worth another test. I'd run it with a longer measurement window.",
     next: "Repeat with segmented new-user cohorts. Review activation quality and incrementality.",
     guardrail: "Keep spending steady until the activation lift is validated."
   },
@@ -42,7 +42,7 @@ const experiments: Experiment[] = [
     metric: "Qualified trial rate", result: "+18.2%",
     context: "The example shows stronger trial quality across two cohorts and a stable cost per qualified trial.",
     decision: "scale",
-    verdict: "I&apos;d expand this gradually and keep a holdout to measure impact.",
+    verdict: "I'd expand this gradually and keep a holdout to measure impact.",
     next: "Increase the budget in stages, track qualified trials and review creative fatigue.",
     guardrail: "Agree on a cost-per-qualified-trial threshold before increasing spend."
   },
@@ -52,7 +52,7 @@ const experiments: Experiment[] = [
     metric: "Cost per activated user", result: "+27.0%",
     context: "The example shows rising cost with no meaningful change in activation.",
     decision: "stop",
-    verdict: "I&apos;d end this variant, document the result and move the budget to the next test.",
+    verdict: "I'd end this variant, document the result and move the budget to the next test.",
     next: "Save the negative result in the experiments database so future work can reference it.",
     guardrail: "Keep control results and attribution notes attached to the experiment."
   }
