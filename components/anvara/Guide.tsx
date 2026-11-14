@@ -21,7 +21,8 @@ export default function Guide() {
   const { setLab } = useExploration();
 
   useEffect(() => {
-    const timer = window.setTimeout(() => { setLab("match"); setStep(0); }, 3000);
+    if (window.location.hash === "#resume") return;
+    const timer = window.setTimeout(() => { if (window.location.hash !== "#resume") { setLab("match"); setStep(0); } }, 3000);
     return () => window.clearTimeout(timer);
   }, [setLab]);
 

@@ -175,6 +175,20 @@ function Objectives() {
 }
 function Background() {
   const [documentsOpen, setDocumentsOpen] = useState(false);
+  useEffect(() => {
+    const syncDocuments = () => setDocumentsOpen(window.location.hash === "#resume");
+    syncDocuments();
+    window.addEventListener("hashchange", syncDocuments);
+    return () => window.removeEventListener("hashchange", syncDocuments);
+  }, []);
+  const openDocuments = () => {
+    window.history.replaceState(null, "", "#resume");
+    setDocumentsOpen(true);
+  };
+  const closeDocuments = () => {
+    if (window.location.hash === "#resume") window.history.replaceState(null, "", "#about-sergio");
+    setDocumentsOpen(false);
+  };
   return (
     <section id="about-sergio" className="av-section av-background">
       <div className="av-wrap">
@@ -184,12 +198,8 @@ function Background() {
           <span className="av-personal-signature">Sergio Piñeros</span>
           <p>I’ve worked with artists, event organizers and small businesses. An introduction is only the first step. People still need to agree on the details and make the idea happen.</p>
         </div>
-        <button className="av-button av-button-dark av-documents-launch" onClick={() => setDocumentsOpen(true)}>View my resume & cover letter</button>
-        <DocumentsDialog open={documentsOpen} onClose={() => setDocumentsOpen(false)} />
-        <div className="av-experience-photos">
-          <figure><Image src="/story-photos/2021.jpg" alt="Two musicians playing together indoors" width={600} height={440} /><figcaption>Making music with collaborators</figcaption></figure>
-          <figure><Image src="/story-photos/2026 mid freelance.jpeg" alt="Sergio working in a barbershop" width={600} height={440} /><figcaption>Working alongside small businesses</figcaption></figure>
-        </div>
+        <button className="av-button av-button-dark av-documents-launch" onClick={openDocuments}>View my resume & cover letter</button>
+        <DocumentsDialog open={documentsOpen} onClose={closeDocuments} />
         <div className="av-experience-thread">
           <article><div><small>ARTISTS & LIVE EVENTS</small><h3><a href="https://17bitsrecords.vercel.app/" target="_blank" rel="noopener noreferrer">17 Bits Records</a></h3></div><p>Co-founded an independent record label and worked with artists and collaborators on concerts and cultural projects.</p></article>
           <article><div><small>EXPLORING MARKETPLACES</small><h3>MusicConnect</h3></div><p>Explored a marketplace for musicians and event organizers to find each other. It did not commercially launch.</p></article>
