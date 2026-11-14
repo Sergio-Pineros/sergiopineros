@@ -1,10 +1,19 @@
 import type { Metadata } from "next";
+import NotionExperience from "@/components/notion/NotionExperience";
+import "./notion.css";
 
 export const metadata: Metadata = {
-  title: "Design exploration | Sergio Piñeros",
+  title: "Experiments, built into Notion | Sergio Piñeros",
+  description: "An independent feature concept showing how Notion AI Meeting Notes, databases, and Notion Agent could make experimentation easier for every team.",
   robots: { index: false, follow: false },
+  openGraph: {
+    title: "Experiments, built into Notion | Sergio Piñeros",
+    description: "One place for ideas, experiments, decisions, and what we learn next.",
+    type: "website",
+    url: "https://www.sergiopineros.com/notion"
+  }
 };
 
 export default function NotionPage() {
-  return <iframe title="Sergio Piñeros — design exploration" src="/notion-experience/index.html" style={{ position: "fixed", inset: 0, width: "100%", height: "100%", border: 0, background: "#f5f1ee" }} />;
+  return <NotionExperience />;
 }
