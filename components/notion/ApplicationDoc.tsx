@@ -16,33 +16,33 @@ const evidence = [
 
 const experience = [
   {title:"Sergio & Co. | Founder, Digital Strategy",time:"Jan 2026-Present",bullets:[
-    "Build websites, brand experiences, and growth tools. Work directly with clients from the first conversation through design, launch, and improvements.",
-    "Turn business needs into working products, with feedback from the people using them."
+    "Lead discovery and digital strategy for wellness, barbershop, and editorial clients, translating business goals into website experiences, customer journeys, and practical growth plans.",
+    "For an editorial client, planned web and email distribution, reviewed campaign creative, and directly executed paid ads and email campaigns."
   ]},
   {title:"Fofo Labs | Founder, Growth",time:"Apr 2025-Jan 2026",bullets:[
-    "Built a four-person creative and marketing team, leading client strategy and production.",
-    "Created campaigns for local restaurants and hospitality businesses, then used results and client feedback to improve the work."
+    "Founded a subscription-based marketing practice, acquired initial hospitality and lifestyle clients, and coordinated a four-person team across strategy, content, and delivery.",
+    "Set up content calendars, production reviews, and repeatable client workflows; used campaign performance and owner feedback to refine creative across accounts."
   ]},
   {title:"17 Bits Records | Co-Founder, Creative Director",time:"2021-Present · Part-time",bullets:[
-    "Helped independent artists release music, develop visual identities, and put on their first events."
+    "Co-founded an independent music initiative and supported releases for three artists, from visual identity and promotional content through distribution and launch."
   ]},
   {title:"HP Tech Ventures | Startup Analysis Extern",time:"Mar-May 2026",bullets:[
-    "Researched startups and markets, then organized findings into clear recommendations."
+    "Researched early-stage startups and competitive markets during a venture capital externship, evaluating business models, positioning, and potential opportunities for deal sourcing."
   ]}
 ];
 
 const productWork = [
   {title:"NxtSeat | Founder, Product",time:"2026-Present",bullets:[
-    "Designed booking software for service businesses, covering calendars, walk-ins, staff tools, memberships, and customer messages.",
-    "Prototyped bilingual AI assistance for businesses that miss calls while serving customers."
+    "Mapped service-business booking and walk-in journeys into a multi-tenant product with staff calendars, customer messages, membership passes, and front-desk workflows.",
+    "Explored bilingual voice assistance for missed calls, booking inquiries, and follow-ups, drawing on real front-desk challenges at local service businesses."
   ]},
   {title:"SAVRON Business OS | Product Development",time:"2026-Present",bullets:[
-    "Mapped guest, barber, front-desk, and owner needs into one set of practical tools.",
-    "Designed around the tasks staff handle every day, from checking in a client to updating a schedule."
+    "Developed connected guest, barber, front-desk, and owner experiences covering online booking, lobby check-in, walk-ins, and client arrival notifications.",
+    "Translated daily operations into separate staff calendars, a front-desk board, and membership workflows, then refined priorities with feedback from the shop."
   ]},
   {title:"Independent projects | AI and Growth",time:"2026",bullets:[
-    "Built interactive product concepts and small AI automations to test how useful they could be.",
-    "Built the growth experiment demo on this page to explore how agents could help teams review evidence and choose their next test."
+    "Built interactive prototypes and AI-assisted workflows to explore product ideas, test decisions, and communicate how a feature might work before full implementation.",
+    "Created the Notion Experiments demo to connect hypotheses, evidence, safeguards, and human decisions, using clearly identified sample data and interactive states."
   ]}
 ];
 
