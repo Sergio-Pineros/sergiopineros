@@ -188,7 +188,7 @@ export default function ProtegePage() {
           </div>
         </section>
 
-        <section className="pg-outro" aria-labelledby="pg-outro-title">
+        <section id="outro" className="pg-outro" aria-labelledby="pg-outro-title">
           <div className="pg-shell pg-outro-inner">
             <div><span className="pg-eyebrow">SERGIO PIÑEROS · GEN MARKETER APPLICATION</span><h2 id="pg-outro-title" className="pg-serif">Let&apos;s make<br />something <em>matter.</em></h2><p style={{color:"#bcb0c9",maxWidth:500,lineHeight:1.75}}>I would love to bring thoughtful creative, fast execution and useful measurement to Protege.</p></div>
             <div className="pg-buttons"><a className="pg-button" href="#letter">Read cover letter <span>↗</span></a><a className="pg-outline" href="#resume">View résumé ↗</a><a className="pg-outline" href="mailto:s.dpineros@gmail.com">Say hello ↗</a></div>
