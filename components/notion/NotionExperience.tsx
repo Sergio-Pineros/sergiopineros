@@ -1,10 +1,10 @@
 "use client";
 import {useEffect,useState} from "react";
 import Link from "next/link";
+import ApplicationDoc from "./ApplicationDoc";
 import {ArrowDown, ArrowRight, ArrowUpRight, Check, ChevronRight, CircleDot, Focus, Menu, Minus, Plus, Sparkles, X, Lightbulb, ChartNoAxesCombined, WandSparkles} from "lucide-react";
 
 type Decision = "scale" | "iterate" | "stop";
-type DocumentName = "letter" | "resume" | null;
 type Experiment = {
   id: string;
   channel: string;
@@ -53,36 +53,29 @@ const decisionLabels: Record<Decision, string> = {
   scale: "Scale carefully", iterate: "Iterate", stop: "Stop"
 };
 
-const letterParagraphs = [
-  "The part of this role that caught my attention was the idea of turning a growth experimentation prototype into a real operating system. I like building things at the intersection of product, creative work and systems, especially when the point of automation is to make human decisions better—not just faster.",
-  "I started on the marketing side. Through Fofo Labs, I worked directly with small businesses, built a four-person team and helped shape campaigns around what customers actually responded to. For La Estancia Steakhouse, one short-form strategy reached about 540,000 TikTok views and brought in over 1,200 followers in its first month. It taught me that creative performance only matters when you can connect it to what a business needs next.",
-  "That curiosity pushed me further into product. With SAVRON and NxtSeat, I've been designing software for appointment booking, customer communications, staff workflows and bilingual AI assistance. I've had to connect the interface, the automation and the real-world operation—and simplify all three until they make sense together.",
-  "I know this position calls for serious depth in paid growth, experimentation and measurement at a scale beyond the businesses I've worked with. I wouldn't pretend otherwise. What I can show is how I think, build, learn and connect disciplines. So I put together a small independent concept: a Growth Experimentation OS that makes hypotheses, evidence, guardrails and kill/iterate/scale decisions easier to see. It's a conversation starter, not a claim that I know Notion's internal systems.",
-  "I would love the chance to bring that combination of curiosity, hands-on execution and care for the details to Notion. I believe great tools should give people more room to think. I'd be excited to help make that true for the teams growing Notion, too."
-];
-
-
 export default function NotionExperience() {
  const [selected,setSelected]=useState(0);
  const [focus,setFocus]=useState(false);
  const [showReasoning,setShowReasoning]=useState(true);
- const [documentName,setDocumentName]=useState<DocumentName>(null);
+ const [applicationOpen,setApplicationOpen]=useState(false);
  const [mobileMenu,setMobileMenu]=useState(false);
  const experiment=experiments[selected];
 
+
  useEffect(()=>{
-  const sync=()=>{const hash=window.location.hash;setDocumentName(hash==="#cover-letter"?"letter":hash==="#resume"?"resume":null)};
+  const sync=()=>setApplicationOpen(["#application","#cover-letter","#resume"].includes(window.location.hash));
   sync();window.addEventListener("hashchange",sync);
   return ()=>window.removeEventListener("hashchange",sync);
  },[]);
  useEffect(()=>{
-  if(!documentName)return;
-  const previous=document.body.style.overflow;document.body.style.overflow="hidden";
-  const esc=(ev:KeyboardEvent)=>{if(ev.key==="Escape"){history.replaceState(null,"",window.location.pathname);setDocumentName(null)}};
+  if(!applicationOpen)return;
+  const previous=document.body.style.overflow;
+  document.body.style.overflow="hidden";
+  const esc=(ev:KeyboardEvent)=>{if(ev.key==="Escape"){history.replaceState(null,"",window.location.pathname);setApplicationOpen(false)}};
   window.addEventListener("keydown",esc);
   return ()=>{document.body.style.overflow=previous;window.removeEventListener("keydown",esc)};
- },[documentName]);
- const closeDoc=()=>{history.replaceState(null,"",window.location.pathname);setDocumentName(null)};
+ },[applicationOpen]);
+ const closeDoc=()=>{history.replaceState(null,"",window.location.pathname);setApplicationOpen(false)};
 
  return <div className="nt-app" id="top">
   <a className="nt-skip" href="#demo">Skip to the demo</a>
@@ -99,7 +92,7 @@ export default function NotionExperience() {
        <a href="#idea" onClick={()=>setMobileMenu(false)}>The thought</a>
        <a href="#demo" onClick={()=>setMobileMenu(false)}>The prototype</a>
        <a href="#me" onClick={()=>setMobileMenu(false)}>The human</a>
-       <a href="#cover-letter" className="nt-top-cta" onClick={()=>setMobileMenu(false)}>Cover letter <ArrowUpRight size={15}/></a>
+       <a href="#application" className="nt-top-cta" onClick={()=>setMobileMenu(false)}>Application <ArrowUpRight size={15}/></a>
       </nav>
     </div>
   </header>
@@ -184,7 +177,7 @@ export default function NotionExperience() {
           <div className="nt-section-eyebrow">A LITTLE ABOUT ME</div>
           <h2>I like making<br/>complex things<br/><em>feel simple.</em></h2>
           <p>I&apos;m Sergio. I&apos;ve built growth campaigns for small businesses and product workflows for real teams. Now I&apos;m exploring how AI can make both better.</p>
-          <div className="nt-me-actions"><a className="nt-button nt-button-white" href="#cover-letter">Cover letter <ArrowUpRight size={16}/></a><a className="nt-button nt-button-line" href="#resume">Résumé <ArrowUpRight size={16}/></a></div>
+          <div className="nt-me-actions"><a className="nt-button nt-button-white" href="#application">Cover letter + résumé <ArrowUpRight size={16}/></a><a className="nt-button nt-button-line" href="https://www.linkedin.com/in/sergio-pineros-c/" target="_blank" rel="noopener noreferrer">LinkedIn <ArrowUpRight size={16}/></a></div>
         </div>
         <div className="nt-me-proof">
           <div className="nt-me-tally"><strong>540K</strong><span>first-month video views on a client campaign</span></div>
@@ -198,34 +191,6 @@ export default function NotionExperience() {
 
   <footer className="nt-footer"><div className="nt-container nt-footer-inside"><span>Made by Sergio, independently. Not affiliated with Notion. Illustrative demo data.</span><a href="https://www.linkedin.com/in/sergio-pineros-c/" target="_blank" rel="noopener noreferrer">LinkedIn <ArrowUpRight size={14}/></a></div></footer>
 
-      {documentName && <div className="nt-modal-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) closeDoc(); }}>
-        <div className="nt-modal" role="dialog" aria-modal="true" aria-label={documentName === "letter" ? "Sergio's cover letter" : "Sergio's resume"}>
-          <div className="nt-modal-header">
-            <div><span>APPLICATION / NOTION</span><strong>{documentName === "letter" ? "Cover letter" : "Résumé"}</strong></div>
-            <div className="nt-modal-header-actions"><a href={documentName === "letter" ? "#resume" : "#cover-letter"}>{documentName === "letter" ? "Next: Résumé" : "Read letter"} <ArrowRight size={14}/></a><button type="button" onClick={closeDoc} aria-label="Close document"><X size={21}/></button></div>
-          </div>
-          <div className="nt-modal-scroll" key={documentName}>
-            <article className="nt-document">
-              <h2>Sergio Piñeros</h2>
-              <p className="nt-document-subtitle">{documentName === "letter" ? "AI PRODUCT MANAGER, GROWTH MARKETING — NOTION" : "GROWTH SYSTEMS · PRODUCT · APPLIED AI"}</p>
-              <p className="nt-document-contact">Minneapolis, MN · s.dpineros@gmail.com · sergiopineros.com</p>
-              {documentName === "letter" ? <><p>Dear Notion team,</p>{letterParagraphs.map((p,i) => <p key={i}>{p}</p>)}<p>Best,<br/><strong>Sergio Piñeros</strong></p><a className="nt-document-next" href="#resume">Continue to the résumé <ArrowRight size={16}/></a></> : <>
-                <h3>Profile</h3><p>Founder and hands-on product/growth builder connecting marketing, experimentation and software. Fluent in English and Spanish; experienced in creative strategy, customer workflows and practical AI prototyping.</p>
-                <h3>Experience</h3>
-                <h4>Sergio & Co. <span>Founder & Digital Strategy Lead · Jan 2026–Present</span></h4><p>Website, product and growth-system projects from discovery and digital strategy through execution and iteration.</p>
-                <h4>Fofo Labs <span>Founder & Growth Lead · Apr 2025–Jan 2026</span></h4><p>Built a four-person creative practice. Helped develop La Estancia content that generated ~540K first-month views and 1,200+ followers.</p>
-                <h4>17 Bits Records <span>Co-Founder & Creative Director · 2021–Present, part-time</span></h4><p>Artist releases, brand storytelling, creative coordination and live events.</p>
-                <h4>HP Tech Ventures <span>Startup Analysis Extern · Mar–May 2026</span></h4><p>Startup research, landscape analysis and synthesized recommendations.</p>
-                <h3>Selected product work</h3>
-                <h4>SAVRON + NxtSeat <span>2026–Present</span></h4><p>Real-world booking, scheduling, walk-in, membership and operations workflows; explorations in bilingual AI customer assistance.</p>
-                <h3>Skills</h3><p>Product discovery · Experiment design · Meta Business Suite · TikTok Ads · Creative strategy · Python · HTML/CSS · Workflow automation · AI prototyping · Figma · Adobe Creative Suite</p>
-                <h3>Education</h3><p>Dunwoody College of Technology — Electronics Technology Certificate (2024–2025)<br/>Masterschool — Cybersecurity Bootcamp (2023–2024)</p>
-                <p className="nt-document-note">A concise website copy. The full two-page résumé is available in the application attachment.</p>
-              </>}
-            </article>
-          </div>
-        </div>
-      </div>}
-
+      {applicationOpen && <ApplicationDoc onClose={closeDoc}/>}
  </div>;
 }
