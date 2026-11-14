@@ -1029,3 +1029,19 @@
 .av-hero-market-labels span:last-child { color:#7653c5; }
 @media(max-width:600px) { .av-hero-market-labels { left:8%; right:8%; bottom:0; font-size:12px; letter-spacing:.04em; } }
 .av-inquiry-editor input { width:100%; padding:12px; border:1px solid #d8dfed; border-radius:8px; font:inherit; }
+
+.av-documents-launch { margin: 22px 0 6px; }
+.av-documents-dialog { width: min(900px, 92vw); height: min(92dvh, 1100px); max-height: 92dvh; padding: 0; border: 1px solid #dce2f0; border-radius: 22px; background: #f3f5fb; color: #151a34; overflow: auto; box-shadow: 0 24px 80px #1a25543d; }
+.av-documents-dialog::backdrop { background: #131b33a8; backdrop-filter: blur(5px); }
+.av-documents-bar { position: sticky; z-index: 2; top: 0; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 20px 26px; background: #fafbfff5; border-bottom: 1px solid #dfe5f1; }
+.av-documents-bar span { font-size: 12px; font-weight: 700; letter-spacing: .12em; color: #64718d; }
+.av-documents-bar h2 { margin: 2px 0 0; font-size: 22px; line-height: 1.2; }
+.av-documents-bar button { display: grid; place-items: center; width: 42px; height: 42px; flex: none; border: 1px solid #dce2ef; border-radius: 50%; background: white; cursor: pointer; color: #17203c; }
+.av-documents-content { width: min(100% - 48px, 690px); margin: 28px auto 52px; }
+.av-documents-content section + section { margin-top: 38px; }
+.av-document-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 0 0 12px; }
+.av-document-heading h3 { margin: 0; font-size: 18px; }
+.av-document-heading a { color: #284fc0; font-size: 15px; text-decoration: none; }
+.av-documents-content img { display: block; width: 100%; height: auto; background: white; box-shadow: 0 8px 26px #1a25541a; }
+.av-documents-content img + img { margin-top: 18px; }
+@media(max-width: 600px) { .av-documents-dialog { width: 96vw; height: 92dvh; border-radius: 16px; } .av-documents-bar { padding: 16px; } .av-documents-content { width: calc(100% - 24px); margin-top: 20px; } }

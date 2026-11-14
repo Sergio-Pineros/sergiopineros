@@ -14,6 +14,7 @@ import Measurement from "./Measurement";
 import Guide from "./Guide";
 import FeatureDialog from "./FeatureDialog";
 import IntroLoader from "./IntroLoader";
+import DocumentsDialog from "./DocumentsDialog";
 function Perspectives() {
   const [side, setSide] = useState<"brand" | "rightsholder">("brand");
   const brands = side === "brand";
@@ -173,6 +174,7 @@ function Objectives() {
   );
 }
 function Background() {
+  const [documentsOpen, setDocumentsOpen] = useState(false);
   return (
     <section id="about-sergio" className="av-section av-background">
       <div className="av-wrap">
@@ -182,6 +184,8 @@ function Background() {
           <span className="av-personal-signature">Sergio Piñeros</span>
           <p>I’ve worked with artists, event organizers and small businesses. An introduction is only the first step. People still need to agree on the details and make the idea happen.</p>
         </div>
+        <button className="av-button av-button-dark av-documents-launch" onClick={() => setDocumentsOpen(true)}>View my resume & cover letter</button>
+        <DocumentsDialog open={documentsOpen} onClose={() => setDocumentsOpen(false)} />
         <div className="av-experience-photos">
           <figure><Image src="/story-photos/2021.jpg" alt="Two musicians playing together indoors" width={600} height={440} /><figcaption>Making music with collaborators</figcaption></figure>
           <figure><Image src="/story-photos/2026 mid freelance.jpeg" alt="Sergio working in a barbershop" width={600} height={440} /><figcaption>Working alongside small businesses</figcaption></figure>
