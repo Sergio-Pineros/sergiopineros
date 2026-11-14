@@ -5,7 +5,7 @@ import Link from "next/link";
 import {
   ArrowDown, ArrowRight, ArrowUpRight, Check, ChevronDown, ChevronRight,
   Focus, Menu, X, Sparkles, BookOpenText, Database, FilePlus2,
-  AudioLines, Lightbulb, ChartNoAxesCombined, ShieldCheck, Target,
+  AudioLines, Lightbulb, ChartNoAxesCombined, Target,
   Workflow, UserRoundCheck
 } from "lucide-react";
 import ApplicationDoc from "./ApplicationDoc";
@@ -32,7 +32,7 @@ const experiments: Experiment[] = [
     metric: "Activation rate", result: "+12.4%",
     context: "The example shows higher activation. We would check cohort quality, tracking and sample size before making a decision.",
     decision: "iterate",
-    verdict: "The early signal is worth another test. I'd run it with a longer measurement window.",
+    verdict: "The early signal is worth another test. I&apos;d run it with a longer measurement window.",
     next: "Repeat with segmented new-user cohorts. Review activation quality and incrementality.",
     guardrail: "Keep spending steady until the activation lift is validated."
   },
@@ -42,7 +42,7 @@ const experiments: Experiment[] = [
     metric: "Qualified trial rate", result: "+18.2%",
     context: "The example shows stronger trial quality across two cohorts and a stable cost per qualified trial.",
     decision: "scale",
-    verdict: "I'd expand this gradually and keep a holdout to measure impact.",
+    verdict: "I&apos;d expand this gradually and keep a holdout to measure impact.",
     next: "Increase the budget in stages, track qualified trials and review creative fatigue.",
     guardrail: "Agree on a cost-per-qualified-trial threshold before increasing spend."
   },
@@ -52,7 +52,7 @@ const experiments: Experiment[] = [
     metric: "Cost per activated user", result: "+27.0%",
     context: "The example shows rising cost with no meaningful change in activation.",
     decision: "stop",
-    verdict: "I'd end this variant, document the result and move the budget to the next test.",
+    verdict: "I&apos;d end this variant, document the result and move the budget to the next test.",
     next: "Save the negative result in the experiments database so future work can reference it.",
     guardrail: "Keep control results and attribution notes attached to the experiment."
   }
@@ -202,7 +202,7 @@ export default function NotionExperience() {
           <div className="nt-focus-principles">
             <div><span className="nt-principle-icon"><Target size={25}/></span><div><h3>One clear question</h3><p>Lead with what the team is trying to learn and the metric that matters.</p></div></div>
             <div><span className="nt-principle-icon"><Focus size={25}/></span><div><h3>Focus when you need it</h3><p>Hide competing experiments, then bring them back with one click.</p></div></div>
-            <div><span className="nt-principle-icon"><BookOpenText size={25}/></span><div><h3>Context on demand</h3><p>Meeting notes, past tests, and reasoning stay linked, with details you can open when you're ready.</p></div></div>
+            <div><span className="nt-principle-icon"><BookOpenText size={25}/></span><div><h3>Context on demand</h3><p>Meeting notes, past tests, and reasoning stay linked, with details you can open when you&apos;re ready.</p></div></div>
           </div>
         </div>
       </section>
@@ -211,10 +211,10 @@ export default function NotionExperience() {
         <div className="nt-container">
           <div className="nt-growth-intro">
             <div>
-              <h2>Now, let's use it<br/><em>for growth.</em></h2>
+              <h2>Now, let&apos;s use it<br/><em>for growth.</em></h2>
             </div>
             <div>
-              <p>I'd use Experiments to connect growth conversations with acquisition and activation data. A hypothesis could move from a planning meeting into a test page, with creative, metrics, owners, and decisions in one place.</p>
+              <p>I&apos;d use Experiments to connect growth conversations with acquisition and activation data. A hypothesis could move from a planning meeting into a test page, with creative, metrics, owners, and decisions in one place.</p>
               <p>Teams could add results from connected tools or imported reports, and use Notion Agent to help summarize the evidence. Budget changes would still need human approval.</p>
             </div>
           </div>
@@ -254,7 +254,7 @@ export default function NotionExperience() {
                   <div><h4>Evidence to review</h4><p>{current.context}</p></div>
                   <div><h4>Guardrail</h4><p>{current.guardrail}</p></div>
                 </div>}
-                <div className="nt-next-step"><Check size={22}/><div><strong>What I'd do next</strong><p>{current.next}</p></div></div>
+                <div className="nt-next-step"><Check size={22}/><div><strong>What I&apos;d do next</strong><p>{current.next}</p></div></div>
               </article>
             </div>
           </div>
@@ -268,7 +268,7 @@ export default function NotionExperience() {
           <div className="nt-about-head">
             <div>
               <h2>A bit about me.</h2>
-              <p>I'm Sergio, a founder who works across growth, product, and creative execution. My experience comes from building with small businesses, running campaigns, and developing software around real customer needs.</p>
+              <p>I&apos;m Sergio, a founder who works across growth, product, and creative execution. My experience comes from building with small businesses, running campaigns, and developing software around real customer needs.</p>
             </div>
             <div className="nt-about-links">
               <a className="nt-button nt-button-white" href="#application">Cover letter + résumé <ArrowUpRight size={20}/></a>
@@ -282,7 +282,7 @@ export default function NotionExperience() {
             </article>
             <article>
               <div className="nt-exp-glyph"><Database size={30}/></div>
-              <div><h3>Product development with real operators</h3><p>With SAVRON and NxtSeat, I've built booking, staff, membership, and customer communication workflows. I've also piloted bilingual AI voice assistance, working closely with the teams using these systems.</p></div>
+              <div><h3>Product development with real operators</h3><p>With SAVRON and NxtSeat, I&apos;ve built booking, staff, membership, and customer communication workflows. I&apos;ve also piloted bilingual AI voice assistance, working closely with the teams using these systems.</p></div>
             </article>
             <article>
               <div className="nt-exp-glyph"><UserRoundCheck size={30}/></div>
