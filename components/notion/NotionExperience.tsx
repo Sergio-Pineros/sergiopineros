@@ -2,7 +2,7 @@
 import {useEffect,useState} from "react";
 import Link from "next/link";
 import ApplicationDoc from "./ApplicationDoc";
-import {ArrowDown, ArrowRight, ArrowUpRight, Check, ChevronRight, CircleDot, Focus, Menu, Minus, Plus, Sparkles, X, Lightbulb, ChartNoAxesCombined, WandSparkles} from "lucide-react";
+import {ArrowDown, ArrowRight, ArrowUpRight, Check, ChevronRight, Focus, Menu, Minus, Plus, Sparkles, X, Lightbulb, ChartNoAxesCombined, WandSparkles} from "lucide-react";
 
 type Decision = "scale" | "iterate" | "stop";
 type Experiment = {
@@ -22,30 +22,30 @@ type Experiment = {
 const experiments: Experiment[] = [
   {
     id: "A01", channel: "Meta", name: "First value, faster",
-    hypothesis: "Showing a complete team workflow before signup may bring fewer, better-fit users into activation.",
+    hypothesis: "Showing a complete team workflow before signup might help new users reach their first useful moment faster.",
     metric: "Activated-user rate", result: "+12.4%",
-    context: "Promising activation lift; confidence and sample adequacy need further review.",
-    decision: "iterate", verdict: "The direction looks useful. Attribution is not yet strong enough to justify scaling.",
-    next: "Replicate with a longer measurement window and segmented activation cohorts.",
-    guardrail: "Do not recommend a larger budget until activation and incrementality are validated."
+    context: "The sample shows an activation lift. We still need to check the sample size and where those users came from.",
+    decision: "iterate", verdict: "Let's test this with another cohort before increasing the budget.",
+    next: "Run it again with a longer measurement window and separate activation cohorts.",
+    guardrail: "Check tracking quality and incrementality before increasing spend."
   },
   {
     id: "B02", channel: "LinkedIn", name: "From feature to outcome",
-    hypothesis: "An operations-led story may outperform generic AI messaging with growing teams.",
+    hypothesis: "A campaign showing a real team workflow might bring in more qualified trials.",
     metric: "Qualified trial rate", result: "+18.2%",
-    context: "Stronger trial quality across two illustrative cohorts, with stable cost per qualified trial.",
-    decision: "scale", verdict: "Move to a controlled expansion, while keeping an explicit holdout.",
-    next: "Scale in stages. Monitor qualified trials, payback proxy and creative fatigue.",
-    guardrail: "Pause expansion if cost per qualified trial increases beyond the agreed limit."
+    context: "The sample shows more qualified trials across two cohorts, with a steady acquisition cost.",
+    decision: "scale", verdict: "The early signal looks promising. I'd try a small budget increase and keep a holdout group.",
+    next: "Increase the budget in steps and review trial quality and creative fatigue.",
+    guardrail: "Set a cost-per-qualified-trial limit with the team before launching."
   },
   {
     id: "C03", channel: "Google", name: "A narrower intent signal",
-    hypothesis: "A new audience and ad pairing could lift signup efficiency in high-intent searches.",
+    hypothesis: "Testing a new audience and ad combination might help us reach people with clearer intent.",
     metric: "Cost per activated user", result: "+27.0%",
-    context: "Cost rose while activation remained flat. Direction is unfavorable in the demo.",
-    decision: "stop", verdict: "Stop this variant. Keep the learning, not the spend.",
-    next: "Archive the hypothesis and return the budget to the next prioritized test.",
-    guardrail: "Maintain control performance and log the negative result for future agents."
+    context: "In this sample, cost went up and activation stayed about the same.",
+    decision: "stop", verdict: "I'd stop this version and save what we learned for the next test.",
+    next: "Write down the result and move the budget to the next idea.",
+    guardrail: "Keep the control results and give the agent access to the experiment notes."
   }
 ];
 
@@ -85,7 +85,7 @@ export default function NotionExperience() {
         <a href="https://www.notion.com/product" target="_blank" rel="noopener noreferrer" className="nt-logo-link" aria-label="Notion product site"><img src="https://www.notion.com/front-static/favicon.ico" width="32" height="32" alt="Notion logo"/></a>
         <span className="nt-multiply" aria-hidden="true">×</span>
         <Link href="/" className="nt-logo-link nt-logo-personal" aria-label="Sergio Piñeros portfolio"><img src="/icon.svg" alt="Sergio Piñeros personal mark" width="34" height="34" /></Link>
-        <span className="nt-nav-label">An application, made with curiosity</span>
+        <span className="nt-nav-label">A little idea I wanted to try</span>
       </div>
       <button type="button" className="nt-menu-toggle" aria-expanded={mobileMenu} aria-label="Toggle navigation" onClick={()=>setMobileMenu(!mobileMenu)}>{mobileMenu?<X size={21}/>:<Menu size={21}/>}</button>
       <nav className={mobileMenu?"nt-nav nt-nav-show":"nt-nav"} aria-label="Page">
@@ -108,7 +108,7 @@ export default function NotionExperience() {
         </div>
         <p className="nt-overline">A small product idea for Notion</p>
         <h1>Make every<br/>experiment <em>count.</em></h1>
-        <p className="nt-intro">What if growth teams and AI agents could turn every test into a clearer decision?</p>
+        <p className="nt-intro">I kept thinking about what happens after a growth experiment ends. So I built a little idea around it.</p>
         <div className="nt-hero-actions">
           <a className="nt-button nt-button-blue" href="#demo">Try the prototype <ArrowRight size={16}/></a>
           <a className="nt-button nt-button-outline" href="#me">Why me? <ArrowDown size={16}/></a>
@@ -121,8 +121,8 @@ export default function NotionExperience() {
       <div className="nt-container nt-idea-inner">
         <div className="nt-idea-note"><span className="nt-note-star">✳</span><span>THE IDEA</span></div>
         <div>
-          <h2>Less time looking<br/>at dashboards.<br/><span>More time knowing<br/>what to do.</span></h2>
-          <p>A growth lab where agents surface the evidence, and humans make the call.</p>
+          <h2>What did we learn?<br/>What should we try next?<br/><span>Keep the answers<br/>in one place.</span></h2>
+          <p>An agent gathers the clues. The team can see the evidence and choose what to do next.</p>
           <div className="nt-three"><span><i>↗</i> Spot the signal</span><span><i>✳</i> Make the decision</span><span><i>✓</i> Save the learning</span></div>
         </div>
       </div>
@@ -132,7 +132,7 @@ export default function NotionExperience() {
       <div className="nt-container">
         <div className="nt-demo-head">
           <div><div className="nt-section-eyebrow">A TINY WORKING PROTOTYPE</div><h2>Okay. Your move.</h2></div>
-          <p>Pick an experiment. See how an agent could recommend whether to scale, iterate, or stop.</p>
+          <p>Choose a sample experiment to see what the agent suggests. I made up the numbers for the demo.</p>
         </div>
         <div className={focus?"nt-workspace nt-focused":"nt-workspace"}>
           <div className="nt-workspace-top">
@@ -165,9 +165,9 @@ export default function NotionExperience() {
               <div className="nt-next"><Check size={17}/><p><strong>Next:</strong> {experiment.next}</p></div>
             </article>
           </div>
-          <div className="nt-workspace-bottom"><span>● Demo data, not real Notion results</span><span>Human approval required before any action</span></div>
+          <div className="nt-workspace-bottom"><span>● Sample data for this concept</span><span>Human approval required before any action</span></div>
         </div>
-        <p className="nt-demo-outro">One clear question at a time. No extra tabs needed.</p>
+        <p className="nt-demo-outro">A quieter place to think through a decision.</p>
       </div>
     </section>
 
@@ -176,20 +176,20 @@ export default function NotionExperience() {
         <div className="nt-me-copy">
           <div className="nt-section-eyebrow">A LITTLE ABOUT ME</div>
           <h2>I like making<br/>complex things<br/><em>feel simple.</em></h2>
-          <p>I&apos;m Sergio. I&apos;ve built growth campaigns for small businesses and product workflows for real teams. Now I&apos;m exploring how AI can make both better.</p>
+          <p>I&apos;m Sergio. I started in marketing for small businesses, then got curious about building the software behind their day-to-day work. Lately, I&apos;ve been experimenting with AI agents.</p>
           <div className="nt-me-actions"><a className="nt-button nt-button-white" href="#application">Cover letter + résumé <ArrowUpRight size={16}/></a><a className="nt-button nt-button-line" href="https://www.linkedin.com/in/sergio-pineros-c/" target="_blank" rel="noopener noreferrer">LinkedIn <ArrowUpRight size={16}/></a></div>
         </div>
         <div className="nt-me-proof">
-          <div className="nt-me-tally"><strong>540K</strong><span>first-month video views on a client campaign</span></div>
+          <div className="nt-me-tally"><strong>540K</strong><span>views in the first month of a client campaign</span></div>
           <div className="nt-me-tally"><strong>4</strong><span>people on the creative team I built</span></div>
-          <div className="nt-me-tally"><strong>0 → 1</strong><span>real booking and service-workflow products built</span></div>
+          <div className="nt-me-tally"><strong>0 → 1</strong><span>booking and service workflows taken from idea to product</span></div>
           <div className="nt-me-logo"><img src="/linq/sergio-co.svg" alt="Sergio & Co. logo" /></div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer className="nt-footer"><div className="nt-container nt-footer-inside"><span>Made by Sergio, independently. Not affiliated with Notion. Illustrative demo data.</span><a href="https://www.linkedin.com/in/sergio-pineros-c/" target="_blank" rel="noopener noreferrer">LinkedIn <ArrowUpRight size={14}/></a></div></footer>
+  <footer className="nt-footer"><div className="nt-container nt-footer-inside"><span>An independent application by Sergio. Demo numbers are illustrative. Not affiliated with Notion.</span><a href="https://www.linkedin.com/in/sergio-pineros-c/" target="_blank" rel="noopener noreferrer">LinkedIn <ArrowUpRight size={14}/></a></div></footer>
 
       {applicationOpen && <ApplicationDoc onClose={closeDoc}/>}
  </div>;
