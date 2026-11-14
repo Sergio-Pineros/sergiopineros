@@ -82,7 +82,7 @@ export default function ApplicationStory({ story }: { story: ApplicationStoryDat
 
       <section className="application-proof" id="proof">
         <div className="application-section-intro">
-          <p className="application-kicker">What I've built</p>
+          <p className="application-kicker">What I&apos;ve built</p>
           <h2>Ideas become useful when they ship.</h2>
           <p>A few real projects that inform how I would approach this role. The concept above is speculative. The work below comes from my own experience.</p>
         </div>
