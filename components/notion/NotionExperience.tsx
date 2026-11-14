@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import {
-  ArrowDown, ArrowRight, ArrowUpRight, Check, ChevronDown, ChevronRight,
+  Check,
   Focus, Menu, X, Sparkles, BookOpenText, Database, FilePlus2,
   AudioLines, Lightbulb, ChartNoAxesCombined, Target,
   Workflow, UserRoundCheck
@@ -119,7 +119,7 @@ export default function NotionExperience() {
           <a href="#feature" onClick={() => setMobileMenu(false)}>The feature</a>
           <a href="#growth" onClick={() => setMobileMenu(false)}>Growth use case</a>
           <a href="#me" onClick={() => setMobileMenu(false)}>About me</a>
-          <a className="nt-top-cta" href="#application" onClick={() => setMobileMenu(false)}>Application <ArrowUpRight size={19}/></a>
+          <a className="nt-top-cta" href="#application" onClick={() => setMobileMenu(false)}>Application</a>
         </nav>
       </div>
     </header>
@@ -136,13 +136,13 @@ export default function NotionExperience() {
             <h1>Experiments,<br/><em>built into Notion.</em></h1>
             <p className="nt-intro">Imagine a Notion feature that turns ideas, meeting notes, and linked data into experiments your whole team can follow. A clear question, one next step, and a record of what worked.</p>
             <div className="nt-hero-actions">
-              <a className="nt-button nt-button-dark" href="#feature">Explore the feature <ArrowDown size={20}/></a>
-              <a className="nt-button nt-button-outline" href="#growth">See it for growth <ArrowRight size={20}/></a>
+              <a className="nt-button nt-button-dark" href="#feature">Explore the feature</a>
+              <a className="nt-button nt-button-outline" href="#growth">See it for growth</a>
             </div>
           </div>
           <div className="nt-hero-art" aria-label="Conceptual Notion Experiments page with an experiment connected to meeting notes and database">
             <div className="nt-art-page">
-              <div className="nt-art-breadcrumb"><img src="https://www.notion.com/front-static/favicon.ico" alt="" width="24" height="24"/> Workspace <ChevronRight size={17}/> Experiments</div>
+              <div className="nt-art-breadcrumb"><img src="https://www.notion.com/front-static/favicon.ico" alt="" width="24" height="24"/> Workspace <span aria-hidden="true">·</span> Experiments</div>
               <div className="nt-art-page-icon"><Lightbulb size={31}/></div>
               <h2>Experiments</h2>
               <p>What should we try next?</p>
@@ -171,24 +171,24 @@ export default function NotionExperience() {
               <div className="nt-feature-icon nt-icon-peach"><AudioLines size={32}/></div>
               <h3>Capture an idea</h3>
               <p>AI Meeting Notes can capture questions and decisions. Select an idea from a meeting and propose an experiment.</p>
-              <a href="https://www.notion.com/help/ai-meeting-notes" target="_blank" rel="noopener noreferrer">AI Meeting Notes <ArrowUpRight size={18}/></a>
+              <a href="https://www.notion.com/help/ai-meeting-notes" target="_blank" rel="noopener noreferrer">AI Meeting Notes</a>
             </article>
             <article className="nt-feature-card">
               <div className="nt-feature-icon nt-icon-blue"><Database size={32}/></div>
               <h3>Give it structure</h3>
               <p>Store the hypothesis, owner, metric, source material, and status in a Notion database. Every test stays connected.</p>
-              <a href="https://www.notion.com/help/create-a-database" target="_blank" rel="noopener noreferrer">Notion databases <ArrowUpRight size={18}/></a>
+              <a href="https://www.notion.com/help/create-a-database" target="_blank" rel="noopener noreferrer">Notion databases</a>
             </article>
             <article className="nt-feature-card">
               <div className="nt-feature-icon nt-icon-purple"><FilePlus2 size={32}/></div>
               <h3>Make a working page</h3>
               <p>Notion Agent could draft an experiment page, organize the next actions, and update the record as the team learns.</p>
-              <a href="https://www.notion.com/help/notion-agent" target="_blank" rel="noopener noreferrer">Notion Agent <ArrowUpRight size={18}/></a>
+              <a href="https://www.notion.com/help/notion-agent" target="_blank" rel="noopener noreferrer">Notion Agent</a>
             </article>
           </div>
           <div className="nt-feature-bridge">
             <div className="nt-bridge-mark"><Workflow size={31}/></div>
-            <p><strong>One connected flow:</strong> Meeting insight <ArrowRight size={18}/> Experiment page <ArrowRight size={18}/> Evidence <ArrowRight size={18}/> Decision saved.</p>
+            <p><strong>One connected flow:</strong> Meeting insight <span aria-hidden="true">·</span> Experiment page <span aria-hidden="true">·</span> Evidence <span aria-hidden="true">·</span> Decision saved.</p>
           </div>
         </div>
       </section>
@@ -221,7 +221,7 @@ export default function NotionExperience() {
 
           <div className={focus ? "nt-workspace nt-focused" : "nt-workspace"}>
             <div className="nt-workspace-top">
-              <div className="nt-ws-path"><img src="https://www.notion.com/front-static/favicon.ico" alt="" width="24" height="24" /><span>Growth experiments</span><ChevronRight size={19}/><strong>{current.name}</strong></div>
+              <div className="nt-ws-path"><img src="https://www.notion.com/front-static/favicon.ico" alt="" width="24" height="24" /><span>Growth experiments</span><span aria-hidden="true">·</span><strong>{current.name}</strong></div>
               <button type="button" className="nt-focus-button" aria-pressed={focus} onClick={() => setFocus(!focus)}><Focus size={20}/>{focus ? "Show all experiments" : "Focus on this experiment"}</button>
             </div>
             <div className="nt-workspace-body">
@@ -248,7 +248,7 @@ export default function NotionExperience() {
                   <p>{current.verdict}</p>
                 </div>
                 <button className="nt-reason-toggle" aria-expanded={reasoning} type="button" onClick={() => setReasoning(!reasoning)}>
-                  <BookOpenText size={22}/> {reasoning ? "Hide the evidence" : "Review the evidence and safeguards"} <ChevronDown size={22} className={reasoning ? "nt-chevron-open" : ""}/>
+                  <BookOpenText size={22}/> {reasoning ? "Hide the evidence" : "Review the evidence and safeguards"}
                 </button>
                 {reasoning && <div className="nt-reason-grid">
                   <div><h4>Evidence to review</h4><p>{current.context}</p></div>
@@ -271,8 +271,8 @@ export default function NotionExperience() {
               <p>I&apos;m Sergio, a founder who works across growth, product, and creative execution. My experience comes from building with small businesses, running campaigns, and developing software around real customer needs.</p>
             </div>
             <div className="nt-about-links">
-              <a className="nt-button nt-button-white" href="#application">Cover letter + résumé <ArrowUpRight size={20}/></a>
-              <a className="nt-button nt-button-border" href="https://www.linkedin.com/in/sergio-pineros-c/" target="_blank" rel="noopener noreferrer">LinkedIn <ArrowUpRight size={20}/></a>
+              <a className="nt-button nt-button-white" href="#application">Cover letter + résumé</a>
+              <a className="nt-button nt-button-border" href="https://www.linkedin.com/in/sergio-pineros-c/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             </div>
           </div>
           <div className="nt-experience">
@@ -286,17 +286,16 @@ export default function NotionExperience() {
             </article>
             <article>
               <div className="nt-exp-glyph"><UserRoundCheck size={30}/></div>
-              <div><h3>From insight to working prototype</h3><p>Through Sergio & Co., I combine discovery, creative direction, design, and development. I work with HTML, CSS, Python, marketing tools, and AI systems. This experiment concept shows how I approach an unfamiliar product problem.</p></div>
+              <div><h3>From insight to working prototype</h3><p>Through <a className="nt-inline-link" href="http://sergioatelier.co/" target="_blank" rel="noopener noreferrer">Sergio &amp; Co.</a>, I combine discovery, creative direction, design, and development. I work with HTML, CSS, Python, marketing tools, and AI systems. This experiment concept shows how I approach an unfamiliar product problem.</p></div>
             </article>
           </div>
           <div className="nt-about-end">
-            <img src="/linq/sergio-co.svg" alt="Sergio & Co. logo" width="185" height="44"/>
-            <a href="#application">Read my application <ArrowRight size={23}/></a>
+            <a href="#application">Read my application</a>
           </div>
         </div>
       </section>
     </main>
-    <footer className="nt-footer"><div className="nt-container"><Link href="/" aria-label="Sergio Piñeros portfolio"><img src="/icon.svg" alt="Sergio Piñeros logo" width="38" height="38"/></Link><a href="#top">Back to top <ArrowUpRight size={20}/></a></div></footer>
+    <footer className="nt-footer"><div className="nt-container"><Link href="/" aria-label="Sergio Piñeros portfolio"><img src="/icon.svg" alt="Sergio Piñeros logo" width="38" height="38"/></Link><a href="#top">Back to top</a></div></footer>
     {applicationOpen && <ApplicationDoc onClose={closeApplication}/>}
   </div>;
 }
