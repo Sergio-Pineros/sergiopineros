@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
-import { Mail, BookOpen, Globe } from "lucide-react";
+import { Mail, Globe } from "lucide-react";
 import { InstagramIcon } from "@/components/SocialIcons";
 import { ThemeProvider } from "next-themes";
 import ScreenLoader from "@/components/ScreenLoader";
@@ -70,7 +70,7 @@ export default function Portfolio() {
             <nav className="footer__actions" aria-label="Footer">
               <a href="mailto:hello@sergioatelier.co" className="footer__pill"><Mail size={17} aria-hidden="true" /> email</a>
               {CREATIVE_LINKS.map((link, i) => (
-                <a key={link.href} href={link.href} className="footer__pill" target="_blank" rel="noopener noreferrer">{i === 0 ? <BookOpen size={17} aria-hidden="true" /> : i === 1 ? <InstagramIcon size={17} /> : <Globe size={17} aria-hidden="true" />}{link.label}</a>
+                <a key={link.href} href={link.href} className="footer__pill" target="_blank" rel="noopener noreferrer">{i === 0 ? <Image src="/studio-icon.png" alt="" width={22} height={17} className="footer__studio-icon" aria-hidden="true" /> : i === 1 ? <InstagramIcon size={17} /> : <Globe size={17} aria-hidden="true" />}{link.label}</a>
               ))}
             </nav>
           </footer>

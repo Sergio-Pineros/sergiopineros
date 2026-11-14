@@ -803,6 +803,12 @@ button:focus-visible {
   font-size: 18px;
 }
 
+.footer__studio-icon {
+  flex: none;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(8%) sepia(67%) saturate(2050%) hue-rotate(258deg) brightness(77%) contrast(112%);
+}
+
 @media (max-width: 700px) {
   .footer__actions {
     gap: 10px;
