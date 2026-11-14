@@ -4,54 +4,54 @@ import { ArrowUpRight, Download, X } from "lucide-react";
 type Props = { onClose: () => void };
 
 const evidence = [
-  { title: "Growth experiments tied to real businesses", time: "2025–2026", bullets: [
-    "For La Estancia Steakhouse, helped execute a short-form content strategy that generated roughly 540,000 TikTok views and 1,200+ followers in the first month.",
-    "Worked across audience insights, storytelling, content production, creator outreach, and iteration with local business owners."
+  { title: "Growth work with real businesses", time: "2025-2026", bullets: [
+    "Worked on La Estancia Steakhouse's short-form content strategy. In its first month, the campaign reached about 540,000 TikTok views and brought in 1,200+ followers.",
+    "Worked directly with business owners on content, audience insights, creative production, and campaign improvements."
   ]},
-  { title: "From customer problem to working product", time: "2026", bullets: [
-    "Designed and built operating workflows for SAVRON Barbershop & Lounge: scheduling, client check-in, staff notifications, membership journeys, and owner-facing tools.",
-    "Explored a bilingual AI voice concierge pilot for calls, bookings, and customer follow-up; connected product decisions to frontline operations."
+  { title: "Building with business owners", time: "2026", bullets: [
+    "Built tools for SAVRON Barbershop & Lounge, including scheduling, client check-in, staff notifications, memberships, and owner workflows.",
+    "Piloted bilingual AI phone assistance for bookings and customer questions, working from the way the shop actually operates."
   ]}
 ];
 
 const experience = [
-  {title:"Sergio & Co. — Founder & Digital Strategy Lead",time:"Jan 2026–Present",bullets:[
-    "Lead website, brand, and growth-system projects; combine client discovery, product prototyping, performance creative, paid advertising, and lifecycle touchpoints.",
-    "Translate business goals into scoped digital experiences, build solutions directly, and iterate with client feedback."
+  {title:"Sergio & Co. | Founder, Digital Strategy",time:"Jan 2026-Present",bullets:[
+    "Build websites, brand experiences, and growth tools. Work directly with clients from the first conversation through design, launch, and improvements.",
+    "Turn business needs into working products, with feedback from the people using them."
   ]},
-  {title:"Fofo Labs — Founder & Growth Lead",time:"Apr 2025–Jan 2026",bullets:[
-    "Built a small creative and marketing practice, coordinating strategy, production, and account delivery with a team of four.",
-    "Developed audience-first campaigns for food and hospitality businesses, reviewing performance and adapting creative with stakeholders."
+  {title:"Fofo Labs | Founder, Growth",time:"Apr 2025-Jan 2026",bullets:[
+    "Built a four-person creative and marketing team, leading client strategy and production.",
+    "Created campaigns for local restaurants and hospitality businesses, then used results and client feedback to improve the work."
   ]},
-  {title:"17 Bits Records — Co-Founder & Creative Director",time:"2021–Present · Part-time",bullets:[
-    "Helped independent musicians launch releases, build visual identities, and produce live events; coordinated artist, production, and audience needs."
+  {title:"17 Bits Records | Co-Founder, Creative Director",time:"2021-Present · Part-time",bullets:[
+    "Helped independent artists release music, develop visual identities, and put on their first events."
   ]},
-  {title:"HP Tech Ventures — Startup Analysis Extern",time:"Mar–May 2026",bullets:[
-    "Researched startup opportunities and competitive landscapes; synthesized product and business findings into concise recommendations."
+  {title:"HP Tech Ventures | Startup Analysis Extern",time:"Mar-May 2026",bullets:[
+    "Researched startups and markets, then organized findings into clear recommendations."
   ]}
 ];
 
 const productWork = [
-  {title:"NxtSeat — Founder / Product Exploration",time:"2026–Present",bullets:[
-    "Designed multi-tenant service-business software for bookings, calendars, walk-ins, staff workflows, membership passes, and customer communications.",
-    "Explored bilingual, voice-first AI assistance where missed calls and fragmented tools affect conversion and operations."
+  {title:"NxtSeat | Founder, Product",time:"2026-Present",bullets:[
+    "Designed booking software for service businesses, covering calendars, walk-ins, staff tools, memberships, and customer messages.",
+    "Prototyped bilingual AI assistance for businesses that miss calls while serving customers."
   ]},
-  {title:"SAVRON Business OS — Product Development",time:"2026–Present",bullets:[
-    "Mapped guest, barber, front-desk, and owner journeys into a unified set of operational interfaces.",
-    "Shaped the experience around clear next actions, fewer handoffs, and real operational constraints."
+  {title:"SAVRON Business OS | Product Development",time:"2026-Present",bullets:[
+    "Mapped guest, barber, front-desk, and owner needs into one set of practical tools.",
+    "Designed around the tasks staff handle every day, from checking in a client to updating a schedule."
   ]},
-  {title:"Independent experiments — AI + Growth",time:"2026",bullets:[
-    "Prototyped AI-driven interfaces, automated workflows, and interactive product explorations.",
-    "Created a Growth Experimentation OS concept for this Notion application, showing hypothesis → test → decision → learning with simulated data and human review."
+  {title:"Independent projects | AI and Growth",time:"2026",bullets:[
+    "Built interactive product concepts and small AI automations to test how useful they could be.",
+    "Built the growth experiment demo on this page to explore how agents could help teams review evidence and choose their next test."
   ]}
 ];
 
 const paragraphs=[
-  "The part of this role that caught my attention was the idea of turning a growth experimentation prototype into a real operating system. I like building things at the intersection of product, creative work and systems, especially when the point of automation is to make human decisions better, not just faster.",
-  "I started on the marketing side. Through Fofo Labs, I worked directly with small businesses, built a four-person team and helped shape campaigns around what customers actually responded to. For La Estancia Steakhouse, one short-form strategy reached about 540,000 TikTok views and brought in over 1,200 followers in its first month. It taught me that creative performance only matters when you can connect it to what a business needs next.",
-  "That curiosity pushed me further into product. With SAVRON and NxtSeat, I've been designing software for appointment booking, customer communications, staff workflows and bilingual AI assistance. I've had to connect the interface, the automation and the real-world operation, and simplify all three until they make sense together.",
-  "I know this position calls for depth in paid growth, experimentation and measurement at a scale beyond the businesses I've worked with. I wouldn't pretend otherwise. What I can show is how I think, build, learn and connect disciplines. So I put together a small independent concept: a Growth Experimentation OS that makes hypotheses, evidence, guardrails and kill/iterate/scale decisions easier to see. It's a conversation starter, not a claim that I know Notion's internal systems.",
-  "I would love the chance to bring that combination of curiosity, hands-on execution and care for the details to Notion. I believe great tools should give people more room to think. I'd be excited to help make that true for the teams growing Notion, too."
+  "I got excited reading about this role because it brings together a few things I love working on: growth, product, data, and AI. The idea of building a system that helps a team learn from every experiment sounds like exactly the kind of problem I'd want to work on.",
+  "I started in marketing, working directly with small businesses through Fofo Labs. I built a four-person team and spent a lot of time figuring out what people actually responded to. At La Estancia Steakhouse, our short-form content reached around 540,000 views and brought in over 1,200 followers in its first month. I loved making the creative, and I became just as interested in what the results could teach us.",
+  "That curiosity led me into building software. With SAVRON and NxtSeat, I've worked on booking, customer communication, staff tools, and bilingual AI assistance. A lot of that work starts with sitting down with business owners, learning how their day goes, and making something they actually want to use.",
+  "My experience has mostly been with smaller teams, and I'm excited to grow into larger-scale experimentation and measurement. I built a small interactive concept for this application because that's usually what I do when a problem catches my attention. You can try three sample experiments and see how an agent might help organize the evidence behind a decision.",
+  "I've always liked how much care Notion puts into making complicated work feel approachable. I'd love to bring my curiosity, creative experience, and willingness to build things to the team. Thanks for taking a look. I'd be excited to talk."
 ];
 
 function ResumeGroup({title,entries}:{title:string;entries:typeof evidence}){
@@ -102,24 +102,24 @@ export default function ApplicationDoc({onClose}:Props){
             </div>
             <section className="nt-resume-group">
               <h4>Profile</h4>
-              <p>Founder and hands-on product/growth builder connecting marketing, experimentation and software. I have led campaigns for small businesses, worked on products that turn messy operations into usable workflows, and prototyped AI-assisted customer experiences. Comfortable translating between creative, technical and business teams; fluent in English and Spanish.</p>
+              <p>I build growth campaigns and software for small businesses. My work covers creative strategy, product design, real customer workflows, and AI prototypes. I like working closely with the people using what I build. Fluent in English and Spanish.</p>
             </section>
             <ResumeGroup title="Selected evidence" entries={evidence}/>
             <ResumeGroup title="Experience" entries={experience}/>
             <ResumeGroup title="Selected product work" entries={productWork}/>
             <section className="nt-resume-group"><h4>Capabilities</h4>
-              <p><strong>Growth & measurement:</strong> Meta Business Suite, TikTok Ads, paid creative, campaign iteration, conversion thinking, cohort questions and experiment design.</p>
-              <p><strong>Product & systems:</strong> Product discovery, journey mapping, prototyping, workflow automation, API thinking, agent design and prioritization.</p>
-              <p><strong>Build & creative:</strong> HTML/CSS, Python, GitHub, Figma, Adobe Creative Suite and Google Workspace.</p>
+              <p><strong>Growth:</strong> Meta Business Suite, TikTok Ads, creative testing, campaign reviews, conversion analysis, experiment design.</p>
+              <p><strong>Product:</strong> Discovery, journey mapping, prototyping, workflow automation, API integration, AI agents, prioritization.</p>
+              <p><strong>Tools:</strong> HTML/CSS, Python, GitHub, Figma, Adobe Creative Suite, Google Workspace.</p>
               <p><strong>Languages:</strong> English (fluent), Spanish (native).</p>
             </section>
             <section className="nt-resume-group"><h4>Education & training</h4>
-              <p>Dunwoody College of Technology · Electronics Technology Certificate (2024–2025)<br/>Masterschool · Cybersecurity Bootcamp (2023–2024)</p>
+              <p>Dunwoody College of Technology · Electronics Technology Certificate (2024-2025)<br/>Masterschool · Cybersecurity Bootcamp (2023-2024)</p>
             </section>
             <section className="nt-resume-group"><h4>Portfolio</h4>
               <p>sergiopineros.com/notion · sergiopineros.com · nxtseat.co · savronmn.com</p>
             </section>
-            <p className="nt-resume-disclaimer">Results describe collaborative client work. The demo uses illustrative metrics.</p>
+            <p className="nt-resume-disclaimer">Client results reflect team work. The interactive demo uses sample data.</p>
           </article>
         </div>
       </div>
