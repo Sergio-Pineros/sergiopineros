@@ -1,8 +1,14 @@
 "use client";
-import {useEffect,useState} from "react";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import {
+  ArrowDown, ArrowRight, ArrowUpRight, Check, ChevronDown, ChevronRight,
+  Focus, Menu, X, Sparkles, BookOpenText, Database, FilePlus2,
+  AudioLines, Lightbulb, ChartNoAxesCombined, ShieldCheck, Target,
+  Workflow, UserRoundCheck
+} from "lucide-react";
 import ApplicationDoc from "./ApplicationDoc";
-import {ArrowDown, ArrowRight, ArrowUpRight, Check, ChevronRight, Focus, Menu, Minus, Plus, Sparkles, X, Lightbulb, ChartNoAxesCombined, WandSparkles} from "lucide-react";
 
 type Decision = "scale" | "iterate" | "stop";
 type Experiment = {
@@ -21,176 +27,276 @@ type Experiment = {
 
 const experiments: Experiment[] = [
   {
-    id: "A01", channel: "Meta", name: "First value, faster",
-    hypothesis: "Showing a complete team workflow before signup might help new users reach their first useful moment faster.",
-    metric: "Activated-user rate", result: "+12.4%",
-    context: "The sample shows an activation lift. We still need to check the sample size and where those users came from.",
-    decision: "iterate", verdict: "Let's test this with another cohort before increasing the budget.",
-    next: "Run it again with a longer measurement window and separate activation cohorts.",
-    guardrail: "Check tracking quality and incrementality before increasing spend."
+    id: "A01", channel: "Paid social", name: "First value, faster",
+    hypothesis: "Would a complete example workspace help new users reach their first meaningful action?",
+    metric: "Activation rate", result: "+12.4%",
+    context: "The example shows higher activation. We would check cohort quality, tracking and sample size before making a decision.",
+    decision: "iterate",
+    verdict: "The early signal is worth another test. I'd run it with a longer measurement window.",
+    next: "Repeat with segmented new-user cohorts. Review activation quality and incrementality.",
+    guardrail: "Keep spending steady until the activation lift is validated."
   },
   {
-    id: "B02", channel: "LinkedIn", name: "From feature to outcome",
-    hypothesis: "A campaign showing a real team workflow might bring in more qualified trials.",
+    id: "B02", channel: "LinkedIn", name: "Show a real team workflow",
+    hypothesis: "Could showing how a team uses Notion bring in more qualified trials?",
     metric: "Qualified trial rate", result: "+18.2%",
-    context: "The sample shows more qualified trials across two cohorts, with a steady acquisition cost.",
-    decision: "scale", verdict: "The early signal looks promising. I'd try a small budget increase and keep a holdout group.",
-    next: "Increase the budget in steps and review trial quality and creative fatigue.",
-    guardrail: "Set a cost-per-qualified-trial limit with the team before launching."
+    context: "The example shows stronger trial quality across two cohorts and a stable cost per qualified trial.",
+    decision: "scale",
+    verdict: "I'd expand this gradually and keep a holdout to measure impact.",
+    next: "Increase the budget in stages, track qualified trials and review creative fatigue.",
+    guardrail: "Agree on a cost-per-qualified-trial threshold before increasing spend."
   },
   {
-    id: "C03", channel: "Google", name: "A narrower intent signal",
-    hypothesis: "Testing a new audience and ad combination might help us reach people with clearer intent.",
+    id: "C03", channel: "Search", name: "Narrower search intent",
+    hypothesis: "Could a more specific search audience lower the cost of activating new users?",
     metric: "Cost per activated user", result: "+27.0%",
-    context: "In this sample, cost went up and activation stayed about the same.",
-    decision: "stop", verdict: "I'd stop this version and save what we learned for the next test.",
-    next: "Write down the result and move the budget to the next idea.",
-    guardrail: "Keep the control results and give the agent access to the experiment notes."
+    context: "The example shows rising cost with no meaningful change in activation.",
+    decision: "stop",
+    verdict: "I'd end this variant, document the result and move the budget to the next test.",
+    next: "Save the negative result in the experiments database so future work can reference it.",
+    guardrail: "Keep control results and attribution notes attached to the experiment."
   }
 ];
 
-const decisionLabels: Record<Decision, string> = {
-  scale: "Scale carefully", iterate: "Iterate", stop: "Stop"
+const decisionLabels: Record<Decision,string> = {
+  scale: "Consider scaling", iterate: "Test again", stop: "Stop this variant"
 };
 
 export default function NotionExperience() {
- const [selected,setSelected]=useState(0);
- const [focus,setFocus]=useState(false);
- const [showReasoning,setShowReasoning]=useState(true);
- const [applicationOpen,setApplicationOpen]=useState(false);
- const [mobileMenu,setMobileMenu]=useState(false);
- const experiment=experiments[selected];
+  const [selected, setSelected] = useState(0);
+  const [focus, setFocus] = useState(false);
+  const [reasoning, setReasoning] = useState(false);
+  const [applicationOpen, setApplicationOpen] = useState(false);
+  const [mobileMenu, setMobileMenu] = useState(false);
+  const current = experiments[selected];
 
+  useEffect(() => {
+    const sync = () => setApplicationOpen(["#application","#cover-letter","#resume"].includes(window.location.hash));
+    sync();
+    window.addEventListener("hashchange", sync);
+    return () => window.removeEventListener("hashchange", sync);
+  }, []);
 
- useEffect(()=>{
-  const sync=()=>setApplicationOpen(["#application","#cover-letter","#resume"].includes(window.location.hash));
-  sync();window.addEventListener("hashchange",sync);
-  return ()=>window.removeEventListener("hashchange",sync);
- },[]);
- useEffect(()=>{
-  if(!applicationOpen)return;
-  const previous=document.body.style.overflow;
-  document.body.style.overflow="hidden";
-  const esc=(ev:KeyboardEvent)=>{if(ev.key==="Escape"){history.replaceState(null,"",window.location.pathname);setApplicationOpen(false)}};
-  window.addEventListener("keydown",esc);
-  return ()=>{document.body.style.overflow=previous;window.removeEventListener("keydown",esc)};
- },[applicationOpen]);
- const closeDoc=()=>{history.replaceState(null,"",window.location.pathname);setApplicationOpen(false)};
+  useEffect(() => {
+    if (!applicationOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        history.replaceState(null, "", window.location.pathname);
+        setApplicationOpen(false);
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previous;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [applicationOpen]);
 
- return <div className="nt-app" id="top">
-  <a className="nt-skip" href="#demo">Skip to the demo</a>
-  <header className="nt-header">
-    <div className="nt-container nt-nav-row">
-      <div className="nt-logos" aria-label="Notion application by Sergio Piñeros">
-        <a href="https://www.notion.com/product" target="_blank" rel="noopener noreferrer" className="nt-logo-link" aria-label="Notion product site"><img src="https://www.notion.com/front-static/favicon.ico" width="32" height="32" alt="Notion logo"/></a>
-        <span className="nt-multiply" aria-hidden="true">×</span>
-        <Link href="/" className="nt-logo-link nt-logo-personal" aria-label="Sergio Piñeros portfolio"><img src="/icon.svg" alt="Sergio Piñeros personal mark" width="34" height="34" /></Link>
-        <span className="nt-nav-label">A little idea I wanted to try</span>
+  const closeApplication = () => {
+    history.replaceState(null, "", window.location.pathname);
+    setApplicationOpen(false);
+  };
+
+  return <div className="nt-app" id="top">
+    <a className="nt-skip" href="#feature">Skip to the feature</a>
+    <header className="nt-header">
+      <div className="nt-container nt-nav-row">
+        <div className="nt-logos">
+          <a href="https://www.notion.com/product" target="_blank" rel="noopener noreferrer" className="nt-logo-link" aria-label="Visit Notion">
+            <img src="https://www.notion.com/front-static/favicon.ico" width="36" height="36" alt="Notion logo" />
+          </a>
+          <span className="nt-multiply" aria-hidden="true">×</span>
+          <Link href="/" className="nt-logo-link nt-logo-personal" aria-label="Sergio Piñeros portfolio">
+            <img src="/icon.svg" alt="Sergio Piñeros logo" width="36" height="36" />
+          </Link>
+        </div>
+        <button className="nt-menu-toggle" type="button" onClick={() => setMobileMenu(!mobileMenu)} aria-label="Toggle menu" aria-expanded={mobileMenu}>
+          {mobileMenu ? <X size={22}/> : <Menu size={22}/>}
+        </button>
+        <nav className={mobileMenu ? "nt-nav nt-nav-show" : "nt-nav"} aria-label="Page navigation">
+          <a href="#feature" onClick={() => setMobileMenu(false)}>The feature</a>
+          <a href="#growth" onClick={() => setMobileMenu(false)}>Growth use case</a>
+          <a href="#me" onClick={() => setMobileMenu(false)}>About me</a>
+          <a className="nt-top-cta" href="#application" onClick={() => setMobileMenu(false)}>Application <ArrowUpRight size={19}/></a>
+        </nav>
       </div>
-      <button type="button" className="nt-menu-toggle" aria-expanded={mobileMenu} aria-label="Toggle navigation" onClick={()=>setMobileMenu(!mobileMenu)}>{mobileMenu?<X size={21}/>:<Menu size={21}/>}</button>
-      <nav className={mobileMenu?"nt-nav nt-nav-show":"nt-nav"} aria-label="Page">
-       <a href="#idea" onClick={()=>setMobileMenu(false)}>The thought</a>
-       <a href="#demo" onClick={()=>setMobileMenu(false)}>The prototype</a>
-       <a href="#me" onClick={()=>setMobileMenu(false)}>The human</a>
-       <a href="#application" className="nt-top-cta" onClick={()=>setMobileMenu(false)}>Application <ArrowUpRight size={15}/></a>
-      </nav>
-    </div>
-  </header>
+    </header>
 
-  <main>
-    <section className="nt-hero">
-      <div className="nt-container nt-hero-content">
-        <div className="nt-doodle-row" aria-hidden="true">
-          <span className="nt-doodle nt-doodle-blue"><ChartNoAxesCombined size={29} strokeWidth={2.3}/></span>
-          <span className="nt-doodle nt-doodle-white"><Lightbulb size={32} strokeWidth={2.3}/></span>
-          <span className="nt-doodle nt-doodle-orange"><Sparkles size={28} strokeWidth={2.3}/></span>
-          <span className="nt-doodle nt-doodle-yellow"><WandSparkles size={30} strokeWidth={2.3}/></span>
-        </div>
-        <p className="nt-overline">A small product idea for Notion</p>
-        <h1>Make every<br/>experiment <em>count.</em></h1>
-        <p className="nt-intro">I kept thinking about what happens after a growth experiment ends. So I built a little idea around it.</p>
-        <div className="nt-hero-actions">
-          <a className="nt-button nt-button-blue" href="#demo">Try the prototype <ArrowRight size={16}/></a>
-          <a className="nt-button nt-button-outline" href="#me">Why me? <ArrowDown size={16}/></a>
-        </div>
-      </div>
-      <div className="nt-hero-bottom">An independent concept · Notion AI Product Manager, Growth Marketing</div>
-    </section>
-
-    <section id="idea" className="nt-idea">
-      <div className="nt-container nt-idea-inner">
-        <div className="nt-idea-note"><span className="nt-note-star">✳</span><span>THE IDEA</span></div>
-        <div>
-          <h2>What did we learn?<br/>What should we try next?<br/><span>Keep the answers<br/>in one place.</span></h2>
-          <p>An agent gathers the clues. The team can see the evidence and choose what to do next.</p>
-          <div className="nt-three"><span><i>↗</i> Spot the signal</span><span><i>✳</i> Make the decision</span><span><i>✓</i> Save the learning</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="demo" className="nt-demo">
-      <div className="nt-container">
-        <div className="nt-demo-head">
-          <div><div className="nt-section-eyebrow">A TINY WORKING PROTOTYPE</div><h2>Okay. Your move.</h2></div>
-          <p>Choose a sample experiment to see what the agent suggests. I made up the numbers for the demo.</p>
-        </div>
-        <div className={focus?"nt-workspace nt-focused":"nt-workspace"}>
-          <div className="nt-workspace-top">
-            <div className="nt-ws-path"><img src="https://www.notion.com/front-static/favicon.ico" alt="Notion logo" width="19" height="19"/><span>Growth lab</span><ChevronRight size={13}/><strong>Experiments</strong></div>
-            <button className="nt-focus" type="button" aria-pressed={focus} onClick={()=>setFocus(!focus)}><Focus size={15}/>{focus?"Exit focus":"Focus mode"}</button>
+    <main>
+      <section className="nt-hero">
+        <div className="nt-container nt-hero-grid">
+          <div className="nt-hero-content">
+            <div className="nt-doodle-row" aria-hidden="true">
+              <span className="nt-doodle nt-doodle-blue"><Lightbulb size={30}/></span>
+              <span className="nt-doodle nt-doodle-orange"><Database size={30}/></span>
+              <span className="nt-doodle nt-doodle-yellow"><Sparkles size={30}/></span>
+            </div>
+            <h1>Experiments,<br/><em>built into Notion.</em></h1>
+            <p className="nt-intro">Imagine a Notion feature that turns ideas, meeting notes, and linked data into experiments your whole team can follow. A clear question, one next step, and a record of what worked.</p>
+            <div className="nt-hero-actions">
+              <a className="nt-button nt-button-dark" href="#feature">Explore the feature <ArrowDown size={20}/></a>
+              <a className="nt-button nt-button-outline" href="#growth">See it for growth <ArrowRight size={20}/></a>
+            </div>
           </div>
-          <div className="nt-workspace-body">
-            {!focus&&<aside className="nt-sidebar">
-              <div className="nt-sidebar-title">Experiments <span>03</span></div>
-              {experiments.map((item,i)=><button key={item.id} type="button" className={selected===i?"nt-exp nt-exp-active":"nt-exp"} aria-pressed={selected===i} onClick={()=>setSelected(i)}>
-                <span className="nt-exp-icon">{i===0?"✳":i===1?"↗":"□"}</span>
-                <span><strong>{item.name}</strong><small>{item.channel} · {item.id}</small></span>
-              </button>)}
-              <div className="nt-sidebar-foot">✦ Agent-assisted · Human-approved</div>
-            </aside>}
-            <article className="nt-readout" key={experiment.id}>
-              <div className="nt-readout-overline">EXPERIMENT {experiment.id} <span>·</span> {experiment.channel}</div>
-              <h3>{experiment.name}</h3>
-              <p className="nt-question">{experiment.hypothesis}</p>
-              <div className="nt-metrics">
-                <div><span>Primary metric</span><strong>{experiment.metric}</strong></div>
-                <div><span>Illustrative delta</span><strong>{experiment.result}</strong></div>
+          <div className="nt-hero-art" aria-label="Conceptual Notion Experiments page with an experiment connected to meeting notes and database">
+            <div className="nt-art-page">
+              <div className="nt-art-breadcrumb"><img src="https://www.notion.com/front-static/favicon.ico" alt="" width="24" height="24"/> Workspace <ChevronRight size={17}/> Experiments</div>
+              <div className="nt-art-page-icon"><Lightbulb size={31}/></div>
+              <h2>Experiments</h2>
+              <p>What should we try next?</p>
+              <div className="nt-art-question"><span className="nt-art-check"><Check size={19}/></span> Will a guided first project improve activation?</div>
+              <div className="nt-art-grid">
+                <div><BookOpenText size={20}/><span>Linked meeting notes</span></div>
+                <div><Database size={20}/><span>Experiment database</span></div>
+                <div><FilePlus2 size={20}/><span>Agent-created page</span></div>
               </div>
-              <div className={"nt-verdict nt-verdict-"+experiment.decision}>
-                <div className="nt-verdict-top"><span className="nt-verdict-icon">{experiment.decision==="scale"?"↗":experiment.decision==="stop"?"×":"✳"}</span><strong>{decisionLabels[experiment.decision]}</strong><span className="nt-agent-label">AI SUGGESTION</span></div>
-                <p>{experiment.verdict}</p>
-              </div>
-              <button className="nt-expand" type="button" aria-expanded={showReasoning} onClick={()=>setShowReasoning(!showReasoning)}><Sparkles size={15}/> Why this recommendation? {showReasoning?<Minus size={15}/>:<Plus size={15}/>}</button>
-              {showReasoning&&<div className="nt-reason"><div><span>EVIDENCE</span><p>{experiment.context}</p></div><div><span>GUARDRAIL</span><p>{experiment.guardrail}</p></div></div>}
-              <div className="nt-next"><Check size={17}/><p><strong>Next:</strong> {experiment.next}</p></div>
+              <div className="nt-art-bottom"><span className="nt-art-status"><span className="nt-dot"/> In review</span><span>Next: Review evidence</span></div>
+            </div>
+            <span className="nt-art-doodle nt-art-doodle-one" aria-hidden="true">✳</span>
+            <span className="nt-art-doodle nt-art-doodle-two" aria-hidden="true">✦</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="nt-feature" id="feature">
+        <div className="nt-container">
+          <div className="nt-section-header nt-feature-head">
+            <h2>Everything is already<br/><em>in your workspace.</em></h2>
+            <p>Notion has the pieces to make this possible. Experiments could connect them into a repeatable workflow, built on the pages and databases teams already use.</p>
+          </div>
+          <div className="nt-feature-grid">
+            <article className="nt-feature-card">
+              <div className="nt-feature-icon nt-icon-peach"><AudioLines size={32}/></div>
+              <h3>Capture an idea</h3>
+              <p>AI Meeting Notes can capture questions and decisions. Select an idea from a meeting and propose an experiment.</p>
+              <a href="https://www.notion.com/help/ai-meeting-notes" target="_blank" rel="noopener noreferrer">AI Meeting Notes <ArrowUpRight size={18}/></a>
+            </article>
+            <article className="nt-feature-card">
+              <div className="nt-feature-icon nt-icon-blue"><Database size={32}/></div>
+              <h3>Give it structure</h3>
+              <p>Store the hypothesis, owner, metric, source material, and status in a Notion database. Every test stays connected.</p>
+              <a href="https://www.notion.com/help/create-a-database" target="_blank" rel="noopener noreferrer">Notion databases <ArrowUpRight size={18}/></a>
+            </article>
+            <article className="nt-feature-card">
+              <div className="nt-feature-icon nt-icon-purple"><FilePlus2 size={32}/></div>
+              <h3>Make a working page</h3>
+              <p>Notion Agent could draft an experiment page, organize the next actions, and update the record as the team learns.</p>
+              <a href="https://www.notion.com/help/notion-agent" target="_blank" rel="noopener noreferrer">Notion Agent <ArrowUpRight size={18}/></a>
             </article>
           </div>
-          <div className="nt-workspace-bottom"><span>● Sample data for this concept</span><span>Human approval required before any action</span></div>
+          <div className="nt-feature-bridge">
+            <div className="nt-bridge-mark"><Workflow size={31}/></div>
+            <p><strong>One connected flow:</strong> Meeting insight <ArrowRight size={18}/> Experiment page <ArrowRight size={18}/> Evidence <ArrowRight size={18}/> Decision saved.</p>
+          </div>
         </div>
-        <p className="nt-demo-outro">A quieter place to think through a decision.</p>
-      </div>
-    </section>
+      </section>
 
-    <section id="me" className="nt-me">
-      <div className="nt-container nt-me-layout">
-        <div className="nt-me-copy">
-          <div className="nt-section-eyebrow">A LITTLE ABOUT ME</div>
-          <h2>I like making<br/>complex things<br/><em>feel simple.</em></h2>
-          <p>I&apos;m Sergio. I started in marketing for small businesses, then got curious about building the software behind their day-to-day work. Lately, I&apos;ve been experimenting with AI agents.</p>
-          <div className="nt-me-actions"><a className="nt-button nt-button-white" href="#application">Cover letter + résumé <ArrowUpRight size={16}/></a><a className="nt-button nt-button-line" href="https://www.linkedin.com/in/sergio-pineros-c/" target="_blank" rel="noopener noreferrer">LinkedIn <ArrowUpRight size={16}/></a></div>
+      <section className="nt-focus-story">
+        <div className="nt-container nt-focus-grid">
+          <div className="nt-focus-copy">
+            <h2>Built for the way<br/><em>we actually focus.</em></h2>
+            <p>Experiments could offer a calmer, ADHD-friendly way to work through complex decisions. Each page brings one question forward and keeps the supporting details close.</p>
+          </div>
+          <div className="nt-focus-principles">
+            <div><span className="nt-principle-icon"><Target size={25}/></span><div><h3>One clear question</h3><p>Lead with what the team is trying to learn and the metric that matters.</p></div></div>
+            <div><span className="nt-principle-icon"><Focus size={25}/></span><div><h3>Focus when you need it</h3><p>Hide competing experiments, then bring them back with one click.</p></div></div>
+            <div><span className="nt-principle-icon"><BookOpenText size={25}/></span><div><h3>Context on demand</h3><p>Meeting notes, past tests, and reasoning stay linked, with details you can open when you're ready.</p></div></div>
+          </div>
         </div>
-        <div className="nt-me-proof">
-          <div className="nt-me-tally"><strong>540K</strong><span>views in the first month of a client campaign</span></div>
-          <div className="nt-me-tally"><strong>4</strong><span>people on the creative team I built</span></div>
-          <div className="nt-me-tally"><strong>0 → 1</strong><span>booking and service workflows taken from idea to product</span></div>
-          <div className="nt-me-logo"><img src="/linq/sergio-co.svg" alt="Sergio & Co. logo" /></div>
+      </section>
+
+      <section className="nt-growth" id="growth">
+        <div className="nt-container">
+          <div className="nt-growth-intro">
+            <div>
+              <h2>Now, let's use it<br/><em>for growth.</em></h2>
+            </div>
+            <div>
+              <p>I'd use Experiments to connect growth conversations with acquisition and activation data. A hypothesis could move from a planning meeting into a test page, with creative, metrics, owners, and decisions in one place.</p>
+              <p>Teams could add results from connected tools or imported reports, and use Notion Agent to help summarize the evidence. Budget changes would still need human approval.</p>
+            </div>
+          </div>
+
+          <div className={focus ? "nt-workspace nt-focused" : "nt-workspace"}>
+            <div className="nt-workspace-top">
+              <div className="nt-ws-path"><img src="https://www.notion.com/front-static/favicon.ico" alt="" width="24" height="24" /><span>Growth experiments</span><ChevronRight size={19}/><strong>{current.name}</strong></div>
+              <button type="button" className="nt-focus-button" aria-pressed={focus} onClick={() => setFocus(!focus)}><Focus size={20}/>{focus ? "Show all experiments" : "Focus on this experiment"}</button>
+            </div>
+            <div className="nt-workspace-body">
+              {!focus && <aside className="nt-sidebar">
+                <h3>Experiments</h3>
+                {experiments.map((item, index) =>
+                  <button key={item.id} type="button" onClick={() => { setSelected(index); setReasoning(false); }} aria-pressed={selected === index} className={selected === index ? "nt-experiment nt-experiment-selected" : "nt-experiment"}>
+                    <span className="nt-exp-symbol">{index === 0 ? <Target size={23}/> : index === 1 ? <ChartNoAxesCombined size={23}/> : <Lightbulb size={23}/>}</span>
+                    <span><strong>{item.name}</strong><span>{item.channel}</span></span>
+                    {selected === index && <Check size={20}/>}
+                  </button>
+                )}
+              </aside>}
+              <article className="nt-readout" key={current.id}>
+                <div className="nt-readout-channel">{current.channel} · Experiment {current.id}</div>
+                <h3>{current.name}</h3>
+                <p className="nt-hypothesis">{current.hypothesis}</p>
+                <div className="nt-metric-grid">
+                  <div><span>Primary metric</span><strong>{current.metric}</strong></div>
+                  <div><span>Sample result</span><strong>{current.result}</strong></div>
+                </div>
+                <div className={"nt-recommendation nt-rec-" + current.decision}>
+                  <div className="nt-rec-heading"><span><Sparkles size={22}/> Suggested next step</span><strong>{decisionLabels[current.decision]}</strong></div>
+                  <p>{current.verdict}</p>
+                </div>
+                <button className="nt-reason-toggle" aria-expanded={reasoning} type="button" onClick={() => setReasoning(!reasoning)}>
+                  <BookOpenText size={22}/> {reasoning ? "Hide the evidence" : "Review the evidence and safeguards"} <ChevronDown size={22} className={reasoning ? "nt-chevron-open" : ""}/>
+                </button>
+                {reasoning && <div className="nt-reason-grid">
+                  <div><h4>Evidence to review</h4><p>{current.context}</p></div>
+                  <div><h4>Guardrail</h4><p>{current.guardrail}</p></div>
+                </div>}
+                <div className="nt-next-step"><Check size={22}/><div><strong>What I'd do next</strong><p>{current.next}</p></div></div>
+              </article>
+            </div>
+          </div>
+          <p className="nt-demo-note">This is a working UI prototype with fictional results. The suggestions are examples, and the concept is not a released Notion feature.</p>
+          <div className="nt-growth-elsewhere"><h3>And it works beyond growth.</h3><p>Product teams could test onboarding changes. Researchers could compare approaches. Operations teams could review process improvements. Every experiment has a question, evidence, and a decision the team can revisit.</p></div>
         </div>
-      </div>
-    </section>
-  </main>
+      </section>
 
-  <footer className="nt-footer"><div className="nt-container nt-footer-inside"><span>An independent application by Sergio. Demo numbers are illustrative. Not affiliated with Notion.</span><a href="https://www.linkedin.com/in/sergio-pineros-c/" target="_blank" rel="noopener noreferrer">LinkedIn <ArrowUpRight size={14}/></a></div></footer>
-
-      {applicationOpen && <ApplicationDoc onClose={closeDoc}/>}
- </div>;
+      <section className="nt-about" id="me">
+        <div className="nt-container">
+          <div className="nt-about-head">
+            <div>
+              <h2>A bit about me.</h2>
+              <p>I'm Sergio, a founder who works across growth, product, and creative execution. My experience comes from building with small businesses, running campaigns, and developing software around real customer needs.</p>
+            </div>
+            <div className="nt-about-links">
+              <a className="nt-button nt-button-white" href="#application">Cover letter + résumé <ArrowUpRight size={20}/></a>
+              <a className="nt-button nt-button-border" href="https://www.linkedin.com/in/sergio-pineros-c/" target="_blank" rel="noopener noreferrer">LinkedIn <ArrowUpRight size={20}/></a>
+            </div>
+          </div>
+          <div className="nt-experience">
+            <article>
+              <div className="nt-exp-glyph"><ChartNoAxesCombined size={30}/></div>
+              <div><h3>Growth strategy and measurement</h3><p>I founded Fofo Labs, built a four-person creative team, and worked with small businesses on campaigns, content, and performance. A La Estancia Steakhouse campaign reached about <strong>540K TikTok views and 1,200+ followers</strong> in its first month.</p></div>
+            </article>
+            <article>
+              <div className="nt-exp-glyph"><Database size={30}/></div>
+              <div><h3>Product development with real operators</h3><p>With SAVRON and NxtSeat, I've built booking, staff, membership, and customer communication workflows. I've also piloted bilingual AI voice assistance, working closely with the teams using these systems.</p></div>
+            </article>
+            <article>
+              <div className="nt-exp-glyph"><UserRoundCheck size={30}/></div>
+              <div><h3>From insight to working prototype</h3><p>Through Sergio & Co., I combine discovery, creative direction, design, and development. I work with HTML, CSS, Python, marketing tools, and AI systems. This experiment concept shows how I approach an unfamiliar product problem.</p></div>
+            </article>
+          </div>
+          <div className="nt-about-end">
+            <img src="/linq/sergio-co.svg" alt="Sergio & Co. logo" width="185" height="44"/>
+            <a href="#application">Read my application <ArrowRight size={23}/></a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer className="nt-footer"><div className="nt-container"><Link href="/" aria-label="Sergio Piñeros portfolio"><img src="/icon.svg" alt="Sergio Piñeros logo" width="38" height="38"/></Link><a href="#top">Back to top <ArrowUpRight size={20}/></a></div></footer>
+    {applicationOpen && <ApplicationDoc onClose={closeApplication}/>}
+  </div>;
 }
