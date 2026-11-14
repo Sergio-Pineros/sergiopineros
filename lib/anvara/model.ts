@@ -70,5 +70,5 @@ export function match(c: Campaign, s: Sponsorship) {
   };
 }
 export function makeBrief(c: Campaign, s: Sponsorship, notes: string) {
-  return `Campaign inquiry: ${s.name}\n\nGoal: ${c.goal}\nAudience: ${c.audience}\nMarket: ${c.location}\nBudget ceiling: $${c.budget.toLocaleString()}\nIllustrative package: $${s.cost.toLocaleString()}: ${s.inventory}\n\nTiming and requirements: ${notes.trim()}\n\nPlease confirm availability, audience evidence, inclusions, category restrictions and the next step.\n\nFictional prototype. No inquiry has been sent.`;
+  return `Offer draft: ${s.name}\n\nGoal: ${c.goal}\nAudience: ${c.audience}\nMarket: ${c.location}\nBudget ceiling: $${c.budget.toLocaleString()}\nIllustrative package: $${s.cost.toLocaleString()}: ${s.inventory}\n\nTiming and requirements: ${notes.trim()}\n\nPlease confirm availability, audience evidence, inclusions, category restrictions and the next step.\n\nFictional prototype. No offer has been submitted.`;
 }

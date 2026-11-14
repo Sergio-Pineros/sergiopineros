@@ -148,14 +148,7 @@ function Marketplace({
           )}
         </group>
       ))}
-      {!coherent && <>
-        <Html position={[-separation, -1.65, 0]} center>
-          <span className="av-scene-label"><span className="av-blue-dot" /> BRAND HOLDERS</span>
-        </Html>
-        <Html position={[separation, -1.65, 0]} center>
-          <span className="av-scene-label"><span className="av-violet-dot" /> RIGHTSHOLDERS</span>
-        </Html>
-      </>}
+
     </group>
   );
 }

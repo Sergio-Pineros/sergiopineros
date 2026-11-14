@@ -1024,3 +1024,8 @@
 .av-feature-dialog .av-section-intro h2 { font-size: clamp(30px, 3.3vw, 44px); }
 .av-feature-dialog .av-section-intro .av-kicker { margin-bottom: 12px; }
 .av-experience-photos figcaption { font-size: 15px; }
+
+.av-hero-market-labels { position:absolute; z-index:4; left:15%; right:15%; bottom:4%; display:flex; justify-content:space-around; gap:12px; pointer-events:none; color:#596a89; font-size:15px; letter-spacing:.1em; }
+.av-hero-market-labels span:last-child { color:#7653c5; }
+@media(max-width:600px) { .av-hero-market-labels { left:8%; right:8%; bottom:0; font-size:12px; letter-spacing:.04em; } }
+.av-inquiry-editor input { width:100%; padding:12px; border:1px solid #d8dfed; border-radius:8px; font:inherit; }

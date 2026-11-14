@@ -403,16 +403,16 @@ export const sponsorships: Sponsorship[] = [
 export const experiments = [
   {
     id: "match",
-    title: "Match confidence",
+    title: "Match details",
     question:
-      "Would showing why a match fits help brands send better inquiries?",
+      "Would clearer match details help brands move toward an offer?",
     problem: "A brand may see a recommended listing without knowing why it fits their campaign.",
     hypothesis:
-      "If we show how the audience, budget and location fit and flag a limitation, more brands may send inquiries that rightsholders consider relevant.",
+      "If brands can see the audience, price and location alongside missing evidence, they may reach a decision and prepare an offer faster.",
     measurement:
-      "Compare the share of brands that send a qualified inquiry within 14 days, with and without the explanation. Ask rightsholders whether those inquiries are relevant.",
+      "Compare time from viewing a listing to a qualified offer and the share of buyers who make one. Check whether rightsholders consider those offers relevant.",
     decision:
-      "Consider expanding if more brands send qualified inquiries without lowering their relevance to rightsholders. Agree on a meaningful target and sample size with the team before the test.",
+      "Consider expanding if buyers reach qualified offers faster without lowering their relevance to rightsholders. Set a target and sample size with the team before testing.",
     method:
       "First ask brands to explain why they would choose a match. If the explanation helps, compare it with the current experience. Define a qualified inquiry with the team and follow each campaign for 14 days; check the sample size before drawing conclusions.",
   },

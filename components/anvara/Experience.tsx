@@ -153,6 +153,7 @@ function Hero() {
       </motion.div>
       <div className="av-hero-spatial">
         <Scene variant="hero" />
+        <div className="av-hero-market-labels" aria-label="Brands and rightsholders"><span>● BRAND HOLDERS</span><span>● RIGHTSHOLDERS</span></div>
       </div>
     </section>
   );

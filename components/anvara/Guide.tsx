@@ -7,7 +7,7 @@ import { createPortal } from "react-dom";
 const steps = [
   { target: "#marketplace .av-section-intro", label: "THE MARKETPLACE", title: "Two sides, one deal", text: "Brands need to find a good fit. Rightsholders need the right context to respond. Both sides shape the experience." },
   { target: ".av-campaign", label: "THE PROTOTYPE", title: "Start with a campaign", text: "Choose a budget, audience, location and goal. The sample opportunities update as you go." },
-  { target: ".av-match-explanation", label: "THE IDEA", title: "Look beyond the score", text: "See which campaign details match and what to check before reaching out. Shortlist or compare the options that interest you." },
+  { target: ".av-match-explanation", label: "THE IDEA", title: "Check the details", text: "See which campaign details match and what to check before reaching out. Shortlist or compare the options that interest you." },
   { target: "#about-sergio h2", label: "WHY THIS MATTERS TO ME", title: "From experience to product", text: "My work with artists, events and small businesses is why I care about what happens after an introduction." },
   { target: "#deeper-exploration .av-deeper-intro", label: "GO DEEPER", title: "Explore the thinking", text: "Open the feature matrix or explore the journey, measurement plan and working spec." },
 ];
@@ -19,6 +19,11 @@ export default function Guide() {
   const panel = useRef<HTMLDivElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
   const { setLab } = useExploration();
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => { setLab("match"); setStep(0); }, 3000);
+    return () => window.clearTimeout(timer);
+  }, [setLab]);
 
   useEffect(() => {
     if (step === null) return;

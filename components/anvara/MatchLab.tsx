@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { Bookmark, Check, Copy, Send, SlidersHorizontal } from "lucide-react";
+import { Bookmark, Check, Copy, SlidersHorizontal } from "lucide-react";
 import { experiments, sponsorships } from "@/lib/anvara/data";
 import { makeBrief, match } from "@/lib/anvara/model";
 import { useExploration } from "./State";
@@ -21,6 +21,7 @@ export default function MatchLab() {
   const [compare, setCompare] = useState(false);
   const [pair, setPair] = useState<string[]>([]);
   const [notes, setNotes] = useState("");
+  const [offerAmount, setOfferAmount] = useState("");
   const [draft, setDraft] = useState("");
   const [view, setView] = useState<"brand" | "rightsholder">("brand");
   const [copied, setCopied] = useState(false);
@@ -219,9 +220,7 @@ export default function MatchLab() {
                       </select>
                     </label>
                     <p className="av-footnote">
-                      A transparent rule-based illustration: audience 30 +
-                      budget 25 + goal 25 + market 20. This is not Anvara’s AI
-                      or a predicted outcome.
+                      Sample listings use fictional data. Audience details are organizer supplied and unverified.
                     </p>
                   </aside>
                   <div className="av-results">
@@ -286,7 +285,7 @@ export default function MatchLab() {
                                   {money(s.cost)}{" "}
                                   <em>
                                     {s.eligible
-                                      ? `${s.score}/100 illustrative fit`
+                                      ? "Within budget"
                                       : "Over budget"}
                                   </em>
                                 </span>
@@ -325,10 +324,7 @@ export default function MatchLab() {
                         <span className="av-mini-label">
                           WHY {chosen.name.toUpperCase()}?
                         </span>
-                        <strong>
-                          {chosen.score}
-                          <small>/100</small>
-                        </strong>
+                        <strong>Campaign details</strong>
                       </div>
                       <div className="av-fit-signals">
                         {chosen.parts.map((p) => (
@@ -348,7 +344,7 @@ export default function MatchLab() {
                         ))}
                       </div>
                       <p className="av-tradeoff">
-                        <strong>The trade-off</strong>
+                        <strong>What to verify</strong>
                         {chosen.tradeoff}
                       </p>
                     </div>
@@ -368,7 +364,7 @@ export default function MatchLab() {
                         disabled={!chosen.eligible}
                         onClick={prepare}
                       >
-                        Prepare inquiry
+                        Prepare an offer
                       </button>
                     </div>
                     {!chosen.eligible && (
@@ -396,8 +392,7 @@ export default function MatchLab() {
                       a clear starting point.
                     </h4>
                     <p>
-                      Prepare a draft for <strong>{chosen.name}</strong>. This
-                      stays in the prototype; nothing is sent.
+                      Review the package and prepare an offer for <strong>{chosen.name}</strong>. The draft stays here; nothing is sent.
                     </p>
                     <div className="av-toggle">
                       <button
@@ -446,6 +441,8 @@ export default function MatchLab() {
                         <span className="av-mini-label">
                           YOUR BRIEF / {chosen.name}
                         </span>
+                        <label htmlFor="av-offer-amount">Proposed offer ($)</label>
+                        <input id="av-offer-amount" type="number" min="1" max={campaign.budget} value={offerAmount} onChange={(e) => { setOfferAmount(e.target.value); setDraft(""); }} placeholder={String(chosen.cost)} />
                         <label htmlFor="av-inquiry-notes">
                           Timing, activation needs & constraints
                         </label>
@@ -467,14 +464,14 @@ export default function MatchLab() {
                         <button
                           className="av-button av-button-dark"
                           disabled={
-                            notes.trim().length < 20 || !chosen.eligible
+                            notes.trim().length < 20 || !chosen.eligible || !Number(offerAmount) || Number(offerAmount) > campaign.budget || Number(offerAmount) < 1
                           }
                           onClick={() => {
-                            setDraft(makeBrief(campaign, chosen, notes));
+                            setDraft(`Proposed offer: ${money(Number(offerAmount))}\n\n${makeBrief(campaign, chosen, notes)}`);
                             setCopied(false);
                           }}
                         >
-                          Generate local draft <Send size={14} />
+                          Create offer draft
                         </button>
                         {!chosen.eligible && (
                           <p role="status">
@@ -483,7 +480,7 @@ export default function MatchLab() {
                           </p>
                         )}
                         {draft &&
-                          draft === makeBrief(campaign, chosen, notes) && (
+                          draft === `Proposed offer: ${money(Number(offerAmount))}\n\n${makeBrief(campaign, chosen, notes)}` && (
                             <div className="av-generated-brief" role="status">
                               <pre>{draft}</pre>
                               <button className="av-text-button" onClick={copy}>
@@ -568,7 +565,7 @@ export default function MatchLab() {
                     </p>
                     <p>
                       These sample outcomes illustrate the reporting format.
-                      They are not a forecast from the match score.
+                      They are not a forecast of campaign performance.
                     </p>
                     <div className="av-toggle">
                       <button
@@ -727,8 +724,8 @@ export default function MatchLab() {
                         values: comparisons.map((s) => s.location),
                       },
                       {
-                        label: "Illustrative fit",
-                        values: comparisons.map((s) => `${s.score}/100`),
+                        label: "Audience evidence",
+                        values: comparisons.map(() => "Organizer supplied; unverified"),
                       },
                       {
                         label: "Included inventory",

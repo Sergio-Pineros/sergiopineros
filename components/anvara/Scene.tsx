@@ -31,7 +31,7 @@ class SceneBoundary extends Component<
     return this.state.failed ? this.props.fallback : this.props.children;
   }
 }
-function NetworkFallback({ closing = false }: { closing?: boolean }) {
+function NetworkFallback() {
   return (
     <div
       className="av-network-fallback"
@@ -59,7 +59,6 @@ function NetworkFallback({ closing = false }: { closing?: boolean }) {
         ))}
       </svg>
       <i />
-      {!closing && <div className="av-fallback-labels"><span>● BRAND HOLDERS</span><span>● RIGHTSHOLDERS</span></div>}
     </div>
   );
 }
@@ -120,7 +119,7 @@ export default function Scene(props: ComponentProps<typeof SpatialScene>) {
                 flat={props.flat}
               />
             ) : (
-              <NetworkFallback closing={props.variant === "closing"} />
+              <NetworkFallback />
             )
           }
         >
@@ -136,7 +135,7 @@ export default function Scene(props: ComponentProps<typeof SpatialScene>) {
           flat={props.flat}
         />
       ) : (
-        <NetworkFallback closing={props.variant === "closing"} />
+        <NetworkFallback />
       )}
     </div>
   );
