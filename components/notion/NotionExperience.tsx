@@ -160,7 +160,7 @@ export default function NotionExperience() {
             <div className="nt-art-window">
               <div className="nt-art-top"><span>✳ Growth / Experiments</span><span>•••</span></div>
               <div className="nt-art-title"><span>Good questions.</span><strong>Clear next steps.</strong></div>
-              <div className="nt-art-block"><span className="nt-art-bullet">✓</span> What's changing?</div>
+              <div className="nt-art-block"><span className="nt-art-bullet">✓</span> What&apos;s changing?</div>
               <div className="nt-art-block"><span className="nt-art-bullet">↗</span> Why might it matter?</div>
               <div className="nt-art-block nt-art-last"><span className="nt-art-bullet">✦</span> What should we try next?</div>
             </div>
