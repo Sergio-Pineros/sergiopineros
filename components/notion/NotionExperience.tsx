@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import {
   Check,
@@ -69,6 +69,18 @@ export default function NotionExperience() {
   const [applicationOpen, setApplicationOpen] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
   const current = experiments[selected];
+  const timelineRef = useRef<HTMLElement | null>(null);
+  const [timelineVisible, setTimelineVisible] = useState(false);
+
+  useEffect(() => {
+    const target = timelineRef.current;
+    if (!target) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setTimelineVisible(true); observer.disconnect(); }
+    }, { threshold: 0.12 });
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const sync = () => setApplicationOpen(["#application","#cover-letter","#resume"].includes(window.location.hash));
@@ -118,6 +130,7 @@ export default function NotionExperience() {
         <nav className={mobileMenu ? "nt-nav nt-nav-show" : "nt-nav"} aria-label="Page navigation">
           <a href="#feature" onClick={() => setMobileMenu(false)}>The feature</a>
           <a href="#growth" onClick={() => setMobileMenu(false)}>Growth use case</a>
+          <a href="#implementation" onClick={() => setMobileMenu(false)}>Implementation</a>
           <a href="#me" onClick={() => setMobileMenu(false)}>About me</a>
           <a className="nt-top-cta" href="#application" onClick={() => setMobileMenu(false)}>Application</a>
         </nav>
@@ -134,7 +147,7 @@ export default function NotionExperience() {
               <span className="nt-doodle nt-doodle-yellow"><Sparkles size={30}/></span>
             </div>
             <h1>Experiments,<br/><em>built into Notion.</em></h1>
-            <p className="nt-intro">Imagine a Notion feature that turns ideas, meeting notes, and linked data into experiments your whole team can follow. A clear question, one next step, and a record of what worked.</p>
+            <p className="nt-intro">Create experiments from meeting notes and workspace pages. Connect campaign results, review AI-assisted recommendations, and keep every decision in Notion.</p>
             <div className="nt-hero-actions">
               <a className="nt-button nt-button-dark" href="#feature">Explore the feature</a>
               <a className="nt-button nt-button-outline" href="#growth">See it for growth</a>
@@ -163,8 +176,8 @@ export default function NotionExperience() {
       <section className="nt-feature" id="feature">
         <div className="nt-container">
           <div className="nt-section-header nt-feature-head">
-            <h2>Everything is already<br/><em>in your workspace.</em></h2>
-            <p>Notion has the pieces to make this possible. Experiments could connect them into a repeatable workflow, built on the pages and databases teams already use.</p>
+            <h2>Create an experiment<br/><em>from any idea.</em></h2>
+            <p>Start with a meeting note or page. Set a hypothesis and success metric. Connect evidence, review the result, and save the decision in your workspace.</p>
           </div>
           <div className="nt-feature-grid">
             <article className="nt-feature-card">
@@ -211,7 +224,7 @@ export default function NotionExperience() {
         <div className="nt-container">
           <div className="nt-growth-intro">
             <div>
-              <h2>Now, let&apos;s use it<br/><em>for growth.</em></h2>
+              <h2>See what to test,<br/><em>scale, or stop.</em></h2>
             </div>
             <div>
               <p>I&apos;d use Experiments to connect growth conversations with acquisition and activation data. A hypothesis could move from a planning meeting into a test page, with creative, metrics, owners, and decisions in one place.</p>
@@ -259,7 +272,29 @@ export default function NotionExperience() {
             </div>
           </div>
           <p className="nt-demo-note">This is a working UI prototype with fictional results. The suggestions are examples, and the concept is not a released Notion feature.</p>
-          <div className="nt-growth-elsewhere"><h3>And it works beyond growth.</h3><p>Product teams could test onboarding changes. Researchers could compare approaches. Operations teams could review process improvements. Every experiment has a question, evidence, and a decision the team can revisit.</p></div>
+          <div className="nt-growth-elsewhere"><h3>Experiments across your workspace.</h3><p>Product teams could test onboarding changes. Researchers could compare approaches. Operations teams could review process improvements. Every experiment has a question, evidence, and a decision the team can revisit.</p></div>
+        </div>
+      </section>
+
+      <section ref={timelineRef} id="implementation" aria-label="Proposed feature implementation" style={{background:"#f8f7f4",padding:"clamp(72px,10vw,144px) 0"}}>
+        <div className="nt-container" style={{maxWidth:1040}}>
+          <p style={{fontSize:14,fontWeight:700,letterSpacing:".13em",textTransform:"uppercase",marginBottom:20}}>05 / A path to a native feature</p>
+          <h2 style={{fontSize:"clamp(38px,5vw,72px)",lineHeight:1.07,letterSpacing:"-.055em",maxWidth:780,marginBottom:22}}>How Experiments could live inside Notion.</h2>
+          <p style={{fontSize:"clamp(18px,2vw,23px)",lineHeight:1.5,maxWidth:700,marginBottom:64}}>A proposed implementation, starting with the pages and databases teams already use.</p>
+          <div style={{borderLeft:"2px solid #d9d5ce",marginLeft:16}}>
+            {[
+              {title:"Start with a workspace template",body:"Create an Experiments database with hypotheses, owners, metrics, evidence, and decisions."},
+              {title:"Capture experiments from pages",body:"Add a “Create experiment” action to meeting notes and workspace pages. Carry source context into the new experiment."},
+              {title:"Connect performance data",body:"Link imported reports and approved data sources for campaigns, activation, spend, and outcomes."},
+              {title:"Add AI-assisted analysis",body:"Use Notion Agent to summarize evidence, flag missing context, and propose a next step with reasoning."},
+              {title:"Build the native experience",body:"Bring experiment creation, review, decision history, and human approval into a dedicated Notion feature."}
+            ].map((step,index)=><div key={step.title} style={{position:"relative",padding:"0 0 58px 42px",opacity:timelineVisible?1:0,transform:timelineVisible?"translateY(0)":"translateY(18px)",transition:"opacity 900ms ease, transform 900ms ease",transitionDelay:timelineVisible?`${index*5000}ms`:"0ms"}}>
+              <span aria-hidden="true" style={{position:"absolute",left:-17,top:0,width:32,height:32,borderRadius:"50%",background:"#fff",border:"2px solid #252525",display:"grid",placeItems:"center",fontSize:13,fontWeight:700}}>{index+1}</span>
+              <h3 style={{fontSize:"clamp(22px,2.6vw,32px)",lineHeight:1.2,letterSpacing:"-.035em",marginBottom:12}}>{step.title}</h3>
+              <p style={{fontSize:"clamp(17px,1.8vw,20px)",lineHeight:1.55,maxWidth:680}}>{step.body}</p>
+            </div>)}
+          </div>
+          <p style={{fontSize:15,opacity:.7,maxWidth:690}}>Conceptual roadmap. This is an independent prototype and proposed product direction, not a released Notion feature or an announced Notion roadmap.</p>
         </div>
       </section>
 
@@ -278,7 +313,7 @@ export default function NotionExperience() {
           <div className="nt-experience">
             <article>
               <div className="nt-exp-glyph"><ChartNoAxesCombined size={30}/></div>
-              <div><h3>Growth strategy and measurement</h3><p>I founded Fofo Labs, built a four-person creative team, and worked with small businesses on campaigns, content, and performance. A La Estancia Steakhouse campaign reached about <strong>540K TikTok views and 1,200+ followers</strong> in its first month.</p></div>
+              <div><h3>Growth strategy and measurement</h3><p>I built a four-person creative team at Sergio & Co., and worked with small businesses on campaigns, content, and performance. A La Estancia Steakhouse campaign reached about <strong>540K TikTok views and 1,200+ followers</strong> in its first month.</p></div>
             </article>
             <article>
               <div className="nt-exp-glyph"><Database size={30}/></div>
