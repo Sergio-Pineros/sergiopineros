@@ -1,5 +1,5 @@
 export type ApplicationStoryData = {
-slug:string;company:string;role:string;headline:string;emphasis:string;intro:string;monogram:string;problem:string;
+slug:string;company:string;companyUrl:string;role:string;headline:string;emphasis:string;intro:string;monogram:string;problem:string;
 conceptTitle:string;conceptIntro:string;workspaceName:string;
 steps:{label:string;title:string;body:string;signal:string;takeaway:string}[];
 thesis:string;thesisBody:string;
@@ -8,11 +8,11 @@ evidence:{title:string;description:string;url?:string}[];closing:string;
 const sharedEvidence=[
 {title:"SAVRON Business OS",description:"Booking, walk-ins, memberships, staff communications and an early bilingual AI voice concierge pilot, shaped with a real service business.",url:"https://savronmn.com"},
 {title:"NxtSeat",description:"A service-business software exploration bringing booking, messaging, memberships and voice assistance into a more connected workflow.",url:"https://nxtseat.co"},
-{title:"Fofo Labs",description:"Founded and coordinated a four-person team. Contributed to a La Estancia short-form campaign reaching about 540,000 views and 1,200 new followers in its first month."}
+{title:"Sergio & Co.",url:"https://sergioatelier.co/",description:"Founded and coordinated a four-person team. Contributed to a La Estancia short-form campaign reaching about 540,000 views and 1,200 new followers in its first month."}
 ];
 export const stories:Record<string,ApplicationStoryData>={
 stripe:{
-slug:"stripe",company:"Stripe",role:"Demo Engineer",monogram:"S",
+slug:"stripe",company:"Stripe",companyUrl:"https://stripe.com/",role:"Demo Engineer",monogram:"S",
 headline:"Don't just show the product.",emphasis:"Show the possibility.",
 intro:"I build the moments where complex software becomes immediately understandable. A demo should begin with the customer's job, not the product menu.",
 problem:"A useful demo tells one clear story. What changed for the customer, how did the products work together, and why did it matter?",
@@ -28,7 +28,7 @@ thesis:"The best demo is not a feature tour.",thesisBody:"It's a compact product
 evidence:sharedEvidence,closing:"Let's turn a complex workflow into something people can see."
 },
 rox:{
-slug:"rox",company:"Rox",role:"Product Marketing Manager",monogram:"R",
+slug:"rox",company:"Rox",companyUrl:"https://www.rox.com/",role:"Product Marketing Manager",monogram:"R",
 headline:"Show the work.",emphasis:"Not just the promise.",
 intro:"Revenue agents become compelling when a seller can point to the work that disappeared and the customer relationship that improved.",
 problem:"AI positioning gets stronger when every claim can be traced to a customer signal, an action, and an outcome.",
@@ -44,7 +44,7 @@ thesis:"Specificity is the competitive advantage.",thesisBody:"A strong launch c
 evidence:sharedEvidence,closing:"I would love to help make Rox impossible to misunderstand."
 },
 thatch:{
-slug:"thatch",company:"Thatch",role:"Product Marketing Manager",monogram:"T",
+slug:"thatch",company:"Thatch",companyUrl:"https://thatch.com/",role:"Product Marketing Manager",monogram:"T",
 headline:"One product.",emphasis:"Different reasons to care.",
 intro:"Employers, brokers, and employees can look at the same benefits product and need three entirely different explanations.",
 problem:"Clarity is not simplifying the product until it loses meaning. It is choosing the right meaning for each audience.",
@@ -60,7 +60,7 @@ thesis:"Good product marketing respects complexity.",thesisBody:"It keeps the pr
 evidence:sharedEvidence,closing:"I'd like to help make complicated choices feel understandable."
 },
 plaid:{
-slug:"plaid",company:"Plaid",role:"Product Marketing Manager, Onboarding",monogram:"P",
+slug:"plaid",company:"Plaid",companyUrl:"https://plaid.com/",role:"Product Marketing Manager, Onboarding",monogram:"P",
 headline:"The first useful moment",emphasis:"changes everything.",
 intro:"Onboarding is where positioning meets product reality. The goal is not just getting people through steps. It's getting them to value.",
 problem:"A great first-run experience should tell customers why they are here, what happens next, and what they have gained.",
@@ -76,7 +76,7 @@ thesis:"Activation is a product and messaging problem.",thesisBody:"I bring dire
 evidence:sharedEvidence,closing:"Let's make the first useful moment easier to reach."
 },
 roboflow:{
-slug:"roboflow",company:"Roboflow",role:"Product Marketing",monogram:"R",
+slug:"roboflow",company:"Roboflow",companyUrl:"https://roboflow.com/",role:"Product Marketing",monogram:"R",
 headline:"From model.",emphasis:"To real-world outcome.",
 intro:"A platform story becomes more persuasive when buyers can picture what changes at their factory, facility, or worksite.",
 problem:"A buyer does not invest in a model alone. They invest in a workflow they can trust and an outcome they can explain.",
@@ -92,7 +92,7 @@ thesis:"The platform story should meet the buyer where the work happens.",thesis
 evidence:sharedEvidence,closing:"I'd love to help translate vision into value."
 },
 ripple:{
-slug:"ripple",company:"Ripple",role:"Product Marketing Manager, Treasury",monogram:"R",
+slug:"ripple",company:"Ripple",companyUrl:"https://ripple.com/",role:"Product Marketing Manager, Treasury",monogram:"R",
 headline:"Make complexity",emphasis:"clear enough to act.",
 intro:"Financial infrastructure needs messaging that is both accessible and technically credible. This is a sample clarity exercise from a product and marketing generalist.",
 problem:"Better financial storytelling begins by respecting the expertise and actual work of the treasury practitioner.",
