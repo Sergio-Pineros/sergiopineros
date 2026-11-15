@@ -225,3 +225,6 @@
  .nt-app .nt-focus-story{padding-top:64px;padding-bottom:63px}
  .nt-app .nt-about{padding-top:70px;padding-bottom:64px}
 }
+
+.nt-app .nt-hero-clarifier{max-width:650px;font-size:18px;line-height:1.55;color:#746b79;margin:-14px 0 30px}
+@media(max-width:790px){.nt-app .nt-hero-clarifier{font-size:17px;margin:-8px 0 27px}}
