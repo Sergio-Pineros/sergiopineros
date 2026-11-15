@@ -9,6 +9,7 @@ import {
   Workflow, UserRoundCheck
 } from "lucide-react";
 import ApplicationDoc from "./ApplicationDoc";
+import GrowthDecisionDemo from "./GrowthDecisionDemo";
 
 type Decision = "scale" | "iterate" | "stop";
 type Experiment = {
@@ -271,6 +272,7 @@ export default function NotionExperience() {
               </article>
             </div>
           </div>
+          <GrowthDecisionDemo />
           <p className="nt-demo-note">This is a working UI prototype with fictional results. The suggestions are examples, and the concept is not a released Notion feature.</p>
           <div className="nt-growth-elsewhere"><h3>Experiments across your workspace.</h3><p>Product teams could test onboarding changes. Researchers could compare approaches. Operations teams could review process improvements. Every experiment has a question, evidence, and a decision the team can revisit.</p></div>
         </div>
