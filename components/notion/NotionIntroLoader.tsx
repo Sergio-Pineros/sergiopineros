@@ -14,7 +14,7 @@ export default function NotionIntroLoader() {
       setVisible(false);
       return;
     }
-    const fallback = window.setTimeout(() => setVisible(false), 3400);
+    const fallback = window.setTimeout(() => setVisible(false), 3000);
     return () => window.clearTimeout(fallback);
   }, []);
 
