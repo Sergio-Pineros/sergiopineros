@@ -11,24 +11,26 @@ export default function NotionExperimentFilm() {
   const [step, setStep] = useState(0);
   const [run, setRun] = useState(0);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [stopped, setStopped] = useState(false);
 
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     setReducedMotion(reduced);
-    if (reduced) {
+    if (reduced || stopped) {
       setStep(7);
       return;
     }
     // An intentionally short, watchable product narrative.
-    const beats = [1100, 2700, 4100, 5800, 7900, 9900, 11600, 13900];
+    const beats = [1100, 2700, 4100, 5800, 7900, 9900, 11600];
     const timeouts = beats.map((time, index) => window.setTimeout(() => setStep(index + 1), time));
     return () => timeouts.forEach(window.clearTimeout);
-  }, [run]);
+  }, [run, stopped]);
 
   const restart = () => {
     if (reducedMotion) {
       setStep(7);
     } else {
+      setStopped(false);
       setStep(0);
       setRun((current) => current + 1);
     }
@@ -42,13 +44,13 @@ export default function NotionExperimentFilm() {
     <section className="nxf-section" id="watch-demo" aria-label="Illustrated Notion Experiments product walkthrough">
       <div className="nxf-heading">
         <div>
-          <div className="nxf-eyebrow"><span className="nxf-live-dot" /> THE PRODUCT EXPERIENCE · 16-SECOND WALKTHROUGH</div>
+          <div className="nxf-eyebrow"><span className="nxf-live-dot" /> THE PRODUCT EXPERIENCE · 12-SECOND WALKTHROUGH</div>
           <h3>From meeting notes to a team experiment.</h3>
           <p>Type one command. Review what Notion already knows. Save a shared experiment — without starting from a blank form.</p>
         </div>
         <div className="nxf-controls">
           <button type="button" onClick={restart}><RotateCcw size={16} /> Replay</button>
-          {step < 7 && <button type="button" className="nxf-skip" onClick={() => { setStep(7); setRun((v) => v + 1); }}><Play size={14} /> Skip to result</button>}
+          {step < 7 && <button type="button" className="nxf-skip" onClick={() => { setStopped(true); setStep(7); }}><Play size={14} /> Skip to result</button>}
         </div>
       </div>
       <div className="nxf-story">
