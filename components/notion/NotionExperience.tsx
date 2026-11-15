@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import {
   Check,
@@ -9,79 +9,11 @@ import {
   Workflow, UserRoundCheck
 } from "lucide-react";
 import ApplicationDoc from "./ApplicationDoc";
-import GrowthDecisionDemo from "./GrowthDecisionDemo";
-
-type Decision = "scale" | "iterate" | "stop";
-type Experiment = {
-  id: string;
-  channel: string;
-  name: string;
-  hypothesis: string;
-  metric: string;
-  result: string;
-  context: string;
-  decision: Decision;
-  verdict: string;
-  next: string;
-  guardrail: string;
-};
-
-const experiments: Experiment[] = [
-  {
-    id: "A01", channel: "Paid social", name: "First value, faster",
-    hypothesis: "Would a complete example workspace help new users reach their first meaningful action?",
-    metric: "Activation rate", result: "+12.4%",
-    context: "The example shows higher activation. We would check cohort quality, tracking and sample size before making a decision.",
-    decision: "iterate",
-    verdict: "The early signal is worth another test. I'd run it with a longer measurement window.",
-    next: "Repeat with segmented new-user cohorts. Review activation quality and incrementality.",
-    guardrail: "Keep spending steady until the activation lift is validated."
-  },
-  {
-    id: "B02", channel: "LinkedIn", name: "Show a real team workflow",
-    hypothesis: "Could showing how a team uses Notion bring in more qualified trials?",
-    metric: "Qualified trial rate", result: "+18.2%",
-    context: "The example shows stronger trial quality across two cohorts and a stable cost per qualified trial.",
-    decision: "scale",
-    verdict: "I'd expand this gradually and keep a holdout to measure impact.",
-    next: "Increase the budget in stages, track qualified trials and review creative fatigue.",
-    guardrail: "Agree on a cost-per-qualified-trial threshold before increasing spend."
-  },
-  {
-    id: "C03", channel: "Search", name: "Narrower search intent",
-    hypothesis: "Could a more specific search audience lower the cost of activating new users?",
-    metric: "Cost per activated user", result: "+27.0%",
-    context: "The example shows rising cost with no meaningful change in activation.",
-    decision: "stop",
-    verdict: "I'd end this variant, document the result and move the budget to the next test.",
-    next: "Save the negative result in the experiments database so future work can reference it.",
-    guardrail: "Keep control results and attribution notes attached to the experiment."
-  }
-];
-
-const decisionLabels: Record<Decision,string> = {
-  scale: "Consider scaling", iterate: "Test again", stop: "Stop this variant"
-};
+import NotionWorkspaceDemo from "./NotionWorkspaceDemo";
 
 export default function NotionExperience() {
-  const [selected, setSelected] = useState(0);
-  const [focus, setFocus] = useState(false);
-  const [reasoning, setReasoning] = useState(false);
   const [applicationOpen, setApplicationOpen] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
-  const current = experiments[selected];
-  const timelineRef = useRef<HTMLElement | null>(null);
-  const [timelineVisible, setTimelineVisible] = useState(false);
-
-  useEffect(() => {
-    const target = timelineRef.current;
-    if (!target) return;
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) { setTimelineVisible(true); observer.disconnect(); }
-    }, { threshold: 0.12 });
-    observer.observe(target);
-    return () => observer.disconnect();
-  }, []);
 
   useEffect(() => {
     const sync = () => setApplicationOpen(["#application","#cover-letter","#resume"].includes(window.location.hash));
@@ -149,6 +81,7 @@ export default function NotionExperience() {
             </div>
             <h1>Experiments,<br/><em>built into Notion.</em></h1>
             <p className="nt-intro">Turn meeting insights into experiments and better decisions. See evidence. Decide what to scale.</p>
+            <p className="nt-hero-clarifier">Create with /experiment, connect campaign results, and approve your team’s next step inside the workspace.</p>
             <div className="nt-hero-actions">
               <a className="nt-button nt-button-dark" href="#feature">Explore the feature</a>
               <a className="nt-button nt-button-outline" href="#growth">See it for growth</a>
@@ -233,70 +166,30 @@ export default function NotionExperience() {
             </div>
           </div>
 
-          <div className={focus ? "nt-workspace nt-focused" : "nt-workspace"}>
-            <div className="nt-workspace-top">
-              <div className="nt-ws-path"><img src="https://www.notion.com/front-static/favicon.ico" alt="" width="24" height="24" /><span>Growth experiments</span><span aria-hidden="true">·</span><strong>{current.name}</strong></div>
-              <button type="button" className="nt-focus-button" aria-pressed={focus} onClick={() => setFocus(!focus)}><Focus size={20}/>{focus ? "Show all experiments" : "Focus on this experiment"}</button>
-            </div>
-            <div className="nt-workspace-body">
-              {!focus && <aside className="nt-sidebar">
-                <h3>Experiments</h3>
-                {experiments.map((item, index) =>
-                  <button key={item.id} type="button" onClick={() => { setSelected(index); setReasoning(false); }} aria-pressed={selected === index} className={selected === index ? "nt-experiment nt-experiment-selected" : "nt-experiment"}>
-                    <span className="nt-exp-symbol">{index === 0 ? <Target size={23}/> : index === 1 ? <ChartNoAxesCombined size={23}/> : <Lightbulb size={23}/>}</span>
-                    <span><strong>{item.name}</strong><span>{item.channel}</span></span>
-                    {selected === index && <Check size={20}/>}
-                  </button>
-                )}
-              </aside>}
-              <article className="nt-readout" key={current.id}>
-                <div className="nt-readout-channel">{current.channel} · Experiment {current.id}</div>
-                <h3>{current.name}</h3>
-                <p className="nt-hypothesis">{current.hypothesis}</p>
-                <div className="nt-metric-grid">
-                  <div><span>Primary metric</span><strong>{current.metric}</strong></div>
-                  <div><span>Sample result</span><strong>{current.result}</strong></div>
-                </div>
-                <div className={"nt-recommendation nt-rec-" + current.decision}>
-                  <div className="nt-rec-heading"><span><Sparkles size={22}/> Suggested next step</span><strong>{decisionLabels[current.decision]}</strong></div>
-                  <p>{current.verdict}</p>
-                </div>
-                <button className="nt-reason-toggle" aria-expanded={reasoning} type="button" onClick={() => setReasoning(!reasoning)}>
-                  <BookOpenText size={22}/> {reasoning ? "Hide the evidence" : "Review the evidence and safeguards"}
-                </button>
-                {reasoning && <div className="nt-reason-grid">
-                  <div><h4>Evidence to review</h4><p>{current.context}</p></div>
-                  <div><h4>Guardrail</h4><p>{current.guardrail}</p></div>
-                </div>}
-                <div className="nt-next-step"><Check size={22}/><div><strong>What I&apos;d do next</strong><p>{current.next}</p></div></div>
-              </article>
-            </div>
-          </div>
-          <GrowthDecisionDemo />
-          <p className="nt-demo-note">This is a working UI prototype with fictional results. The suggestions are examples, and the concept is not a released Notion feature.</p>
+          <NotionWorkspaceDemo />
           <div className="nt-growth-elsewhere"><h3>Experiments across your workspace.</h3><p>Product teams could test onboarding changes. Researchers could compare approaches. Operations teams could review process improvements. Every experiment has a question, evidence, and a decision the team can revisit.</p></div>
         </div>
       </section>
 
-      <section ref={timelineRef} id="implementation" aria-label="Proposed feature implementation" style={{background:"#f8f7f4",padding:"clamp(72px,10vw,144px) 0"}}>
-        <div className="nt-container" style={{maxWidth:1040}}>
-          <p style={{fontSize:14,fontWeight:700,letterSpacing:".13em",textTransform:"uppercase",marginBottom:20}}>05 / A path to a native feature</p>
-          <h2 style={{fontSize:"clamp(38px,5vw,72px)",lineHeight:1.07,letterSpacing:"-.055em",maxWidth:780,marginBottom:22}}>Bring Experiments into Notion.</h2>
-          <p style={{fontSize:"clamp(18px,2vw,23px)",lineHeight:1.5,maxWidth:700,marginBottom:64}}>Build the feature in five steps, from a reusable experiment database to a native workflow with connected data and AI-assisted review.</p>
-          <div style={{borderLeft:"2px solid #d9d5ce",marginLeft:16}}>
+      <section className="nt-plan" id="implementation" aria-label="Proposed implementation as a native Notion feature">
+        <div className="nt-container">
+          <p className="nt-plan-eyebrow">A proposed product journey</p>
+          <h2>Bring Experiments into Notion.</h2>
+          <p className="nt-plan-intro">A five-part path to a native experiment workflow, using Notion pages, databases, connected evidence, and agents.</p>
+          <div className="nt-plan-steps">
             {[
-              {title:"Start with a workspace template",body:"Create an Experiments database with hypotheses, owners, metrics, evidence, and decisions."},
-              {title:"Capture experiments from pages",body:"Add a “Create experiment” action to meeting notes and workspace pages. Carry source context into the new experiment."},
-              {title:"Connect performance data",body:"Link imported reports and approved data sources for campaigns, activation, spend, and outcomes."},
-              {title:"Add AI-assisted analysis",body:"Use Notion Agent to summarize evidence, flag missing context, and propose a next step with reasoning."},
-              {title:"Build the native experience",body:"Bring experiment creation, review, decision history, and human approval into a dedicated Notion feature."}
-            ].map((step,index)=><div key={step.title} style={{position:"relative",padding:"0 0 58px 42px",opacity:timelineVisible?1:0,transform:timelineVisible?"translateY(0)":"translateY(18px)",transition:"opacity 900ms ease, transform 900ms ease",transitionDelay:timelineVisible?`${index*5000}ms`:"0ms"}}>
-              <span aria-hidden="true" style={{position:"absolute",left:-17,top:0,width:32,height:32,borderRadius:"50%",background:"#fff",border:"2px solid #252525",display:"grid",placeItems:"center",fontSize:13,fontWeight:700}}>{index+1}</span>
-              <h3 style={{fontSize:"clamp(22px,2.6vw,32px)",lineHeight:1.2,letterSpacing:"-.035em",marginBottom:12}}>{step.title}</h3>
-              <p style={{fontSize:"clamp(17px,1.8vw,20px)",lineHeight:1.55,maxWidth:680}}>{step.body}</p>
-            </div>)}
+              {title:"Create with /experiment",body:"Add the Experiments block from any page or AI Meeting Notes."},
+              {title:"Define the test",body:"Give each experiment a hypothesis, owner, metric, and linked source."},
+              {title:"Connect results",body:"Import performance reports or connect approved campaign data sources."},
+              {title:"Review with an agent",body:"Summarize evidence, explain trade-offs, and suggest a next test."},
+              {title:"Decide and learn",body:"Approve changes, save decisions, and reuse learnings across the workspace."}
+            ].map((step,index)=><article key={step.title} className="nt-plan-step">
+              <span className="nt-plan-number">{index+1}</span>
+              <h3>{step.title}</h3>
+              <p>{step.body}</p>
+            </article>)}
           </div>
-          <p style={{fontSize:15,opacity:.7,maxWidth:690}}>Conceptual roadmap. This is an independent prototype and proposed product direction, not a released Notion feature or an announced Notion roadmap.</p>
+          <p className="nt-plan-note">Independent product concept and proposed implementation. The interactive example above uses fictional campaign data and local UI state.</p>
         </div>
       </section>
 
