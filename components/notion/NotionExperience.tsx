@@ -147,7 +147,7 @@ export default function NotionExperience() {
               <span className="nt-doodle nt-doodle-yellow"><Sparkles size={30}/></span>
             </div>
             <h1>Experiments,<br/><em>built into Notion.</em></h1>
-            <p className="nt-intro">Create experiments from meeting notes and workspace pages. Connect campaign results, review AI-assisted recommendations, and keep every decision in Notion.</p>
+            <p className="nt-intro">Turn meeting insights into experiments and better decisions. See evidence. Decide what to scale.</p>
             <div className="nt-hero-actions">
               <a className="nt-button nt-button-dark" href="#feature">Explore the feature</a>
               <a className="nt-button nt-button-outline" href="#growth">See it for growth</a>
@@ -176,8 +176,8 @@ export default function NotionExperience() {
       <section className="nt-feature" id="feature">
         <div className="nt-container">
           <div className="nt-section-header nt-feature-head">
-            <h2>Create an experiment<br/><em>from any idea.</em></h2>
-            <p>Start with a meeting note or page. Set a hypothesis and success metric. Connect evidence, review the result, and save the decision in your workspace.</p>
+            <h2>Turn ideas into<br/><em>experiments.</em></h2>
+            <p>Capture a question from a meeting or page. Set a hypothesis and a success metric. Keep the evidence and next action together.</p>
           </div>
           <div className="nt-feature-grid">
             <article className="nt-feature-card">
@@ -209,8 +209,8 @@ export default function NotionExperience() {
       <section className="nt-focus-story">
         <div className="nt-container nt-focus-grid">
           <div className="nt-focus-copy">
-            <h2>Built for the way<br/><em>we actually focus.</em></h2>
-            <p>Experiments could offer a calmer, ADHD-friendly way to work through complex decisions. Each page brings one question forward and keeps the supporting details close.</p>
+            <h2>Focus on<br/><em>one decision.</em></h2>
+            <p>See the question, success metric, and next action first. Open the supporting evidence whenever you need it.</p>
           </div>
           <div className="nt-focus-principles">
             <div><span className="nt-principle-icon"><Target size={25}/></span><div><h3>One clear question</h3><p>Lead with what the team is trying to learn and the metric that matters.</p></div></div>
@@ -224,11 +224,11 @@ export default function NotionExperience() {
         <div className="nt-container">
           <div className="nt-growth-intro">
             <div>
-              <h2>See what to test,<br/><em>scale, or stop.</em></h2>
+              <h2>See evidence.<br/><em>Decide what to scale.</em></h2>
             </div>
             <div>
-              <p>I&apos;d use Experiments to connect growth conversations with acquisition and activation data. A hypothesis could move from a planning meeting into a test page, with creative, metrics, owners, and decisions in one place.</p>
-              <p>Teams could add results from connected tools or imported reports, and use Notion Agent to help summarize the evidence. Budget changes would still need human approval.</p>
+              <p>Connect campaign creatives, acquisition costs, and activation results to a shared experiment. Compare outcomes against the original hypothesis.</p>
+              <p>Import performance reports or connect approved data sources. An agent could summarize evidence, suggest the next test, and request human approval for budget changes.</p>
             </div>
           </div>
 
@@ -279,8 +279,8 @@ export default function NotionExperience() {
       <section ref={timelineRef} id="implementation" aria-label="Proposed feature implementation" style={{background:"#f8f7f4",padding:"clamp(72px,10vw,144px) 0"}}>
         <div className="nt-container" style={{maxWidth:1040}}>
           <p style={{fontSize:14,fontWeight:700,letterSpacing:".13em",textTransform:"uppercase",marginBottom:20}}>05 / A path to a native feature</p>
-          <h2 style={{fontSize:"clamp(38px,5vw,72px)",lineHeight:1.07,letterSpacing:"-.055em",maxWidth:780,marginBottom:22}}>How Experiments could live inside Notion.</h2>
-          <p style={{fontSize:"clamp(18px,2vw,23px)",lineHeight:1.5,maxWidth:700,marginBottom:64}}>A proposed implementation, starting with the pages and databases teams already use.</p>
+          <h2 style={{fontSize:"clamp(38px,5vw,72px)",lineHeight:1.07,letterSpacing:"-.055em",maxWidth:780,marginBottom:22}}>Bring Experiments into Notion.</h2>
+          <p style={{fontSize:"clamp(18px,2vw,23px)",lineHeight:1.5,maxWidth:700,marginBottom:64}}>Build the feature in five steps, from a reusable experiment database to a native workflow with connected data and AI-assisted review.</p>
           <div style={{borderLeft:"2px solid #d9d5ce",marginLeft:16}}>
             {[
               {title:"Start with a workspace template",body:"Create an Experiments database with hypotheses, owners, metrics, evidence, and decisions."},
