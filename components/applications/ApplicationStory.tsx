@@ -12,7 +12,7 @@ export default function ApplicationStory({ story }: { story: ApplicationStoryDat
     <main className="application-story" data-company={story.slug}>
       <a className="application-skip" href="#concept">Skip to concept</a>
       <header className="application-top">
-        <a className="application-identity" href="https://www.sergiopineros.com">Sergio Piñeros <span>×</span> {story.company}</a>
+        <div className="application-identity"><a href="https://www.sergiopineros.com">Sergio Piñeros</a><span>×</span><a href={story.companyUrl} target="_blank" rel="noreferrer">{story.company}</a></div>
         <nav aria-label="Page navigation">
           <a href="#concept">The concept</a>
           <a href="#proof">The work</a>
@@ -89,7 +89,7 @@ export default function ApplicationStory({ story }: { story: ApplicationStoryDat
         <div className="application-proof-grid">
           {story.evidence.map((item) => (
             <article className="application-proof-item" key={item.title}>
-              <h3>{item.title}</h3>
+              <h3>{item.url ? <a href={item.url} target="_blank" rel="noreferrer">{item.title}</a> : item.title}</h3>
               <p>{item.description}</p>
               {item.url && <a href={item.url} target="_blank" rel="noreferrer">View project</a>}
             </article>
