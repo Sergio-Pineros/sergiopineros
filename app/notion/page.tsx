@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import NotionExperience from "@/components/notion/NotionExperience";
 import "./notion.css";
+import "./notion-workspace.css";
 
 export const metadata: Metadata = {
   title: "Experiments, built into Notion | Sergio Piñeros",
