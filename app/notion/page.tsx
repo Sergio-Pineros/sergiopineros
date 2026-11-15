@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import NotionExperience from "@/components/notion/NotionExperience";
+import NotionIntroLoader from "@/components/notion/NotionIntroLoader";
 import "./notion.css";
 import "./notion-workspace.css";
+import "./notion-intro.css";
 
 export const metadata: Metadata = {
   title: "Experiments, built into Notion | Sergio Piñeros",
@@ -16,5 +18,5 @@ export const metadata: Metadata = {
 };
 
 export default function NotionPage() {
-  return <NotionExperience />;
+  return <><NotionIntroLoader /><NotionExperience /></>;
 }
