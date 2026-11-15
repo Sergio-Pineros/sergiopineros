@@ -1,9 +1,9 @@
-/* Notion × Sergio intro: crisp vector logo and eased-out closing motion. */
+/* Notion × Sergio intro — smooth ease-in/ease-out at every motion beat. */
 .nt-loader{
   position:fixed;inset:0;z-index:1000;display:grid;place-items:center;
   background:radial-gradient(ellipse at 50% 45%,#fff 0%,#fbf9ff 68%,#f5effc 100%);
   overflow:hidden;pointer-events:all;
-  animation:nt-loader-reveal 2850ms ease-out both;
+  animation:nt-loader-reveal 3200ms ease-in-out both;
 }
 .nt-loader-stage{position:relative;width:188px;height:176px;perspective:900px;transform-style:preserve-3d}
 .nt-loader-sergio,.nt-loader-notion{
@@ -12,35 +12,40 @@
 }
 .nt-loader-sergio{
   z-index:2;width:118px;height:118px;margin-left:-59px;margin-top:-59px;
-  animation:nt-loader-sergio-move 2850ms cubic-bezier(.55,.03,.25,1) both;
+  animation:nt-loader-sergio-move 3200ms ease-in-out both;
 }
 .nt-loader-sergio img{width:112px;height:112px;object-fit:contain;display:block}
 .nt-loader-notion{
   z-index:1;width:136px;height:136px;margin-left:-68px;margin-top:-68px;
   background:#fff;border:1px solid #e6e1e9;border-radius:23px;
   box-shadow:0 12px 34px #2f214c22;
-  animation:nt-loader-notion-move 2850ms cubic-bezier(.55,.03,.25,1) both;
+  animation:nt-loader-notion-move 3200ms ease-in-out both;
 }
 .nt-loader-notion img{width:100px;height:100px;object-fit:contain;display:block}
+/* Each leg of the logo motion accelerates and decelerates independently. */
 @keyframes nt-loader-sergio-move{
-  0%,19%{transform:translate3d(0,0,35px) scale(1);opacity:1}
-  40%{transform:translate3d(-11px,0,35px) scale(1);opacity:1}
-  52%{transform:translate3d(0,0,-20px) scale(1);opacity:1}
-  58%{transform:translate3d(0,0,-20px) scale(1);opacity:1}
-  63%,100%{transform:translate3d(0,0,-20px) scale(1);opacity:0}
+  0%{transform:translate3d(0,0,35px) scale(1);opacity:1;animation-timing-function:cubic-bezier(.42,0,.58,1)}
+  19%{transform:translate3d(0,0,35px) scale(1);opacity:1;animation-timing-function:cubic-bezier(.42,0,.58,1)}
+  40%{transform:translate3d(-11px,0,35px) scale(1);opacity:1;animation-timing-function:cubic-bezier(.42,0,.58,1)}
+  52%{transform:translate3d(0,0,-20px) scale(1);opacity:1;animation-timing-function:cubic-bezier(.42,0,.58,1)}
+  58%{transform:translate3d(0,0,-20px) scale(1);opacity:1;animation-timing-function:cubic-bezier(.42,0,.58,1)}
+  65%{transform:translate3d(0,0,-20px) scale(.96);opacity:0;animation-timing-function:cubic-bezier(.42,0,.58,1)}
+  100%{transform:translate3d(0,0,-20px) scale(.96);opacity:0}
 }
 @keyframes nt-loader-notion-move{
-  0%,12%{transform:translate3d(2px,13px,-70px) rotate(-13deg) scale(.43);opacity:0;z-index:1}
-  26%{transform:translate3d(12px,19px,-65px) rotate(-12deg) scale(.62);opacity:1;z-index:1}
-  40%{transform:translate3d(46px,-13px,-20px) rotate(8deg) scale(.86);opacity:1;z-index:1}
-  51%{transform:translate3d(21px,-4px,60px) rotate(-4deg) scale(1.03);opacity:1;z-index:3}
-  58%{transform:translate3d(0,0,60px) rotate(0) scale(1.13);opacity:1;z-index:3}
-  69%{transform:translate3d(0,0,60px) rotate(0) scale(1.13);opacity:1;z-index:3;animation-timing-function:cubic-bezier(.16,1,.3,1)}
-  94%,100%{transform:translate3d(0,0,60px) scale(.08);opacity:0;z-index:3}
+  0%{transform:translate3d(2px,13px,-70px) rotate(-13deg) scale(.43);opacity:0;z-index:1;animation-timing-function:cubic-bezier(.42,0,.58,1)}
+  12%{transform:translate3d(2px,13px,-70px) rotate(-13deg) scale(.43);opacity:0;z-index:1;animation-timing-function:cubic-bezier(.42,0,.58,1)}
+  26%{transform:translate3d(12px,19px,-65px) rotate(-12deg) scale(.62);opacity:1;z-index:1;animation-timing-function:cubic-bezier(.42,0,.58,1)}
+  40%{transform:translate3d(46px,-13px,-20px) rotate(8deg) scale(.86);opacity:1;z-index:1;animation-timing-function:cubic-bezier(.42,0,.58,1)}
+  51%{transform:translate3d(21px,-4px,60px) rotate(-4deg) scale(1.03);opacity:1;z-index:3;animation-timing-function:cubic-bezier(.42,0,.58,1)}
+  58%{transform:translate3d(0,0,60px) rotate(0) scale(1.13);opacity:1;z-index:3;animation-timing-function:cubic-bezier(.42,0,.58,1)}
+  69%{transform:translate3d(0,0,60px) rotate(0) scale(1.13);opacity:1;z-index:3;animation-timing-function:cubic-bezier(.42,0,.58,1)}
+  94%{transform:translate3d(0,0,60px) rotate(0) scale(.08);opacity:0;z-index:3;animation-timing-function:cubic-bezier(.42,0,.58,1)}
+  100%{transform:translate3d(0,0,60px) rotate(0) scale(.08);opacity:0;z-index:3}
 }
 @keyframes nt-loader-reveal{
-  0%,83%{opacity:1;visibility:visible}
-  83%{animation-timing-function:cubic-bezier(.16,1,.3,1)}
+  0%{opacity:1;visibility:visible;animation-timing-function:cubic-bezier(.42,0,.58,1)}
+  83%{opacity:1;visibility:visible;animation-timing-function:cubic-bezier(.42,0,.58,1)}
   100%{opacity:0;visibility:hidden}
 }
 @media(max-width:600px){
