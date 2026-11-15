@@ -32,7 +32,7 @@ export default function NotionIntroLoader() {
     >
       <div className="nt-loader-stage">
         <div className="nt-loader-notion">
-          <img src="https://www.notion.com/front-static/favicon.ico" alt="" width="78" height="78" />
+          <img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Notion-logo.svg" alt="" width="100" height="100" />
         </div>
         <div className="nt-loader-sergio">
           <img src="/icon.svg" alt="" width="112" height="112" />
