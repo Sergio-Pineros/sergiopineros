@@ -3,7 +3,7 @@
   position:fixed;inset:0;z-index:1000;display:grid;place-items:center;
   background:radial-gradient(ellipse at 50% 45%,#fff 0%,#fbf9ff 68%,#f5effc 100%);
   overflow:hidden;pointer-events:all;
-  animation:nt-loader-reveal 3200ms ease-in-out both;
+  animation:nt-loader-reveal 2800ms ease-in-out both;
 }
 .nt-loader-stage{position:relative;width:188px;height:176px;perspective:900px;transform-style:preserve-3d}
 .nt-loader-sergio,.nt-loader-notion{
@@ -12,14 +12,14 @@
 }
 .nt-loader-sergio{
   z-index:2;width:118px;height:118px;margin-left:-59px;margin-top:-59px;
-  animation:nt-loader-sergio-move 3200ms ease-in-out both;
+  animation:nt-loader-sergio-move 2800ms ease-in-out both;
 }
 .nt-loader-sergio img{width:112px;height:112px;object-fit:contain;display:block}
 .nt-loader-notion{
   z-index:1;width:136px;height:136px;margin-left:-68px;margin-top:-68px;
   background:#fff;border:1px solid #e6e1e9;border-radius:23px;
   box-shadow:0 12px 34px #2f214c22;
-  animation:nt-loader-notion-move 3200ms ease-in-out both;
+  animation:nt-loader-notion-move 2800ms ease-in-out both;
 }
 .nt-loader-notion img{width:100px;height:100px;object-fit:contain;display:block}
 /* Each leg of the logo motion accelerates and decelerates independently. */
