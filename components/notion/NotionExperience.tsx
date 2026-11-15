@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import ApplicationDoc from "./ApplicationDoc";
 import NotionWorkspaceDemo from "./NotionWorkspaceDemo";
+import NotionExperimentFilm from "./NotionExperimentFilm";
 
 export default function NotionExperience() {
   const [applicationOpen, setApplicationOpen] = useState(false);
@@ -166,6 +167,7 @@ export default function NotionExperience() {
             </div>
           </div>
 
+          <NotionExperimentFilm />
           <NotionWorkspaceDemo />
           <div className="nt-growth-elsewhere"><h3>Experiments across your workspace.</h3><p>Product teams could test onboarding changes. Researchers could compare approaches. Operations teams could review process improvements. Every experiment has a question, evidence, and a decision the team can revisit.</p></div>
         </div>
