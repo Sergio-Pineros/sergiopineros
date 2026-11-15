@@ -4,6 +4,7 @@ import NotionIntroLoader from "@/components/notion/NotionIntroLoader";
 import "./notion.css";
 import "./notion-workspace.css";
 import "./notion-intro.css";
+import "./notion-film.css";
 
 export const metadata: Metadata = {
   title: "Experiments, built into Notion | Sergio Piñeros",
