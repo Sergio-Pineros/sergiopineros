@@ -137,3 +137,6 @@
  .nce-footer{flex-direction:column;align-items:flex-start;gap:8px}
 }
 @media(prefers-reduced-motion:reduce){.nce-page *,.nce-page *::before,.nce-page *::after{animation:none!important;transition:none!important}}
+
+/* Whole tile is the drawer trigger; nested controls keep their own actions. */
+.nce-tile{cursor:pointer}
