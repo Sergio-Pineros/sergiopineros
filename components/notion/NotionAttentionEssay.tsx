@@ -95,7 +95,7 @@ function Drawers(){
           {DRAWERS.map(d=>{
             const Icon=ICONS[icons[d.id]];
             const isOpen=open[d.id];
-            return <article key={d.id} className={"nce-tile nce-"+d.accent+(d.wide?" nce-wide-tile":"")+(isOpen?" is-open":"")}>
+            return <article key={d.id} role="button" tabIndex={0} aria-label={(isOpen?"Close ":"Open ")+d.title} aria-expanded={isOpen} onClick={(event)=>{if((event.target as HTMLElement).closest("button, input, a, [role=group]"))return;toggle(d.id);}} onKeyDown={(event)=>{if(event.target!==event.currentTarget)return;if(event.key==="Enter"||event.key===" "){event.preventDefault();toggle(d.id);}}} className={"nce-tile nce-"+d.accent+(d.wide?" nce-wide-tile":"")+(isOpen?" is-open":"")}>
               <div className="nce-tile-top">
                 <div className="nce-icon-container">
                   <button type="button" className="nce-icon-button" aria-label={"Change "+d.title+" icon"} title="Change icon" aria-expanded={editing===d.id} onClick={()=>setEditing(editing===d.id?null:d.id)}><Icon size={23}/><Pencil className="nce-mini-pencil" size={11}/></button>
