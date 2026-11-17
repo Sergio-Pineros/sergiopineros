@@ -11,6 +11,7 @@ import { ThemeProvider } from "next-themes";
 import ScreenLoader from "@/components/ScreenLoader";
 import StudioDesktop from "@/components/StudioDesktop";
 import QuestionConversation from "@/components/QuestionConversation";
+import CaseStudies from "@/components/CaseStudies";
 import { CREATIVE_LINKS } from "@/lib/projects";
 import { PowerKey } from "@/components/ui/power-key";
 
@@ -62,6 +63,7 @@ export default function Portfolio() {
             </h1>
           </section>
           <QuestionConversation paused={desktopOpen || !loaded} />
+          <CaseStudies />
           <footer id="contact" className="footer">
             <div className="footer-question"><p>What Are We<br />Making <em>Sacred?</em></p></div>
             <div className="footer__logo-wrap">
