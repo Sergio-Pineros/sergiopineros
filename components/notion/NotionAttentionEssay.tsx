@@ -5,8 +5,8 @@ import Link from "next/link";
 import {
   Archive, ArrowDown, ArrowRight, ArrowUpRight, BookOpenText, Brain,
   Check, ChevronDown, ChevronUp, Coffee, Database, Eye, EyeOff,
-  FileText, FlaskConical, Focus, FolderClosed, Lightbulb, Link2,
-  ListChecks, Pencil, RotateCcw, Sparkles, Target, X
+  FileText, FlaskConical, Focus, FolderClosed, Lightbulb,
+  Pencil, RotateCcw, Sparkles, Target, X
 } from "lucide-react";
 
 type DrawerId = "hypothesis" | "sources" | "metrics" | "budget" | "agent" | "decision";
@@ -227,7 +227,7 @@ export default function NotionAttentionEssay() {
         </div>
         <section className="nce-essay-section nce-narrow" id="the-question">
           <div className="nce-section-index">01 / THE QUESTION</div>
-          <h2>Maybe the interface isn't too complicated.<br/><em>Maybe it's too loud.</em></h2>
+          <h2>Maybe the interface isn&apos;t too complicated.<br/><em>Maybe it&apos;s too loud.</em></h2>
           <p>While designing a concept called <strong>Notion Experiments</strong>, I kept returning to a question: why should an experiment dashboard present every metric, comment, source, and next action simultaneously?</p>
           <p>Sometimes I want the whole picture. Sometimes I only want to answer one question. Both are valid ways to work, and my interface should let me switch between them.</p>
           <div className="nce-quote"><span>“</span><p>Keep the handles visible.<br/>Let the contents wait.</p></div>
@@ -238,7 +238,7 @@ export default function NotionAttentionEssay() {
             <span className="nce-section-index">02 / THREE THINGS THE RESEARCH SUGGESTS</span>
             <div className="nce-principles">
               <div><span className="nce-principle-icon nce-pi-one"><EyeOff size={23}/></span><div><h3>Attention is selective.</h3><p>Research on adults with ADHD finds that irrelevant visual distractors can interfere with attention. But more demanding <em>relevant</em> information can also suppress distraction. The target is irrelevant competition, not maximum emptiness. <a href="#source-01">[1]</a></p></div></div>
-              <div><span className="nce-principle-icon nce-pi-two"><Archive size={23}/></span><div><h3>Memory likes external places.</h3><p>Environmental cues can help with remembering and organizing. A stable icon and a visible label could act as a handle: “I know where that lives.” That's the design hypothesis—not a measured result for these cards. <a href="#source-02">[2]</a> <a href="#source-04">[4]</a></p></div></div>
+              <div><span className="nce-principle-icon nce-pi-two"><Archive size={23}/></span><div><h3>Memory likes external places.</h3><p>Environmental cues can help with remembering and organizing. A stable icon and a visible label could act as a handle: “I know where that lives.” That&apos;s the design hypothesis—not a measured result for these cards. <a href="#source-02">[2]</a> <a href="#source-04">[4]</a></p></div></div>
               <div><span className="nce-principle-icon nce-pi-three"><Focus size={23}/></span><div><h3>Detail can arrive on demand.</h3><p>Progressive disclosure is an established interface pattern. Research suggests useful trade-offs for learning and exploration, but hiding too much can also increase navigation costs. An easy “show everything” option matters. <a href="#source-03">[3]</a> <a href="#source-05">[5]</a></p></div></div>
             </div>
           </div>
@@ -252,11 +252,11 @@ export default function NotionAttentionEssay() {
           <h2>An icon is a handle.<br/><em>Not a guessing game.</em></h2>
           <p>Icons can make locations recognizable, especially when they stay in the same place. But icon-only navigation may be ambiguous. So each drawer keeps its <strong>icon, label, and short description</strong> visible, even when the content is closed.</p>
           <p>Click the icon in the prototype to change it. Open one drawer. Close another. Turn <strong>Show everything</strong> on. Nothing is permanently hidden, and nothing asks you to remember the contents of a blank square.</p>
-          <div className="nce-experiment-callout"><Coffee size={24}/><div><strong>About the caffeine thought.</strong><p>Some days I want quiet. Other days I want the entire map in front of me. I jokingly associate that with my caffeine and energy level, but that's a personal observation—not a scientific claim about caffeine or ADHD. The design takeaway is user control.</p></div></div>
+          <div className="nce-experiment-callout"><Coffee size={24}/><div><strong>About the caffeine thought.</strong><p>Some days I want quiet. Other days I want the entire map in front of me. I jokingly associate that with my caffeine and energy level, but that&apos;s a personal observation—not a scientific claim about caffeine or ADHD. The design takeaway is user control.</p></div></div>
         </section>
         <section className="nce-test-section">
           <div className="nce-wide nce-test-grid">
-            <div><span className="nce-section-index">04 / THE HYPOTHESIS</span><h2>Let's test it,<br/>instead of declaring<br/>it a solution.</h2></div>
+            <div><span className="nce-section-index">04 / THE HYPOTHESIS</span><h2>Let&apos;s test it,<br/>instead of declaring<br/>it a solution.</h2></div>
             <div className="nce-test-content">
               <p className="nce-test-statement">A labeled, individually collapsible bento interface—with a one-click “show all” option—<em>may</em> reduce perceived clutter and help people locate information, compared with a fully expanded dashboard.</p>
               <div className="nce-test-checks"><div><span>01</span><p>Compare collapsed-first and expanded-first layouts on the same tasks.</p></div><div><span>02</span><p>Measure time to find information, errors, and perceived workload.</p></div><div><span>03</span><p>Test with ADHD and non-ADHD participants; ask about preferences and forgotten hidden content.</p></div></div>
