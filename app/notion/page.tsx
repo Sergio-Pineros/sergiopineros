@@ -1,23 +1,19 @@
 import type { Metadata } from "next";
-import NotionExperience from "@/components/notion/NotionExperience";
-import NotionIntroLoader from "@/components/notion/NotionIntroLoader";
-import "./notion.css";
-import "./notion-workspace.css";
-import "./notion-intro.css";
-import "./notion-film.css";
+import NotionAttentionEssay from "@/components/notion/NotionAttentionEssay";
+import "./notion-essay.css";
 
 export const metadata: Metadata = {
-  title: "Experiments, built into Notion | Sergio Piñeros",
-  description: "An independent feature concept showing how Notion AI Meeting Notes, databases, and Notion Agent could make experimentation easier for every team.",
-  robots: { index: false, follow: false },
+  title: "What if software had drawers? | Sergio Piñeros",
+  description: "An independent, research-informed experiment in ADHD, attention, progressive disclosure, and interactive bento design. Explore the working drawers prototype.",
+  robots: { index: true, follow: true },
   openGraph: {
-    title: "Experiments, built into Notion | Sergio Piñeros",
-    description: "One place for ideas, experiments, decisions, and what we learn next.",
-    type: "website",
+    title: "What if software had drawers?",
+    description: "A design hypothesis about ADHD, cognitive load, and interfaces that let people choose how much they see.",
+    type: "article",
     url: "https://www.sergiopineros.com/notion"
   }
 };
 
 export default function NotionPage() {
-  return <><NotionIntroLoader /><NotionExperience /></>;
+  return <NotionAttentionEssay />;
 }
