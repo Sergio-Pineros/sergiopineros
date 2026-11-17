@@ -5,8 +5,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
-import { Mail, Globe } from "lucide-react";
-import { InstagramIcon } from "@/components/SocialIcons";
+import { Mail, BookOpenText } from "lucide-react";
+import { InstagramIcon, LinkedInIcon } from "@/components/SocialIcons";
 import { ThemeProvider } from "next-themes";
 import ScreenLoader from "@/components/ScreenLoader";
 import StudioDesktop from "@/components/StudioDesktop";
@@ -69,10 +69,17 @@ export default function Portfolio() {
             <div className="footer__logo-wrap">
               <div className="footer__logotype" role="img" aria-label="Sergio Piñeros" />
             </div>
-            <nav className="footer__actions" aria-label="Footer">
-              <a href="mailto:hello@sergioatelier.co" className="footer__pill"><Mail size={17} aria-hidden="true" /> email</a>
+            <nav className="footer__actions" aria-label="Contact and social links">
+              <a href="mailto:hello@sergioatelier.co" className="footer__pill footer__pill--icon" aria-label="Email" title="Email">
+                <Mail size={21} aria-hidden="true" />
+              </a>
+              <a href="https://www.linkedin.com/in/sergio-pineros-c/" className="footer__pill footer__pill--icon" aria-label="LinkedIn" title="LinkedIn" target="_blank" rel="noopener noreferrer">
+                <LinkedInIcon size={21} />
+              </a>
               {CREATIVE_LINKS.map((link, i) => (
-                <a key={link.href} href={link.href} className="footer__pill" target="_blank" rel="noopener noreferrer">{i === 0 ? <Image src="/studio-icon.png" alt="" width={22} height={17} className="footer__studio-icon" aria-hidden="true" /> : i === 1 ? <InstagramIcon size={17} /> : <Globe size={17} aria-hidden="true" />}{link.label}</a>
+                <a key={link.href} href={link.href} className="footer__pill footer__pill--icon" aria-label={i === 2 ? "Sergio & Co. creative studio" : link.label} title={i === 2 ? "Sergio & Co." : link.label} target="_blank" rel="noopener noreferrer">
+                  {i === 0 ? <BookOpenText size={21} aria-hidden="true" /> : i === 1 ? <InstagramIcon size={21} /> : <span className="footer__studio-mark" aria-hidden="true" />}
+                </a>
               ))}
             </nav>
           </footer>
