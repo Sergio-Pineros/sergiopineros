@@ -1666,3 +1666,48 @@ button:focus-visible {
 }
 
 .footer__pill svg { flex: none; }
+
+
+/* Footer — icon-only contact and social links */
+.footer__actions {
+  align-items: center;
+  gap: 10px;
+}
+.footer__actions .footer__pill--icon {
+  width: 50px;
+  height: 50px;
+  flex: 0 0 50px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--color-ink-soft);
+  transition: transform .25s var(--spring-snappy), color .25s ease,
+    background .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+.footer__actions .footer__pill--icon:hover {
+  transform: translateY(-3px);
+  color: var(--color-ink);
+  background: color-mix(in srgb, var(--color-brand) 12%, var(--color-surface));
+  border-color: color-mix(in srgb, var(--color-brand) 45%, transparent);
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--color-brand) 14%, transparent);
+}
+.footer__actions .footer__pill--icon:active { transform: translateY(-1px) scale(.96); }
+.footer__actions .footer__pill--icon svg { flex-shrink: 0; }
+.footer__studio-mark {
+  display: block;
+  width: 28px;
+  height: 24px;
+  background: currentColor;
+  -webkit-mask: url("/sergio-co-mark.svg") center / contain no-repeat;
+  mask: url("/sergio-co-mark.svg") center / contain no-repeat;
+}
+@media (max-width: 700px) {
+  .footer__actions { gap: 9px; }
+  .footer__actions .footer__pill--icon { width: 44px; height: 44px; flex-basis: 44px; padding: 0; }
+  .footer__studio-mark { width: 26px; height: 23px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .footer__actions .footer__pill--icon { transition: none; }
+}
