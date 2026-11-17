@@ -42,3 +42,16 @@
 @media(max-width:850px){.editorial-studies__rail{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:22px;gap:18px;scrollbar-width:none;padding-right:22px}.editorial-studies__rail::-webkit-scrollbar{display:none}.editorial-study{flex:0 0 min(75vw,360px);scroll-snap-align:start}.editorial-study__bottom{font-size:30px}.editorial-study__caption h3{font-size:25px}.editorial-study__tomo-art>span{font-size:58px}}
 @media(max-width:540px){.editorial-studies__intro{padding-bottom:28px}.editorial-studies__intro h2{font-size:64px}.editorial-study{flex-basis:78vw}.editorial-studies__rail{gap:15px}.editorial-study__paper{padding:22px}.editorial-study__caption h3{font-size:23px}}
 @media(prefers-reduced-motion:reduce){.editorial-study__paper,.editorial-study__bottom svg{transition:none}}
+
+/* Sergio's Lab — field notes, specimen labels and paper-study covers */
+.editorial-studies__intro{max-width:1440px}
+.editorial-studies__intro h2{font-size:clamp(66px,10vw,143px);line-height:.95;margin-top:22px}
+.editorial-studies__intro>p{margin:26px 0 0;max-width:540px;font:400 clamp(17px,1.7vw,21px)/1.5 var(--font-sans);color:var(--color-ink-soft)}
+.editorial-study__paper{background-image:radial-gradient(circle at 48% 42%,#ffffff30,transparent 70%)}
+.editorial-study__top{border-bottom:1px solid #40304338;padding-bottom:14px}
+.editorial-study__sticker{display:inline-flex;align-items:center;justify-content:center;font:700 clamp(8px,.8vw,10px)/1.1 var(--font-sans);color:#563d57;border:1px solid #563d5777;transform:rotate(-7deg);padding:8px 10px;letter-spacing:.08em;white-space:nowrap}
+.editorial-study__caption h3{font:400 clamp(23px,2.6vw,34px)/1.16 var(--font-serif);letter-spacing:-.035em;max-width:19ch}
+.editorial-study__caption span{letter-spacing:.11em;font-weight:750}
+.editorial-study__art:after{content:"";position:absolute;inset:3% 5%;border:1px dashed #4a344d24;pointer-events:none}
+@media(max-width:850px){.editorial-studies__intro>p{max-width:430px}.editorial-study__sticker{font-size:9px}}
+@media(max-width:540px){.editorial-studies__intro h2{font-size:clamp(62px,16vw,88px)}.editorial-studies__intro>p{font-size:17px;margin-top:19px}.editorial-study__sticker{font-size:9px}}
