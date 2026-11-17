@@ -7,5 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function TomoPage() {
-  return <iframe title="Tomo — a product design exploration by Sergio Piñeros" src="/tomo-experience/index.html" style={{ position: "fixed", inset: 0, width: "100%", height: "100%", border: 0, background: "#f5f1ee" }} />;
+  return <iframe title="Tomo — a product design exploration by Sergio Piñeros" src="/tomo-experience/viewer.html" style={{ position: "fixed", inset: 0, width: "100%", height: "100%", border: 0, background: "#f5f1ee" }} />;
 }
