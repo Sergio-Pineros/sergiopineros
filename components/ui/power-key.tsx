@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Power } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export function PowerKey({ onPowerOn, className }: { onPowerOn: () => void; className?: string }) {
+export function PowerKey({ onPowerOn, onPowerStart, className }: { onPowerOn: () => void; onPowerStart?: () => void; className?: string }) {
   const [starting, setStarting] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => () => { if (timer.current) clearTimeout(timer.current); }, []);
@@ -15,6 +15,8 @@ export function PowerKey({ onPowerOn, className }: { onPowerOn: () => void; clas
       title="Power on" onClick={() => {
         if (starting) return;
         setStarting(true);
+        // Start fetching the desktop while the button performs its opening animation.
+        onPowerStart?.();
         const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         timer.current = setTimeout(() => {
           onPowerOn();
