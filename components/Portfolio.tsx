@@ -9,11 +9,18 @@ import { Mail, BookOpenText } from "lucide-react";
 import { InstagramIcon, LinkedInIcon } from "@/components/SocialIcons";
 import { ThemeProvider } from "next-themes";
 import ScreenLoader from "@/components/ScreenLoader";
-import StudioDesktop from "@/components/StudioDesktop";
+import dynamic from "next/dynamic";
 import QuestionConversation from "@/components/QuestionConversation";
 import CaseStudies from "@/components/CaseStudies";
 import { CREATIVE_LINKS } from "@/lib/projects";
 import { PowerKey } from "@/components/ui/power-key";
+
+// The interactive desktop (including its wallpaper and galleries) is optional.
+// Do not ship its JavaScript with the initial homepage.
+const StudioDesktop = dynamic(() => import("@/components/StudioDesktop"), {
+  ssr: false,
+  loading: () => null,
+});
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -47,7 +54,7 @@ export default function Portfolio() {
               <Image src="/icon.svg" alt="" width={44} height={44} className="nav-logo__mark" priority />
             </a>
             <span ref={desktopEntryRef}>
-              <PowerKey onPowerOn={() => {
+              <PowerKey onPowerStart={() => { void import("@/components/StudioDesktop"); }} onPowerOn={() => {
                 setDesktopOrigin(desktopEntryRef.current?.getBoundingClientRect() ?? null);
                 setDesktopOpen(true);
               }} />
@@ -86,7 +93,7 @@ export default function Portfolio() {
         </main>
       </div>
       <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
-        <StudioDesktop open={desktopOpen} onClose={closeDesktop} origin={desktopOrigin} />
+        {desktopOpen && <StudioDesktop open={desktopOpen} onClose={closeDesktop} origin={desktopOrigin} />}
       </ThemeProvider>
     </>
   );
