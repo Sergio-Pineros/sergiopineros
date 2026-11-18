@@ -1,26 +1,45 @@
 export const assets = {
-  mark: "/tomo-experience/assets/tomo-compact.svg",
+  mark: "/tomo-studio/tomo-official-mark.svg",
   wordmark: "/tomo-experience/assets/tomo-wordmark.svg",
-  hero: "/tomo-studio/denim-hero.webp",
-  label: "/tomo-studio/woven-label.webp",
+  hero: "/tomo-studio/daybreak.webp",
+  cloud: "/tomo-experience/assets/drifting-cloud.webp",
 };
 
+export const stickers = {
+  cloud: "/tomo-studio/sticker-cloud.webp",
+  sparkle: "/tomo-studio/sticker-sparkle.webp",
+  heart: "/tomo-studio/sticker-heart.webp",
+  check: "/tomo-studio/sticker-check.webp",
+} as const;
+
+export const biomes = {
+  run: { name: "The Loop", image: "/tomo-studio/biome-loop.webp", sticker: "sparkle", message: "i ran my first 5k!!", reply: "okay runner era 👀", caption: "A park for getting into a rhythm." },
+  plan: { name: "The Garden", image: "/tomo-studio/biome-garden.webp", sticker: "check", message: "tomorrow is looking like a lot", reply: "one thing at a time. i brought a list.", caption: "A little room to put things in order." },
+  win: { name: "The Meadow", image: "/tomo-studio/biome-meadow.webp", sticker: "heart", message: "i got the job!!!", reply: "WAIT. the one you practiced for in the kitchen?", caption: "A place to make good news feel big." },
+  rest: { name: "The Cove", image: "/tomo-studio/biome-cove.webp", sticker: "cloud", message: "am i overthinking this", reply: "walk me through the bit you keep replaying.", caption: "A quiet place to think something through." },
+} as const;
+
+export const prototypeSelectionEvent = "tomo:prototype-selection";
+
+export type BiomeName = keyof typeof biomes;
+export type StickerName = keyof typeof stickers;
+
 export const palettes = {
-  electric: { label: "Electric blue", background: "#243BB8", ink: "#FFFFFF", accent: "#DFFD63", role: "Expressive brand field" },
-  sky: { label: "Sky", background: "#BBDDF8", ink: "#152147", accent: "#243BB8", role: "Conversation and guidance" },
-  lime: { label: "Acid lime", background: "#DFFD63", ink: "#171A14", accent: "#243BB8", role: "Active states and actions" },
-  sun: { label: "Warm yellow", background: "#FFC84B", ink: "#211C14", accent: "#243BB8", role: "Milestones and celebration" },
-  blush: { label: "Soft pink", background: "#F4BDD0", ink: "#281D27", accent: "#243BB8", role: "Reflection and memories" },
-  paper: { label: "Warm white", background: "#F7F5EB", ink: "#1C211C", accent: "#243BB8", role: "Product surfaces and reading" },
-  ink: { label: "Near-black", background: "#1C211C", ink: "#F7F5EB", accent: "#DFFD63", role: "Type and high-contrast surfaces" },
+  electric: { label: "Periwinkle", background: "#DEDDFB", ink: "#26264A", accent: "#474AA6", role: "An active space for plans" },
+  sky: { label: "Daybreak", background: "#D9EEFC", ink: "#152147", accent: "#3547A3", role: "Conversation and reflection" },
+  lime: { label: "Mint", background: "#DDF0DA", ink: "#192D26", accent: "#357057", role: "Progress and follow-through" },
+  sun: { label: "Lemon", background: "#FFF2B0", ink: "#302816", accent: "#795507", role: "Milestones and celebration" },
+  blush: { label: "Rose", background: "#F9DEEB", ink: "#362035", accent: "#973E6C", role: "Memories worth keeping" },
+  paper: { label: "Cloud white", background: "#FCFAF0", ink: "#24283A", accent: "#3547A3", role: "Product surfaces and reading" },
+  ink: { label: "Twilight", background: "#242A4B", ink: "#FCFAF0", accent: "#FFF2B0", role: "High-contrast moments" },
 } as const;
 
 export const materials = {
-  woven: { label: "Woven", detail: "A tight cotton weave for memories and objects worth keeping." },
-  canvas: { label: "Canvas", detail: "A matte, open weave for plans and works in progress." },
-  print: { label: "Screen print", detail: "Dense pigment and grain for posters and celebratory moments." },
-  paper: { label: "Paper", detail: "A light fibrous surface for notes and reflection." },
-  clean: { label: "Digital clean", detail: "An uninterrupted surface for reading numbers, dates and tasks." },
+  gloss: { label: "Glossy enamel", detail: "A soft rim and a touch of shine for little wins." },
+  mist: { label: "Cloud mist", detail: "Diffused light for the quieter moments." },
+  satin: { label: "Satin clay", detail: "Soft depth borrowed from the miniature landscapes." },
+  paper: { label: "Matte", detail: "Even light for readable text and calm compositions." },
+  clean: { label: "Digital clean", detail: "An uninterrupted surface for dates, tasks and numbers." },
 } as const;
 
 export const settingsOptions = {
@@ -43,40 +62,42 @@ export interface Settings {
 }
 
 export const initialSettings: Settings = {
-  palette: "electric",
-  material: "woven",
+  palette: "sky",
+  material: "mist",
   lockup: "primary",
   type: "stacked",
   format: "poster",
-  headline: "your world, in progress.",
+  headline: "little wins count.",
   scale: 100,
   motion: true,
 };
 
 export const compositions: Settings[] = [
-  { ...initialSettings, palette: "lime", material: "print", type: "stacked", headline: "bet on yourself.", lockup: "mono", scale: 106 },
-  { ...initialSettings, palette: "blush", material: "paper", type: "journal", headline: "something good happened.", format: "tag" },
+  { ...initialSettings, palette: "sun", material: "gloss", headline: "hype me up.", lockup: "mono", scale: 106 },
+  { ...initialSettings, palette: "blush", material: "satin", type: "journal", headline: "good news looks good on you.", format: "tag" },
   { ...initialSettings, palette: "sky", material: "clean", type: "label", headline: "text me about it.", format: "widget", lockup: "mark" },
-  { ...initialSettings, palette: "sun", material: "canvas", type: "stacked", headline: "little wins count.", lockup: "secondary" },
-  { ...initialSettings, palette: "ink", material: "woven", type: "journal", headline: "life lately.", format: "tag", lockup: "mono" },
+  { ...initialSettings, palette: "lime", material: "mist", headline: "runner era unlocked.", lockup: "secondary" },
+  { ...initialSettings, palette: "ink", material: "paper", type: "journal", headline: "one thing at a time.", format: "tag", lockup: "mono" },
 ];
 
 export const principles = [
-  { title: "Start with the person", summary: "Open with the words someone actually said. Give their next action a clear place to land." },
-  { title: "Let context shape the layout", summary: "A run needs a measure. A busy day needs order. Good news deserves room to breathe." },
-  { title: "Put expression where it helps", summary: "Keep dates, inputs and labels plain. Put grain, texture and scale on the surrounding canvas." },
-  { title: "Make the useful thing beautiful", summary: "Give a progress bar or a checked task the same care as a headline." },
-  { title: "Leave room for change", summary: "Keep every generated artifact editable, and use short transitions to show what changed." },
+  { title: "Start with what they said.", summary: "A little win, a busy tomorrow or a wildly specific thought is enough to start." },
+  { title: "Give the moment a shape.", summary: "The run becomes a tracker. The plan becomes a list. The good news becomes a keepsake." },
+  { title: "Make it feel like Tomo.", summary: "The voice, the shapes and the colors carry through from the text to the interface." },
 ];
+
+const legacyMaterials: Record<string, Settings["material"]> = { woven: "mist", canvas: "satin", print: "gloss" };
 
 export function decodeSettings(value: unknown): Settings {
   const input = value && typeof value === "object" ? value as Partial<Settings> : {};
+  const material = typeof input.material === "string" && Object.hasOwn(legacyMaterials, input.material)
+    ? legacyMaterials[input.material] : input.material;
   return {
-    palette: settingsOptions.palette.includes(input.palette!) ? input.palette! : initialSettings.palette,
-    material: settingsOptions.material.includes(input.material!) ? input.material! : initialSettings.material,
-    lockup: settingsOptions.lockup.includes(input.lockup!) ? input.lockup! : initialSettings.lockup,
-    type: settingsOptions.type.includes(input.type!) ? input.type! : initialSettings.type,
-    format: settingsOptions.format.includes(input.format!) ? input.format! : initialSettings.format,
+    palette: input.palette && settingsOptions.palette.includes(input.palette) ? input.palette : initialSettings.palette,
+    material: material && settingsOptions.material.includes(material) ? material : initialSettings.material,
+    lockup: input.lockup && settingsOptions.lockup.includes(input.lockup) ? input.lockup : initialSettings.lockup,
+    type: input.type && settingsOptions.type.includes(input.type) ? input.type : initialSettings.type,
+    format: input.format && settingsOptions.format.includes(input.format) ? input.format : initialSettings.format,
     headline: typeof input.headline === "string" ? input.headline.slice(0, 64) : initialSettings.headline,
     scale: typeof input.scale === "number" && Number.isFinite(input.scale) ? Math.min(125, Math.max(75, input.scale)) : initialSettings.scale,
     motion: typeof input.motion === "boolean" ? input.motion : initialSettings.motion,

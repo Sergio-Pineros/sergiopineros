@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import type { KeyboardEvent, ReactNode } from "react";
-import { assets } from "./brand";
+import { assets, biomes, stickers, type BiomeName, type StickerName } from "./brand";
 import styles from "./studio.module.css";
 
 export const studioStyles = styles;
@@ -15,12 +15,12 @@ export function Arrow({ diagonal = false }: { diagonal?: boolean }) {
   );
 }
 
-export function Spark({ className }: { className?: string }) {
-  return (
-    <svg aria-hidden="true" className={className} viewBox="0 0 32 32" width="32" height="32" fill="none">
-      <path d="M16 3v26M3 16h26M6.8 6.8l18.4 18.4m0-18.4L6.8 25.2" stroke="currentColor" strokeWidth="3.2" strokeLinecap="round" />
-    </svg>
-  );
+export function Sticker({ name, className }: { name: StickerName; className?: string }) {
+  return <Image src={stickers[name]} className={className} width={240} height={240} alt="" unoptimized />;
+}
+
+export function BiomeArtwork({ name, className, eager = false }: { name: BiomeName; className?: string; eager?: boolean }) {
+  return <Image src={biomes[name].image} className={className} width={560} height={440} alt="" loading={eager ? "eager" : "lazy"} unoptimized />;
 }
 
 export function TomoLogo({ variant = "primary" }: { variant?: "primary" | "secondary" | "mark" | "mono" }) {
@@ -83,12 +83,12 @@ export function Progress({ label, value, max }: { label: string; value: number; 
   return <progress className={styles.progress} aria-label={label} value={Math.min(value, max)} max={max} />;
 }
 
-export function Widget({ label, title, children }: { label: string; title: string; children: ReactNode }) {
+export function Widget({ label, title, sticker, children }: { label: string; title: string; sticker?: StickerName; children: ReactNode }) {
   return (
     <article className={styles.widget}>
       <div className={styles.widgetHeading}>
         <div><p className={styles.mono}>{label}</p><h3>{title}</h3></div>
-        <TomoLogo variant="mark" />
+        {sticker ? <Sticker name={sticker} className={styles.widgetSticker} /> : <TomoLogo variant="mark" />}
       </div>
       {children}
     </article>

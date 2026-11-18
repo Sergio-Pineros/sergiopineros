@@ -1,62 +1,63 @@
 "use client";
 
 import Image from "next/image";
-import { useState, type PointerEvent } from "react";
-import { assets } from "./brand";
-import { Arrow, Progress, Spark, TomoLogo, studioStyles as s } from "./StudioPrimitives";
+import { useState } from "react";
+import { assets, biomes, prototypeSelectionEvent, type BiomeName } from "./brand";
+import { Arrow, BiomeArtwork, Progress, Sticker, TomoLogo, studioStyles as s } from "./StudioPrimitives";
 
 const contexts = [
-  { label: "Making things", message: "i finally made a first draft!", title: "Something started.", date: "Saturday, 10:24 AM", note: "First draft", action: "An idea worth keeping.", progress: 2, total: 3, unit: "steps", theme: "lime" },
-  { label: "Getting organized", message: "i need a little order tomorrow", title: "A day taking shape.", date: "Sunday, 8:15 PM", note: "Tomorrow", action: "Start with the important thing.", progress: 1, total: 3, unit: "planned", theme: "sky" },
-  { label: "Celebrating", message: "i got the job!!!", title: "One to remember.", date: "Friday, 6:42 PM", note: "Good news", action: "Save how it felt.", progress: 3, total: 3, unit: "little wins", theme: "sun" },
-] as const;
+  { id: "run", label: "Log a run", title: "Your first 5K", note: "A very good day to have legs.", distance: 5 },
+  { id: "plan", label: "Plan a day", title: "Tomorrow, in order", note: "First up: take the day one thing at a time.", items: ["9:00 · Send the application", "12:30 · Get groceries"] },
+  { id: "win", label: "Keep a win", title: "I got the job!", note: "Three weeks of practice. One very good phone call." },
+  { id: "rest", label: "Take a breath", title: "Let’s slow it down", note: "Start with the part that keeps looping." },
+] as const satisfies readonly { id: BiomeName; label: string; title: string; note: string; distance?: number; items?: readonly string[] }[];
 
 export default function Opening() {
   const [selected, setSelected] = useState(0);
+  const [paused, setPaused] = useState(false);
   const moment = contexts[selected];
-
-  function followPointer(event: PointerEvent<HTMLDivElement>) {
-    if (event.pointerType !== "mouse" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const canvas = event.currentTarget;
-    const rect = canvas.getBoundingClientRect();
-    canvas.style.setProperty("--drift-x", `${((event.clientX - rect.left) / rect.width - 0.5) * 15}px`);
-    canvas.style.setProperty("--drift-y", `${((event.clientY - rect.top) / rect.height - 0.5) * 12}px`);
-  }
+  const biome = biomes[moment.id];
 
   return (
-    <section className={s.hero} id="overview" aria-labelledby="tomo-title">
-      <div className={s.heroCopy}>
-        <p className={s.eyebrow}><span className={s.dot} /> An independent brand study</p>
-        <h1 id="tomo-title">Your world,<br />in progress<span>.</span></h1>
-        <p className={s.heroIntro}>What could a personal AI look and feel like when its identity grows with the people using it?</p>
-        <div className={s.heroActions}>
-          <a className={s.primaryButton} href="#identity">Enter the playground <Arrow /></a>
-          <a className={s.textLink} href="#principles">Explore the system</a>
-        </div>
-        <div className={s.context}>
-          <p className={s.mono}>What’s your world like today?</p>
-          <div className={s.contextChoices} role="group" aria-label="Hero context">
-            {contexts.map((item, index) => (
-              <button key={item.label} type="button" aria-pressed={selected === index} onClick={() => setSelected(index)}>{item.label}</button>
-            ))}
-          </div>
-        </div>
+    <section className={s.hero} id="overview" aria-labelledby="tomo-title" data-paused={paused}>
+      <div className={s.heroAtmosphere} aria-hidden="true">
+        <Image src={assets.hero} alt="" fill sizes="100vw" priority />
+        <span className={s.cloudDrift}><Image src={assets.cloud} alt="" width={866} height={562} priority /></span>
+        <span className={s.cloudDrift}><Image src={assets.cloud} alt="" width={866} height={562} /></span>
       </div>
-      <div className={s.heroArt} onPointerMove={followPointer} onPointerLeave={(event) => {
-        event.currentTarget.style.setProperty("--drift-x", "0px");
-        event.currentTarget.style.setProperty("--drift-y", "0px");
-      }}>
-        <Image src={assets.hero} alt="A cobalt denim letter T with double-stitched seams and a woven label" fill sizes="(max-width: 760px) 100vw, 57vw" priority />
-        <div className={s.artStamp}><TomoLogo variant="mark" /><span>MADE OF<br />MOMENTS</span></div>
-        <div key={selected} className={s.artNotes} data-context={moment.theme} aria-live="polite">
-          <div className={s.artMessage}><span className={s.mono}>{moment.date}</span><p>{moment.message}</p></div>
-          <div className={s.artCard}>
-            <div className={s.artCardTop}><span className={s.mono}>{moment.note}</span><Spark className={s.artSpark} /></div>
-            <strong>{moment.title}</strong>
-            <p>{moment.action}</p>
-            <div className={s.artProgress}><Progress label={moment.unit} value={moment.progress} max={moment.total} /><span>{moment.progress}/{moment.total}</span></div>
+      <div className={s.heroInner}>
+        <div className={s.heroCopy}>
+          <h1 id="tomo-title">Interface<br />as identity<span>.</span></h1>
+          <p className={s.heroIntro}>What if the little things people text Tomo about became the worlds they could explore?</p>
+          <div className={s.heroActions}>
+            <a className={s.primaryButton} href="#interfaces" onClick={() => window.dispatchEvent(new CustomEvent(prototypeSelectionEvent, { detail: moment.id }))}>Try the prototypes <Arrow /></a>
+            <a className={s.textLink} href="#principles">See the principle</a>
+          </div>
+          <div className={s.context}>
+            <p className={s.mono}>Choose a moment</p>
+            <div className={s.contextChoices} role="group" aria-label="Choose a moment">
+              {contexts.map((item, index) => (
+                <button key={item.id} type="button" aria-pressed={selected === index} onClick={() => setSelected(index)}>{item.label}</button>
+              ))}
+            </div>
           </div>
         </div>
+        <div className={s.heroArt} aria-live="polite">
+          <div key={moment.id} className={s.artNotes} data-biome={moment.id}>
+            <BiomeArtwork name={moment.id} className={s.heroBiome} eager />
+            <Sticker name={biome.sticker} className={s.heroSticker} />
+            <p className={s.artMessage}>{biome.message}</p>
+            <div className={s.artCard}>
+              <div className={s.artCardTop}><TomoLogo variant="mark" /><span className={s.mono}>{biome.name}</span></div>
+              <strong>{moment.title}</strong>
+              <p>{moment.note}</p>
+              {moment.id === "run" && <div className={s.artProgress}><Progress label="Your first 5K" value={moment.distance} max={5} /><span>{moment.distance}.0 km</span></div>}
+              {moment.id === "plan" && <ul className={s.artAgenda}>{moment.items.map((item) => <li key={item}>{item}</li>)}</ul>}
+            </div>
+            <p className={s.artReply}>{biome.reply}</p>
+          </div>
+        </div>
+        <button className={s.cloudToggle} type="button" aria-pressed={paused} onClick={() => setPaused(!paused)}>{paused ? "Play clouds" : "Pause clouds"}</button>
       </div>
     </section>
   );

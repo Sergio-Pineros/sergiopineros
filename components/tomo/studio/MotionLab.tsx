@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Arrow, TomoLogo, studioStyles as s } from "./StudioPrimitives";
+import { Arrow, Sticker, TomoLogo, studioStyles as s } from "./StudioPrimitives";
 
 const motionExamples = [
   { id: "message", label: "Message → widget", duration: "520 ms", detail: "A short move and fade connect the new widget to the message that created it." },
@@ -32,7 +32,7 @@ export default function MotionLab() {
           {example.id === "message" ? <>
             <div className={s.motionBubble}>can we make a plan?</div>
             <div className={s.motionCard}><TomoLogo variant="mark" /><div><strong>Tomorrow, in order.</strong><br /><span>3 things to make room for.</span></div></div>
-          </> : <div className={s.motionCard}><span aria-hidden="true" className={s.motionCheck}>✓</span><div><strong>First thing, done.</strong><br /><span>1 of 3 tasks complete.</span><div className={s.motionProgress}><span /></div></div></div>}
+          </> : <div className={s.motionCard}><Sticker name="check" className={s.motionCheck} /><div><strong>First thing, done.</strong><br /><span>1 of 3 tasks complete.</span><div className={s.motionProgress}><span /></div></div></div>}
         </div>
       </div>
     </section>

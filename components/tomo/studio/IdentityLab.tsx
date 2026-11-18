@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
-import { compositions, decodeSettings, formatPaletteTokens, initialSettings, materials, palettes, settingsOptions, type Settings } from "./brand";
-import { Arrow, Conversation, Panel, Progress, Spark, Tabs, TomoLogo, Widget, studioStyles as s } from "./StudioPrimitives";
+import { compositions, decodeSettings, formatPaletteTokens, initialSettings, materials, palettes, settingsOptions, type Settings, type StickerName } from "./brand";
+import { Arrow, Conversation, Panel, Progress, Sticker, Tabs, TomoLogo, Widget, studioStyles as s } from "./StudioPrimitives";
 
 const tabs = [
   { id: "identity", label: "Identity" }, { id: "type", label: "Type studio" },
@@ -10,9 +10,10 @@ const tabs = [
 ] as const;
 type StudioTab = (typeof tabs)[number]["id"];
 
-const formatLabels = { poster: "Poster", tag: "Textile tag", widget: "Product card" };
+const formatLabels = { poster: "Poster", tag: "Sticker card", widget: "Product card" };
 const typeLabels = { stacked: "Heavy editorial", journal: "Journal serif", label: "Utility mono" };
 const lockupLabels = { primary: "Primary lockup", secondary: "Stacked lockup", mark: "Small symbol", mono: "Monochrome wordmark" };
+const paletteStickers: Record<Settings["palette"], StickerName> = { electric: "check", sky: "cloud", lime: "check", sun: "sparkle", blush: "heart", paper: "cloud", ink: "sparkle" };
 const storageKey = "tomo-identity-studio-v1";
 
 function Field({ label, children }: { label: string; children: ReactNode }) {
@@ -95,15 +96,15 @@ export default function IdentityLab() {
   const palette = palettes[settings.palette];
   const canvasStyle = {
     "--field": palette.background, "--field-ink": palette.ink, "--field-accent": palette.accent, "--type-scale": settings.scale / 100,
-    "--logo-filter": settings.palette === "electric" || settings.palette === "ink" ? "brightness(0) invert(1)" : "brightness(0)",
+    "--logo-filter": settings.palette === "ink" ? "brightness(0) invert(1)" : "brightness(0)",
   } as CSSProperties;
-  const headline = settings.headline.trim() || "your world, in progress.";
+  const headline = settings.headline.trim() || initialSettings.headline;
 
   return (
     <section id="identity" className={s.section} aria-labelledby="identity-title">
       <div className={s.sectionIntro}>
         <div><p className={s.eyebrow}>The visual system</p><h2 id="identity-title">Identity lab.</h2></div>
-        <p>Pick a material, set a headline and see how the same identity changes from a poster to a product card.</p>
+        <p>Try Tomo’s palette, 3D stickers and surfaces on a poster, sticker card or product card.</p>
       </div>
       <div className={s.labShell}>
         <Tabs items={tabs} current={tab} id="brand" label="Brand workspaces" onChange={(next) => { setTab(next); setFeedback(""); setManualCopy(""); }} />
@@ -126,7 +127,7 @@ export default function IdentityLab() {
                       <div className={s.composition} data-type={settings.type} data-material={settings.format === "poster" ? undefined : settings.material}>
                         <div className={s.compositionTop}><TomoLogo variant={settings.lockup} /><span className={s.mono}>{formatLabels[settings.format]}</span></div>
                         <p className={s.compositionTitle}>{headline}</p>
-                        <div className={s.compositionBottom}><span className={s.mono}>Your world, in progress</span><Spark className={s.compositionStar} /></div>
+                        <div className={s.compositionBottom}><span className={s.mono}>Interface as identity</span><Sticker name={paletteStickers[settings.palette]} className={s.compositionStar} /></div>
                       </div>
                     </div>
                     <p className={s.canvasCaption}><span>{palette.label} / {materials[settings.material].label}</span><span>{formatLabels[settings.format]}</span></p>
@@ -147,7 +148,7 @@ export default function IdentityLab() {
                     <Field label="Sample headline"><select value={compositions.some((preset) => preset.headline === settings.headline) ? settings.headline : ""} onChange={(event) => update("headline", event.target.value || initialSettings.headline)}><option value="">Choose a sample</option>{compositions.map((preset) => <option key={preset.headline}>{preset.headline}</option>)}</select></Field>
                   </>}
                   {tab === "materials" && <>
-                    <div><h3>Pick a surface</h3><p>Try the same composition on fabric and on a clean digital field.</p></div>
+                    <div><h3>Pick a surface</h3><p>Try mist, glossy enamel or a clean digital surface.</p></div>
                     <fieldset className={s.swatches}><legend>Palette</legend>{settingsOptions.palette.map((value) => <button key={value} type="button" title={palettes[value].label} aria-label={palettes[value].label} aria-pressed={value === settings.palette} style={{ background: palettes[value].background, color: palettes[value].ink }} onClick={() => update("palette", value)}>{value === settings.palette ? "✓" : ""}</button>)}</fieldset>
                     <p className={s.paletteMeta}>{palette.background} · {palette.role}</p>
                     <Field label="Material"><select value={settings.material} onChange={(event) => update("material", event.target.value as Settings["material"])}>{settingsOptions.material.map((value) => <option key={value} value={value}>{materials[value].label}</option>)}</select></Field>
@@ -156,7 +157,7 @@ export default function IdentityLab() {
                   </>}
                   {tab === "components" ? <>
                     <div><h3>Product grammar</h3><p>Messages carry the voice. Widgets share an action area, readable labels and a clear completion state.</p></div>
-                    <dl className={s.tokenList}><div><dt>Space</dt><dd>4 / 8 / 12 / 16 / 24 / 32 px</dd></div><div><dt>Radius</dt><dd>6 / 12 / 18 px</dd></div><div><dt>Motion</dt><dd>160 / 320 / 520 ms</dd></div><div><dt>Border</dt><dd>1 px solid · #D8D9CC</dd></div></dl>
+                    <dl className={s.tokenList}><div><dt>Space</dt><dd>4 / 8 / 12 / 16 / 24 / 32 px</dd></div><div><dt>Radius</dt><dd>10 / 17 / 24 px</dd></div><div><dt>Motion</dt><dd>160 / 320 / 520 ms</dd></div><div><dt>Border</dt><dd>1 px solid · #DEDFE8</dd></div></dl>
                     <button type="button" className={s.secondaryButton} onClick={() => void copy(formatPaletteTokens(settings.palette), "Color tokens copied.")}>Copy color tokens</button>
                   </> : (
                     <div className={s.labActions}>
