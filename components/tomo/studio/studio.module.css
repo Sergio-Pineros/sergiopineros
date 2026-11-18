@@ -271,7 +271,7 @@
 .gallery figcaption { display: grid; gap: 2px; padding: 11px 3px 0; }
 .gallery figcaption strong { font-family: var(--tomo-display); font-size: 20px; font-weight: 760; }
 .gallery figcaption span { font-size: 14px; color: var(--tomo-quiet); }
-.biomeTile { position: relative; isolation: isolate; display: grid; place-items: center; border-radius: var(--radius-2); background: radial-gradient(ellipse at 36% 22%,#fff9,transparent 70%),var(--biome-field); min-height: 220px; aspect-ratio: 1.1; overflow: hidden; padding: 50px 13px 12px; }
+.biomeTile { width: 100%; min-width: 0; position: relative; isolation: isolate; display: grid; place-items: center; border-radius: var(--radius-2); background: radial-gradient(ellipse at 36% 22%,#fff9,transparent 70%),var(--biome-field); min-height: 220px; aspect-ratio: 1.1; overflow: hidden; padding: 50px 13px 12px; }
 .biomeTile .biomeQuote { position: absolute; top: 14px; left: 13px; max-width: calc(100% - 26px); padding: 5px 8px; background: #fffefadf; border-radius: 9px 9px 9px 2px; font-size: 12px; font-weight: 700; }
 .galleryBiome { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 11px 12px #30436525); }
 .gallerySticker { position: absolute; right: 8px; bottom: 8px; width: clamp(35px,4.4vw,58px); height: auto; transform: rotate(12deg); }
