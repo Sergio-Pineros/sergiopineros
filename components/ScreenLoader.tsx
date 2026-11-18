@@ -11,7 +11,8 @@ const INK = "#9d86bc";
 const INK_DEEP = "#7f6899";
 const PAPER = "#ffffff";
 const EASE_OUT = "cubic-bezier(0.22, 1, 0.36, 1)";
-const HOLD_MS = 1500;
+const HOLD_MS = 1100;
+const SESSION_KEY = "sergio-portfolio-intro-seen";
 const FADE_MS = 500;
 const ICON_SRC = "/icon.svg";
 
@@ -166,6 +167,7 @@ export default function ScreenLoader({ onComplete }: { onComplete: () => void })
   const finish = useCallback((reduced: boolean) => {
     if (doneRef.current) return;
     doneRef.current = true;
+    try { sessionStorage.setItem(SESSION_KEY, "1"); } catch { /* Session storage may be unavailable. */ }
     document.body.style.overflow = "";
     // Reveal the site as the overlay starts dissolving — not before.
     onCompleteRef.current();
@@ -184,6 +186,16 @@ export default function ScreenLoader({ onComplete }: { onComplete: () => void })
   }, []);
 
   useEffect(() => {
+    // The intro is part of the first visit, not a delay on every return.
+    try {
+      if (sessionStorage.getItem(SESSION_KEY) === "1") {
+        doneRef.current = true;
+        onCompleteRef.current();
+        setMounted(false);
+        return;
+      }
+    } catch { /* Fall back to the regular intro. */ }
+
     const canvas = canvasRef.current;
     const overlay = overlayRef.current;
     if (!canvas || !overlay) return;
