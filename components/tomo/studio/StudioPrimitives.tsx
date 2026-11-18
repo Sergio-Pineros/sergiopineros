@@ -15,6 +15,14 @@ export function Arrow({ diagonal = false }: { diagonal?: boolean }) {
   );
 }
 
+export function Spark({ className }: { className?: string }) {
+  return (
+    <svg aria-hidden="true" className={className} viewBox="0 0 32 32" width="32" height="32" fill="none">
+      <path d="M16 3v26M3 16h26M6.8 6.8l18.4 18.4m0-18.4L6.8 25.2" stroke="currentColor" strokeWidth="3.2" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 export function TomoLogo({ variant = "primary" }: { variant?: "primary" | "secondary" | "mark" | "mono" }) {
   return (
     <span className={styles.logo} data-lockup={variant}>

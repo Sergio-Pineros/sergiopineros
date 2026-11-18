@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState, type PointerEvent } from "react";
 import { assets } from "./brand";
-import { Arrow, Progress, TomoLogo, studioStyles as s } from "./StudioPrimitives";
+import { Arrow, Progress, Spark, TomoLogo, studioStyles as s } from "./StudioPrimitives";
 
 const contexts = [
   { label: "Making things", message: "i finally made a first draft!", title: "Something started.", date: "Saturday, 10:24 AM", note: "First draft", action: "An idea worth keeping.", progress: 2, total: 3, unit: "steps", theme: "lime" },
@@ -51,7 +51,7 @@ export default function Opening() {
         <div key={selected} className={s.artNotes} data-context={moment.theme} aria-live="polite">
           <div className={s.artMessage}><span className={s.mono}>{moment.date}</span><p>{moment.message}</p></div>
           <div className={s.artCard}>
-            <div className={s.artCardTop}><span className={s.mono}>{moment.note}</span><span aria-hidden="true">✳</span></div>
+            <div className={s.artCardTop}><span className={s.mono}>{moment.note}</span><Spark className={s.artSpark} /></div>
             <strong>{moment.title}</strong>
             <p>{moment.action}</p>
             <div className={s.artProgress}><Progress label={moment.unit} value={moment.progress} max={moment.total} /><span>{moment.progress}/{moment.total}</span></div>

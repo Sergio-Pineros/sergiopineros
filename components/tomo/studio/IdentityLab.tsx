@@ -2,7 +2,7 @@
 
 import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
 import { compositions, decodeSettings, formatPaletteTokens, initialSettings, materials, palettes, settingsOptions, type Settings } from "./brand";
-import { Arrow, Conversation, Panel, Progress, Tabs, TomoLogo, Widget, studioStyles as s } from "./StudioPrimitives";
+import { Arrow, Conversation, Panel, Progress, Spark, Tabs, TomoLogo, Widget, studioStyles as s } from "./StudioPrimitives";
 
 const tabs = [
   { id: "identity", label: "Identity" }, { id: "type", label: "Type studio" },
@@ -126,7 +126,7 @@ export default function IdentityLab() {
                       <div className={s.composition} data-type={settings.type} data-material={settings.format === "poster" ? undefined : settings.material}>
                         <div className={s.compositionTop}><TomoLogo variant={settings.lockup} /><span className={s.mono}>{formatLabels[settings.format]}</span></div>
                         <p className={s.compositionTitle}>{headline}</p>
-                        <div className={s.compositionBottom}><span className={s.mono}>Your world, in progress</span><span aria-hidden="true" className={s.compositionStar}>✳</span></div>
+                        <div className={s.compositionBottom}><span className={s.mono}>Your world, in progress</span><Spark className={s.compositionStar} /></div>
                       </div>
                     </div>
                     <p className={s.canvasCaption}><span>{palette.label} / {materials[settings.material].label}</span><span>{formatLabels[settings.format]}</span></p>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { Arrow, Conversation, Panel, Progress, Tabs, Widget, studioStyles as s } from "./StudioPrimitives";
+import { Arrow, Conversation, Panel, Progress, Spark, Tabs, Widget, studioStyles as s } from "./StudioPrimitives";
 
 const examples = [
   { id: "run", label: "Log a run", prompt: "i ran 3km today!!", reply: "three whole kilometers! that’s your longest this week. i put it next to your other runs." },
@@ -140,7 +140,7 @@ function Keepsake() {
     <Widget label="Memory · A good day" title="Keep this moment">
       <div className={s.keepsake} data-theme={memory.theme} data-material="print">
         <span className={s.mono}>{date}</span><strong>{memory.title.trim() || "I got the job!"}</strong>
-        <p>{memory.note}</p><span className={s.keepsakeStar} aria-hidden="true">✳</span>
+        <p>{memory.note}</p><Spark className={s.keepsakeStar} />
       </div>
       <label className={s.widgetField}>Keepsake title<input type="text" maxLength={36} value={memory.title} onChange={(event) => { setMemory({ ...memory, title: event.target.value }); setStatus(""); }} /></label>
       <label className={s.widgetField}>Memory note<input type="text" maxLength={80} value={memory.note} onChange={(event) => { setMemory({ ...memory, note: event.target.value }); setStatus(""); }} /></label>

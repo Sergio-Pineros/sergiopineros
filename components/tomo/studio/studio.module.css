@@ -63,7 +63,7 @@
 .hero { display: grid; grid-template-columns: .83fr 1.17fr; margin-top: clamp(22px, 4vw, 58px); min-height: clamp(490px, 43vw, 650px); border-bottom: var(--thin-border); padding-bottom: clamp(22px, 4vw, 58px); }
 .heroCopy { min-width: 0; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 6px clamp(16px, 2.4vw, 38px) 0 0; }
 .heroCopy > .eyebrow { margin-bottom: 22px; }
-.hero h1 { font-size: clamp(49px, 6.4vw, 102px); font-weight: 850; letter-spacing: -.078em; line-height: .92; }
+.hero h1 { font-size: clamp(49px, 6.4vw, 102px); font-weight: 850; letter-spacing: -.058em; word-spacing: .055em; line-height: .92; }
 .hero h1 span { color: var(--tomo-blue); }
 .hero .heroIntro { margin-top: var(--space-5); max-width: 360px; color: var(--tomo-quiet); font-size: clamp(16px, 1.4vw, 20px); }
 .heroActions, .aboutLinks, .sampleActions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-4); }
@@ -94,7 +94,7 @@
 .artNotes[data-context="sky"] .artCard { background: var(--tomo-sky); }
 .artNotes[data-context="sun"] .artCard { background: var(--tomo-sun); }
 .artCardTop, .artProgress { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
-.artCardTop > span:last-child { font-size: 19px; line-height: 1; }
+.artSpark { width: 18px; height: 18px; flex-shrink: 0; }
 .artCard strong { display: block; font: 850 clamp(20px, 2.1vw, 31px)/1.02 var(--tomo-display); letter-spacing: -.05em; margin-top: 8px; }
 .artCard p, .artProgress > span { font-size: 11px; }
 .artCard p { margin-top: 3px; }
@@ -102,7 +102,7 @@
 @keyframes art-in { from { opacity: .55; translate: 0 5px; } to { opacity: 1; translate: 0 0; } }
 
 .system, .about, .motionSection { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(25px, 7vw, 105px); padding-block: clamp(52px, 8vw, 116px); border-bottom: var(--thin-border); }
-.system h2, .sectionIntro h2, .about h2, .motionSection h2 { margin-top: 9px; font-size: clamp(37px, 5.3vw, 83px); font-weight: 820; line-height: .98; letter-spacing: -.065em; }
+.system h2, .sectionIntro h2, .about h2, .motionSection h2 { margin-top: 9px; font-size: clamp(37px, 5.3vw, 83px); font-weight: 820; line-height: .98; letter-spacing: -.052em; word-spacing: .065em; }
 .system > div > p:last-child, .aboutContent > p:not(.eyebrow), .motionSection > div > p:not(.eyebrow) { margin-top: var(--space-5); max-width: 43ch; color: var(--tomo-quiet); font-size: 17px; }
 .principles { list-style: none; padding: 0; align-self: center; }
 .principles li { border-top: var(--thin-border); padding: 10px 0; }
@@ -134,15 +134,15 @@
 .composition { width: 100%; min-width: 0; min-height: 100%; display: flex; flex-direction: column; justify-content: space-between; padding: clamp(17px, 4.1vw, 55px); }
 .compositionTop, .compositionBottom, .canvasCaption { display: flex; align-items: center; gap: 8px; justify-content: space-between; }
 .compositionTop > span:last-child { text-align: right; }
-.compositionTitle { font: 850 clamp(30px, calc(12.1cqw * var(--type-scale)), 112px)/.92 var(--tomo-display); letter-spacing: -.078em; overflow-wrap: anywhere; padding-block: 17px; text-wrap: balance; }
-.composition[data-type="journal"] .compositionTitle { font-family: var(--tomo-serif); font-weight: 400; font-style: italic; font-size: clamp(27px, calc(11.5cqw * var(--type-scale)), 100px); letter-spacing: -.069em; }
+.compositionTitle { font: 850 clamp(30px, calc(12.1cqw * var(--type-scale)), 112px)/.92 var(--tomo-display); letter-spacing: -.052em; word-spacing: .065em; overflow-wrap: anywhere; padding-block: 17px; text-wrap: balance; }
+.composition[data-type="journal"] .compositionTitle { font-family: var(--tomo-serif); font-weight: 400; font-style: italic; font-size: clamp(27px, calc(11.5cqw * var(--type-scale)), 100px); letter-spacing: -.045em; word-spacing: .025em; }
 .composition[data-type="label"] .compositionTitle { font-family: var(--tomo-mono); font-weight: 700; text-transform: uppercase; font-size: clamp(25px, calc(8.4cqw * var(--type-scale)), 78px); letter-spacing: -.07em; }
 .canvas[data-format="tag"] .composition, .canvas[data-format="widget"] .composition { width: 80%; min-height: 0; background: var(--field); color: var(--field-ink); position: relative; isolation: isolate; box-shadow: var(--lift); }
 .canvas[data-format="tag"] .composition { outline: 1px dashed currentColor; outline-offset: -8px; padding: clamp(13px, 2.5vw, 30px); }
 .canvas[data-format="widget"] .composition { width: 72%; border-radius: var(--radius-3); padding: clamp(13px, 2.8vw, 32px); }
 .canvas[data-format="tag"] .compositionTitle, .canvas[data-format="widget"] .compositionTitle { font-size: clamp(25px, calc(7.5cqw * var(--type-scale)), 66px); }
 .canvas[data-format="widget"] .compositionTitle { letter-spacing: -.048em; }
-.compositionStar { line-height: .9; font-size: clamp(29px, 5vw, 66px); color: var(--field-accent); }
+.compositionStar { width: clamp(29px, 5vw, 66px); height: auto; flex-shrink: 0; color: var(--field-accent); }
 .canvasCaption { color: var(--tomo-quiet); padding-top: 10px; font-size: 13px; }
 .inspector { display: flex; flex-direction: column; gap: 13px; min-width: 0; padding: clamp(17px, 2.6vw, 32px); border-left: var(--thin-border); }
 .inspector h3 { font-size: 24px; letter-spacing: -.045em; line-height: 1.05; margin-bottom: 5px; }
@@ -220,7 +220,7 @@
 .keepsake { position: relative; isolation: isolate; overflow: hidden; color: var(--tomo-ink); background: var(--keepsake-color); padding: 15px 49px 17px 15px; margin-bottom: 12px; }
 .keepsake strong { display: block; font: 850 clamp(24px, 4vw, 55px)/.92 var(--tomo-display); letter-spacing: -.063em; margin-block: 8px; overflow-wrap: anywhere; }
 .keepsake p { font-size: 13px; overflow-wrap: anywhere; }
-.keepsakeStar { position: absolute; right: 8px; bottom: 7px; font-size: clamp(28px, 4vw, 50px); line-height: 1; }
+.keepsakeStar { position: absolute; right: 8px; bottom: 7px; width: clamp(28px, 4vw, 42px); height: auto; }
 .memoryPalette { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 10px; }
 .memoryPalette button { background: var(--keepsake-color); min-height: 38px; }
 .memoryPalette button[aria-pressed="true"] { border-color: var(--tomo-ink); box-shadow: inset 0 0 0 1px var(--tomo-ink); }
