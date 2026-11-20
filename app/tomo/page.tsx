@@ -4,13 +4,14 @@ import { biomes, principles, type BiomeName } from "@/components/tomo/studio/bra
 import Opening from "@/components/tomo/studio/Opening";
 import IdentityLab from "@/components/tomo/studio/IdentityLab";
 import InterfaceLab from "@/components/tomo/studio/InterfaceLab";
+import MedalLab from "@/components/tomo/studio/MedalLab";
 import MotionLab from "@/components/tomo/studio/MotionLab";
 import { Arrow, BiomeArtwork, Sticker, TomoLogo } from "@/components/tomo/studio/StudioPrimitives";
 import s from "@/components/tomo/studio/studio.module.css";
 
 export const metadata: Metadata = {
   title: "Tomo — Interface as Identity | Sergio Piñeros",
-  description: "An independent brand and product design exploration. An interactive identity lab, generative interface prototypes and a world of pastel 3D biomes.",
+  description: "An independent brand and product design exploration. An interactive identity lab, personal medals and a world of pastel 3D biomes.",
   alternates: { canonical: "/tomo" },
   robots: { index: false, follow: false },
 };
@@ -24,6 +25,7 @@ export default function TomoPage() {
           <a href="#overview" aria-label="Tomo study home" className={s.brandHome}><TomoLogo /><span>DESIGN STUDY</span></a>
           <nav className={s.nav} aria-label="Study sections">
             <a href="#interfaces">Interfaces</a>
+            <a href="#medals">Medals</a>
             <a href="#identity">Playground</a>
             <a href="#motion">Motion</a>
             <a href="#applications">Mini worlds</a>
@@ -46,6 +48,7 @@ export default function TomoPage() {
           </section>
 
           <InterfaceLab />
+          <MedalLab />
           <IdentityLab />
           <MotionLab />
 
