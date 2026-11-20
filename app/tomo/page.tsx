@@ -6,7 +6,7 @@ import IdentityLab from "@/components/tomo/studio/IdentityLab";
 import InterfaceLab from "@/components/tomo/studio/InterfaceLab";
 import MedalLab from "@/components/tomo/studio/MedalLab";
 import MotionLab from "@/components/tomo/studio/MotionLab";
-import { Arrow, BiomeArtwork, Sticker, TomoLogo } from "@/components/tomo/studio/StudioPrimitives";
+import { BiomeArtwork, Sticker, TomoLogo } from "@/components/tomo/studio/StudioPrimitives";
 import s from "@/components/tomo/studio/studio.module.css";
 
 export const metadata: Metadata = {
@@ -30,7 +30,7 @@ export default function TomoPage() {
             <a href="#motion">Motion</a>
             <a href="#applications">Mini worlds</a>
           </nav>
-          <a href="#about" className={s.navCredit}>By Sergio Piñeros <Arrow diagonal /></a>
+          <a href="#about" className={s.navCredit}>By Sergio Piñeros</a>
         </div>
       </header>
       <main>
@@ -80,8 +80,8 @@ export default function TomoPage() {
               <h2 id="about-title">An exploration by Sergio Piñeros.</h2>
               <p>I like building things that feel human. I’ve designed brands and built software for real businesses. This is my take on how Tomo’s visual world could grow from the things people already tell it.</p>
               <div className={s.aboutLinks}>
-                <Link className={s.primaryButton} href="/">Portfolio <Arrow diagonal /></Link>
-                <a className={s.secondaryButton} href="https://www.linkedin.com/in/sergio-pineros-c/">LinkedIn <Arrow diagonal /></a>
+                <Link className={s.primaryButton} href="/">Portfolio</Link>
+                <a className={s.secondaryButton} href="https://www.linkedin.com/in/sergio-pineros-c/">LinkedIn</a>
                 <a className={s.textLink} href="mailto:s.dpineros@gmail.com">Get in touch</a>
               </div>
             </div>
@@ -89,17 +89,17 @@ export default function TomoPage() {
               <h3>What informed the work</h3>
               <p>Tomo’s sky and everyday texts inspired the visual direction and the tone. The brand uses its official mascot and wordmark. The little worlds and interface prototypes are part of this independent study.</p>
               <ul>
-                <li><a href="https://www.tomo.ai/blog/introducing-tomo">Tomo’s launch <Arrow diagonal /></a></li>
-                <li><a href="https://www.tomo.ai/blog/tomo-acquires-fae">The Fae acquisition <Arrow diagonal /></a></li>
-                <li><a href="https://www.tomo.ai/blog/dachi-1-0">Dachi and conversational tone <Arrow diagonal /></a></li>
-                <li><a href="https://jobs.ashbyhq.com/tomo.ai/f77a861f-acdc-4ae4-b88e-bde4e33ebc12/">Founding Product Designer brief <Arrow diagonal /></a></li>
+                <li><a href="https://www.tomo.ai/blog/introducing-tomo">Tomo’s launch</a></li>
+                <li><a href="https://www.tomo.ai/blog/tomo-acquires-fae">The Fae acquisition</a></li>
+                <li><a href="https://www.tomo.ai/blog/dachi-1-0">Dachi and conversational tone</a></li>
+                <li><a href="https://jobs.ashbyhq.com/tomo.ai/f77a861f-acdc-4ae4-b88e-bde4e33ebc12/">Founding Product Designer brief</a></li>
               </ul>
-              <Link className={s.textLink} href="/tomo/comparison" prefetch={false}>Earlier Tomo site comparison <Arrow /></Link>
+              <Link className={s.textLink} href="/tomo/comparison" prefetch={false}>Earlier Tomo site comparison</Link>
             </aside>
           </section>
         </div>
       </main>
-      <footer className={s.footer}><a href="#overview" aria-label="Back to top"><TomoLogo /></a><p>Independent design study · Sergio Piñeros</p><a href="https://www.tomo.ai/">Visit Tomo <Arrow diagonal /></a></footer>
+      <footer className={s.footer}><a href="#overview" aria-label="Back to top"><TomoLogo /></a><p>Independent design study · Sergio Piñeros</p><a href="https://www.tomo.ai/">Visit Tomo</a></footer>
     </div>
   );
 }

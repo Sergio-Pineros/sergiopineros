@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { Arrow, Sticker, TomoLogo, studioStyles as s } from "./StudioPrimitives";
+import { Sticker, TomoLogo, studioStyles as s } from "./StudioPrimitives";
 
 const motionExamples = [
-  { id: "message", label: "Message → widget", duration: "520 ms", detail: "A short move and fade connect the new widget to the message that created it." },
-  { id: "complete", label: "Task → complete", duration: "320 ms", detail: "The check and the bar advance together, so the state change reads at a glance." },
+  { id: "message", label: "Message to widget", duration: "520 ms", detail: "A short move and fade connect the new widget to the message that created it." },
+  { id: "complete", label: "Task completion", duration: "320 ms", detail: "The check and the bar advance together, so the state change reads at a glance." },
 ] as const;
 
 export default function MotionLab() {
@@ -22,7 +22,7 @@ export default function MotionLab() {
         <div className={s.motionChoices} role="group" aria-label="Motion examples">
           {motionExamples.map((item, index) => <button className={s.secondaryButton} type="button" key={item.id} aria-pressed={selection === index} onClick={() => { setSelection(index); setRun(0); }}>{item.label}</button>)}
         </div>
-        <div className={s.motionControls}><button className={s.primaryButton} type="button" onClick={() => setRun(run + 1)}>Replay <Arrow /></button>
+        <div className={s.motionControls}><button className={s.primaryButton} type="button" onClick={() => setRun(run + 1)}>Replay</button>
           <label className={s.checkField}><input type="checkbox" checked={enabled} onChange={(event) => setEnabled(event.target.checked)} /> Animate preview</label>
         </div>
       </div>

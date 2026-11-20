@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { assets, biomes, prototypeSelectionEvent, type BiomeName } from "./brand";
-import { Arrow, BiomeArtwork, Progress, Sticker, TomoLogo, studioStyles as s } from "./StudioPrimitives";
+import { BiomeArtwork, Progress, Sticker, TomoLogo, studioStyles as s } from "./StudioPrimitives";
 
 const contexts = [
   { id: "run", label: "Log a run", title: "Your first 5K", note: "A very good day to have legs.", distance: 5 },
@@ -30,7 +30,7 @@ export default function Opening() {
           <h1 id="tomo-title">Interface<br />as identity<span>.</span></h1>
           <p className={s.heroIntro}>What if the little things people text Tomo about became the worlds they could explore?</p>
           <div className={s.heroActions}>
-            <a className={s.primaryButton} href="#interfaces" onClick={() => window.dispatchEvent(new CustomEvent(prototypeSelectionEvent, { detail: moment.id }))}>Try the prototypes <Arrow /></a>
+            <a className={s.primaryButton} href="#interfaces" onClick={() => window.dispatchEvent(new CustomEvent(prototypeSelectionEvent, { detail: moment.id }))}>Try the prototypes</a>
             <a className={s.textLink} href="#principles">See the principle</a>
           </div>
           <div className={s.context}>

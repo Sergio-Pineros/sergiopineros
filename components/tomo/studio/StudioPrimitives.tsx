@@ -7,14 +7,6 @@ import styles from "./studio.module.css";
 
 export const studioStyles = styles;
 
-export function Arrow({ diagonal = false }: { diagonal?: boolean }) {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" width="18" height="18">
-      <path d={diagonal ? "M5 15 15 5M6 5h9v9" : "M3 10h13m-5-5 5 5-5 5"} stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
 export function Sticker({ name, className }: { name: StickerName; className?: string }) {
   return <Image src={stickers[name]} className={className} width={240} height={240} alt="" unoptimized />;
 }

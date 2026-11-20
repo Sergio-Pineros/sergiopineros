@@ -2,7 +2,7 @@
 
 import { useEffect, useState, type FormEvent } from "react";
 import { biomes, prototypeSelectionEvent } from "./brand";
-import { Arrow, BiomeArtwork, Conversation, Panel, Progress, Sticker, Tabs, Widget, studioStyles as s } from "./StudioPrimitives";
+import { BiomeArtwork, Conversation, Panel, Progress, Sticker, Tabs, Widget, studioStyles as s } from "./StudioPrimitives";
 
 const examples = [
   { id: "run", label: "Log a run", prompt: "i ran 3km today!!", reply: "okay runner era 👀 that’s your longest this week. i put it next to your other runs." },
@@ -149,7 +149,7 @@ function Keepsake() {
       <div className={s.memoryPalette} role="group" aria-label="Keepsake colors">
         {memoryThemes.map((theme) => <button key={theme} type="button" aria-pressed={memory.theme === theme} data-theme={theme} onClick={() => { setMemory({ ...memory, theme }); setStatus(""); }}>{theme}</button>)}
       </div>
-      <div className={s.sampleActions}><button type="button" className={s.primaryButton} onClick={save}>Save keepsake <Arrow /></button><button type="button" className={s.secondaryButton} onClick={restore}>Restore saved</button></div>
+      <div className={s.sampleActions}><button type="button" className={s.primaryButton} onClick={save}>Save keepsake</button><button type="button" className={s.secondaryButton} onClick={restore}>Restore saved</button></div>
       <p role="status" className={s.feedback}>{status}</p>
     </Widget>
   );

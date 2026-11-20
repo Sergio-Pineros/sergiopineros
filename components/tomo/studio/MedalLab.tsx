@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useId, useRef, useState, type CSSProperties, type FormEvent } from "react";
-import { Arrow, BiomeArtwork, TomoLogo, studioStyles as s } from "./StudioPrimitives";
+import { BiomeArtwork, TomoLogo, studioStyles as s } from "./StudioPrimitives";
 import { maxMedalMessage, maxMedalTitle, medalDesigns, medalExamples, medalStorageKey, readMedals, suggestMedal, type Medal, type MedalDraft, type MedalDesign } from "./medals";
 import m from "./medals.module.css";
 
@@ -118,7 +118,7 @@ export default function MedalLab() {
                 <label htmlFor={messageId}>Your message</label>
                 <textarea ref={composerRef} id={messageId} rows={3} maxLength={maxMedalMessage} value={message} onChange={(event) => setMessage(event.target.value)} required />
                 <div className={m.actions}>
-                  <button type="submit" className={s.primaryButton} disabled={!ready || !message.trim()}>Send message <Arrow /></button>
+                  <button type="submit" className={s.primaryButton} disabled={!ready || !message.trim()}>Send message</button>
                 </div>
                 <div className={m.examples} aria-label="Example messages" role="group">
                   {medalExamples.map((example) => <button key={example.label} type="button" onClick={() => setMessage(example.message)}>{example.label}</button>)}

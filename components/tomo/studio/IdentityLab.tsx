@@ -2,7 +2,7 @@
 
 import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
 import { compositions, decodeSettings, formatPaletteTokens, initialSettings, materials, palettes, settingsOptions, type Settings, type StickerName } from "./brand";
-import { Arrow, Conversation, Panel, Progress, Sticker, Tabs, TomoLogo, Widget, studioStyles as s } from "./StudioPrimitives";
+import { Conversation, Panel, Progress, Sticker, Tabs, TomoLogo, Widget, studioStyles as s } from "./StudioPrimitives";
 
 const tabs = [
   { id: "identity", label: "Identity" }, { id: "type", label: "Type studio" },
@@ -161,7 +161,7 @@ export default function IdentityLab() {
                     <button type="button" className={s.secondaryButton} onClick={() => void copy(formatPaletteTokens(settings.palette), "Color tokens copied.")}>Copy color tokens</button>
                   </> : (
                     <div className={s.labActions}>
-                      <button type="button" className={s.primaryButton} onClick={surprise}>Surprise me <Arrow /></button>
+                      <button type="button" className={s.primaryButton} onClick={surprise}>Surprise me</button>
                       <button type="button" className={s.secondaryButton} onClick={reset}>Reset</button>
                       <button type="button" className={s.secondaryButton} onClick={share}>Copy link</button>
                     </div>
