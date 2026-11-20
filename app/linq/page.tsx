@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
-import { Open_Sans } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import PlansExplorer from "@/components/linq/PlansExplorer";
 import LinqSignal from "@/components/linq/LinqSignal";
 import { LINQ_LINKS } from "@/lib/linq";
+import "./fonts.css";
 import "./linq.css";
-
-const openSans = Open_Sans({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-linq-sans", display: "swap" });
 
 export const metadata: Metadata = {
   title: "For Linq: a growth exercise by Sergio Piñeros",
@@ -34,7 +32,14 @@ export const metadata: Metadata = {
 
 export default function LinqPage() {
   return (
-    <div className={`${openSans.variable} lq-page`}>
+    <div className="lq-page">
+      <link
+        rel="preload"
+        href="/fonts/portfolio/open-sans-latin.woff2"
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
+      />
       <a className="lq-skip" href="#plans">Skip to the plans</a>
       <header className="lq-header"><div className="lq-wrap lq-header-inner">
         <div className="lq-lockup">

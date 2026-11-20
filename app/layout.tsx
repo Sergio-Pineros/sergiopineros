@@ -1,28 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Baskervville, Caveat, DM_Sans } from "next/font/google";
+import "./fonts.css";
 import "./globals.css";
 
-const serif = Baskervville({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  style: ["normal", "italic"],
-  variable: "--font-baskervville",
-  display: "swap",
-});
-
-const sans = DM_Sans({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-dm-sans",
-  display: "swap",
-});
-
-const display = Caveat({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-caveat",
-  display: "swap",
-});
+const preloadedFonts = [
+  "baskervville-italic-latin",
+  "baskervville-latin",
+  "dm-sans-latin",
+  "caveat-latin",
+];
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -59,7 +44,19 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${serif.variable} ${sans.variable} ${display.variable}`} suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        {preloadedFonts.map((font) => (
+          <link
+            key={font}
+            rel="preload"
+            href={`/fonts/portfolio/${font}.woff2`}
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
+        ))}
+      </head>
       <body>{children}</body>
     </html>
   );
