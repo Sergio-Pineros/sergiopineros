@@ -1,0 +1,171 @@
+.journey {
+  padding: clamp(18px, 3vw, 44px);
+  background: #faf9f3;
+  border-bottom-left-radius: 17px;
+  border-bottom-right-radius: 17px;
+}
+.intro {
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap: 28px;
+  align-items: end;
+  padding-bottom: 26px;
+}
+.eyebrow, .stage, .previewLabel {
+  font: 700 11px/1.4 ui-monospace, "Courier New", monospace;
+  letter-spacing: .075em;
+  text-transform: uppercase;
+}
+.eyebrow { color: #425875; margin-bottom: 8px; }
+.intro h3 {
+  font-size: clamp(27px, 3.8vw, 54px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -.045em;
+  max-width: 21ch;
+}
+.intro > p {
+  color: #4c5768;
+  max-width: 48ch;
+  font-size: 15px;
+  line-height: 1.65;
+}
+.timeline {
+  display: grid;
+  grid-template-columns: minmax(0, .91fr) minmax(0, 1.15fr) minmax(0, .94fr);
+  gap: 12px;
+  align-items: stretch;
+}
+.step {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  padding: clamp(14px, 1.6vw, 24px);
+  border: 1px solid #dfe3e8;
+  border-radius: 18px;
+  background: #f4f6fa;
+}
+.step:nth-child(2) { background: #e7f1e9; }
+.step:nth-child(3) { background: #fff4da; }
+.stepHeading {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  min-height: 65px;
+}
+.stepNumber {
+  border: 1px solid #b9c1cb;
+  border-radius: 50%;
+  width: 31px;
+  height: 31px;
+  flex: 0 0 31px;
+  display: grid;
+  place-items: center;
+  font: 700 11px/1 ui-monospace, monospace;
+}
+.stage { color: #4d5d71; margin-bottom: 5px; font-size: 10px; }
+.step h4 {
+  font-family: "Tomo Inter Tight", var(--font-dm-sans), sans-serif;
+  font-size: clamp(21px, 2vw, 29px);
+  font-weight: 780;
+  letter-spacing: -.035em;
+  line-height: 1.08;
+}
+.chatFrame {
+  padding: 17px 13px 24px;
+  min-height: 320px;
+  background: #fffefa;
+  border: 1px solid #dfe2e8;
+  border-radius: 23px;
+  box-shadow: 0 10px 24px #12284810;
+}
+.chatTop {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  margin-bottom: 28px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e6e7ee;
+}
+.chatTop > div { display: grid; gap: 1px; }
+.chatTop strong { font-size: 14px; }
+.chatTop span { font-size: 11px; color: #647082; }
+.chatTop img { width: 25px; height: 25px; }
+.chatFrame :global(.unused) { display: none; }
+.chatFrame > div:last-child { gap: 18px; }
+.chatFrame > div:last-child > p:first-child { align-self: flex-end; }
+.chatFrame > div:last-child p { font-size: 14px; }
+.underNote {
+  margin-top: auto;
+  color: #4e5b6b;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.step :global(progress) { margin-bottom: 3px; }
+.optIn {
+  background: #fffefa;
+  border: 1px solid #e3dcc9;
+  border-radius: 15px;
+  padding: 15px;
+}
+.optInLabel {
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.optInLabel input { margin: 4px 0 0; width: 17px; height: 17px; flex-shrink: 0; accent-color: #3044a4; }
+.optIn > p { font-size: 12px; color: #596273; margin: 9px 0 13px; line-height: 1.5; }
+.optIn > button { width: 100%; }
+.futureMessage {
+  min-height: 143px;
+  background: #fffdf8a8;
+  border: 1px dashed #c9bea8;
+  border-radius: 15px;
+  padding: 15px;
+}
+.previewLabel { color: #5e6473; margin-bottom: 12px; }
+.futureMessage p { font-size: 14px; }
+.futureMessage .contextNote {
+  font-size: 12px;
+  color: #647082;
+  margin-top: 13px;
+  line-height: 1.5;
+}
+.placeholder {
+  color: #5d6675;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.footer {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 18px;
+}
+.footer p {
+  font-size: 14px;
+  font-weight: 700;
+  max-width: 65ch;
+}
+.footer button { white-space: nowrap; }
+.disclaimer {
+  margin-top: 10px;
+  color: #697285;
+  font-size: 12px;
+}
+@media (max-width: 1100px) {
+  .timeline { grid-template-columns: minmax(0, 1fr); }
+  .step { padding: 22px; }
+  .stepHeading { min-height: 0; }
+  .chatFrame { min-height: 0; }
+}
+@media (max-width: 700px) {
+  .intro { grid-template-columns: 1fr; gap: 13px; }
+  .step { padding: 15px; }
+  .footer { align-items: flex-start; flex-direction: column; gap: 12px; }
+}

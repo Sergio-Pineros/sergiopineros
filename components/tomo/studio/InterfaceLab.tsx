@@ -3,6 +3,7 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { biomes, prototypeSelectionEvent } from "./brand";
 import { BiomeArtwork, Conversation, Panel, Progress, Sticker, Tabs, Widget, studioStyles as s } from "./StudioPrimitives";
+import ConnectedJourney from "./ConnectedJourney";
 
 const examples = [
   { id: "run", label: "Log a run", prompt: "i ran 3km today!!", reply: "okay runner era 👀 that’s your longest this week. i put it next to your other runs." },
@@ -11,44 +12,6 @@ const examples = [
   { id: "rest", label: "Take a breath", prompt: biomes.rest.message, reply: biomes.rest.reply },
 ] as const;
 type Example = (typeof examples)[number]["id"];
-
-const days = [
-  { label: "Mon", full: "Monday", distance: 1.5 }, { label: "Tue", full: "Tuesday", distance: 0 },
-  { label: "Wed", full: "Wednesday", distance: 2.2 }, { label: "Thu", full: "Thursday", distance: 0 },
-  { label: "Fri", full: "Friday", distance: 3 },
-];
-
-function RunningTracker() {
-  const [selected, setSelected] = useState(4);
-  const [distances, setDistances] = useState(days.map((day) => String(day.distance)));
-  const values = distances.map(Number);
-  const total = values.reduce((sum, value) => sum + value, 0);
-  const goal = 10;
-  const maxBar = Math.max(4, ...values);
-  const number = new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 });
-
-  function recordDistance(value: string) {
-    if (value && (Number(value) < 0 || Number(value) > 100)) return;
-    setDistances((previous) => previous.map((distance, index) => index === selected ? value : distance));
-  }
-
-  return (
-    <Widget label="Activity · This week" title="Your runs" sticker="sparkle">
-      <div className={s.runResult} aria-live="polite"><strong>{number.format(values[selected])}<small> km</small></strong><span>{days[selected].full}</span></div>
-      <div className={s.runDays} role="group" aria-label="Select a day">
-        {days.map((day, index) => (
-          <button type="button" key={day.label} aria-pressed={index === selected} aria-label={`${day.full}, ${number.format(values[index])} kilometers`} onClick={() => setSelected(index)}>
-            <span className={s.barTrack}><span style={{ height: `${Math.max(5, values[index] / maxBar * 100)}%` }} /></span>
-            {day.label}
-          </button>
-        ))}
-      </div>
-      <label className={s.widgetField}>Edit distance (km)<input type="number" min="0" max="100" step="0.1" inputMode="decimal" value={distances[selected]} onChange={(event) => recordDistance(event.target.value)} /></label>
-      <div className={s.progressLabel}><span>Weekly goal</span><strong>{number.format(total)} / {goal} km</strong></div>
-      <Progress label="Weekly distance goal" value={total} max={goal} />
-    </Widget>
-  );
-}
 
 const initialTasks = [
   { id: 0, title: "Send the application", time: "09:00", priority: true, done: false },
@@ -192,21 +155,33 @@ export default function InterfaceLab() {
   return (
     <section id="interfaces" className={s.section} aria-labelledby="interfaces-title">
       <div className={s.sectionIntro}>
-        <div><p className={s.eyebrow}>Product prototypes</p><h2 id="interfaces-title">Start with a text.</h2></div>
-        <p>A message can become a tracker, a plan, a keepsake or a place to think. Try four prototypes with fictional data.</p>
+        <div><p className={s.eyebrow}>Product concept · connected experience</p><h2 id="interfaces-title">From conversation to action. And back.</h2></div>
+        <p>First, edit a running tracker and see how a future message uses the same context—with permission. Then explore three other interface ideas.</p>
       </div>
       <div className={s.interfaceShell}>
         <Tabs items={examples} current={example} onChange={setExample} id="examples" label="Interface prototypes" />
         {examples.map(({ id, prompt, reply }) => (
           <div key={id} hidden={example !== id} data-biome={id}>
-            <Panel id="examples" tab={id} className={s.interfaceBody}>
-              <div className={s.dialogue}><Conversation prompt={prompt} reply={reply} /><BiomeArtwork name={id} className={s.interfaceBiome} /></div>
-              <div className={s.generated}><p className={s.mono}>From the conversation · {biomes[id].name}</p>{id === "run" ? <RunningTracker /> : id === "plan" ? <Planner /> : id === "win" ? <Keepsake /> : <Reflection />}</div>
-            </Panel>
+            {id === "run" ? (
+              <Panel id="examples" tab={id}>
+                <ConnectedJourney />
+              </Panel>
+            ) : (
+              <Panel id="examples" tab={id} className={s.interfaceBody}>
+                <div className={s.dialogue}>
+                  <Conversation prompt={prompt} reply={reply} />
+                  <BiomeArtwork name={id} className={s.interfaceBiome} />
+                </div>
+                <div className={s.generated}>
+                  <p className={s.mono}>From the conversation · {biomes[id].name}</p>
+                  {id === "plan" ? <Planner /> : id === "win" ? <Keepsake /> : <Reflection />}
+                </div>
+              </Panel>
+            )}
           </div>
         ))}
       </div>
-      <p className={s.designNote}>The same grid, labels and focus states hold them together. Each layout gives the moment something useful to do.</p>
+      <p className={s.designNote}>What remains familiar: texting Tomo. What we explore: personal interfaces that preserve context, respect consent and return smoothly to the conversation.</p>
     </section>
   );
 }

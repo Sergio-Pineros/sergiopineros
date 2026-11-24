@@ -28,9 +28,9 @@ export default function Opening() {
       <div className={s.heroInner}>
         <div className={s.heroCopy}>
           <h1 id="tomo-title">Interface<br />as identity<span>.</span></h1>
-          <p className={s.heroIntro}>What if the little things people text Tomo about became the worlds they could explore?</p>
+          <p className={s.heroIntro}>Tomo already turns everyday conversations into personal tools. This study explores how those tools could stay connected to the conversation—and to the person using them.</p>
           <div className={s.heroActions}>
-            <a className={s.primaryButton} href="#interfaces" onClick={() => window.dispatchEvent(new CustomEvent(prototypeSelectionEvent, { detail: moment.id }))}>Try the prototypes</a>
+            <a className={s.primaryButton} href="#interfaces" onClick={() => window.dispatchEvent(new CustomEvent(prototypeSelectionEvent, { detail: moment.id }))}>Explore the connected journey</a>
             <a className={s.textLink} href="#principles">See the principle</a>
           </div>
           <div className={s.context}>

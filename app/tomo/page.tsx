@@ -10,8 +10,8 @@ import { BiomeArtwork, Sticker, TomoLogo } from "@/components/tomo/studio/Studio
 import s from "@/components/tomo/studio/studio.module.css";
 
 export const metadata: Metadata = {
-  title: "Tomo — Interface as Identity | Sergio Piñeros",
-  description: "An independent brand and product design exploration. An interactive identity lab, personal medals and a world of pastel 3D biomes.",
+  title: "Tomo — Connected Experience Study | Sergio Piñeros",
+  description: "An independent product and brand exploration: from iMessage to personal interfaces and back, with an interactive connected journey.",
   alternates: { canonical: "/tomo" },
   robots: { index: false, follow: false },
 };
@@ -24,7 +24,7 @@ export default function TomoPage() {
         <div className={s.navInner}>
           <a href="#overview" aria-label="Tomo study home" className={s.brandHome}><TomoLogo /><span>DESIGN STUDY</span></a>
           <nav className={s.nav} aria-label="Study sections">
-            <a href="#interfaces">Interfaces</a>
+            <a href="#interfaces">Product vision</a>
             <a href="#medals">Medals</a>
             <a href="#identity">Playground</a>
             <a href="#motion">Motion</a>
@@ -39,8 +39,8 @@ export default function TomoPage() {
           <section id="principles" className={s.system} aria-labelledby="system-title">
             <div>
               <p className={s.eyebrow}>The design principle</p>
-              <h2 id="system-title">A little world for each moment.</h2>
-              <p>The interface is where Tomo’s personality shows up. What starts as a text can take the shape of a tool, and the shape should feel right for the moment.</p>
+              <h2 id="system-title">What stays. What changes.</h2>
+              <p>The conversation is already the home. Our design question is how personal interfaces can deepen it without creating a disconnected second experience.</p>
             </div>
             <ol className={s.principles}>
               {principles.map((principle) => <li key={principle.title}><h3>{principle.title}</h3><p>{principle.summary}</p></li>)}

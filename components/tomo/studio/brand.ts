@@ -81,9 +81,9 @@ export const compositions: Settings[] = [
 ];
 
 export const principles = [
-  { title: "Start with what they said.", summary: "A little win, a busy tomorrow or a wildly specific thought is enough to start." },
-  { title: "Give the moment a shape.", summary: "The run becomes a tracker. The plan becomes a list. The good news becomes a keepsake." },
-  { title: "Make it feel like Tomo.", summary: "The voice, the shapes and the colors carry through from the text to the interface." },
+  { title: "Today · Meet people in their messages.", summary: "Tomo lives inside the conversations people already have, and makes personal interfaces when they need more than text." },
+  { title: "Opportunity · Keep the thread intact.", summary: "A tool should reflect what was said before it, and the next conversation should know what changed inside that tool." },
+  { title: "Our hypothesis · Let people stay in control.", summary: "Make continuity visible, keep the interface adaptable, and ask before proactive follow-ups." },
 ];
 
 const legacyMaterials: Record<string, Settings["material"]> = { woven: "mist", canvas: "satin", print: "gloss" };
