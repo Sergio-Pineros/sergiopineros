@@ -10,7 +10,7 @@ import { BiomeArtwork, Sticker, TomoLogo } from "@/components/tomo/studio/Studio
 import s from "@/components/tomo/studio/studio.module.css";
 
 export const metadata: Metadata = {
-  title: "Tomo — Connected Experience Study | Sergio Piñeros",
+  title: "Tomo — The Internet at 1 AM | Product Design Study",
   description: "An independent product and brand exploration: from iMessage to personal interfaces and back, with an interactive connected journey.",
   alternates: { canonical: "/tomo" },
   robots: { index: false, follow: false },
@@ -25,10 +25,10 @@ export default function TomoPage() {
           <a href="#overview" aria-label="Tomo study home" className={s.brandHome}><TomoLogo /><span>DESIGN STUDY</span></a>
           <nav className={s.nav} aria-label="Study sections">
             <a href="#interfaces">Product vision</a>
-            <a href="#medals">Medals</a>
-            <a href="#identity">Playground</a>
+            <a href="#medals">Memory</a>
+            <a href="#identity">Brand lab</a>
             <a href="#motion">Motion</a>
-            <a href="#applications">Mini worlds</a>
+            <a href="#applications">3D worlds</a>
           </nav>
           <a href="#about" className={s.navCredit}>By Sergio Piñeros</a>
         </div>
@@ -38,9 +38,9 @@ export default function TomoPage() {
         <div className={s.container}>
           <section id="principles" className={s.system} aria-labelledby="system-title">
             <div>
-              <p className={s.eyebrow}>The design principle</p>
-              <h2 id="system-title">What stays. What changes.</h2>
-              <p>The conversation is already the home. Our design question is how personal interfaces can deepen it without creating a disconnected second experience.</p>
+              <p className={s.eyebrow}>01 / THE PRODUCT TODAY, AND WHAT COMES NEXT</p>
+              <h2 id="system-title">The conversation is home.</h2>
+              <p>Tomo begins in a text thread. Our design question isn't how to replace that simplicity; it's how to carry it into every interface that follows.</p>
             </div>
             <ol className={s.principles}>
               {principles.map((principle) => <li key={principle.title}><h3>{principle.title}</h3><p>{principle.summary}</p></li>)}
@@ -54,8 +54,8 @@ export default function TomoPage() {
 
           <section id="applications" className={s.section} aria-labelledby="applications-title">
             <div className={s.sectionIntro}>
-              <div><p className={s.eyebrow}>The visual system</p><h2 id="applications-title">Little worlds.</h2></div>
-              <p>One visual language, four moods. Each biome gives the same interface a different place to land.</p>
+              <div><p className={s.eyebrow}>05 / THE SPATIAL LANGUAGE</p><h2 id="applications-title">A little unreal. Very human.</h2></div>
+              <p>We kept the dimensionality. These miniature 3D landscapes are exploratory expressions of mood, not a new app to learn.</p>
             </div>
             <div className={s.gallery}>
               {(Object.keys(biomes) as BiomeName[]).map((name) => {
@@ -78,7 +78,7 @@ export default function TomoPage() {
             <div className={s.aboutContent}>
               <p className={s.eyebrow}>An independent concept</p>
               <h2 id="about-title">An exploration by Sergio Piñeros.</h2>
-              <p>I like building things that feel human. I’ve designed brands and built software for real businesses. This is my take on how Tomo’s visual world could grow from the things people already tell it.</p>
+              <p>I design brands and build working products for real people. This is my independent take on an expressive, atmospheric Tomo—where a useful interface still feels as personal as the conversation that created it.</p>
               <div className={s.aboutLinks}>
                 <Link className={s.primaryButton} href="/">Portfolio</Link>
                 <a className={s.secondaryButton} href="https://www.linkedin.com/in/sergio-pineros-c/">LinkedIn</a>
@@ -87,7 +87,7 @@ export default function TomoPage() {
             </div>
             <aside className={s.sources} aria-label="Project notes and references">
               <h3>What informed the work</h3>
-              <p>Tomo’s sky and everyday texts inspired the visual direction and the tone. The brand uses its official mascot and wordmark. The little worlds and interface prototypes are part of this independent study.</p>
+              <p>Tomo’s conversations, current identity, and atmospheric 3D inspired this speculative exploration. Existing marks belong to Tomo; the interfaces, landscapes, and design direction here are independent concepts.</p>
               <ul>
                 <li><a href="https://www.tomo.ai/blog/introducing-tomo">Tomo’s launch</a></li>
                 <li><a href="https://www.tomo.ai/blog/tomo-acquires-fae">The Fae acquisition</a></li>

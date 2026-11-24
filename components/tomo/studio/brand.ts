@@ -31,13 +31,14 @@ export const palettes = {
   sun: { label: "Lemon", background: "#FFF2B0", ink: "#302816", accent: "#795507", role: "Milestones and celebration" },
   blush: { label: "Rose", background: "#F9DEEB", ink: "#362035", accent: "#973E6C", role: "Memories worth keeping" },
   paper: { label: "Cloud white", background: "#FCFAF0", ink: "#24283A", accent: "#3547A3", role: "Product surfaces and reading" },
-  ink: { label: "Twilight", background: "#242A4B", ink: "#FCFAF0", accent: "#FFF2B0", role: "High-contrast moments" },
+  ink: { label: "After hours", background: "#181B2A", ink: "#FFF4E6", accent: "#F7A46C", role: "Cinematic night-time compositions" },
 } as const;
 
 export const materials = {
-  gloss: { label: "Glossy enamel", detail: "A soft rim and a touch of shine for little wins." },
+  gloss: { label: "Soft chrome", detail: "Reflective depth with restraint, for dimensional moments." },
   mist: { label: "Cloud mist", detail: "Diffused light for the quieter moments." },
-  satin: { label: "Satin clay", detail: "Soft depth borrowed from the miniature landscapes." },
+  satin: { label: "Brushed textile", detail: "Soft woven highlights for a tactile editorial feel." },
+  woven: { label: "Woven cotton", detail: "Quiet interlaced fibers for memorable physical-feeling artifacts." },
   paper: { label: "Matte", detail: "Even light for readable text and calm compositions." },
   clean: { label: "Digital clean", detail: "An uninterrupted surface for dates, tasks and numbers." },
 } as const;
@@ -62,12 +63,12 @@ export interface Settings {
 }
 
 export const initialSettings: Settings = {
-  palette: "sky",
-  material: "mist",
+  palette: "ink",
+  material: "woven",
   lockup: "primary",
   type: "stacked",
   format: "poster",
-  headline: "little wins count.",
+  headline: "the internet at 1am.",
   scale: 100,
   motion: true,
 };
@@ -86,7 +87,7 @@ export const principles = [
   { title: "Our hypothesis · Let people stay in control.", summary: "Make continuity visible, keep the interface adaptable, and ask before proactive follow-ups." },
 ];
 
-const legacyMaterials: Record<string, Settings["material"]> = { woven: "mist", canvas: "satin", print: "gloss" };
+const legacyMaterials: Record<string, Settings["material"]> = { canvas: "satin", print: "gloss" };
 
 export function decodeSettings(value: unknown): Settings {
   const input = value && typeof value === "object" ? value as Partial<Settings> : {};

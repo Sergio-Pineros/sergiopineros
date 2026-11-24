@@ -103,8 +103,8 @@ export default function IdentityLab() {
   return (
     <section id="identity" className={s.section} aria-labelledby="identity-title">
       <div className={s.sectionIntro}>
-        <div><p className={s.eyebrow}>The visual system</p><h2 id="identity-title">Identity lab.</h2></div>
-        <p>Try Tomo’s palette, 3D stickers and surfaces on a poster, sticker card or product card.</p>
+        <div><p className={s.eyebrow}>04 / THE VISUAL SYSTEM</p><h2 id="identity-title">Identity, after dark.</h2></div>
+        <p>A living toolkit: dimensional graphics, after-hours colors, type and tactile surfaces applied across products and culture.</p>
       </div>
       <div className={s.labShell}>
         <Tabs items={tabs} current={tab} id="brand" label="Brand workspaces" onChange={(next) => { setTab(next); setFeedback(""); setManualCopy(""); }} />
@@ -127,7 +127,7 @@ export default function IdentityLab() {
                       <div className={s.composition} data-type={settings.type} data-material={settings.format === "poster" ? undefined : settings.material}>
                         <div className={s.compositionTop}><TomoLogo variant={settings.lockup} /><span className={s.mono}>{formatLabels[settings.format]}</span></div>
                         <p className={s.compositionTitle}>{headline}</p>
-                        <div className={s.compositionBottom}><span className={s.mono}>Interface as identity</span><Sticker name={paletteStickers[settings.palette]} className={s.compositionStar} /></div>
+                        <div className={s.compositionBottom}><span className={s.mono}>A WORLD IN PROGRESS</span><Sticker name={paletteStickers[settings.palette]} className={s.compositionStar} /></div>
                       </div>
                     </div>
                     <p className={s.canvasCaption}><span>{palette.label} / {materials[settings.material].label}</span><span>{formatLabels[settings.format]}</span></p>
