@@ -40,7 +40,7 @@ export default function TomoPage() {
             <div>
               <p className={s.eyebrow}>01 / THE PRODUCT TODAY, AND WHAT COMES NEXT</p>
               <h2 id="system-title">The conversation is home.</h2>
-              <p>Tomo begins in a text thread. Our design question isn't how to replace that simplicity; it's how to carry it into every interface that follows.</p>
+              <p>Tomo begins in a text thread. Our design question isn&apos;t how to replace that simplicity; it&apos;s how to carry it into every interface that follows.</p>
             </div>
             <ol className={s.principles}>
               {principles.map((principle) => <li key={principle.title}><h3>{principle.title}</h3><p>{principle.summary}</p></li>)}
