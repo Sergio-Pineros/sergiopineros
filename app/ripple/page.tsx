@@ -127,7 +127,7 @@ export default function Page() {
         </div>
         <div className="rp-closing-links">
           <strong>Sergio Piñeros</strong>
-          <a className="rp-button" href="https://docs.google.com/document/d/1h6Um4CzJ9cYJ1doRC-plb7sOI7iW8EZp1ecdh84uT7w/edit?tab=t.vcf5ovf1hrii" target="_blank" rel="noreferrer">Résumé &amp; Cover Letter</a>
+          <a className="rp-button" href="/ripple/resume">Résumé &amp; Cover Letter</a>
           <a className="rp-button rp-closing-secondary" href="/me">Portfolio</a>
         </div>
       </div>
