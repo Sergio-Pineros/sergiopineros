@@ -85,8 +85,7 @@ export default function MedalLab() {
   return (
     <section id="medals" className={s.section} aria-labelledby="medals-title">
       <div className={s.sectionIntro}>
-        <div><p className={s.eyebrow}>From conversation to collection</p><h2 id="medals-title">Medals.</h2></div>
-        <p>A medal keeps a moment you choose to remember. Give it a name, add it to your little world, and let the story grow one message at a time.</p>
+        <h2 id="medals-title">Medals.</h2>
       </div>
 
       <div className={m.studio}>
@@ -157,10 +156,9 @@ export default function MedalLab() {
                 </ol>
               </div>
             </div>
-          ) : <p className={m.empty}>Your first medal will show up here, with the message that inspired it.</p>}
+          ) : null}
         </div>
       </div>
-      <p className={m.note}>The activity shapes the medal’s design. Try two painting messages to see one medal grow. Saved medals stay in this browser.</p>
     </section>
   );
 }

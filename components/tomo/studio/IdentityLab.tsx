@@ -103,8 +103,7 @@ export default function IdentityLab() {
   return (
     <section id="identity" className={s.section} aria-labelledby="identity-title">
       <div className={s.sectionIntro}>
-        <div><p className={s.eyebrow}>04 / THE VISUAL SYSTEM</p><h2 id="identity-title">Identity, after dark.</h2></div>
-        <p>A living toolkit: dimensional graphics, after-hours colors, type and tactile surfaces applied across products and culture.</p>
+        <h2 id="identity-title">Identity lab.</h2>
       </div>
       <div className={s.labShell}>
         <Tabs items={tabs} current={tab} id="brand" label="Brand workspaces" onChange={(next) => { setTab(next); setFeedback(""); setManualCopy(""); }} />
@@ -127,36 +126,33 @@ export default function IdentityLab() {
                       <div className={s.composition} data-type={settings.type} data-material={settings.format === "poster" ? undefined : settings.material}>
                         <div className={s.compositionTop}><TomoLogo variant={settings.lockup} /><span className={s.mono}>{formatLabels[settings.format]}</span></div>
                         <p className={s.compositionTitle}>{headline}</p>
-                        <div className={s.compositionBottom}><span className={s.mono}>A WORLD IN PROGRESS</span><Sticker name={paletteStickers[settings.palette]} className={s.compositionStar} /></div>
+                        <div className={s.compositionBottom}><span className={s.mono}>Interface as identity</span><Sticker name={paletteStickers[settings.palette]} className={s.compositionStar} /></div>
                       </div>
                     </div>
-                    <p className={s.canvasCaption}><span>{palette.label} / {materials[settings.material].label}</span><span>{formatLabels[settings.format]}</span></p>
                   </div>
                 )}
                 <div className={s.inspector}>
                   {tab === "identity" && <>
-                    <div><h3>Compose a look</h3><p>Use the full mark on a title, the stacked lockup on narrow surfaces, and the small symbol inside widgets.</p></div>
+                    <h3>Compose a look</h3>
                     <Field label="Lockup"><select value={settings.lockup} onChange={(event) => update("lockup", event.target.value as Settings["lockup"])}>{settingsOptions.lockup.map((value) => <option key={value} value={value}>{lockupLabels[value]}</option>)}</select></Field>
                     <Field label="Format"><select value={settings.format} onChange={(event) => update("format", event.target.value as Settings["format"])}>{settingsOptions.format.map((value) => <option key={value} value={value}>{formatLabels[value]}</option>)}</select></Field>
                     <label className={s.checkField}><input type="checkbox" checked={settings.motion} onChange={(event) => update("motion", event.target.checked)} /> Subtle motion</label>
                   </>}
                   {tab === "type" && <>
-                    <div><h3>Set the type</h3><p>Inter Tight for display, DM Sans for interfaces, a serif and mono for editorial contrast.</p></div>
+                    <h3>Set the type</h3>
                     <Field label="Headline"><input type="text" maxLength={64} value={settings.headline} onChange={(event) => update("headline", event.target.value)} /></Field>
                     <Field label="Treatment"><select value={settings.type} onChange={(event) => update("type", event.target.value as Settings["type"])}>{settingsOptions.type.map((value) => <option key={value} value={value}>{typeLabels[value]}</option>)}</select></Field>
                     <Field label={`Scale · ${settings.scale}%`}><input type="range" min="75" max="125" step="1" value={settings.scale} onChange={(event) => update("scale", Number(event.target.value))} /></Field>
                     <Field label="Sample headline"><select value={compositions.some((preset) => preset.headline === settings.headline) ? settings.headline : ""} onChange={(event) => update("headline", event.target.value || initialSettings.headline)}><option value="">Choose a sample</option>{compositions.map((preset) => <option key={preset.headline}>{preset.headline}</option>)}</select></Field>
                   </>}
                   {tab === "materials" && <>
-                    <div><h3>Pick a surface</h3><p>Try mist, glossy enamel or a clean digital surface.</p></div>
+                    <h3>Pick a surface</h3>
                     <fieldset className={s.swatches}><legend>Palette</legend>{settingsOptions.palette.map((value) => <button key={value} type="button" title={palettes[value].label} aria-label={palettes[value].label} aria-pressed={value === settings.palette} style={{ background: palettes[value].background, color: palettes[value].ink }} onClick={() => update("palette", value)}>{value === settings.palette ? "✓" : ""}</button>)}</fieldset>
-                    <p className={s.paletteMeta}>{palette.background} · {palette.role}</p>
                     <Field label="Material"><select value={settings.material} onChange={(event) => update("material", event.target.value as Settings["material"])}>{settingsOptions.material.map((value) => <option key={value} value={value}>{materials[value].label}</option>)}</select></Field>
-                    <p className={s.paletteMeta}>{materials[settings.material].detail}</p>
                     <button type="button" className={s.secondaryButton} onClick={() => void copy(formatPaletteTokens(settings.palette), "Color tokens copied.")}>Copy color tokens</button>
                   </>}
                   {tab === "components" ? <>
-                    <div><h3>Product grammar</h3><p>Messages carry the voice. Widgets share an action area, readable labels and a clear completion state.</p></div>
+                    <h3>Product grammar</h3>
                     <dl className={s.tokenList}><div><dt>Space</dt><dd>4 / 8 / 12 / 16 / 24 / 32 px</dd></div><div><dt>Radius</dt><dd>10 / 17 / 24 px</dd></div><div><dt>Motion</dt><dd>160 / 320 / 520 ms</dd></div><div><dt>Border</dt><dd>1 px solid · #DEDFE8</dd></div></dl>
                     <button type="button" className={s.secondaryButton} onClick={() => void copy(formatPaletteTokens(settings.palette), "Color tokens copied.")}>Copy color tokens</button>
                   </> : (

@@ -90,7 +90,6 @@ export function Widget({ label, title, sticker, children }: { label: string; tit
 export function Conversation({ prompt, reply }: { prompt: string; reply: string }) {
   return (
     <div className={styles.conversation}>
-      <p className={styles.mono}>Conversation</p>
       <p className={styles.sentBubble}>{prompt}</p>
       <div className={styles.receivedRow}><TomoLogo variant="mark" /><p className={styles.receivedBubble}>{reply}</p></div>
     </div>

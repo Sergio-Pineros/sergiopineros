@@ -4,8 +4,8 @@ import { useState } from "react";
 import { Sticker, TomoLogo, studioStyles as s } from "./StudioPrimitives";
 
 const motionExamples = [
-  { id: "message", label: "Message to widget", duration: "520 ms", detail: "A short move and fade connect the new widget to the message that created it." },
-  { id: "complete", label: "Task completion", duration: "320 ms", detail: "The check and the bar advance together, so the state change reads at a glance." },
+  { id: "message", label: "Message to widget" },
+  { id: "complete", label: "Task completion" },
 ] as const;
 
 export default function MotionLab() {
@@ -17,8 +17,7 @@ export default function MotionLab() {
   return (
     <section className={s.motionSection} id="motion" aria-labelledby="motion-title">
       <div>
-        <p className={s.eyebrow}>Motion</p><h2 id="motion-title">Make change visible.</h2>
-        <p>{example.detail}</p>
+        <h2 id="motion-title">Make change visible.</h2>
         <div className={s.motionChoices} role="group" aria-label="Motion examples">
           {motionExamples.map((item, index) => <button className={s.secondaryButton} type="button" key={item.id} aria-pressed={selection === index} onClick={() => { setSelection(index); setRun(0); }}>{item.label}</button>)}
         </div>
@@ -27,7 +26,6 @@ export default function MotionLab() {
         </div>
       </div>
       <div className={s.motionStage}>
-        <p className={s.mono}>{example.label}<span>{enabled ? example.duration : "Instant"}</span></p>
         <div className={s.motionContent} key={`${example.id}-${run}`} data-play={enabled && run > 0} data-example={example.id}>
           {example.id === "message" ? <>
             <div className={s.motionBubble}>can we make a plan?</div>

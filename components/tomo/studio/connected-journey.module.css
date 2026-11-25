@@ -6,10 +6,10 @@
 }
 .intro {
   display: grid;
-  grid-template-columns: 1.15fr .85fr;
+  grid-template-columns: 1fr;
   gap: 28px;
   align-items: end;
-  padding-bottom: 26px;
+  padding-bottom: 36px;
 }
 .eyebrow, .stage, .previewLabel {
   font: 700 11px/1.4 ui-monospace, "Courier New", monospace;
@@ -33,7 +33,7 @@
 .timeline {
   display: grid;
   grid-template-columns: minmax(0, .91fr) minmax(0, 1.15fr) minmax(0, .94fr);
-  gap: 12px;
+  gap: 20px;
   align-items: stretch;
 }
 .step {
@@ -52,7 +52,7 @@
   display: flex;
   gap: 12px;
   align-items: flex-start;
-  min-height: 65px;
+  min-height: 0;
 }
 .stepNumber {
   border: 1px solid #b9c1cb;
@@ -118,8 +118,7 @@
   line-height: 1.4;
 }
 .optInLabel input { margin: 4px 0 0; width: 17px; height: 17px; flex-shrink: 0; accent-color: #3044a4; }
-.optIn > p { font-size: 12px; color: #596273; margin: 9px 0 13px; line-height: 1.5; }
-.optIn > button { width: 100%; }
+.optIn > button { width: 100%; margin-top: 13px; }
 .futureMessage {
   min-height: 143px;
   background: #fffdf8a8;
@@ -143,9 +142,9 @@
 .footer {
   display: flex;
   gap: 20px;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  margin-top: 18px;
+  margin-top: 28px;
 }
 .footer p {
   font-size: 14px;

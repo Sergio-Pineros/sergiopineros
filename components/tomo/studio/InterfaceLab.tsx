@@ -155,8 +155,7 @@ export default function InterfaceLab() {
   return (
     <section id="interfaces" className={s.section} aria-labelledby="interfaces-title">
       <div className={s.sectionIntro}>
-        <div><p className={s.eyebrow}>Product concept · connected experience</p><h2 id="interfaces-title">From conversation to action. And back.</h2></div>
-        <p>First, edit a running tracker and see how a future message uses the same context—with permission. Then explore three other interface ideas.</p>
+        <h2 id="interfaces-title">From conversation to action. And back.</h2>
       </div>
       <div className={s.interfaceShell}>
         <Tabs items={examples} current={example} onChange={setExample} id="examples" label="Interface prototypes" />
@@ -173,7 +172,6 @@ export default function InterfaceLab() {
                   <BiomeArtwork name={id} className={s.interfaceBiome} />
                 </div>
                 <div className={s.generated}>
-                  <p className={s.mono}>From the conversation · {biomes[id].name}</p>
                   {id === "plan" ? <Planner /> : id === "win" ? <Keepsake /> : <Reflection />}
                 </div>
               </Panel>
@@ -181,7 +179,6 @@ export default function InterfaceLab() {
           </div>
         ))}
       </div>
-      <p className={s.designNote}>What remains familiar: texting Tomo. What we explore: personal interfaces that preserve context, respect consent and return smoothly to the conversation.</p>
     </section>
   );
 }
