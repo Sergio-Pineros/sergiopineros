@@ -103,10 +103,19 @@ export default function TomoProductStudy() {
     <main className={st.page} lang="en">
       <header className={st.header}>
         <a href="#top" className={st.brand} aria-label="tomo">
-          <Image src="/tomo-studio/tomo-official-mark.svg" alt="" width={28} height={28} />
+          <span className={st.brandMark}><Image src="/tomo-studio/tomo-official-mark.svg" alt="" width={28} height={28} /></span>
           <span className={st.brandName}>tomo</span>
         </a>
       </header>
+
+      <div className={st.night} aria-hidden="true">
+        <div className={st.nightGlow} />
+        <div className={st.nightSun} />
+        <div className={st.nightHorizon} />
+        <div className={st.nightRidgeBack} />
+        <div className={st.nightRidgeFront} />
+        <div className={st.nightGrain} />
+      </div>
 
       <section className={st.hero} id="top" aria-labelledby="hero-title">
         <div className={st.heroCopy}>
@@ -120,6 +129,9 @@ export default function TomoProductStudy() {
         </div>
 
         <div className={st.stage} id="prototype">
+          <div className={st.stageTop}>
+            <button type="button" className={st.reset} onClick={restart}>reset</button>
+          </div>
           <div className={st.scenarios} role="group" aria-label="Pick a scenario">
             {choices.map((choice) => (
               <button
@@ -132,7 +144,6 @@ export default function TomoProductStudy() {
                 {choice.label}
               </button>
             ))}
-            <button type="button" className={st.reset} onClick={restart}>reset</button>
           </div>
 
           <div className={st.phone} data-moment={moment}>
@@ -153,13 +164,14 @@ export default function TomoProductStudy() {
                 <div className={st.messageReceived}>{selected.opener}</div>
                 {returned && <div className={st.messageReceived} aria-live="polite">{followUp}</div>}
                 <button className={st.openSpace} type="button" onClick={() => setView("space")}>
+                  <span className={st.spaceIcon} aria-hidden="true"><span /><span /><span /><span /></span>
                   open your space
                 </button>
               </div>
             ) : (
               <div className={st.space} key={moment}>
                 {moment === "run" && (
-                  <section aria-labelledby="run-title" className={st.generated}>
+                  <section aria-labelledby="run-title" className={st.generatedCard}>
                     <h2 id="run-title">you&apos;re on a roll.</h2>
                     <div className={st.bigNumber} aria-live="polite">{number.format(weeklyTotal)}<small> km</small></div>
                     <div className={st.bar} role="progressbar" aria-label="Running goal" aria-valuemin={0} aria-valuemax={weeklyGoal} aria-valuenow={Math.min(weeklyTotal, weeklyGoal)}>
@@ -172,7 +184,7 @@ export default function TomoProductStudy() {
                   </section>
                 )}
                 {moment === "plan" && (
-                  <section aria-labelledby="plan-title" className={st.generated}>
+                  <section aria-labelledby="plan-title" className={st.generatedCard}>
                     <h2 id="plan-title">one thing at a time.</h2>
                     <ul className={st.tasks}>
                       {tasks.map((task) => (
@@ -191,7 +203,7 @@ export default function TomoProductStudy() {
                   </section>
                 )}
                 {moment === "win" && (
-                  <section aria-labelledby="win-title" className={st.generated}>
+                  <section aria-labelledby="win-title" className={st.generatedCard}>
                     <h2 id="win-title">this one&apos;s a keeper.</h2>
                     <label className={st.winInput}>
                       name this moment
