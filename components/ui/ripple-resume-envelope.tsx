@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment -- supplied JavaScript renderer; typed public React props below.
 // @ts-nocheck
 // The authored renderer below is retained as JavaScript to preserve the approved motion.
 // Public React props are typed. Peer dependencies: react >=18 and three 0.187.0.
