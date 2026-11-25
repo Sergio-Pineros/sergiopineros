@@ -17,7 +17,7 @@ const offerings = [
 function MiniProduct({ kind }: { kind: string }) {
   return (
     <div className="pr-mini" aria-hidden="true">
-      <div className="pr-mini-top"><span className="pr-mark">p.</span><span>{kind === "online" ? "Your application" : kind === "branch" ? "Banker workspace" : "Account services"}</span><span className="pr-mini-dots">•••</span></div>
+      <div className="pr-mini-top"><span className="pr-mark">P</span><span>{kind === "online" ? "Your application" : kind === "branch" ? "Banker workspace" : "Account services"}</span><span className="pr-mini-dots">•••</span></div>
       {kind === "online" ? <div className="pr-mini-body"><div className="pr-progress"><i/><i/><i/></div><h4>Choose your account</h4><div className="pr-option"><span className="pr-radio selected"/><span>Personal checking</span></div><div className="pr-option"><span className="pr-radio"/><span>Personal savings</span></div><div className="pr-mini-button">Continue</div></div>
         : kind === "branch" ? <div className="pr-mini-body"><h4>Applications</h4><div className="pr-table-row pr-table-head"><span>Customer</span><span>Status</span></div><div className="pr-table-row"><span>Jamie Morgan</span><span>In review</span></div><div className="pr-table-row"><span>North & Co.</span><span>In progress</span></div><div className="pr-table-row"><span>Alex Rivera</span><span>Completed</span></div></div>
         : <div className="pr-mini-body"><h4>How can we help?</h4>{["Update contact information", "Change a beneficiary", "Request a debit card"].map(item => <div className="pr-option" key={item}><span className="pr-square"/><span>{item}</span></div>)}</div>}
@@ -31,42 +31,42 @@ export default function PrelimPage() {
       <style>{styles}</style>
       <div className="pr-notice"><Link href="/">Sergio Piñeros · Portfolio</Link><span>Independent product design exploration</span><a href="mailto:s.dpineros@gmail.com">Contact me</a></div>
       <header className="pr-nav">
-        <a className="pr-wordmark" href="#top" aria-label="Prelim homepage concept">prelim<span>.</span></a>
+        <a className="pr-wordmark" href="#top" aria-label="Prelim homepage concept">PRELIM</a>
         <nav aria-label="Page navigation"><a href="#solutions">Solutions</a><a href="#platform">Platform</a><a href="#builder">Interactive demo</a></nav>
         <a className="pr-outline" href="https://prelim.com/" target="_blank" rel="noreferrer">Visit Prelim</a>
       </header>
       <section className="pr-hero pr-wrap" id="top">
         <div className="pr-hero-meta"><span>For banks and credit unions</span><span>Account opening and servicing</span></div>
-        <h1>Build banking<br className="pr-desktop-break"/>{" "}around your<br className="pr-desktop-break"/>{" "}customers.</h1>
+        <h1><span className="pr-headline-line"><span>Build banking</span></span>{" "}<span className="pr-headline-line"><span>around your</span></span>{" "}<span className="pr-headline-line"><span>customers.</span></span></h1>
         <div className="pr-hero-bottom"><p>Prelim gives financial institutions the tools to open and service accounts online and in the branch, with configurable experiences and automated workflows.</p><a className="pr-button" href="#builder">Explore the platform</a></div>
       </section>
       <section className="pr-hero-art" aria-label="Illustration of connected banking applications">
         <div className="pr-art-grid" aria-hidden="true"/>
-        <div className="pr-art-inner">
+        <div className="pr-art-inner"><svg className="pr-flow-paths" viewBox="0 0 1000 360" preserveAspectRatio="none" aria-hidden="true"><path d="M 180 105 H 315 Q 340 105 340 130 V 158 Q 340 180 365 180 H 500"/><path d="M 180 255 H 315 Q 340 255 340 230 V 202 Q 340 180 365 180 H 500"/><path d="M 500 180 H 635 Q 660 180 660 158 V 130 Q 660 105 685 105 H 820"/><path d="M 500 180 H 635 Q 660 180 660 202 V 230 Q 660 255 685 255 H 820"/><g className="pr-flow-draw"><path pathLength="1" d="M 180 105 H 315 Q 340 105 340 130 V 158 Q 340 180 365 180 H 500"/><path pathLength="1" d="M 180 255 H 315 Q 340 255 340 230 V 202 Q 340 180 365 180 H 500"/><path pathLength="1" d="M 500 180 H 635 Q 660 180 660 158 V 130 Q 660 105 685 105 H 820"/><path pathLength="1" d="M 500 180 H 635 Q 660 180 660 202 V 230 Q 660 255 685 255 H 820"/></g></svg>
           <div className="pr-art-side"><div className="pr-art-caption">The customer journey</div><div className="pr-art-card"><span>01</span><strong>Choose an account</strong><div className="pr-art-lines"><i/><i/></div></div><div className="pr-art-card"><span>02</span><strong>Complete application</strong><div className="pr-art-lines"><i/><i/></div></div></div>
-          <div className="pr-art-center"><div className="pr-art-caption">The configurable platform</div><div className="pr-engine"><div className="pr-engine-mark">p.</div><div className="pr-engine-label">Prelim</div><div className="pr-engine-grid">{Array.from({length: 35}, (_, i) => <i key={i} className={(i % 7 === 3 || (i > 13 && i < 21)) ? "on" : ""}/>)}</div><div className="pr-engine-caption">Forms · Rules · Integrations</div></div></div>
+          <div className="pr-art-center"><div className="pr-art-caption">The configurable platform</div><div className="pr-engine"><div className="pr-engine-mark">P</div><div className="pr-engine-label">Prelim</div><div className="pr-engine-grid">{Array.from({length: 35}, (_, i) => <i key={i} className={(i % 7 === 3 || (i > 13 && i < 21)) ? "on" : ""}/>)}</div><div className="pr-engine-caption">Forms · Rules · Integrations</div></div></div>
           <div className="pr-art-side"><div className="pr-art-caption">The bank’s workflow</div><div className="pr-art-card"><span>03</span><strong>Verify and review</strong><div className="pr-art-lines"><i/><i/></div></div><div className="pr-art-card"><span>04</span><strong>Connect to the core</strong><div className="pr-art-lines"><i/><i/></div></div></div>
         </div>
         <div className="pr-art-foot"><span>Illustrative product architecture</span><span>Account opening across channels</span></div>
       </section>
       <section className="pr-wrap pr-section" id="solutions">
-        <div className="pr-section-intro"><span className="pr-kicker">01 / Where customers bank</span><h2>One platform supports the entire account relationship.</h2></div>
-        <div className="pr-offerings">{offerings.map(item => <article className="pr-offer" key={item.number}><span className="pr-number">{item.number}</span><MiniProduct kind={item.kind}/><h3>{item.name}</h3><p>{item.description}</p></article>)}</div>
+        <div className="pr-section-intro"><span className="pr-kicker">Where customers bank</span><h2>One platform supports the entire account relationship.</h2></div>
+        <div className="pr-offerings">{offerings.map(item => <article className="pr-offer" key={item.number}><div className="pr-offer-copy"><h3>{item.name}</h3><p>{item.description}</p></div><MiniProduct kind={item.kind}/></article>)}</div>
       </section>
       <section className="pr-dark" id="platform"><div className="pr-wrap pr-section">
-        <div className="pr-section-intro"><span className="pr-kicker">02 / How it works</span><h2>Configure the experience from application to account creation.</h2></div>
+        <div className="pr-section-intro"><span className="pr-kicker">How the platform works</span><h2>Configure the experience from application to account creation.</h2></div>
         <div className="pr-capabilities">
-          <article><span>01 / UX Builder</span><h3>Design your own application flows.</h3><p>Use drag-and-drop tools to assemble forms and adapt them to the financial products your institution offers.</p></article>
-          <article><span>02 / Rules engine</span><h3>Automate decisions and approvals.</h3><p>Configure application logic, approval chains and document generation around your institution’s processes.</p></article>
-          <article><span>03 / Enterprise workspace</span><h3>Give employees a place to manage applications.</h3><p>Authorized staff can review submissions, complete tasks and assist customers within a role-based workspace.</p></article>
-          <article><span>04 / Core integrations</span><h3>Connect the systems your bank relies on.</h3><p>Exchange application data with core banking systems and integrate services for verification, e-signatures and funding.</p></article>
+          <article><span>UX Builder</span><h3>Design your own application flows.</h3><p>Use drag-and-drop tools to assemble forms and adapt them to the financial products your institution offers.</p></article>
+          <article><span>Rules engine</span><h3>Automate decisions and approvals.</h3><p>Configure application logic, approval chains and document generation around your institution’s processes.</p></article>
+          <article><span>Enterprise workspace</span><h3>Give employees a place to manage applications.</h3><p>Authorized staff can review submissions, complete tasks and assist customers within a role-based workspace.</p></article>
+          <article><span>Core integrations</span><h3>Connect the systems your bank relies on.</h3><p>Exchange application data with core banking systems and integrate services for verification, e-signatures and funding.</p></article>
         </div>
       </div></section>
       <section className="pr-wrap pr-section" id="builder">
-        <div className="pr-section-intro"><span className="pr-kicker">03 / An interactive exploration</span><h2>See how an application can adapt to your requirements.</h2></div>
+        <div className="pr-section-intro"><span className="pr-kicker">Try the application builder</span><h2>See how an application can adapt to your requirements.</h2></div>
         <p className="pr-demo-lead">Choose an account type and a verification rule to see how those settings affect the applicant’s experience.</p>
         <div className="pr-builder">
-          <div className="pr-builder-head"><strong><span className="pr-mark">p.</span> Application builder</strong><span>Interactive concept</span></div>
+          <div className="pr-builder-head"><strong><span className="pr-mark">P</span> Application builder</strong><span>Interactive concept</span></div>
           <div className="pr-builder-body">
             <div className="pr-controls">
               <h3>Configure the application</h3>
@@ -86,15 +86,15 @@ export default function PrelimPage() {
                 <div className="pr-field pr-business"><span>Business structure</span><div>Limited liability company</div></div>
                 <div className="pr-verification"><strong>Identity verification</strong><span>Have your identification document ready.</span></div>
                 <div className="pr-review-note">Your application will be reviewed by a bank employee after submission.</div>
-                <div className="pr-preview-button">Continue application</div>
+                <div className="pr-preview-button" aria-hidden="true">Continue application</div>
               </div>
             </div>
           </div>
         </div>
-        <p className="pr-disclaimer">This is an independent simulation of configurable forms and rules described in <a href="https://docs.prelim.com/docs/what-is-prelim" target="_blank" rel="noreferrer">Prelim’s documentation</a>. It is not connected to banking systems and does not collect personal information.</p>
+        <p className="pr-disclaimer">This prototype illustrates configurable forms and rules described in <a href="https://docs.prelim.com/docs/what-is-prelim" target="_blank" rel="noreferrer">Prelim’s documentation</a>. It is not connected to banking systems and does not collect personal information.</p>
       </section>
       <section className="pr-final"><div className="pr-wrap"><h2>Build an account experience that fits your institution.</h2><a className="pr-button pr-invert" href="https://prelim.com/" target="_blank" rel="noreferrer">Explore Prelim’s official website</a></div></section>
-      <footer className="pr-footer pr-wrap"><div><a className="pr-wordmark" href="#top">prelim<span>.</span></a><p>An independent design concept by Sergio Piñeros.<br/>Created as a portfolio exploration; not affiliated with Prelim.</p></div><div className="pr-footer-links"><a href="https://prelim.com/" target="_blank" rel="noreferrer">Official website</a><a href="https://docs.prelim.com/docs/what-is-prelim" target="_blank" rel="noreferrer">Product documentation</a><a href="mailto:s.dpineros@gmail.com">Get in touch with the designer</a></div></footer>
+      <footer className="pr-footer pr-wrap"><div><a className="pr-wordmark" href="#top">PRELIM</a><p>An independent design concept by Sergio Piñeros.<br/>Created as a portfolio exploration; not affiliated with Prelim.</p></div><div className="pr-footer-links"><a href="https://prelim.com/" target="_blank" rel="noreferrer">Official website</a><a href="https://docs.prelim.com/docs/what-is-prelim" target="_blank" rel="noreferrer">Product documentation</a><a href="mailto:s.dpineros@gmail.com">Get in touch with the designer</a></div></footer>
     </main>
   );
 }
@@ -111,4 +111,124 @@ const styles = `
 @media(max-width:1000px){.pr-wrap,.pr-nav{width:calc(100% - 56px)}.pr-hero h1{font-size:clamp(65px,11vw,120px)}.pr-hero-art{padding-inline:28px}.pr-art-inner{gap:24px}.pr-engine:before,.pr-engine:after{width:24px}.pr-offer{padding:18px}.pr-mini-body{padding:12px}.pr-section{padding-block:65px}}
 @media(max-width:700px){.pr-page{font-size:16px}.pr-wrap,.pr-nav{width:calc(100% - 36px)}.pr-notice{padding:10px 18px;flex-wrap:wrap;gap:4px 10px;font-size:12px}.pr-notice span{order:3;width:100%;color:#ddd}.pr-nav{padding:17px 0;gap:12px}.pr-nav nav{display:none}.pr-wordmark{font-size:37px}.pr-outline{padding:9px 13px;min-height:42px;font-size:14px}.pr-hero{padding-block:27px 35px}.pr-hero-meta{font-size:13px;align-items:start}.pr-hero-meta span:last-child{text-align:right}.pr-hero h1{font-size:clamp(50px,11.6vw,78px);letter-spacing:-.075em;padding-block:28px}.pr-desktop-break{display:none}.pr-hero-bottom{display:grid;gap:23px;justify-items:start}.pr-hero-bottom p{font-size:19px;line-height:1.4}.pr-hero-art{padding:28px 18px;min-height:0}.pr-art-inner{grid-template-columns:1fr;gap:19px;max-width:450px}.pr-art-side{grid-template-columns:1fr 1fr;gap:8px}.pr-art-caption{grid-column:1/-1}.pr-art-card{padding:13px;min-height:94px}.pr-art-card strong{font-size:15px}.pr-engine:before,.pr-engine:after{display:none}.pr-engine-grid{width:115px}.pr-engine{padding:16px}.pr-engine-mark{font-size:42px}.pr-art-foot{font-size:12px;margin-top:22px}.pr-art-foot span:last-child{text-align:right}.pr-section{padding-block:48px}.pr-section-intro{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:28px}.pr-section-intro h2,.pr-final h2{font-size:clamp(37px,8.6vw,53px);letter-spacing:-.055em}.pr-kicker{padding:0;font-size:14px}.pr-offerings{grid-template-columns:1fr}.pr-offer,.pr-offer:first-child,.pr-offer:last-child{padding:22px 0;border-right:0;border-bottom:1px solid #bbb;gap:14px}.pr-offer:last-child{border-bottom:0}.pr-mini{min-height:0}.pr-mini-body{padding:20px}.pr-offer h3,.pr-capabilities h3{font-size:29px}.pr-offer p{font-size:16px}.pr-capabilities{grid-template-columns:1fr}.pr-capabilities article{padding:23px;gap:12px}.pr-capabilities p{font-size:16px}.pr-demo-lead{font-size:17px;margin-bottom:20px!important}.pr-builder-head{padding:12px;font-size:12px}.pr-builder-head strong{font-size:14px}.pr-builder-body{grid-template-columns:1fr}.pr-controls{border-right:0;border-bottom:1px solid #ccc;padding:20px;gap:23px}.pr-preview{padding:12px}.pr-form{padding:20px}.pr-preview-label{font-size:12px}.pr-final .pr-wrap{padding-block:48px;gap:24px}.pr-footer{align-items:start;flex-direction:column;padding-block:25px;gap:24px}.pr-footer-links{text-align:left}.pr-button{font-size:15px}}
 @media(prefers-reduced-motion:reduce){.pr-page *{transition:none!important;animation:none!important}}
+
+/* Prelim brand-inspired dark palette and editorial motion. Product examples remain
+   light to show the white-labelled applicant experience. */
+.pr-page{--pr-ink:#f4f4f4;--pr-muted:#b4b4b4;--pr-surface:#151515;--pr-border:#383838;background:#101010;color:var(--pr-ink);font-family:var(--font-dm-sans),Arial,Helvetica,sans-serif}
+.pr-page ::selection{background:#eee;color:#111}
+.pr-page a:focus-visible,.pr-page input:focus-visible{outline:2px solid #fff;outline-offset:4px}
+.pr-notice{background:#090909;color:#bdbdbd;border-bottom:1px solid #2a2a2a}
+.pr-nav{border-color:var(--pr-border);padding-block:23px}
+.pr-wordmark{font-size:clamp(25px,3.1vw,38px);font-weight:700;letter-spacing:-.055em}
+.pr-nav nav{color:#d4d4d4}
+.pr-outline{border-color:#777;color:#f4f4f4}
+.pr-button,.pr-invert{background:#f4f4f4;color:#111!important;border-color:#f4f4f4;border-radius:5px}
+.pr-outline{border-radius:5px}
+.pr-button,.pr-outline,.pr-controls label{transition:transform 160ms var(--ease-out),background-color 160ms ease,color 160ms ease,border-color 160ms ease}
+.pr-button:active,.pr-outline:active,.pr-controls label:active{transform:scale(.97)}
+.pr-hero{padding-block:42px 56px}
+.pr-hero-meta{border-color:var(--pr-border);color:var(--pr-muted)}
+.pr-hero h1{font-size:clamp(72px,10.6vw,164px);line-height:.9;font-weight:500;letter-spacing:-.082em;padding-block:32px 38px}
+.pr-headline-line{display:block;overflow:clip;padding-bottom:.09em;margin-bottom:-.09em}
+.pr-headline-line>span{display:block;animation:pr-type-in 680ms var(--ease-out) both}
+.pr-headline-line:nth-of-type(2)>span{animation-delay:95ms}
+.pr-headline-line:nth-of-type(3)>span{animation-delay:160ms}
+.pr-hero-meta{animation:pr-fade 400ms var(--ease-out) both}
+.pr-hero-bottom{animation:pr-enter 540ms var(--ease-out) 170ms both}
+.pr-hero-bottom p{color:#c9c9c9;font-size:clamp(18px,1.8vw,24px)}
+@keyframes pr-type-in{from{transform:translateY(105%);opacity:.35}to{transform:translateY(0);opacity:1}}
+@keyframes pr-fade{from{opacity:0}to{opacity:1}}
+@keyframes pr-enter{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.pr-hero-art{background:#151515;border-block:1px solid #333;min-height:500px;position:relative}
+.pr-art-grid{background-size:36px 36px;background-image:linear-gradient(#323232 1px,transparent 1px),linear-gradient(90deg,#323232 1px,transparent 1px);mask-image:radial-gradient(ellipse,#000 24%,transparent 80%)}
+.pr-art-inner{position:relative;isolation:isolate;grid-template-columns:1fr 1fr 1fr;gap:clamp(20px,7vw,110px)}
+.pr-art-side,.pr-art-center{position:relative;z-index:1}
+.pr-art-card{border-color:#515151;background:#1b1b1b;border-radius:8px;box-shadow:0 12px 26px #0004}
+.pr-engine{border-radius:12px;background:#f3f3f3;box-shadow:0 14px 65px #0008;border-color:#fff;padding:28px 18px}
+.pr-engine:before,.pr-engine:after{display:none}
+.pr-engine-mark{font-size:62px;letter-spacing:-.07em}
+.pr-engine-label{text-transform:uppercase;font-size:18px;letter-spacing:-.035em}
+.pr-engine-grid i{border-radius:1px}
+.pr-flow-paths{position:absolute;inset:0;width:100%;height:100%;z-index:0;overflow:visible;pointer-events:none}
+.pr-flow-paths path{fill:none;stroke:#444;stroke-width:1.3;vector-effect:non-scaling-stroke}
+.pr-flow-draw path{stroke:#eee;stroke-width:1.7;stroke-dasharray:1;stroke-dashoffset:0}
+.pr-art-foot{color:#aaa}
+.pr-section{padding-block:clamp(72px,9vw,140px)}
+.pr-kicker{color:#b9b9b9;font-weight:400}
+.pr-section-intro h2,.pr-final h2{font-weight:500;letter-spacing:-.055em}
+.pr-offerings{display:block;border-top:1px solid var(--pr-border);border-bottom:0}
+.pr-offer,.pr-offer:first-child,.pr-offer:last-child{display:grid;grid-template-columns:minmax(0,.83fr) minmax(0,1.17fr);align-items:center;gap:clamp(25px,8vw,120px);padding:clamp(32px,5vw,65px) 0;border:0;border-bottom:1px solid var(--pr-border)}
+.pr-offer:nth-child(2) .pr-offer-copy{order:2}
+.pr-offer-copy{max-width:450px;display:grid;gap:18px}
+.pr-offer h3{font-size:clamp(30px,4vw,54px);font-weight:500;letter-spacing:-.055em}
+.pr-offer p,.pr-demo-lead{color:#bdbdbd;font-size:clamp(17px,1.6vw,21px)}
+.pr-mini{color:#111;background:#f5f5f5;border:1px solid #777;border-radius:10px;min-height:270px;max-width:660px;width:100%;justify-self:center;box-shadow:0 12px 50px #0005}
+.pr-mini-top{padding:14px 20px;font-size:14px}.pr-mini-body{padding:22px}.pr-mini h4{font-size:22px}.pr-option,.pr-table-row{font-size:14px;padding:12px}
+.pr-mark{letter-spacing:-.05em;border-radius:4px;padding-right:0}
+.pr-dark{background:#181818;border-block:1px solid #303030}
+.pr-capabilities{border-color:#414141;grid-template-columns:1fr 1fr}
+.pr-capabilities article{border-color:#414141;min-height:250px;position:relative}
+.pr-capabilities article>span{color:#a8a8a8}
+.pr-capabilities h3{font-weight:500}
+.pr-capabilities p{color:#bebebe}
+.pr-builder{border-color:#494949;background:#191919;border-radius:12px;overflow:hidden}
+.pr-builder-head{background:#202020;border-color:#424242;color:#e9e9e9}
+.pr-builder-head .pr-mark{background:#f4f4f4;color:#111}
+.pr-controls{background:#151515;border-color:#3f3f3f;color:#f4f4f4}
+.pr-controls label{border-color:#505050;border-radius:6px;background:#1b1b1b}
+.pr-controls label:has(input:checked){background:#303030;border-color:#ddd}
+.pr-controls input{accent-color:#e9e9e9}
+.pr-rule-summary{background:#242424;border:1px solid #3b3b3b;border-radius:6px}
+.pr-rule-summary span,.pr-preview-label{color:#bcbcbc}
+.pr-preview{background:#262626}
+.pr-form{color:#111;border-radius:8px;box-shadow:0 12px 40px #0004}
+.pr-form .pr-preview-button{border-radius:4px}
+.pr-disclaimer{color:#a9a9a9}.pr-disclaimer a{color:#ddd}
+.pr-final{background:#171717;border-block:1px solid var(--pr-border)}
+.pr-final .pr-wrap{padding-block:clamp(60px,8vw,112px)}
+.pr-footer p{color:#b5b5b5}.pr-footer-links{color:#ddd}
+@media(hover:hover) and (pointer:fine){
+ .pr-button:hover,.pr-invert:hover{background:#d2d2d2;border-color:#d2d2d2;color:#111!important}
+ .pr-outline:hover{background:#eee;color:#111!important;border-color:#eee}
+ .pr-art-card{transition:transform 250ms var(--ease-out),border-color 160ms ease}
+ .pr-art-card:hover{transform:translateY(-4px);border-color:#ddd}
+ .pr-controls label:hover{border-color:#bdbdbd}
+ .pr-mini{transition:transform 250ms var(--ease-out)}.pr-offer:hover .pr-mini{transform:translateY(-5px)}
+}
+@supports(animation-timeline:view()){
+ @media(prefers-reduced-motion:no-preference){
+  .pr-art-grid{animation:pr-grid-depth linear both;animation-timeline:view();animation-range:entry 0% exit 100%}
+  .pr-art-side{animation:pr-art-depth linear both;animation-timeline:view();animation-range:entry 0% cover 65%}
+  .pr-flow-draw path{animation:pr-line-draw linear both;animation-timeline:view();animation-range:entry 0% cover 48%}
+  .pr-flow-draw path:nth-child(3),.pr-flow-draw path:nth-child(4){animation-range:entry 30% cover 55%}
+  .pr-section-intro h2,.pr-final h2{animation:pr-section-rise linear both;animation-timeline:view();animation-range:entry 0% entry 85%}
+  .pr-offer .pr-mini{animation:pr-product-rise linear both;animation-timeline:view();animation-range:entry 0% entry 85%}
+ }
+}
+@keyframes pr-grid-depth{from{transform:translateY(-18px) scale(1.04)}to{transform:translateY(18px) scale(1.04)}}
+@keyframes pr-art-depth{from{transform:translateY(18px)}to{transform:translateY(0)}}
+@keyframes pr-line-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes pr-section-rise{from{opacity:.65;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pr-product-rise{from{opacity:.85;transform:translateY(24px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:700px){
+ .pr-wordmark{font-size:29px}.pr-notice{font-size:13px}
+ .pr-hero{padding-block:30px 40px}.pr-hero-meta{font-size:13px}
+ .pr-hero h1{font-size:clamp(44px,10.2vw,75px);letter-spacing:-.065em;line-height:.98;padding-block:28px}
+ .pr-headline-line{display:block;padding-bottom:.065em;margin-bottom:-.065em}
+ .pr-hero-art{min-height:0;padding:32px 18px}
+ .pr-art-inner{grid-template-columns:1fr;gap:16px}.pr-flow-paths{display:none}
+ .pr-engine{padding:17px}.pr-engine-mark{font-size:42px}.pr-art-card{padding:14px}
+ .pr-section{padding-block:54px}
+ .pr-offer,.pr-offer:first-child,.pr-offer:last-child{grid-template-columns:1fr;gap:24px;padding:28px 0}
+ .pr-offer:nth-child(2) .pr-offer-copy{order:0}.pr-offer-copy{gap:10px}.pr-offer h3{font-size:32px}
+ .pr-mini{min-height:0}.pr-mini-body{padding:20px}
+ .pr-capabilities{grid-template-columns:1fr}.pr-capabilities article{min-height:0}
+ .pr-controls{border-bottom:1px solid #444}
+ .pr-final .pr-wrap{padding-block:52px}
+}
+@media(prefers-reduced-motion:reduce){
+ .pr-page *, .pr-page *::before,.pr-page *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+ .pr-headline-line>span,.pr-hero-bottom,.pr-hero-meta,.pr-section-intro h2,.pr-offer .pr-mini{opacity:1;transform:none}
+ .pr-flow-draw path{stroke-dashoffset:0}
+}
 `;
