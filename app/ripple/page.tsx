@@ -120,6 +120,19 @@ export default function Page() {
         <a href="https://nxtseat.co/" target="_blank" rel="noreferrer" className="rp-work-card"><div className="rp-work-visual rp-v3"><div className="rp-wave" aria-hidden="true">{[25,48,70,40,84,100,60,35,68,46,22].map((h,i)=><span key={i} style={{height:h+"%"}}/>)}</div></div><h3>NxtSeat</h3><p>Developed voice-first business software with scheduling, customer communication and payment workflows.</p></a>
       </div>
     </section>
+    <footer className="rp-closing">
+      <div className="rp-wrap rp-closing-inner">
+        <div className="rp-closing-copy">
+          <h2>Making financial innovation understood.</h2>
+          <p>I want to help businesses understand, trust and adopt the technologies shaping the future of finance. Ripple sits at the intersection of the technology that sparked my curiosity and the marketing discipline I’ve built my career around.</p>
+        </div>
+        <div className="rp-closing-links">
+          <strong>Sergio Piñeros</strong>
+          <a className="rp-button" href="https://docs.google.com/document/d/1h6Um4CzJ9cYJ1doRC-plb7sOI7iW8EZp1ecdh84uT7w/edit?tab=t.vcf5ovf1hrii" target="_blank" rel="noreferrer">Résumé &amp; Cover Letter</a>
+          <a className="rp-button rp-closing-secondary" href="/me">Portfolio</a>
+        </div>
+      </div>
+    </footer>
   </main>;
 }
 
@@ -141,5 +154,16 @@ const css = `
 @keyframes rp-pixel-away{to{opacity:0}}@keyframes rp-logo-out{to{visibility:hidden}}@keyframes rp-intro-end{to{visibility:hidden;pointer-events:none}}
 @media(max-width:700px){.rp-nav nav{order:initial}.rp-intro-logos{gap:20px}.rp-intro-logos img,.rp-intro-logos svg{width:56px;height:56px}}
 @media(prefers-reduced-motion:reduce){.rp-intro{display:none!important}}
+
+.rp-closing{background:#fff;border-top:1px solid var(--rp-line)}
+.rp-closing-inner{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(250px,1fr);align-items:end;gap:clamp(36px,7vw,100px);padding-block:clamp(50px,7vw,96px)}
+.rp-closing-copy h2{font-size:clamp(38px,4.2vw,60px);max-width:22ch}
+.rp-closing-copy p{max-width:64ch;margin-top:20px}
+.rp-closing-links{display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+.rp-closing-links strong{font-size:22px;font-weight:600;margin-bottom:6px}
+.rp-closing-links .rp-button{min-width:240px;text-align:center}
+.rp-closing-secondary{background:#fff!important;color:var(--rp-ink)!important;border:1px solid #b9c7d4!important}
+.rp-closing-secondary:hover{background:#f1f7fc!important}
+@media(max-width:700px){.rp-closing-inner{grid-template-columns:1fr;gap:32px}.rp-closing-links{align-items:stretch}.rp-closing-links .rp-button{min-width:0}}
 
 `;
