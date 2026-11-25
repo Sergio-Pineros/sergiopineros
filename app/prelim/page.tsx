@@ -36,7 +36,7 @@ export default function PrelimPage() {
       </header>
       <section className="pr-hero pr-wrap" id="top">
         <div className="pr-hero-meta"><span>For banks and credit unions</span><span>Account opening and servicing</span></div>
-        <h1>Build banking<br className="pr-desktop-break"/> around your<br className="pr-desktop-break"/> customers.</h1>
+        <h1>Build banking<br className="pr-desktop-break"/>{" "}around your<br className="pr-desktop-break"/>{" "}customers.</h1>
         <div className="pr-hero-bottom"><p>Prelim gives financial institutions the tools to open and service accounts online and in the branch, with configurable experiences and automated workflows.</p><a className="pr-button" href="#builder">Explore the platform</a></div>
       </section>
       <section className="pr-hero-art" aria-label="Illustration of connected banking applications">
