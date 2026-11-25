@@ -86,7 +86,6 @@ export default function Page() {
       <div className="rp-hero-copy">
         <h1>I’d love to help shape the future of <span>finance.</span></h1>
         <p>Hey Ripple! I’m Sergio, a marketer and product builder who has always been fascinated by crypto. I’d love to bring that curiosity and everything I’ve learned about building and marketing products to your team.</p>
-        <a className="rp-button" href="#concept">See what I have in mind</a>
       </div>
       <Core/>
     </section>
