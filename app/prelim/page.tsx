@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Prelim — Product design exploration by Sergio Piñeros",
@@ -28,7 +29,7 @@ export default function PrelimPage() {
   return (
     <main className="pr-page">
       <style>{styles}</style>
-      <div className="pr-notice"><a href="/">Sergio Piñeros · Portfolio</a><span>Independent product design exploration</span><a href="mailto:s.dpineros@gmail.com">Contact me</a></div>
+      <div className="pr-notice"><Link href="/">Sergio Piñeros · Portfolio</Link><span>Independent product design exploration</span><a href="mailto:s.dpineros@gmail.com">Contact me</a></div>
       <header className="pr-nav">
         <a className="pr-wordmark" href="#top" aria-label="Prelim homepage concept">prelim<span>.</span></a>
         <nav aria-label="Page navigation"><a href="#solutions">Solutions</a><a href="#platform">Platform</a><a href="#builder">Interactive demo</a></nav>
@@ -44,7 +45,7 @@ export default function PrelimPage() {
         <div className="pr-art-inner">
           <div className="pr-art-side"><div className="pr-art-caption">The customer journey</div><div className="pr-art-card"><span>01</span><strong>Choose an account</strong><div className="pr-art-lines"><i/><i/></div></div><div className="pr-art-card"><span>02</span><strong>Complete application</strong><div className="pr-art-lines"><i/><i/></div></div></div>
           <div className="pr-art-center"><div className="pr-art-caption">The configurable platform</div><div className="pr-engine"><div className="pr-engine-mark">p.</div><div className="pr-engine-label">Prelim</div><div className="pr-engine-grid">{Array.from({length: 35}, (_, i) => <i key={i} className={(i % 7 === 3 || (i > 13 && i < 21)) ? "on" : ""}/>)}</div><div className="pr-engine-caption">Forms · Rules · Integrations</div></div></div>
-          <div className="pr-art-side"><div className="pr-art-caption">The bank's workflow</div><div className="pr-art-card"><span>03</span><strong>Verify and review</strong><div className="pr-art-lines"><i/><i/></div></div><div className="pr-art-card"><span>04</span><strong>Connect to the core</strong><div className="pr-art-lines"><i/><i/></div></div></div>
+          <div className="pr-art-side"><div className="pr-art-caption">The bank’s workflow</div><div className="pr-art-card"><span>03</span><strong>Verify and review</strong><div className="pr-art-lines"><i/><i/></div></div><div className="pr-art-card"><span>04</span><strong>Connect to the core</strong><div className="pr-art-lines"><i/><i/></div></div></div>
         </div>
         <div className="pr-art-foot"><span>Illustrative product architecture</span><span>Account opening across channels</span></div>
       </section>
@@ -56,14 +57,14 @@ export default function PrelimPage() {
         <div className="pr-section-intro"><span className="pr-kicker">02 / How it works</span><h2>Configure the experience from application to account creation.</h2></div>
         <div className="pr-capabilities">
           <article><span>01 / UX Builder</span><h3>Design your own application flows.</h3><p>Use drag-and-drop tools to assemble forms and adapt them to the financial products your institution offers.</p></article>
-          <article><span>02 / Rules engine</span><h3>Automate decisions and approvals.</h3><p>Configure application logic, approval chains and document generation around your institution's processes.</p></article>
+          <article><span>02 / Rules engine</span><h3>Automate decisions and approvals.</h3><p>Configure application logic, approval chains and document generation around your institution’s processes.</p></article>
           <article><span>03 / Enterprise workspace</span><h3>Give employees a place to manage applications.</h3><p>Authorized staff can review submissions, complete tasks and assist customers within a role-based workspace.</p></article>
           <article><span>04 / Core integrations</span><h3>Connect the systems your bank relies on.</h3><p>Exchange application data with core banking systems and integrate services for verification, e-signatures and funding.</p></article>
         </div>
       </div></section>
       <section className="pr-wrap pr-section" id="builder">
         <div className="pr-section-intro"><span className="pr-kicker">03 / An interactive exploration</span><h2>See how an application can adapt to your requirements.</h2></div>
-        <p className="pr-demo-lead">Choose an account type and a verification rule to see how those settings affect the applicant's experience.</p>
+        <p className="pr-demo-lead">Choose an account type and a verification rule to see how those settings affect the applicant’s experience.</p>
         <div className="pr-builder">
           <div className="pr-builder-head"><strong><span className="pr-mark">p.</span> Application builder</strong><span>Interactive concept</span></div>
           <div className="pr-builder-body">
@@ -90,9 +91,9 @@ export default function PrelimPage() {
             </div>
           </div>
         </div>
-        <p className="pr-disclaimer">This is an independent simulation of configurable forms and rules described in <a href="https://docs.prelim.com/docs/what-is-prelim" target="_blank" rel="noreferrer">Prelim's documentation</a>. It is not connected to banking systems and does not collect personal information.</p>
+        <p className="pr-disclaimer">This is an independent simulation of configurable forms and rules described in <a href="https://docs.prelim.com/docs/what-is-prelim" target="_blank" rel="noreferrer">Prelim’s documentation</a>. It is not connected to banking systems and does not collect personal information.</p>
       </section>
-      <section className="pr-final"><div className="pr-wrap"><h2>Build an account experience that fits your institution.</h2><a className="pr-button pr-invert" href="https://prelim.com/" target="_blank" rel="noreferrer">Explore Prelim's official website</a></div></section>
+      <section className="pr-final"><div className="pr-wrap"><h2>Build an account experience that fits your institution.</h2><a className="pr-button pr-invert" href="https://prelim.com/" target="_blank" rel="noreferrer">Explore Prelim’s official website</a></div></section>
       <footer className="pr-footer pr-wrap"><div><a className="pr-wordmark" href="#top">prelim<span>.</span></a><p>An independent design concept by Sergio Piñeros.<br/>Created as a portfolio exploration; not affiliated with Prelim.</p></div><div className="pr-footer-links"><a href="https://prelim.com/" target="_blank" rel="noreferrer">Official website</a><a href="https://docs.prelim.com/docs/what-is-prelim" target="_blank" rel="noreferrer">Product documentation</a><a href="mailto:s.dpineros@gmail.com">Get in touch with the designer</a></div></footer>
     </main>
   );
