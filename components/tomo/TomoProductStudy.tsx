@@ -170,7 +170,7 @@ export default function TomoProductStudy() {
                 {moment === "run" && (
                   <section aria-labelledby="run-title" className={st.generatedCard}>
                     <div className={st.widgetHeader}><span className={st.widgetCategory}>MOVEMENT / THIS WEEK</span><span className={st.widgetStamp}>●</span></div>
-                    <h2 id="run-title">you're on a roll.</h2>
+                    <h2 id="run-title">you&apos;re on a roll.</h2>
                     <div className={st.bigNumber} aria-live="polite">{number.format(weeklyTotal)}<small> km this week</small></div>
                     <div className={st.bar} role="progressbar" aria-label="Running goal" aria-valuemin={0} aria-valuemax={weeklyGoal} aria-valuenow={Math.min(weeklyTotal, weeklyGoal)}><span style={{ width: progress + "%" }} /></div>
                     <p className={st.goalLabel}>{number.format(Math.max(0, weeklyGoal - weeklyTotal))} km until your {weeklyGoal} km goal</p>
@@ -197,7 +197,7 @@ export default function TomoProductStudy() {
                   <section aria-labelledby="win-title" className={st.generatedCard}>
                     <div className={st.widgetHeader}><span className={st.widgetCategory}>THE GOOD STUFF / MOMENT 001</span><span className={st.widgetStamp}>✳</span></div>
                     <div className={st.winArt} aria-hidden="true"><span>★</span><span>GOOD NEWS CLUB</span></div>
-                    <h2 id="win-title">this one's a keeper.</h2>
+                    <h2 id="win-title">this one&apos;s a keeper.</h2>
                     <label className={st.winInput}>name this moment <input type="text" maxLength={50} value={winTitle} onChange={(e) => { setWinTitle(e.target.value); setWinSaved(false); }} /></label>
                     <button type="button" className={st.saveMoment} aria-pressed={winSaved} onClick={() => setWinSaved(!winSaved)}>{winSaved ? "saved in this demo ✓" : "save this moment"}</button>
                   </section>
@@ -229,7 +229,7 @@ export default function TomoProductStudy() {
       <section id="about" className={st.about}>
         <div className={st.aboutCopy}>
           <p className={st.smallLabel}>DESIGNED AND BUILT, NOT JUST MOCKED UP</p>
-          <h2>hey, i'm sergio.</h2>
+          <h2>hey, i&apos;m sergio.</h2>
           <p>I design brands and build working products. I&apos;ve shipped booking, membership and messaging software for a real business. This study is built in Next.js, React and TypeScript.</p>
           <p>I&apos;m in San Francisco and would love to show the Tomo team what else I&apos;m thinking about.</p>
           <div className={st.links}>
