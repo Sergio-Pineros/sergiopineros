@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Ripple | Sergio Piñeros",
@@ -7,12 +8,22 @@ export const metadata: Metadata = {
   alternates: { canonical: "/ripple" },
 };
 
-const email = "mailto:s.dpineros@gmail.com?subject=Ripple%20%7C%20Sergio%20Pi%C3%B1eros";
 const audiences = [
   { name: "CFO", question: "Can we fund our next move?", headline: "Plan your next capital decision with confidence.", body: "Bring cash positions, forecasts and liquidity together to understand funding needs and make more informed decisions.", measure: "I would validate the message with cash visibility, forecast accuracy and time to decision." },
   { name: "Treasurer", question: "Where are our liquidity gaps?", headline: "See where your cash is needed next.", body: "Connect cash data across accounts and entities, assess liquidity needs and monitor currency exposure.", measure: "I would validate the message with account coverage, forecast variance and time spent analyzing exposures." },
   { name: "Analyst", question: "What needs my attention today?", headline: "Find the exceptions that deserve your attention.", body: "Use AI-powered forecasting to compare expectations with actual cash flows and investigate unexpected variances.", measure: "I would validate the message with analysis time, exception resolution and practitioner feedback." },
 ];
+
+function IntroLoader() {
+  return <div className="rp-intro" aria-hidden="true">
+    <div className="rp-intro-pixels">{Array.from({length:160},(_,i)=><span key={i} style={{animationDelay:(760+((i*73)%340))+"ms"}}/>)}</div>
+    <div className="rp-intro-logos">
+      <Image src="/icon.svg" alt="" width={68} height={68} priority unoptimized/>
+      <div className="rp-intro-divider"/>
+      <svg viewBox="0 0 24 24" width="66" height="66" fill="#008CFF" aria-hidden="true"><path d="M20.55 14.65c-.846-.486-1.805-.632-2.752-.666-.79-.023-1.974-.541-1.974-1.985 0-1.072.868-1.94 1.985-1.985.947-.034 1.906-.18 2.752-.666A5.018 5.018 0 0022.4 2.502 5.04 5.04 0 0015.53.674a4.993 4.993 0 00-2.504 4.343c0 .97.35 1.861.79 2.696.372.699.553 1.996-.71 2.73-.948.54-2.132.202-2.719-.745-.496-.801-1.094-1.545-1.94-2.03C6.045 6.28 2.977 7.104 1.6 9.495A5.018 5.018 0 003.44 16.34a5.025 5.025 0 005.008 0c.846-.485 1.444-1.23 1.94-2.03.406-.654 1.433-1.489 2.718-.744.948.541 1.241 1.737.711 2.73-.44.823-.79 1.725-.79 2.695A5.011 5.011 0 0018.034 24a5.011 5.011 0 005.008-5.008 4.982 4.982 0 00-2.492-4.343z"/></svg>
+    </div>
+  </div>;
+}
 
 function Core() {
   return <div className="rp-core">
@@ -66,10 +77,10 @@ function Core() {
 export default function Page() {
   return <main className="rp-page">
     <style>{css}</style>
+    <IntroLoader/>
     <header className="rp-header"><div className="rp-wrap rp-nav">
       <a className="rp-brand" href="https://www.sergiopineros.com">Sergio Piñeros</a>
       <nav aria-label="Page navigation"><a href="#story">About me</a><a href="#concept">My approach</a><a href="#work">My work</a></nav>
-      <a className="rp-button rp-nav-button" href={email}>Let’s talk</a>
     </div></header>
     <section className="rp-hero rp-wrap">
       <div className="rp-hero-copy">
@@ -104,16 +115,11 @@ export default function Page() {
     <section className="rp-wrap rp-section" id="work">
       <div className="rp-section-head"><h2>Things I’ve actually built.</h2><p>I enjoy taking ideas all the way from understanding the customer to making something useful and getting it into their hands.</p></div>
       <div className="rp-work">
-        <a href="https://sergioatelier.co/" target="_blank" rel="noreferrer" className="rp-work-card"><div className="rp-work-visual rp-v1"><strong>540K</strong></div><h3>Sergio &amp; Co.</h3><p>Built a four-person marketing team. Our La Estancia campaign reached 540,000 TikTok views in its first month.</p></a>
+        <a href="https://sergioatelier.co/" target="_blank" rel="noreferrer" className="rp-work-card"><div className="rp-work-visual rp-v1"><strong>540K</strong><svg className="rp-eye" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-label="views" role="img"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></div><h3>Sergio &amp; Co.</h3><p>Built a four-person marketing team. In September 2025, our first month of campaigning for La Estancia reached 540,000 TikTok views and contributed to $32,000 in additional revenue, a 46% increase.</p></a>
         <a href="https://savronmn.com/" target="_blank" rel="noreferrer" className="rp-work-card"><div className="rp-work-visual rp-v2"><div className="rp-mini-calendar" aria-hidden="true">{Array.from({length:12},(_,i)=><span key={i}/>)}</div></div><h3>SAVRON Business OS</h3><p>Built an operating system for a barbershop with booking, memberships, staff communications and an AI concierge.</p></a>
         <a href="https://nxtseat.co/" target="_blank" rel="noreferrer" className="rp-work-card"><div className="rp-work-visual rp-v3"><div className="rp-wave" aria-hidden="true">{[25,48,70,40,84,100,60,35,68,46,22].map((h,i)=><span key={i} style={{height:h+"%"}}/>)}</div></div><h3>NxtSeat</h3><p>Developed voice-first business software with scheduling, customer communication and payment workflows.</p></a>
       </div>
     </section>
-    <footer className="rp-footer"><div className="rp-wrap rp-section">
-      <h2>I’d love to learn from you and build something meaningful together.</h2>
-      <p>I’m excited to keep learning about treasury, digital assets and the future of financial infrastructure. I’d love to hear what your team is working on.</p>
-      <a className="rp-button rp-footer-button" href={email}>Let’s have a chat</a>
-    </div></footer>
   </main>;
 }
 
@@ -127,4 +133,13 @@ const css = `
 @media(max-width:1050px){.rp-wrap{width:calc(100% - 64px)}.rp-nav nav{gap:18px}.rp-hero{gap:24px;min-height:0;padding-block:64px}.rp-hero h1{font-size:clamp(48px,6vw,72px)}.rp-layer-details{grid-template-columns:1fr;gap:0}.rp-layer-details>div{display:flex;gap:12px;align-items:baseline}.rp-layer-details p{margin:0}.rp-three{gap:18px}.rp-work{gap:18px}}
 @media(max-width:700px){.rp-wrap{width:calc(100% - 40px)}.rp-header{position:relative}.rp-nav{min-height:70px;gap:12px;flex-wrap:wrap;padding-block:12px}.rp-brand{font-size:22px}.rp-nav-button{font-size:18px;padding:10px 14px}.rp-nav nav{order:3;width:100%;justify-content:space-between;gap:10px;padding:6px 0;font-size:18px}.rp-hero{grid-template-columns:1fr;gap:30px;padding-block:44px 55px}.rp-hero h1{font-size:clamp(46px,10vw,68px);max-width:13ch}.rp-hero-copy p{margin-top:20px}.rp-hero-copy .rp-button{margin-top:22px}.rp-core-art{padding:0 10px 20px}.rp-core-art svg{max-height:325px}.rp-story,.rp-section-head,.rp-message,.rp-three,.rp-work{grid-template-columns:1fr}.rp-section-head{gap:20px;margin-bottom:30px}.rp-section{padding-block:62px}.rp-story{gap:25px}.rp-tabs label{font-size:18px;min-height:56px;padding:10px 4px}.rp-message{min-height:0}.rp-message-question{gap:24px;padding:25px}.rp-bars{height:65px}.rp-message-main{padding:25px;gap:18px}.rp-launch{margin-top:44px}.rp-three{gap:26px}.rp-work{gap:34px}.rp-work-visual{height:190px}.rp-page section[id]{scroll-margin-top:20px}.rp-layer-details>div{display:block}}
 @media(prefers-reduced-motion:reduce){.rp-page *,.rp-page *::before,.rp-page *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+.rp-intro{position:fixed;inset:0;z-index:9999;pointer-events:auto;display:grid;place-items:center;animation:rp-intro-end 1.26s step-end forwards}
+.rp-intro-pixels{position:absolute;inset:0;display:grid;grid-template-columns:repeat(16,minmax(0,1fr));grid-template-rows:repeat(10,minmax(0,1fr));gap:0}
+.rp-intro-pixels span{background:#fff;animation:rp-pixel-away 140ms steps(2,end) forwards}
+.rp-intro-logos{position:relative;display:flex;align-items:center;justify-content:center;gap:25px;animation:rp-logo-out 760ms step-end forwards}
+.rp-intro-logos img{object-fit:contain;width:68px;height:68px}.rp-intro-divider{width:1px;height:47px;background:#dae4ed}.rp-eye{width:clamp(26px,4vw,44px);height:auto;flex-shrink:0}.rp-v1{gap:clamp(8px,1.5vw,18px)}
+@keyframes rp-pixel-away{to{opacity:0}}@keyframes rp-logo-out{to{visibility:hidden}}@keyframes rp-intro-end{to{visibility:hidden;pointer-events:none}}
+@media(max-width:700px){.rp-nav nav{order:initial}.rp-intro-logos{gap:20px}.rp-intro-logos img,.rp-intro-logos svg{width:56px;height:56px}}
+@media(prefers-reduced-motion:reduce){.rp-intro{display:none!important}}
+
 `;
