@@ -25,8 +25,7 @@ export default function MePage() {
           <Image src="/icon.svg" alt="Sergio Piñeros" width={180} height={180} priority unoptimized />
         </Link>
         <a href="https://sergioatelier.co/" aria-label="Sergio & Co. studio portfolio">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="https://sergioatelier.co/Icon.svg" alt="Sergio & Co." width={180} height={180} />
+          <Image src="/sergio-co-icon-green.svg" alt="Sergio & Co." width={180} height={180} priority unoptimized />
         </a>
       </div>
     </main>
