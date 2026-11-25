@@ -8,21 +8,24 @@ type Moment = "run" | "plan" | "win";
 type View = "chat" | "space";
 type Todo = { id: number; label: string; done: boolean };
 
-const choices: { id: Moment; label: string; message: string; opener: string; shape: string }[] = [
+const choices: { id: Moment; label: string; message: string; opener: string }[] = [
   {
-    id: "run", label: "i went running", message: "i ran 3km today!!",
+    id: "run",
+    label: "i went running",
+    message: "i ran 3km today!!",
     opener: "okay runner era 👀 made you a little space to track it.",
-    shape: "Progress",
   },
   {
-    id: "plan", label: "tomorrow is chaos", message: "i have SO much to do tomorrow",
+    id: "plan",
+    label: "tomorrow is chaos",
+    message: "i have SO much to do tomorrow",
     opener: "okay let's make it less terrifying. i put the important stuff first.",
-    shape: "A plan",
   },
   {
-    id: "win", label: "i got the job", message: "I GOT THE JOB!!!",
+    id: "win",
+    label: "i got the job",
+    message: "I GOT THE JOB!!!",
     opener: "THE DESIGN ONE?? 😭 let's keep this moment.",
-    shape: "A memory",
   },
 ];
 
@@ -49,7 +52,7 @@ export default function TomoProductStudy() {
   const distance = Number(runDistance) || 0;
   const weeklyTotal = 3.7 + distance;
   const completed = tasks.filter((task) => task.done).length;
-  const progress = Math.min(100, Math.round(weeklyTotal / weeklyGoal * 100));
+  const progress = Math.min(100, Math.round((weeklyTotal / weeklyGoal) * 100));
 
   function chooseMoment(next: Moment) {
     setMoment(next);
@@ -87,43 +90,36 @@ export default function TomoProductStudy() {
     setCheckIn(false);
   }
 
-  const followUp = moment === "run"
-    ? "got you. " + number.format(weeklyTotal) + " km this week, " + number.format(Math.max(0, weeklyGoal - weeklyTotal)) + " to go." + (checkIn ? " i'll check in tomorrow 💛" : " no check-ins unless you want them.")
-    : moment === "plan"
-      ? "nice, " + completed + " out of " + tasks.length + " done. your list is right where you left it." + (checkIn ? " i'll nudge you tomorrow." : "")
-      : winSaved
-        ? "saved: “" + (winTitle.trim() || "I got the job!") + ".” this deserves its own little place 💛"
-        : "we can leave it here for now. you can save the moment whenever you want.";
+  const followUp =
+    moment === "run"
+      ? "got you. " + number.format(weeklyTotal) + " km this week, " + number.format(Math.max(0, weeklyGoal - weeklyTotal)) + " to go." + (checkIn ? " i'll check in tomorrow 💛" : " no check-ins unless you want them.")
+      : moment === "plan"
+        ? "nice, " + completed + " out of " + tasks.length + " done. your list is right where you left it." + (checkIn ? " i'll nudge you tomorrow." : "")
+        : winSaved
+          ? "saved: “" + (winTitle.trim() || "I got the job!") + ".” this deserves its own little place 💛"
+          : "we can leave it here for now. you can save the moment whenever you want.";
 
   return (
     <main className={st.page} lang="en">
       <header className={st.header}>
-        <a href="#top" className={st.brand} aria-label="Back to start">
-          <span className={st.brandMark}><Image src="/tomo-studio/tomo-official-mark.svg" alt="" width={28} height={28} /></span>
-          <span className={st.brandName}>tomo<span> / a product study</span></span>
+        <a href="#top" className={st.brand} aria-label="tomo">
+          <Image src="/tomo-studio/tomo-official-mark.svg" alt="" width={28} height={28} />
+          <span className={st.brandName}>tomo</span>
         </a>
-        <div className={st.nav}>
-          <a href="#prototype">try it</a>
-          <a href="#about">say hi</a>
-        </div>
       </header>
-
-      <div className={st.ambient} aria-hidden="true"><div className={st.sun} /><div className={st.ridge} /><div className={st.haze} /></div>
 
       <section className={st.hero} id="top" aria-labelledby="hero-title">
         <div className={st.heroCopy}>
-          <p className={st.kicker}><span className={st.lightDot} /> SMALL EXPERIMENT / BIG QUESTION</p>
-          <h1 id="hero-title">what happens<br />after you<br /><span>text tomo?</span></h1>
-          <p className={st.lede}>A message becomes a tool. The tool remembers the conversation.</p>
-          <p className={st.subcopy}>I designed and built a little prototype of that idea. You can actually use it.</p>
+          <h1 id="hero-title">
+            <span>what happens</span>
+            <span>after you</span>
+            <em>text tomo?</em>
+          </h1>
+          <p className={st.lede}>A message becomes a tool.</p>
           <a className={st.heroCta} href="#prototype">play with it</a>
-          <p className={st.byline}>An independent concept by Sergio Piñeros · SF</p>
         </div>
+
         <div className={st.stage} id="prototype">
-          <div className={st.stageTop}>
-            <span className={st.stageLabel}><span className={st.liveDot} /> LIVE PROTOTYPE</span>
-            <button type="button" className={st.reset} onClick={restart}>reset</button>
-          </div>
           <div className={st.scenarios} role="group" aria-label="Pick a scenario">
             {choices.map((choice) => (
               <button
@@ -136,13 +132,15 @@ export default function TomoProductStudy() {
                 {choice.label}
               </button>
             ))}
+            <button type="button" className={st.reset} onClick={restart}>reset</button>
           </div>
 
           <div className={st.phone} data-moment={moment}>
             <div className={st.phoneHeader}>
-              <div className={st.phoneAvatar}><Image src="/tomo-studio/tomo-official-mark.svg" alt="" width={26} height={26} /></div>
-              <div><strong>tomo</strong><span>your personal AI</span></div>
-              <span className={st.phoneRight}>concept</span>
+              <div className={st.phoneAvatar}>
+                <Image src="/tomo-studio/tomo-official-mark.svg" alt="" width={26} height={26} />
+              </div>
+              <strong>tomo</strong>
             </div>
             <div className={st.switcher} role="group" aria-label="Choose view">
               <button type="button" aria-pressed={view === "chat"} onClick={() => setView("chat")}>the text</button>
@@ -151,29 +149,22 @@ export default function TomoProductStudy() {
 
             {view === "chat" ? (
               <div className={st.chat} key={moment}>
-                <span className={st.date}>today · 4:51 pm</span>
                 <div className={st.messageSent}>{selected.message}</div>
                 <div className={st.messageReceived}>{selected.opener}</div>
                 {returned && <div className={st.messageReceived} aria-live="polite">{followUp}</div>}
-                <div className={st.chatBottom}>
-                  <button className={st.openSpace} type="button" onClick={() => setView("space")}>
-                    <span className={st.spaceIcon} aria-hidden="true"><span /><span /><span /><span /></span>
-                    open your space
-                    <small>{selected.shape}</small>
-                  </button>
-                  <p>Tomo stays in the conversation. The tool opens when it helps.</p>
-                </div>
+                <button className={st.openSpace} type="button" onClick={() => setView("space")}>
+                  open your space
+                </button>
               </div>
             ) : (
               <div className={st.space} key={moment}>
-                <div className={st.spaceMeta}><span>MADE FROM YOUR MESSAGE</span><span>{selected.shape.toUpperCase()}</span></div>
                 {moment === "run" && (
-                  <section aria-labelledby="run-title" className={st.generatedCard}>
-                    <div className={st.widgetHeader}><span className={st.widgetCategory}>MOVEMENT / THIS WEEK</span><span className={st.widgetStamp}>●</span></div>
+                  <section aria-labelledby="run-title" className={st.generated}>
                     <h2 id="run-title">you&apos;re on a roll.</h2>
-                    <div className={st.bigNumber} aria-live="polite">{number.format(weeklyTotal)}<small> km this week</small></div>
-                    <div className={st.bar} role="progressbar" aria-label="Running goal" aria-valuemin={0} aria-valuemax={weeklyGoal} aria-valuenow={Math.min(weeklyTotal, weeklyGoal)}><span style={{ width: progress + "%" }} /></div>
-                    <p className={st.goalLabel}>{number.format(Math.max(0, weeklyGoal - weeklyTotal))} km until your {weeklyGoal} km goal</p>
+                    <div className={st.bigNumber} aria-live="polite">{number.format(weeklyTotal)}<small> km</small></div>
+                    <div className={st.bar} role="progressbar" aria-label="Running goal" aria-valuemin={0} aria-valuemax={weeklyGoal} aria-valuenow={Math.min(weeklyTotal, weeklyGoal)}>
+                      <span style={{ width: progress + "%" }} />
+                    </div>
                     <div className={st.inputsRow}>
                       <label>today&apos;s run <input type="number" inputMode="decimal" min="0" max="100" step="0.1" value={runDistance} onChange={(e) => updateDistance(e.target.value)} /></label>
                       <label>weekly goal <select value={weeklyGoal} onChange={(e) => setWeeklyGoal(Number(e.target.value))}><option value="8">8 km</option><option value="10">10 km</option><option value="15">15 km</option><option value="20">20 km</option></select></label>
@@ -181,25 +172,34 @@ export default function TomoProductStudy() {
                   </section>
                 )}
                 {moment === "plan" && (
-                  <section aria-labelledby="plan-title" className={st.generatedCard}>
-                    <div className={st.widgetHeader}><span className={st.widgetCategory}>TOMORROW / THE PLAN</span><span className={st.widgetStamp}>✳</span></div>
+                  <section aria-labelledby="plan-title" className={st.generated}>
                     <h2 id="plan-title">one thing at a time.</h2>
-                    <p className={st.taskCount} aria-live="polite">{completed} of {tasks.length} done</p>
                     <ul className={st.tasks}>
                       {tasks.map((task) => (
-                        <li key={task.id}><label><input type="checkbox" checked={task.done} onChange={() => setTasks((previous) => previous.map((item) => item.id === task.id ? { ...item, done: !item.done } : item))} /><span className={task.done ? st.done : ""}>{task.label}</span></label></li>
+                        <li key={task.id}>
+                          <label>
+                            <input type="checkbox" checked={task.done} onChange={() => setTasks((previous) => previous.map((item) => item.id === task.id ? { ...item, done: !item.done } : item))} />
+                            <span className={task.done ? st.done : ""}>{task.label}</span>
+                          </label>
+                        </li>
                       ))}
                     </ul>
-                    <form className={st.addTask} onSubmit={addTask}><input aria-label="New task" placeholder="add one more thing" maxLength={46} value={newTask} onChange={(e) => setNewTask(e.target.value)} /><button type="submit" disabled={!newTask.trim()}>add</button></form>
+                    <form className={st.addTask} onSubmit={addTask}>
+                      <input aria-label="New task" placeholder="add one more thing" maxLength={46} value={newTask} onChange={(e) => setNewTask(e.target.value)} />
+                      <button type="submit" disabled={!newTask.trim()}>add</button>
+                    </form>
                   </section>
                 )}
                 {moment === "win" && (
-                  <section aria-labelledby="win-title" className={st.generatedCard}>
-                    <div className={st.widgetHeader}><span className={st.widgetCategory}>THE GOOD STUFF / MOMENT 001</span><span className={st.widgetStamp}>✳</span></div>
-                    <div className={st.winArt} aria-hidden="true"><span>★</span><span>GOOD NEWS CLUB</span></div>
+                  <section aria-labelledby="win-title" className={st.generated}>
                     <h2 id="win-title">this one&apos;s a keeper.</h2>
-                    <label className={st.winInput}>name this moment <input type="text" maxLength={50} value={winTitle} onChange={(e) => { setWinTitle(e.target.value); setWinSaved(false); }} /></label>
-                    <button type="button" className={st.saveMoment} aria-pressed={winSaved} onClick={() => setWinSaved(!winSaved)}>{winSaved ? "saved in this demo ✓" : "save this moment"}</button>
+                    <label className={st.winInput}>
+                      name this moment
+                      <input type="text" maxLength={50} value={winTitle} onChange={(e) => { setWinTitle(e.target.value); setWinSaved(false); }} />
+                    </label>
+                    <button type="button" className={st.saveMoment} aria-pressed={winSaved} onClick={() => setWinSaved(!winSaved)}>
+                      {winSaved ? "saved" : "save this moment"}
+                    </button>
                   </section>
                 )}
                 <div className={st.consentArea}>
@@ -212,44 +212,24 @@ export default function TomoProductStudy() {
               </div>
             )}
           </div>
-          <p className={st.demoDisclaimer}>fictional messages + local state · nothing is sent or stored on Tomo</p>
         </div>
       </section>
 
-      <section id="thinking" className={st.thinking}>
-        <p className={st.smallLabel}>THE DESIGN TAKE</p>
-        <h2>not every thought<br />needs a dashboard.</h2>
-        <div className={st.ideaGrid}>
-          <div><strong>the right shape.</strong><p>A run becomes progress. A messy day becomes a plan. Good news becomes a memory.</p></div>
-          <div><strong>the same context.</strong><p>Edits in the interface change what Tomo knows when you return to chat.</p></div>
-          <div><strong>your call.</strong><p>Proactive messages are opt-in. Useful AI should feel in your control.</p></div>
-        </div>
+      <section className={st.claim} aria-labelledby="claim-title">
+        <h2 id="claim-title">
+          <span>not every thought</span>
+          <span>needs a <em>dashboard.</em></span>
+        </h2>
       </section>
 
       <section id="about" className={st.about}>
-        <div className={st.aboutCopy}>
-          <p className={st.smallLabel}>DESIGNED AND BUILT, NOT JUST MOCKED UP</p>
-          <h2>hey, i&apos;m sergio.</h2>
-          <p>I design brands and build working products. I&apos;ve shipped booking, membership and messaging software for a real business. This study is built in Next.js, React and TypeScript.</p>
-          <p>I&apos;m in San Francisco and would love to show the Tomo team what else I&apos;m thinking about.</p>
-          <div className={st.links}>
-            <a href="mailto:s.dpineros@gmail.com?subject=Let%27s%20talk%20Tomo">let&apos;s grab a coffee</a>
-            <a href="https://www.sergiopineros.com/">portfolio</a>
-            <a href="https://www.linkedin.com/in/sergio-pineros-c/">linkedin</a>
-          </div>
-        </div>
-        <aside className={st.proof}>
-          <p className={st.proofHead}>WHAT THIS LITTLE THING SHOWS</p>
-          <div><span>01</span><strong>product thinking</strong><small>A concrete opinion on generative interfaces</small></div>
-          <div><span>02</span><strong>interaction design</strong><small>Responsive, editable states and feedback</small></div>
-          <div><span>03</span><strong>design engineering</strong><small>Real React components, not screenshots</small></div>
-          <p className={st.proofNote}>Independent speculative work, not an official Tomo product or a live AI integration.</p>
-        </aside>
+        <h2>hey, i&apos;m sergio.</h2>
+        <a href="mailto:s.dpineros@gmail.com?subject=Let%27s%20talk%20Tomo">let&apos;s grab a coffee</a>
       </section>
 
       <footer className={st.footer}>
-        <span>a tiny idea for tomo · made with care in SF</span>
-        <div><a href="/tomo/studio">earlier explorations</a><a href="https://www.tomo.ai/">the real tomo</a></div>
+        <a href="/tomo/studio">earlier explorations</a>
+        <a href="https://www.tomo.ai/">the real tomo</a>
       </footer>
     </main>
   );
